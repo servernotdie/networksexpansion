@@ -5,10 +5,29 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.sefiraat.networks</groupId>
-    <artifactId>Networks</artifactId>
-    <version>MODIFIED</version>
+    <artifactId>networks</artifactId>
+    <version>MODIFIED_1.0.1</version>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/Sefiraat/Networks</url>
+        </repository>
+    </distributionManagement>
 
     <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>snapshots</id>
+            <name>maven-snapshots</name>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+        </pluginRepository>
         <pluginRepository>
             <releases>
                 <updatePolicy>never</updatePolicy>
@@ -19,10 +38,6 @@
             <id>central</id>
             <name>Maven Plugin Repository</name>
             <url>https://repo1.maven.org/maven2</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>apache.snapshots</id>
-            <url>https://repository.apache.org/snapshots/</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -38,16 +53,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.3.0-SNAPSHOT</version>
+                <version>3.3.1-SNAPSHOT</version>
                 <configuration>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>io.github.sefiraat.alone.bstats</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>de.jeff_media.morepersistentdatatypes</pattern>
-                            <shadedPattern>io.github.sefiraat.alone.morepersistentdatatypes</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>
