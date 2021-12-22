@@ -4,6 +4,19 @@
 
 ![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/wiki/setup.png)
 
+## 下载
+
+点击这里下载 Networks: [下载 Networks](https://builds.guizhanss.net/ybw0014/Networks-CN/master)
+
+<p align="center">
+  <a href="https://github.com/ybw0014/Networks-CN/actions/workflows/maven.yml">
+    <img src="https://github.com/ybw0014/Networks-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
+  </a>
+  <a href="https://builds.guizhanss.net/ybw0014/Networks-CN/master">
+    <img src="https://builds.guizhanss.net/f/ybw0014/Networks-CN/master/badge.svg" alt="Build status"/>
+  </a>
+</p>
+
 ## 网格
 
 网格可以让你查看网络中的所有物品，你可以直接取出一个或一组物品。你也可以通过网格将物品输入至网络中。  
