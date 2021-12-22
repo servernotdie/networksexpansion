@@ -1,29 +1,39 @@
-![](https://github.com/Sefiraat/Networks/blob/master/images/logo/logo_large.png?raw=true)
+![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/logo/logo_large.png)
 
-Networks is a Slimefun4 addon that brings a simple yet powerful item storage and movement network that works along side cargo.
+网络是一个Slimefun附属插件，可以创建一个简单有效的物品存储与运输系统，并可以与货运系统交互。
 
-![](https://github.com/Sefiraat/Networks/blob/master/images/wiki/setup.png?raw=true)
+![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/wiki/setup.png)
 
-## Network Grid / Crafting Grid
-It can access every single item in the network and display it to you on a single GUI, you can pull out items one by one or by stack. Items can be inserted directly through this grid and a special crafting grid can craft both vanilla AND slimefun items using ingredients directly from the network.
+## 网格
 
-![](https://github.com/Sefiraat/Networks/blob/master/images/wiki/grid.png?raw=true)
+网格可以让你查看网络中的所有物品，你可以直接取出一个或一组物品。你也可以通过网格将物品输入至网络中。  
+带合成的网格可以让你直接使用网络中的物品进行合成。
 
-![](https://github.com/Sefiraat/Networks/blob/master/images/wiki/grid_crafting.png?raw=true)
+![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/wiki/grid.png)
 
-## Network Bridge
-The Network Bridge just acts as a block to help extend the network out cheaply 
+![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/wiki/grid_crafting.png)
 
-## Network Cells
-The addon adds Network Cells that are access able and posess the same numebr of lsots as a double chest. Items can be withdrawn directly from the cells or accessed via Grids
+## 网桥
 
-## Network Monitor
-The Network Monitor can 'see' nearby slimefun blocks and both display and interact with their contents.
-Currently Supported:
-Infinity Barrels
+网桥用于扩展网络。只有相邻的两个网络方块才会连起来。
 
-## Network Importer
-The Network Importer is a 9-slot inventory that accepts items IN via cargo. Every slimefun tick, these items are consumed into the network following the normal priorities.
+## 网络单元
 
-## Network Exporter
-The Network Exported accepts an item "template" in one side and every tick it will pull out matching items into the output slot, this slot can be accessed via cargo.
+网络单元拥有54格空间(相当于一个大箱子)，可以直接打开，也可以通过网络访问其中的物品。
+
+## 网络监测器
+
+网络监测器可以访问相邻的存储单元，从中取出或放入物品。  
+目前支持:
+
+- 无尽科技存储
+
+## 网络入口
+
+网络入口有9格的空间，每个SF tick可以将最多9组其中的物品输入至网络中。  
+可以与货运网络交互。
+
+## 网络出口
+
+网络出口可以设置每个SF tick从网络中取出一组指定的物品。  
+可以与货运网络交互。
