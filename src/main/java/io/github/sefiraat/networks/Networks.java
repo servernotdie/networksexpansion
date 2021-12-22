@@ -36,7 +36,8 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         instance = this;
 
         getLogger().info("########################################");
-        getLogger().info("         Networks - By Sefiraat         ");
+        getLogger().info("                 Networks               ");
+        getLogger().info("       作者: Sefiraat 汉化: ybw0014      ");
         getLogger().info("########################################");
 
         tryUpdate();
@@ -76,7 +77,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     @Nullable
     @Override
     public String getBugTrackerURL() {
-        return MessageFormat.format("https://github.com/{0}/{1}/issues/", this.username, this.repo);
+        return MessageFormat.format("https://github.com/ybw0014/Networks/issues/", this.username, this.repo);
     }
 
     @Nonnull
