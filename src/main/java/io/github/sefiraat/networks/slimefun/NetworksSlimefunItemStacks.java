@@ -156,82 +156,81 @@ public class NetworksSlimefunItemStacks {
             "NTW_MEMORY_SHELL",
             new ItemStack(Material.DEEPSLATE_TILES),
             Theme.MACHINE,
-            "Network Memory Shell",
-            "The Network Shell is a block",
-            "that provides the network access",
-            "to the memory cards inside of it."
+            "网络外壳",
+            "网络外壳是一个可以让",
+            "网络访问其中内存卡内容的方块"
         );
 
         NETWORK_MEMORY_CARD_1 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_1",
             new ItemStack(Material.LIGHT_GRAY_DYE),
             Theme.TOOL,
-            "Network Memory Card (4K)",
-            "Stores 4,096 items"
+            "网络内存卡 (4K)",
+            "可存储 4,096 物品"
         );
 
         NETWORK_MEMORY_CARD_2 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_2",
             new ItemStack(Material.GRAY_DYE),
             Theme.TOOL,
-            "Network Memory Card (32K)",
-            "Stores 32,768 items"
+            "网络内存卡 (32K)",
+            "可存储 32,768 物品"
         );
 
         NETWORK_MEMORY_CARD_3 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_3",
             new ItemStack(Material.LIME_DYE),
             Theme.TOOL,
-            "Network Memory Card (262K)",
-            "Stores 262,144 items"
+            "网络内存卡 (262K)",
+            "可存储 262,144 物品"
         );
 
         NETWORK_MEMORY_CARD_4 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_4",
             new ItemStack(Material.GREEN_DYE),
             Theme.TOOL,
-            "Network Memory Card (2M)",
-            "Stores 2,097,152 items"
+            "网络内存卡 (2M)",
+            "可存储 2,097,152 物品"
         );
 
         NETWORK_MEMORY_CARD_5 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_5",
             new ItemStack(Material.LIGHT_BLUE_DYE),
             Theme.TOOL,
-            "Network Memory Card (16M)",
-            "Stores 16,777,216 items"
+            "网络内存卡 (16M)",
+            "可存储 16,777,216 物品"
         );
 
         NETWORK_MEMORY_CARD_6 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_6",
             new ItemStack(Material.BLUE_DYE),
             Theme.TOOL,
-            "Network Memory Card (134M)",
-            "Stores 134,217,728 items"
+            "网络内存卡 (134M)",
+            "可存储 134,217,728 物品"
         );
 
         NETWORK_MEMORY_CARD_7 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_7",
             new ItemStack(Material.PINK_DYE),
             Theme.TOOL,
-            "Network Memory Card (1B)",
-            "Stores 1,073,741,824 items"
+            "网络内存卡 (1B)",
+            "可存储 1,073,741,824 物品"
         );
 
         NETWORK_MEMORY_CARD_8 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_8",
             new ItemStack(Material.MAGENTA_DYE),
             Theme.TOOL,
-            "Network Memory Card (8B)",
-            "Stores 8,589,934,592 items"
+            "网络内存卡 (8B)",
+            "可存储 8,589,934,592 物品"
         );
 
         NETWORK_MEMORY_CARD_9 = Theme.themedSlimefunItemStack(
             "NTW_MEMORY_CARD_9",
             new ItemStack(Material.RED_DYE),
             Theme.TOOL,
-            "Network Memory Card (∞)",
-            "Stores ∞ items... almost"
+            "网络内存卡 (∞)",
+            "可无限制存储物品"
         );
 
         NETWORK_PROBE = Theme.themedSlimefunItemStack(
