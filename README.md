@@ -1,8 +1,8 @@
-![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/logo/logo_large.png)
+![](https://cdn.jsdelivr.net/gh/ybw0014/Networks-CN@master/images/logo/logo_large.png)
 
 网络是一个Slimefun附属插件，可以创建一个简单有效的物品存储与运输系统，并可以与货运系统交互。
 
-![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/wiki/setup.png)
+![](https://cdn.jsdelivr.net/gh/ybw0014/Networks-CN@master/images/wiki/setup.png)
 
 ## 下载
 
@@ -22,9 +22,9 @@
 网格可以让你查看网络中的所有物品，你可以直接取出一个或一组物品。你也可以通过网格将物品输入至网络中。  
 带合成的网格可以让你直接使用网络中的物品进行合成。
 
-![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/wiki/grid.png)
+![](https://cdn.jsdelivr.net/gh/ybw0014/Networks-CN@master/images/wiki/grid.png)
 
-![](https://cdn.jsdelivr.net/gh/Sefiraat/Networks@master/images/wiki/grid_crafting.png)
+![](https://cdn.jsdelivr.net/gh/ybw0014/Networks-CN@master/images/wiki/grid_crafting.png)
 
 ## 网桥
 
