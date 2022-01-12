@@ -2,7 +2,8 @@ package io.github.sefiraat.networks.slimefun.tools;
 
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.slimefun.network.NetworkController;
-import io.github.sefiraat.networks.utils.GeneralUtils;
+import io.github.sefiraat.networks.utils.StackUtils;
+import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -15,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.text.MessageFormat;
+import java.util.Map;
 import java.util.Optional;
 
 public class NetworkProbe extends SlimefunItem {
@@ -32,7 +34,7 @@ public class NetworkProbe extends SlimefunItem {
                         SlimefunItem slimefunItem = SlimefunItem.getByItem(player.getInventory().getItemInMainHand());
                         if (slimefunItem instanceof NetworkProbe) {
                             displayToPlayer(block, player);
-                            GeneralUtils.putOnCooldown(e.getItem(), 5);
+                            StackUtils.putOnCooldown(e.getItem(), 10);
                             e.cancel();
                         }
                     }
@@ -44,38 +46,36 @@ public class NetworkProbe extends SlimefunItem {
     private void displayToPlayer(@Nonnull Block block, @Nonnull Player player) {
         NetworkRoot root = NetworkController.NETWORKS.get(block.getLocation());
         if (root != null) {
+            final int bridges = root.getBridges().size();
+            final int importers = root.getImports().size();
+            final int exporters = root.getExports().size();
+            final int monitors = root.getMonitors().size();
+            final int shells = root.getShells().size();
+            final int cells = root.getCells().size();
+            final int wipers = root.getWipers().size();
+            final int grabbers = root.getGrabbers().size();
+            final int pushers = root.getPushers().size();
+            final int purgers = root.getPushers().size();
 
-            long time = System.nanoTime();
+            final Map<ItemStack, Integer> allNetworkItems = root.getAllNetworkItems();
+            final int distinctItems = allNetworkItems.size();
+            long totalItems = allNetworkItems.values().stream().mapToLong(integer -> integer).sum();
 
-            int bridges = root.getBridges().size();
-            long timeBridge = System.nanoTime();
-
-            int importers = root.getImports().size();
-            long timeImporter = System.nanoTime();
-
-            int exporters = root.getExports().size();
-            long timeExporter = System.nanoTime();
-
-            int monitors = root.getMonitors().size();
-            long timeMonitors = System.nanoTime();
-
-            int cells = root.getCells().size();
-            long timeCells = System.nanoTime();
-
-            int barrels = root.getNetworkBarrels().size();
-            long timeBarrels = System.nanoTime();
-
-            int items = root.getAllNetworkItems().size();
-            long timeItems = System.nanoTime();
-
-            player.sendMessage("");
-            player.sendMessage(MessageFormat.format("网桥: {0} (查询用时: {1} ns)", bridges, timeBridge - time));
-            player.sendMessage(MessageFormat.format("网络入口: {0} (查询用时: {1} ns)", importers, timeImporter - timeBridge));
-            player.sendMessage(MessageFormat.format("网络出口: {0} (查询用时: {1} ns)", exporters, timeExporter - timeImporter));
-            player.sendMessage(MessageFormat.format("网络监测器: {0} (查询用时: {1} ns)", monitors, timeMonitors - timeExporter));
-            player.sendMessage(MessageFormat.format("网络单元: {0} (查询用时: {1} ns)", cells, timeCells - timeMonitors));
-            player.sendMessage(MessageFormat.format("存储箱: {0} (查询用时: {1} ns)", barrels, timeBarrels - timeCells));
-            player.sendMessage(MessageFormat.format("物品: {0} (查询用时: {1} ns)", items, timeItems - timeBarrels));
+            player.sendMessage("------------------------------");
+            player.sendMessage("         网络 - 组件统计        ");
+            player.sendMessage("------------------------------");
+            player.sendMessage(MessageFormat.format("{1}网桥: {2}{0}", bridges, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}网络入口: {2}{0}", importers, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}网络出口: {2}{0}", exporters, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}网络监测器: {2}{0}", monitors, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}Shells: {2}{0}", shells, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}Cells: {2}{0}", cells, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}Wipers: {2}{0}", wipers, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}Grabbers: {2}{0}", grabbers, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}Pushers: {2}{0}", pushers, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}Purgers: {2}{0}", purgers, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}Distinct Items: {2}{0}", distinctItems, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}累计物品: {2}{0}", totalItems, Theme.CLICK_INFO, Theme.PASSIVE));
         }
     }
 

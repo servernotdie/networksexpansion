@@ -12,12 +12,12 @@
         <repository>
             <id>central</id>
             <name>sefi-central</name>
-            <url>https://sefiraat.jfrog.io/artifactory/default-maven-remote</url>
+            <url>https://sefiraat.jfrog.io/artifactory/default-maven-local</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
             <name>sefi-snapshot</name>
-            <url>https://sefiraat.jfrog.io/artifactory/default-maven-remote</url>
+            <url>https://sefiraat.jfrog.io/artifactory/default-maven-local</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -63,7 +63,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>io.github.sefiraat.alone.bstats</shadedPattern>
+                            <shadedPattern>io.github.sefiraat.networks.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>
