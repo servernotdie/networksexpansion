@@ -35,7 +35,7 @@ public class NetworkPusher extends NetworkDirectional {
     private static final int DOWN_SLOT = 32;
 
     public static final CustomItemStack TEMPLATE_BACKGROUND_STACK = new CustomItemStack(
-        Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Push items matching template"
+        Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "指定需要推送的物品"
     );
 
     public NetworkPusher(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

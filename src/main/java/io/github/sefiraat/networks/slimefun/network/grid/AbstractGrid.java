@@ -47,22 +47,22 @@ public abstract class AbstractGrid extends NetworkObject {
 
     private static final CustomItemStack PAGE_PREVIOUS_STACK = new CustomItemStack(
         Material.RED_STAINED_GLASS_PANE,
-        Theme.CLICK_INFO.getColor() + "Previous Page"
+        Theme.CLICK_INFO.getColor() + "上一页"
     );
 
     private static final CustomItemStack PAGE_NEXT_STACK = new CustomItemStack(
         Material.RED_STAINED_GLASS_PANE,
-        Theme.CLICK_INFO.getColor() + "Next Page"
+        Theme.CLICK_INFO.getColor() + "下一页"
     );
 
     private static final CustomItemStack CHANGE_SORT_STACK = new CustomItemStack(
         Material.BLUE_STAINED_GLASS_PANE,
-        Theme.CLICK_INFO.getColor() + "Change Sort Order"
+        Theme.CLICK_INFO.getColor() + "更改排序方式"
     );
 
     private static final CustomItemStack FILTER_STACK = new CustomItemStack(
         Material.NAME_TAG,
-        Theme.CLICK_INFO.getColor() + "Set Filter (Right Click to Clear)"
+        Theme.CLICK_INFO.getColor() + "设置过滤器 (右键点击以清除)"
     );
 
     private static final Comparator<Map.Entry<ItemStack, Integer>> ALPHABETICAL_SORT = Comparator.comparing(
@@ -229,7 +229,7 @@ public abstract class AbstractGrid extends NetworkObject {
             gridCache.setFilter(null);
         } else {
             player.closeInventory();
-            player.sendMessage(Theme.WARNING + "Type what you would like to filter this grid to");
+            player.sendMessage(Theme.WARNING + "请输入你想要过滤的物品名称(显示名)或类型");
             ChatUtils.awaitInput(player, s -> {
                 if (s.isBlank()) {
                     return;
@@ -333,7 +333,7 @@ public abstract class AbstractGrid extends NetworkObject {
     private static List<String> getLoreAddition(int amount) {
         return List.of(
             "",
-            MessageFormat.format("{0}Amount: {1}{2}", Theme.CLICK_INFO.getColor(), Theme.PASSIVE.getColor(), amount)
+            MessageFormat.format("{0}数量: {1}{2}", Theme.CLICK_INFO.getColor(), Theme.PASSIVE.getColor(), amount)
         );
     }
 }

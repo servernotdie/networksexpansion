@@ -41,9 +41,9 @@ public class NetworkMemoryShell extends NetworkObject {
     public static final int CARD_SLOT = 4;
     public static final int OUTPUT_SLOT = 7;
 
-    private static final ItemStack BACK_INPUT = new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE, Theme.PASSIVE + "Input");
-    private static final ItemStack BACK_CARD = new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Memory Card");
-    private static final ItemStack BACK_OUTPUT = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, Theme.PASSIVE + "Output");
+    private static final ItemStack BACK_INPUT = new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE, Theme.PASSIVE + "输入");
+    private static final ItemStack BACK_CARD = new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "内存卡");
+    private static final ItemStack BACK_OUTPUT = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, Theme.PASSIVE + "输出");
 
     private static final int[] INPUT_SLOTS = new int[]{0, 2};
     private static final int[] CARD_SLOTS = new int[]{3, 5};

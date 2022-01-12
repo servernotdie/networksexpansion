@@ -72,7 +72,7 @@ public class CardInstance extends ItemStackCache {
 
     public String getLoreLine() {
         if (this.getItemStack() == null) {
-            return Theme.WARNING + "Empty";
+            return Theme.WARNING + "空";
         }
         ItemMeta itemMeta = this.getItemMeta();
         String name;
@@ -81,7 +81,7 @@ public class CardInstance extends ItemStackCache {
         } else if (this.getItemType() != null) {
             name = this.getItemType().name();
         } else {
-            name = "Unknown/Error";
+            name = "未知/错误";
         }
         return Theme.CLICK_INFO + name + ": " + Theme.PASSIVE + this.amount;
     }

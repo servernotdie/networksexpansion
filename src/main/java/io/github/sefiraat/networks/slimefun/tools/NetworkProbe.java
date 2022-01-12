@@ -68,9 +68,9 @@ public class NetworkProbe extends SlimefunItem {
             player.sendMessage(MessageFormat.format("{1}网络入口: {2}{0}", importers, Theme.CLICK_INFO, Theme.PASSIVE));
             player.sendMessage(MessageFormat.format("{1}网络出口: {2}{0}", exporters, Theme.CLICK_INFO, Theme.PASSIVE));
             player.sendMessage(MessageFormat.format("{1}网络监测器: {2}{0}", monitors, Theme.CLICK_INFO, Theme.PASSIVE));
-            player.sendMessage(MessageFormat.format("{1}Shells: {2}{0}", shells, Theme.CLICK_INFO, Theme.PASSIVE));
-            player.sendMessage(MessageFormat.format("{1}Cells: {2}{0}", cells, Theme.CLICK_INFO, Theme.PASSIVE));
-            player.sendMessage(MessageFormat.format("{1}Wipers: {2}{0}", wipers, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}网络外壳: {2}{0}", shells, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}网络单元: {2}{0}", cells, Theme.CLICK_INFO, Theme.PASSIVE));
+            player.sendMessage(MessageFormat.format("{1}网络内存清除器: {2}{0}", wipers, Theme.CLICK_INFO, Theme.PASSIVE));
             player.sendMessage(MessageFormat.format("{1}Grabbers: {2}{0}", grabbers, Theme.CLICK_INFO, Theme.PASSIVE));
             player.sendMessage(MessageFormat.format("{1}Pushers: {2}{0}", pushers, Theme.CLICK_INFO, Theme.PASSIVE));
             player.sendMessage(MessageFormat.format("{1}Purgers: {2}{0}", purgers, Theme.CLICK_INFO, Theme.PASSIVE));

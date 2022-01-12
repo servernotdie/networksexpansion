@@ -145,31 +145,27 @@ public class NetworksSlimefunItemStacks {
             "NTW_GRABBER",
             new ItemStack(Material.MAGENTA_STAINED_GLASS),
             Theme.MACHINE,
-            "Network Grabber",
-            "The Network Grabber will try",
-            "to grab the first item it finds",
-            "from within the selected machine."
+            "网络抓取器",
+            "网络抓取器会尝试从",
+            "指定的机器中抓取第一个物品"
         );
 
         NETWORK_PUSHER = Theme.themedSlimefunItemStack(
             "NTW_PUSHER",
             new ItemStack(Material.BROWN_STAINED_GLASS),
             Theme.MACHINE,
-            "Network Pusher",
-            "The Network Pusher will try",
-            "to push a matching item from a",
-            "given item into the chosen machine."
+            "网络推送器",
+            "网络推送器会尝试将",
+            "指定的物品送入机器中"
         );
 
         NETWORK_PURGER = Theme.themedSlimefunItemStack(
             "NTW_TRASH",
             new ItemStack(Material.OBSERVER),
             Theme.MACHINE,
-            "Network Purger",
-            "The Network Purger will pull",
-            "matching items from the network",
-            "and instantly void them.",
-            "Use with great care!"
+            "网络清除器",
+            "网络清除器会从网络中移除指定物品",
+            "该物品会立即消失，谨慎使用!"
         );
 
         NETWORK_GRID = Theme.themedSlimefunItemStack(

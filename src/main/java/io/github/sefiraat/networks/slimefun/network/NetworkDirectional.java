@@ -240,7 +240,7 @@ public abstract class NetworkDirectional extends NetworkObject {
         if (slimefunItem != null) {
             final ItemStack displayStack = new CustomItemStack(
                 slimefunItem.getItem(),
-                Theme.PASSIVE + "Set Direction " + blockFace.name() + " (" + ChatColor.stripColor(slimefunItem.getItemName()) + ")"
+                Theme.PASSIVE + "设置朝向 " + blockFace.name() + " (" + ChatColor.stripColor(slimefunItem.getItemName()) + ")"
             );
             final ItemMeta itemMeta = displayStack.getItemMeta();
             if (active) {
@@ -254,7 +254,7 @@ public abstract class NetworkDirectional extends NetworkObject {
             Material material = active ? Material.GREEN_STAINED_GLASS_PANE : Material.RED_STAINED_GLASS_PANE;
             return new CustomItemStack(
                 material,
-                ChatColor.GRAY + "Set direction: " + blockFace.name()
+                ChatColor.GRAY + "设置朝向: " + blockFace.name()
             );
         }
     }
