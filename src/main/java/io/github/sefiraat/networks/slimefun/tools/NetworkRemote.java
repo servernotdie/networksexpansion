@@ -51,7 +51,7 @@ public class NetworkRemote extends SlimefunItem {
                             if (slimefunItem instanceof NetworkGrid) {
                                 setGrid(e.getItem(), block, player);
                             } else {
-                                player.sendMessage(Theme.ERROR + "Must be set to a Network Grid (not crafting grid).");
+                                player.sendMessage(Theme.ERROR + "必须连接到一个网格 (不能是带合成的)");
                             }
                         }
                     } else {
@@ -67,7 +67,7 @@ public class NetworkRemote extends SlimefunItem {
         final ItemMeta itemMeta = itemStack.getItemMeta();
         DataTypeMethods.setCustom(itemMeta, KEY, DataType.LOCATION, block.getLocation());
         itemStack.setItemMeta(itemMeta);
-        player.sendMessage(Theme.SUCCESS + "Grid has been bound to the remote.");
+        player.sendMessage(Theme.SUCCESS + "网格已绑定至远程控制器");
     }
 
     private void tryOpenGrid(@Nonnull ItemStack itemStack, @Nonnull Player player) {
@@ -77,7 +77,7 @@ public class NetworkRemote extends SlimefunItem {
         if (location != null) {
 
             if (!location.getWorld().isChunkLoaded(location.getBlockX() / 16, location.getBlockZ() / 16)) {
-                player.sendMessage(Theme.ERROR + "The bound grid is not loaded.");
+                player.sendMessage(Theme.ERROR + "绑定的网格所在区块没有加载");
                 return;
             }
 
@@ -89,10 +89,10 @@ public class NetworkRemote extends SlimefunItem {
             ) {
                 openGrid(location, player);
             } else {
-                player.sendMessage(Theme.ERROR + "The bound grid is not within reach.");
+                player.sendMessage(Theme.ERROR + "绑定的网格不在范围内");
             }
         } else {
-            player.sendMessage(Theme.ERROR + "Remote is not bound to a grid.");
+            player.sendMessage(Theme.ERROR + "该远程控制器没有绑定网格");
         }
     }
 
@@ -102,7 +102,7 @@ public class NetworkRemote extends SlimefunItem {
         if (slimefunItem instanceof NetworkGrid) {
             blockMenu.open(player);
         } else {
-            player.sendMessage(Theme.ERROR + "The bound grid can no longer be found.");
+            player.sendMessage(Theme.ERROR + "无法找到绑定的网格");
         }
     }
 

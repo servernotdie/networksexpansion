@@ -38,7 +38,7 @@ public class NetworkMemoryWiper extends NetworkObject {
 
     private static final int CARD_SLOT = 4;
 
-    private static final ItemStack BACK_CARD = new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Memory Card");
+    private static final ItemStack BACK_CARD = new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "内存卡");
 
     private static final int[] BACKGROUND_SLOTS = new int[]{0, 1, 2, 6, 7, 8};
     private static final int[] CARD_SLOTS = new int[]{3, 5};
