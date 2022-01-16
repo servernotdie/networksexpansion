@@ -52,11 +52,11 @@ public class NetworkAutoCrafter extends NetworkObject {
     private static final int OUTPUT_SLOT = 16;
 
     public static final CustomItemStack BLUEPRINT_BACKGROUND_STACK = new CustomItemStack(
-        Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Crafting Blueprint"
+        Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "合成蓝图"
     );
 
     public static final CustomItemStack OUTPUT_BACKGROUND_STACK = new CustomItemStack(
-        Material.GREEN_STAINED_GLASS_PANE, Theme.PASSIVE + "Output"
+        Material.GREEN_STAINED_GLASS_PANE, Theme.PASSIVE + "输出"
     );
 
     private final int chargePerCraft;
