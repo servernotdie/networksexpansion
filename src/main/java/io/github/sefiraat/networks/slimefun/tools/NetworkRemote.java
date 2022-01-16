@@ -67,7 +67,7 @@ public class NetworkRemote extends SlimefunItem {
         final ItemMeta itemMeta = itemStack.getItemMeta();
         DataTypeMethods.setCustom(itemMeta, KEY, DataType.LOCATION, block.getLocation());
         itemStack.setItemMeta(itemMeta);
-        player.sendMessage(Theme.SUCCESS + "网格已绑定至远程控制器");
+        player.sendMessage(Theme.SUCCESS + "网格已绑定至远程访问器");
     }
 
     private void tryOpenGrid(@Nonnull ItemStack itemStack, @Nonnull Player player) {
@@ -92,7 +92,7 @@ public class NetworkRemote extends SlimefunItem {
                 player.sendMessage(Theme.ERROR + "绑定的网格不在范围内");
             }
         } else {
-            player.sendMessage(Theme.ERROR + "该远程控制器没有绑定网格");
+            player.sendMessage(Theme.ERROR + "该远程访问器没有绑定网格");
         }
     }
 
