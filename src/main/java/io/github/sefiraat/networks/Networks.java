@@ -1,7 +1,6 @@
 package io.github.sefiraat.networks;
 
 import io.github.sefiraat.networks.managers.ListenerManager;
-import io.github.sefiraat.networks.managers.RunnableManager;
 import io.github.sefiraat.networks.managers.SupportedPluginManager;
 import io.github.sefiraat.networks.slimefun.NetworkSlimefunItems;
 import io.github.sefiraat.networks.slimefun.network.NetworkController;
@@ -28,7 +27,6 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     private final String branch;
 
     private ListenerManager listenerManager;
-    private RunnableManager runnableManager;
     private SupportedPluginManager supportedPluginManager;
 
     public Networks() {
@@ -51,7 +49,6 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         setupSlimefun();
 
         this.listenerManager = new ListenerManager();
-        this.runnableManager = new RunnableManager();
         this.supportedPluginManager = new SupportedPluginManager();
 
         setupMetrics();
@@ -76,7 +73,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
 
         AdvancedPie networksChart = new AdvancedPie("networks", () -> {
             Map<String, Integer> networksMap = new HashMap<>();
-            networksMap.put("Number of networks", NetworkController.NETWORKS.size());
+            networksMap.put("Number of networks", NetworkController.getNetworks().size());
             return networksMap;
         });
 

@@ -2,6 +2,7 @@ package io.github.sefiraat.networks.slimefun;
 
 import io.github.sefiraat.networks.slimefun.network.NetworkMemoryWiper;
 import io.github.sefiraat.networks.slimefun.tools.NetworkCard;
+import io.github.sefiraat.networks.slimefun.tools.NetworkRemote;
 import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
@@ -14,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
 import java.text.MessageFormat;
+import java.util.Locale;
 
 /**
  * Creating SlimefunItemstacks here due to some items being created in Enums so this will
@@ -27,6 +29,13 @@ public class NetworksSlimefunItemStacks {
     public static final SlimefunItemStack OPTIC_CABLE;
     public static final SlimefunItemStack OPTIC_STAR;
     public static final SlimefunItemStack RADIOACTIVE_OPTIC_STAR;
+    public static final SlimefunItemStack SHRINKING_BASE;
+    public static final SlimefunItemStack SIMPLE_NANOBOTS;
+    public static final SlimefunItemStack ADVANCED_NANOBOTS;
+    public static final SlimefunItemStack AI_CORE;
+    public static final SlimefunItemStack EMPOWERED_AI_CORE;
+    public static final SlimefunItemStack PRISTINE_AI_CORE;
+    public static final SlimefunItemStack INTERDIMENSIONAL_PRESENCE;
 
     // Network Items
     public static final SlimefunItemStack NETWORK_CONTROLLER;
@@ -45,6 +54,12 @@ public class NetworksSlimefunItemStacks {
     public static final SlimefunItemStack NETWORK_MEMORY_WIPER_2;
     public static final SlimefunItemStack NETWORK_MEMORY_WIPER_3;
     public static final SlimefunItemStack NETWORK_MEMORY_WIPER_4;
+    public static final SlimefunItemStack NETWORK_CAPACITOR_1;
+    public static final SlimefunItemStack NETWORK_CAPACITOR_2;
+    public static final SlimefunItemStack NETWORK_POWER_DISPLAY;
+    public static final SlimefunItemStack NETWORK_RECIPE_ENCODER;
+    public static final SlimefunItemStack NETWORK_AUTO_CRAFTER;
+    public static final SlimefunItemStack NETWORK_AUTO_CRAFTER_WITHHOLDING;
 
     // Tools
     public static final SlimefunItemStack NETWORK_MEMORY_CARD_1;
@@ -55,7 +70,13 @@ public class NetworksSlimefunItemStacks {
     public static final SlimefunItemStack NETWORK_MEMORY_CARD_6;
     public static final SlimefunItemStack NETWORK_MEMORY_CARD_7;
     public static final SlimefunItemStack NETWORK_MEMORY_CARD_8;
+    public static final SlimefunItemStack CRAFTING_BLUEPRINT;
     public static final SlimefunItemStack NETWORK_PROBE;
+    public static final SlimefunItemStack NETWORK_REMOTE;
+    public static final SlimefunItemStack NETWORK_REMOTE_EMPOWERED;
+    public static final SlimefunItemStack NETWORK_REMOTE_PRISTINE;
+    public static final SlimefunItemStack NETWORK_REMOTE_ULTIMATE;
+    public static final SlimefunItemStack NETWORK_CRAYON;
 
     static {
 
@@ -91,6 +112,64 @@ public class NetworksSlimefunItemStacks {
             "能够传输几乎无限信息的星"
         );
 
+        SHRINKING_BASE = Theme.themedSlimefunItemStack(
+            "NTW_SHRINKING_BASE",
+            getPreEnchantedItemStack(Material.PISTON, true, new Pair<>(Enchantment.ARROW_DAMAGE, 1)),
+            Theme.CRAFTING,
+            "缩小底座",
+            "可以让大型物体变小的装置"
+        );
+
+        SIMPLE_NANOBOTS = Theme.themedSlimefunItemStack(
+            "NTW_SIMPLE_NANOBOTS",
+            new ItemStack(Material.MELON_SEEDS),
+            Theme.CRAFTING,
+            "简易纳米机器人",
+            "可以帮助你完成精密任务的微型机器人"
+        );
+
+        ADVANCED_NANOBOTS = Theme.themedSlimefunItemStack(
+            "NTW_ADVANCED_NANOBOTS",
+            getPreEnchantedItemStack(Material.MELON_SEEDS, true, new Pair<>(Enchantment.ARROW_DAMAGE, 1)),
+            Theme.CRAFTING,
+            "高级纳米机器人",
+            "可以帮助你完成精密任务的微型机器人",
+            "比简易版更智能，更高效"
+        );
+
+        AI_CORE = Theme.themedSlimefunItemStack(
+            "NTW_AI_CORE",
+            new ItemStack(Material.BRAIN_CORAL_BLOCK),
+            Theme.CRAFTING,
+            "人工智能核心",
+            "在脆弱外壳中的初代人工智能"
+        );
+
+        EMPOWERED_AI_CORE = Theme.themedSlimefunItemStack(
+            "NTW_EMPOWERED_AI_CORE",
+            new ItemStack(Material.TUBE_CORAL_BLOCK),
+            Theme.CRAFTING,
+            "充能人工智能核心",
+            "在外壳中的高级人工智能"
+        );
+
+        PRISTINE_AI_CORE = Theme.themedSlimefunItemStack(
+            "NTW_PRISTINE_AI_CORE",
+            getPreEnchantedItemStack(Material.TUBE_CORAL_BLOCK, true, new Pair<>(Enchantment.ARROW_DAMAGE, 1)),
+            Theme.CRAFTING,
+            "古代人工智能核心",
+            "据说是从上古遗迹中挖掘出来的",
+            "完美级人工智能"
+        );
+
+        INTERDIMENSIONAL_PRESENCE = Theme.themedSlimefunItemStack(
+            "NTW_INTERDIMENSIONAL_PRESENCE",
+            getPreEnchantedItemStack(Material.ARMOR_STAND, true, new Pair<>(Enchantment.ARROW_DAMAGE, 1)),
+            Theme.CRAFTING,
+            "跨跃维度的存在",
+            "能跨越纬度的人工智能"
+        );
+
         NETWORK_CONTROLLER = Theme.themedSlimefunItemStack(
             "NTW_CONTROLLER",
             new ItemStack(Material.BLACK_STAINED_GLASS),
@@ -118,7 +197,8 @@ public class NetworksSlimefunItemStacks {
             "实现放入/取出物品",
             "",
             "目前支持:",
-            "无尽科技存储"
+            "无尽科技存储",
+            "网络外壳"
         );
 
         NETWORK_IMPORT = Theme.themedSlimefunItemStack(
@@ -216,7 +296,7 @@ public class NetworksSlimefunItemStacks {
             "从内存卡中缓慢提取物品",
             "到网络中",
             "",
-            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.STACKS_TO_PUSH[0])
+            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.getStacksToPush()[0])
         );
 
         NETWORK_MEMORY_WIPER_2 = Theme.themedSlimefunItemStack(
@@ -228,7 +308,7 @@ public class NetworksSlimefunItemStacks {
             "从内存卡中缓慢提取物品",
             "到网络中",
             "",
-            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.STACKS_TO_PUSH[1])
+            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.getStacksToPush()[1])
         );
 
         NETWORK_MEMORY_WIPER_3 = Theme.themedSlimefunItemStack(
@@ -240,7 +320,7 @@ public class NetworksSlimefunItemStacks {
             "从内存卡中缓慢提取物品",
             "到网络中",
             "",
-            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.STACKS_TO_PUSH[2])
+            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.getStacksToPush()[2])
         );
 
         NETWORK_MEMORY_WIPER_4 = Theme.themedSlimefunItemStack(
@@ -252,7 +332,80 @@ public class NetworksSlimefunItemStacks {
             "从内存卡中缓慢提取物品",
             "到网络中",
             "",
-            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.STACKS_TO_PUSH[3])
+            MessageFormat.format("{0}速度: {1}{2} 组/t", Theme.CLICK_INFO, Theme.PASSIVE, NetworkMemoryWiper.getStacksToPush()[3])
+        );
+
+        NETWORK_CAPACITOR_1 = Theme.themedSlimefunItemStack(
+            "NTW_CAPACITOR_1",
+            new ItemStack(Material.BROWN_GLAZED_TERRACOTTA),
+            Theme.MACHINE,
+            "网络电容 (1)",
+            "网络电容可以储存电力",
+            "以供其他网络设备使用",
+            "",
+            MessageFormat.format("{0}容量: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, 1000)
+        );
+
+        NETWORK_CAPACITOR_2 = Theme.themedSlimefunItemStack(
+            "NTW_CAPACITOR_2",
+            new ItemStack(Material.GREEN_GLAZED_TERRACOTTA),
+            Theme.MACHINE,
+            "网络电容 (2)",
+            "网络电容可以储存电力",
+            "以供其他网络设备使用",
+            "",
+            MessageFormat.format("{0}容量: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, 10000)
+        );
+
+        NETWORK_POWER_DISPLAY = Theme.themedSlimefunItemStack(
+            "NTW_POWER_DISPLAY",
+            new ItemStack(Material.TINTED_GLASS),
+            Theme.MACHINE,
+            "网络电表",
+            "网络电表会显示网络中的电力情况",
+            "很简单, 对吧?"
+        );
+
+        NETWORK_RECIPE_ENCODER = Theme.themedSlimefunItemStack(
+            "NTW_RECIPE_ENCODER",
+            new ItemStack(Material.TARGET),
+            Theme.MACHINE,
+            "网络配方编码器Network Recipe Encoder",
+            "Used to form a Crafting Blueprint",
+            "from input items.",
+            "",
+            MessageFormat.format("{0}Network Drain: {1}{2}/encode", Theme.CLICK_INFO, Theme.PASSIVE, 20000)
+        );
+
+        NETWORK_AUTO_CRAFTER = Theme.themedSlimefunItemStack(
+            "NTW_AUTO_CRAFTER",
+            new ItemStack(Material.BLACK_GLAZED_TERRACOTTA),
+            Theme.MACHINE,
+            "网络自动合成机",
+            "网络自动合成机需要合成蓝图才能工作。",
+            "当网络中没有蓝图的目标物品时，",
+            "机器会自动从网络中选取材料进行合成",
+            "(需要网络中有足够的原材料)"
+            "",
+            MessageFormat.format("{0}网络电力消耗: {1}{2} 每次合成", Theme.CLICK_INFO, Theme.PASSIVE, 64)
+        );
+
+        NETWORK_AUTO_CRAFTER_WITHHOLDING = Theme.themedSlimefunItemStack(
+            "NTW_AUTO_CRAFTER_WITHHOLDING",
+            new ItemStack(Material.WHITE_GLAZED_TERRACOTTA),
+            Theme.MACHINE,
+            "网络自动合成机 (预留版)",
+            "网络自动合成机需要合成蓝图才能工作。",
+            "当网络中没有蓝图的目标物品时，",
+            "机器会自动从网络中选取材料进行合成",
+            "(需要网络中有足够的原材料)"
+            "",
+            "预留版的自动合成机会不断进行合成",
+            "直到输出栏拥有1组物品",
+            "这一组物品可以在网络中访问",
+            "也可以通过货运系统取出"
+            "",
+            MessageFormat.format("{0}网络电力消耗: {1}{2} 每次合成", Theme.CLICK_INFO, Theme.PASSIVE, 128)
         );
 
         NETWORK_MEMORY_CARD_1 = Theme.themedSlimefunItemStack(
@@ -260,7 +413,7 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.LIGHT_GRAY_DYE),
             Theme.TOOL,
             "网络内存卡 (4K)",
-            "可存储 " + NetworkCard.SIZES[0] + " 物品",
+            "可存储 " + NetworkCard.getSizes()[0] + " 物品",
             "",
             "副手中拿着需要设置的物品时",
             "右键点击以设置该卡片使用的物品",
@@ -277,7 +430,7 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.GRAY_DYE),
             Theme.TOOL,
             "网络内存卡 (32K)",
-            "可存储 " + NetworkCard.SIZES[1] + " 物品",
+            "可存储 " + NetworkCard.getSizes()[1] + " 物品",
             "",
             "副手中拿着需要设置的物品时",
             "右键点击以设置该卡片使用的物品",
@@ -294,7 +447,7 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.LIME_DYE),
             Theme.TOOL,
             "网络内存卡 (262K)",
-            "可存储 " + NetworkCard.SIZES[2] + " 物品",
+            "可存储 " + NetworkCard.getSizes()[2] + " 物品",
             "",
             "副手中拿着需要设置的物品时",
             "右键点击以设置该卡片使用的物品",
@@ -311,7 +464,7 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.GREEN_DYE),
             Theme.TOOL,
             "网络内存卡 (2M)",
-            "可存储 " + NetworkCard.SIZES[3] + " 物品",
+            "可存储 " + NetworkCard.getSizes()[3] + " 物品",
             "",
             "副手中拿着需要设置的物品时",
             "右键点击以设置该卡片使用的物品",
@@ -328,7 +481,7 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.LIGHT_BLUE_DYE),
             Theme.TOOL,
             "网络内存卡 (16M)",
-            "可存储 " + NetworkCard.SIZES[4] + " 物品",
+            "可存储 " + NetworkCard.getSizes()[4] + " 物品",
             "",
             "副手中拿着需要设置的物品时",
             "右键点击以设置该卡片使用的物品",
@@ -345,7 +498,7 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.BLUE_DYE),
             Theme.TOOL,
             "网络内存卡 (134M)",
-            "可存储 " + NetworkCard.SIZES[5] + " 物品",
+            "可存储 " + NetworkCard.getSizes()[5] + " 物品",
             "",
             "副手中拿着需要设置的物品时",
             "右键点击以设置该卡片使用的物品",
@@ -362,7 +515,7 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.PINK_DYE),
             Theme.TOOL,
             "网络内存卡 (1B)",
-            "可存储 " + NetworkCard.SIZES[6] + " 物品",
+            "可存储 " + NetworkCard.getSizes()[6] + " 物品",
             "",
             "副手中拿着需要设置的物品时",
             "右键点击以设置该卡片使用的物品",
@@ -391,6 +544,15 @@ public class NetworksSlimefunItemStacks {
             Theme.WARNING + "空"
         );
 
+        CRAFTING_BLUEPRINT = Theme.themedSlimefunItemStack(
+            "NTW_CRAFTING_BLUEPRINT",
+            new ItemStack(Material.BLUE_DYE),
+            Theme.TOOL,
+            "合成蓝图",
+            "一张空白的蓝图",
+            "可以存储一个合成配方"
+        );
+
         NETWORK_PROBE = Theme.themedSlimefunItemStack(
             "NTW_PROBE",
             new ItemStack(Material.CLOCK),
@@ -398,6 +560,59 @@ public class NetworksSlimefunItemStacks {
             "网络探测器",
             "右键点击网络控制器",
             "可以查看网络中的节点数量"
+        );
+
+        NETWORK_REMOTE = Theme.themedSlimefunItemStack(
+            "NTW_REMOTE",
+            new ItemStack(Material.PAINTING),
+            Theme.TOOL,
+            "网络远程访问器",
+            "远程打开绑定的网格",
+            "需要加载网格所在区块",
+            "",
+            MessageFormat.format("{0}范围: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, NetworkRemote.getRanges()[0])
+        );
+
+        NETWORK_REMOTE_EMPOWERED = Theme.themedSlimefunItemStack(
+            "NTW_REMOTE_EMPOWERED",
+            new ItemStack(Material.ITEM_FRAME),
+            Theme.TOOL,
+            "充能网络远程访问器",
+            "远程打开绑定的网格",
+            "需要加载网格所在区块",
+            "",
+            MessageFormat.format("{0}范围: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, NetworkRemote.getRanges()[1])
+        );
+
+        NETWORK_REMOTE_PRISTINE = Theme.themedSlimefunItemStack(
+            "NTW_REMOTE_PRISTINE",
+            new ItemStack(Material.GLOW_ITEM_FRAME),
+            Theme.TOOL,
+            "古代网络远程访问器",
+            "远程打开绑定的网格",
+            "需要加载网格所在区块",
+            "",
+            MessageFormat.format("{0}范围: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, "无限制(仅同一世界)")
+        );
+
+        NETWORK_REMOTE_ULTIMATE = Theme.themedSlimefunItemStack(
+            "NTW_REMOTE_ULTIMATE",
+            getPreEnchantedItemStack(Material.GLOW_ITEM_FRAME, true, new Pair<>(Enchantment.ARROW_DAMAGE, 1)),
+            Theme.TOOL,
+            "终极网络远程访问器",
+            "远程打开绑定的网格",
+            "需要加载网格所在区块",
+            "",
+            MessageFormat.format("{0}范围: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, "跨维度")
+        );
+
+        NETWORK_CRAYON = Theme.themedSlimefunItemStack(
+            "NTW_CRAYON",
+            new ItemStack(Material.RED_CANDLE),
+            Theme.TOOL,
+            "网络绘制器",
+            "当对着网络控制器使用时",
+            "可以让该网络中的方块展示出粒子效果"
         );
     }
 
