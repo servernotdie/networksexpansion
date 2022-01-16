@@ -370,11 +370,10 @@ public class NetworksSlimefunItemStacks {
             "NTW_RECIPE_ENCODER",
             new ItemStack(Material.TARGET),
             Theme.MACHINE,
-            "网络配方编码器Network Recipe Encoder",
-            "Used to form a Crafting Blueprint",
-            "from input items.",
+            "网络配方编码器",
+            "可以根据输入的物品来制作合成蓝图",
             "",
-            MessageFormat.format("{0}Network Drain: {1}{2}/encode", Theme.CLICK_INFO, Theme.PASSIVE, 20000)
+            MessageFormat.format("{0}网络电力消耗: {1}{2} 每次编码", Theme.CLICK_INFO, Theme.PASSIVE, 20000)
         );
 
         NETWORK_AUTO_CRAFTER = Theme.themedSlimefunItemStack(
@@ -385,7 +384,7 @@ public class NetworksSlimefunItemStacks {
             "网络自动合成机需要合成蓝图才能工作。",
             "当网络中没有蓝图的目标物品时，",
             "机器会自动从网络中选取材料进行合成",
-            "(需要网络中有足够的原材料)"
+            "(需要网络中有足够的原材料)",
             "",
             MessageFormat.format("{0}网络电力消耗: {1}{2} 每次合成", Theme.CLICK_INFO, Theme.PASSIVE, 64)
         );
@@ -398,12 +397,12 @@ public class NetworksSlimefunItemStacks {
             "网络自动合成机需要合成蓝图才能工作。",
             "当网络中没有蓝图的目标物品时，",
             "机器会自动从网络中选取材料进行合成",
-            "(需要网络中有足够的原材料)"
+            "(需要网络中有足够的原材料)",
             "",
             "预留版的自动合成机会不断进行合成",
             "直到输出栏拥有1组物品",
             "这一组物品可以在网络中访问",
-            "也可以通过货运系统取出"
+            "也可以通过货运系统取出",
             "",
             MessageFormat.format("{0}网络电力消耗: {1}{2} 每次合成", Theme.CLICK_INFO, Theme.PASSIVE, 128)
         );
