@@ -44,6 +44,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         getLogger().info("       作者: Sefiraat 汉化: ybw0014      ");
         getLogger().info("########################################");
 
+        saveDefaultConfig();
         tryUpdate();
 
         setupSlimefun();
