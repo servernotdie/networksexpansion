@@ -60,10 +60,15 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.3.1-SNAPSHOT</version>
                 <configuration>
+                    <minimizeJar>true</minimizeJar>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>io.github.sefiraat.networks.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>net.guizhanss.guizhanlib</pattern>
+                            <shadedPattern>io.github.sefiraat.networks.guizhanlib</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>
@@ -71,6 +76,7 @@
                             <artifact>*:*</artifact>
                             <excludes>
                                 <exclude>META-INF/*</exclude>
+                                <exclude>minecraft.*</exclude>
                             </excludes>
                         </filter>
                     </filters>
@@ -164,6 +170,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- 汉化库 -->
+        <dependency>
+            <groupId>net.guizhanss</groupId>
+            <artifactId>GuizhanLib</artifactId>
+            <version>0.5.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 
