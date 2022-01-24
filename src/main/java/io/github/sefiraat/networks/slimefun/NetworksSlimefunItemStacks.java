@@ -77,6 +77,7 @@ public class NetworksSlimefunItemStacks {
     public static final SlimefunItemStack NETWORK_REMOTE_PRISTINE;
     public static final SlimefunItemStack NETWORK_REMOTE_ULTIMATE;
     public static final SlimefunItemStack NETWORK_CRAYON;
+    public static final SlimefunItemStack NETWORK_CONFIGURATOR;
 
     static {
 
@@ -612,6 +613,17 @@ public class NetworksSlimefunItemStacks {
             "网络绘制器",
             "当对着网络控制器使用时",
             "可以让该网络中的方块展示出粒子效果"
+        );
+
+        NETWORK_CONFIGURATOR = Theme.themedSlimefunItemStack(
+            "NTW_CONFIGURATOR",
+            new ItemStack(Material.BLAZE_ROD),
+            Theme.TOOL,
+            "网络配置器",
+            "用于复制网络部件的设置",
+            "",
+            MessageFormat.format("{0}右键点击: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, "应用设置"),
+            MessageFormat.format("{0}Shift+右键点击: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, "存储设置")
         );
     }
 
