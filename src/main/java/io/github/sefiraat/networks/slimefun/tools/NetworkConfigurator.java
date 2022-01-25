@@ -55,7 +55,7 @@ public class NetworkConfigurator extends SlimefunItem {
                                 applyConfig(directional, e.getItem(), blockMenu, player);
                             }
                         } else {
-                            player.sendMessage(Theme.ERROR + "Must target a directional Networks interface.");
+                            player.sendMessage(Theme.ERROR + "你必须指向一个带方向的网络接口");
                         }
                     }
                     e.cancel();
@@ -68,7 +68,7 @@ public class NetworkConfigurator extends SlimefunItem {
         final BlockFace blockFace = NetworkDirectional.getSelectedFace(blockMenu.getLocation());
 
         if (blockFace == null) {
-            player.sendMessage(Theme.ERROR + "This directional does not yet have a direction set");
+            player.sendMessage(Theme.ERROR + "该方块没有指定朝向");
             return;
         }
 
@@ -85,7 +85,7 @@ public class NetworkConfigurator extends SlimefunItem {
         }
 
         itemStack.setItemMeta(itemMeta);
-        player.sendMessage(Theme.SUCCESS + "Configuration copied.");
+        player.sendMessage(Theme.SUCCESS + "已复制设置");
     }
 
     private void applyConfig(@Nonnull NetworkDirectional directional, @Nonnull ItemStack itemStack, @Nonnull BlockMenu blockMenu, @Nonnull Player player) {
@@ -94,12 +94,12 @@ public class NetworkConfigurator extends SlimefunItem {
         final String string = DataTypeMethods.getCustom(itemMeta, FACE, DataType.STRING);
 
         if (string == null) {
-            player.sendMessage(Theme.ERROR + "No direction has been copied yet.");
+            player.sendMessage(Theme.ERROR + "需要先复制设置");
             return;
         }
 
         directional.setDirection(blockMenu, BlockFace.valueOf(string));
-        player.sendMessage(Theme.SUCCESS + "Direction has been successfully applied.");
+        player.sendMessage(Theme.SUCCESS + "朝向设置已应用");
 
         final ItemStack currentBlueprint = directional.getItemSlot() > -1 ? blockMenu.getItemInSlot(directional.getItemSlot()) : null;
         if (currentBlueprint != null && currentBlueprint.getType() != Material.AIR) {
@@ -113,13 +113,13 @@ public class NetworkConfigurator extends SlimefunItem {
                     final ItemStack stackClone = StackUtils.getAsQuantity(stack, 1);
                     stack.setAmount(stack.getAmount() - 1);
                     blockMenu.replaceExistingItem(directional.getItemSlot(), stackClone);
-                player.sendMessage(Theme.SUCCESS + "Filter item removed from inventory and placed in filter.");
+                player.sendMessage(Theme.SUCCESS + "过滤器物品已设置");
                     return;
                 }
             }
-            player.sendMessage(Theme.WARNING + "You don't have enough matching items to put in the filter.");
+            player.sendMessage(Theme.WARNING + "你的物品栏中没有足够的物品用于设置过滤器");
         } else if (directional instanceof NetworkPusher) {
-            player.sendMessage(Theme.WARNING + "No item has been provided.");
+            player.sendMessage(Theme.WARNING + "需要提供指定的物品");
         }
 
     }

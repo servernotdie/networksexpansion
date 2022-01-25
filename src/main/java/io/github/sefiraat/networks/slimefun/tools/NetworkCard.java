@@ -45,12 +45,12 @@ public class NetworkCard extends SlimefunItem {
 
                 e.cancel();
                 if (card.getAmount() > 1) {
-                    player.sendMessage(Theme.WARNING + "Unstack cards before assigning an item.");
+                    player.sendMessage(Theme.WARNING + "请单独拿出一张内存卡，不要堆叠");
                     return;
                 }
 
                 if (isBlacklisted(stackToSet)) {
-                    player.sendMessage(Theme.WARNING + "This type of item cannot be stored in a Network Card.");
+                    player.sendMessage(Theme.WARNING + "该物品无法存储至内存卡中");
                     return;
                 }
 
@@ -65,7 +65,7 @@ public class NetworkCard extends SlimefunItem {
                     );
 
                     if (cardInstance.getAmount() > 0) {
-                        e.getPlayer().sendMessage(Theme.WARNING + "A card must be empty before trying to assign an item.");
+                        e.getPlayer().sendMessage(Theme.WARNING + "只有空内存卡才能分配物品");
                         return;
                     }
 

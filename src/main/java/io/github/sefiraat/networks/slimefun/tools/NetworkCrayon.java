@@ -42,10 +42,10 @@ public class NetworkCrayon extends SlimefunItem {
     public void toggleCrayon(@Nonnull Block block, @Nonnull Player player) {
         if (NetworkController.hasCrayon(block.getLocation())) {
             NetworkController.removeCrayon(block.getLocation());
-            player.sendMessage(Theme.WARNING + "Crayon removed from network.");
+            player.sendMessage(Theme.WARNING + "已关闭网络绘制");
         } else {
             NetworkController.addCrayon(block.getLocation());
-            player.sendMessage(Theme.SUCCESS + "Crayon added to network.");
+            player.sendMessage(Theme.SUCCESS + "已开启网络绘制");
         }
     }
 }
