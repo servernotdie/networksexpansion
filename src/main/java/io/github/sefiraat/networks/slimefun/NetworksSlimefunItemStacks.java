@@ -85,10 +85,9 @@ public class NetworksSlimefunItemStacks {
             "NTW_SYNTHETIC_EMERALD_SHARD",
             new ItemStack(Material.LIME_DYE),
             Theme.CRAFTING,
-            "Synthetic Emerald Shard",
-            "A shard of synthetic emerald that",
-            "is the backbone for information",
-            "transference."
+            "人造绿宝石碎片",
+            "一块人造绿宝石的碎片",
+            "是信息传输的支柱"
         );
 
         OPTIC_GLASS = Theme.themedSlimefunItemStack(
