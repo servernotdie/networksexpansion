@@ -292,8 +292,8 @@ public class NetworksSlimefunItemStacks {
             "NTW_MEMORY_SHELL",
             new ItemStack(Material.DEEPSLATE_TILES),
             Theme.MACHINE,
-            "网络外壳",
-            "网络外壳是一个可以让",
+            "网络读卡器",
+            "网络读卡器是一个可以让",
             "网络访问其中内存卡内容的方块"
         );
 
