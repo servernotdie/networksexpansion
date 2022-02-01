@@ -177,7 +177,8 @@ public class NetworksSlimefunItemStacks {
             getPreEnchantedItemStack(Material.ARMOR_STAND, true, new Pair<>(Enchantment.ARROW_DAMAGE, 1)),
             Theme.CRAFTING,
             "跨跃维度的存在",
-            "能跨越纬度的人工智能"
+            "这种完美级的人工智能",
+            "甚至还掌握了跨越维度的能力"
         );
 
         NETWORK_CONTROLLER = Theme.themedSlimefunItemStack(
@@ -208,7 +209,7 @@ public class NetworksSlimefunItemStacks {
             "",
             "目前支持:",
             "无尽科技存储",
-            "网络外壳"
+            "网络读卡器"
         );
 
         NETWORK_IMPORT = Theme.themedSlimefunItemStack(
@@ -254,8 +255,9 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.OBSERVER),
             Theme.MACHINE,
             "网络清除器",
-            "网络清除器会从网络中移除指定物品",
-            "该物品会立即消失，谨慎使用!"
+            "网络清除器会从网络中",
+            "不断地移除指定物品",
+            "清除的物品会立即消失，谨慎使用!"
         );
 
         NETWORK_GRID = Theme.themedSlimefunItemStack(
@@ -350,7 +352,8 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.BROWN_GLAZED_TERRACOTTA),
             Theme.MACHINE,
             "网络电容 (1)",
-            "网络电容可以储存电力",
+            "网络电容可以接收来自",
+            "能源网络的电力并存储起来",
             "以供其他网络设备使用",
             "",
             MessageFormat.format("{0}容量: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, 1000)
@@ -361,7 +364,8 @@ public class NetworksSlimefunItemStacks {
             new ItemStack(Material.GREEN_GLAZED_TERRACOTTA),
             Theme.MACHINE,
             "网络电容 (2)",
-            "网络电容可以储存电力",
+            "网络电容可以接收来自",
+            "能源网络的电力并存储起来",
             "以供其他网络设备使用",
             "",
             MessageFormat.format("{0}容量: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, 10000)
@@ -579,7 +583,7 @@ public class NetworksSlimefunItemStacks {
             "远程打开绑定的网格",
             "需要加载网格所在区块",
             "",
-            MessageFormat.format("{0}范围: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, NetworkRemote.getRanges()[0])
+            MessageFormat.format("{0}范围: {1}{2}格", Theme.CLICK_INFO, Theme.PASSIVE, NetworkRemote.getRanges()[0])
         );
 
         NETWORK_REMOTE_EMPOWERED = Theme.themedSlimefunItemStack(
@@ -590,7 +594,7 @@ public class NetworksSlimefunItemStacks {
             "远程打开绑定的网格",
             "需要加载网格所在区块",
             "",
-            MessageFormat.format("{0}范围: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, NetworkRemote.getRanges()[1])
+            MessageFormat.format("{0}范围: {1}{2}格", Theme.CLICK_INFO, Theme.PASSIVE, NetworkRemote.getRanges()[1])
         );
 
         NETWORK_REMOTE_PRISTINE = Theme.themedSlimefunItemStack(
@@ -630,6 +634,7 @@ public class NetworksSlimefunItemStacks {
             Theme.TOOL,
             "网络配置器",
             "用于复制网络部件的设置",
+            "可复制带方向选择的网络方块的设置",
             "",
             MessageFormat.format("{0}右键点击: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, "应用设置"),
             MessageFormat.format("{0}Shift+右键点击: {1}{2}", Theme.CLICK_INFO, Theme.PASSIVE, "存储设置")
