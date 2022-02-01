@@ -22,6 +22,7 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -72,10 +73,7 @@ public abstract class AbstractGrid extends NetworkObject {
             if (slimefunItem != null) {
                 return ChatColor.stripColor(slimefunItem.getItemName());
             } else {
-                ItemMeta itemMeta = itemStackIntegerEntry.getKey().getItemMeta();
-                return itemMeta.hasDisplayName()
-                    ? ChatColor.stripColor(itemMeta.getDisplayName())
-                    : itemStackIntegerEntry.getKey().getType().name();
+                return ChatColor.stripColor(ItemStackHelper.getDisplayName(itemStack));
             }
         }
     );
@@ -218,13 +216,7 @@ public abstract class AbstractGrid extends NetworkObject {
                 }
 
                 final ItemStack itemStack = entry.getKey();
-                String name = itemStack.getType().name().toLowerCase(Locale.ROOT);
-                if (itemStack.hasItemMeta()) {
-                    final ItemMeta itemMeta = itemStack.getItemMeta();
-                    if (itemMeta.hasDisplayName()) {
-                        name = ChatColor.stripColor(itemMeta.getDisplayName().toLowerCase(Locale.ROOT));
-                    }
-                }
+                String name = ChatColor.stripColor(ItemStackHelper.getDisplayName(itemStack).toLowerCase(Locale.ROOT));
                 return name.contains(cache.getFilter());
             })
             .sorted(cache.getSortOrder() == GridCache.SortOrder.ALPHABETICAL ? ALPHABETICAL_SORT : NUMERICAL_SORT.reversed())
