@@ -83,7 +83,7 @@ public class NetworkProbe extends SlimefunItem {
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络出口", p, exporters}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网格", p, grids}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络单元", p, cells}, new StringBuffer(), null).toString());
-            player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络外壳", p, shells}, new StringBuffer(), null).toString());
+            player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络读卡器", p, shells}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络内存清除器", p, wipers}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络抓取器", p, grabbers}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络推送器", p, pushers}, new StringBuffer(), null).toString());
