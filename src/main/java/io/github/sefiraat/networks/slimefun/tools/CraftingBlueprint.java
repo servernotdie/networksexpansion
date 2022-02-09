@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -38,16 +39,11 @@ public class CraftingBlueprint extends UnplaceableBlock {
                 lore.add(Theme.PASSIVE + "空");
                 continue;
             }
-            ItemMeta recipeItemMeta = item.getItemMeta();
-            if (recipeItemMeta.hasDisplayName()) {
-                lore.add(Theme.PASSIVE + ChatColor.stripColor(recipeItemMeta.getDisplayName()));
-            } else {
-                lore.add(Theme.PASSIVE + StringUtils.toTitleCase(item.getType().name()));
-            }
+            lore.add(Theme.PASSIVE + ChatColor.stripColor(ItemStackHelper.getDisplayName(item)));
         }
 
         lore.add("");
-        lore.add(Theme.CLICK_INFO + "正在输出");
+        lore.add(Theme.CLICK_INFO + "输出物品");
 
         if (outputMeta.hasDisplayName()) {
             lore.add(Theme.PASSIVE + ChatColor.stripColor(outputMeta.getDisplayName()));
