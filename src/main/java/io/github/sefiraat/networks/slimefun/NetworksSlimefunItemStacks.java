@@ -6,6 +6,7 @@ import io.github.sefiraat.networks.slimefun.tools.NetworkRemote;
 import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
+import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -648,33 +649,33 @@ public class NetworksSlimefunItemStacks {
             "NTW_RAKE_1",
             new ItemStack(Material.TWISTING_VINES),
             Theme.TOOL,
-            "Network Rake (1)",
-            "Right click a Network Object to",
-            "break it instantly.",
+            "网络扳手 (1)",
+            "右键点击一个网络节点",
+            "可以立即破坏",
             "",
-            ChatColor.YELLOW + "250 Uses " + ChatColor.GRAY + "left"
+            LoreBuilder.usesLeft(250)
         );
 
         NETWORK_RAKE_2 = Theme.themedSlimefunItemStack(
             "NTW_RAKE_2",
             new ItemStack(Material.WEEPING_VINES),
             Theme.TOOL,
-            "Network Rake (2)",
-            "Right click a Network Object to",
-            "break it instantly.",
+            "网络扳手 (2)",
+            "右键点击一个网络节点",
+            "可以立即破坏",
             "",
-            ChatColor.YELLOW + "1000 Uses " + ChatColor.GRAY + "left"
+            LoreBuilder.usesLeft(1000)
         );
 
         NETWORK_RAKE_3 = Theme.themedSlimefunItemStack(
             "NTW_RAKE_3",
             getPreEnchantedItemStack(Material.WEEPING_VINES, true, new Pair<>(Enchantment.LUCK, 1)),
             Theme.TOOL,
-            "Network Rake (3)",
-            "Right click a Network Object to",
-            "break it instantly.",
+            "网络扳手 (3)",
+            "右键点击一个网络节点",
+            "可以立即破坏",
             "",
-            ChatColor.YELLOW + "9999 Uses " + ChatColor.GRAY + "left"
+            LoreBuilder.usesLeft(9999)
         );
     }
 
