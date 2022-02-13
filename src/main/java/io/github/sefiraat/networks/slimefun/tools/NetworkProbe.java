@@ -2,6 +2,7 @@ package io.github.sefiraat.networks.slimefun.tools;
 
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.slimefun.network.NetworkController;
+import io.github.sefiraat.networks.slimefun.network.NetworkObject;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
@@ -22,30 +23,34 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-public class NetworkProbe extends SlimefunItem {
+public class NetworkProbe extends SlimefunItem implements CanCooldown {
 
     private static final MessageFormat MESSAGE_FORMAT = new MessageFormat("{0}{1}: {2}{3}", Locale.ROOT);
 
     public NetworkProbe(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        addItemHandler(
-            new ItemUseHandler() {
-                @Override
-                public void onRightClick(PlayerRightClickEvent e) {
-                    final Optional<Block> optional = e.getClickedBlock();
-                    if (optional.isPresent()) {
-                        final Block block = optional.get();
-                        final Player player = e.getPlayer();
-                        final SlimefunItem slimefunItem = BlockStorage.check(block);
-                        if (slimefunItem instanceof NetworkController) {
-                            displayToPlayer(block, player);
-                            StackUtils.putOnCooldown(e.getItem(), 10);
-                            e.cancel();
-                        }
-                    }
+
+    }
+
+    @Override
+    public void preRegister() {
+        addItemHandler((ItemUseHandler) this::onUse);
+    }
+
+    protected void onUse(PlayerRightClickEvent e) {
+        final Optional<Block> optional = e.getClickedBlock();
+        if (optional.isPresent()) {
+            final Block block = optional.get();
+            final Player player = e.getPlayer();
+            if (canBeUsed(player, e.getItem())) {
+                final SlimefunItem slimefunItem = BlockStorage.check(block);
+                if (slimefunItem instanceof NetworkController) {
+                    e.cancel();
+                    displayToPlayer(block, player);
+                    putOnCooldown(e.getItem());
                 }
             }
-        );
+        }
     }
 
     private void displayToPlayer(@Nonnull Block block, @Nonnull Player player) {
@@ -57,7 +62,6 @@ public class NetworkProbe extends SlimefunItem {
             final int exporters = root.getExporters().size();
             final int grids = root.getGrids().size();
             final int cells = root.getCells().size();
-            final int shells = root.getShells().size();
             final int wipers = root.getWipers().size();
             final int grabbers = root.getGrabbers().size();
             final int pushers = root.getPushers().size();
@@ -71,19 +75,23 @@ public class NetworkProbe extends SlimefunItem {
             final int distinctItems = allNetworkItems.size();
             long totalItems = allNetworkItems.values().stream().mapToLong(integer -> integer).sum();
 
+            final String nodeCount = root.getNodeCount() >= root.getMaxNodes()
+                ? Theme.ERROR + "" + root.getNodeCount() + "+"
+                : String.valueOf(root.getNodeCount());
+
             final ChatColor c = Theme.CLICK_INFO.getColor();
             final ChatColor p = Theme.PASSIVE.getColor();
 
             player.sendMessage("------------------------------");
             player.sendMessage("         网络 - 组件统计        ");
             player.sendMessage("------------------------------");
+
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网桥", p, bridges}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络监测器", p, monitors}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络入口", p, importers}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络出口", p, exporters}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网格", p, grids}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络单元", p, cells}, new StringBuffer(), null).toString());
-            player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络读卡器", p, shells}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络内存清除器", p, wipers}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络抓取器", p, grabbers}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络推送器", p, pushers}, new StringBuffer(), null).toString());
@@ -94,7 +102,19 @@ public class NetworkProbe extends SlimefunItem {
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "网络配方编码器", p, encoders}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "物品类型数量", p, distinctItems}, new StringBuffer(), null).toString());
             player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "累计物品数量", p, totalItems}, new StringBuffer(), null).toString());
+
+            player.sendMessage("------------------------------");
+            player.sendMessage(MESSAGE_FORMAT.format(new Object[]{c, "累计节点", p, nodeCount + "/" + root.getMaxNodes()}, new StringBuffer(), null).toString());
+            if (root.isOverburdened()) {
+                player.sendMessage(Theme.ERROR + "警告: " + Theme.PASSIVE +
+                    "该网络已达到最大节点数量限制，部分节点可能会无法正常工作。请减少网络节点的数量。"
+                );
+            }
         }
     }
 
+    @Override
+    public int cooldownDuration() {
+        return 10;
+    }
 }
