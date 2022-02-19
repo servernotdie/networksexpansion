@@ -18,4 +18,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.GUIZHAN_GITEE_PRIVATE_KEY }}
         with:
           source-repo: "git@github.com:SlimefunGuguProject/Networks.git"
-          destination-repo: "git@gitee.com:ybw0014/Networks-CN.git"
+          destination-repo: "git@gitee.com:ybw0014/Networks.git"
