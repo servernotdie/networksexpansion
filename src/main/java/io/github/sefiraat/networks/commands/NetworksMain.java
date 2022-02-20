@@ -40,14 +40,14 @@ public class NetworksMain implements CommandExecutor {
     public void fillCard(Player player, int amount) {
         final ItemStack itemStack = player.getInventory().getItemInMainHand();
         if (itemStack == null || itemStack.getType() == Material.AIR) {
-            player.sendMessage(Theme.ERROR + "Item in hand must be a card.");
+            player.sendMessage(Theme.ERROR + "你必须手持内存卡");
             return;
         }
 
         SlimefunItem slimefunItem = SlimefunItem.getByItem(itemStack);
 
         if (!(slimefunItem instanceof NetworkCard card)) {
-            player.sendMessage(Theme.ERROR + "Item in hand must be a card.");
+            player.sendMessage(Theme.ERROR + "你必须手持内存卡");
             return;
         }
 
@@ -59,7 +59,7 @@ public class NetworksMain implements CommandExecutor {
         );
 
         if (cardInstance == null || cardInstance.getItemStack() == null) {
-            player.sendMessage(Theme.ERROR + "This card has either not been set to an item yet or is a corrupted card.");
+            player.sendMessage(Theme.ERROR + "该内存卡没有指定物品，或内存卡已损坏");
             return;
         }
 
@@ -67,6 +67,6 @@ public class NetworksMain implements CommandExecutor {
         DataTypeMethods.setCustom(meta, Keys.CARD_INSTANCE, PersistentCardInstanceType.TYPE, cardInstance);
         cardInstance.updateLore(meta);
         itemStack.setItemMeta(meta);
-        player.sendMessage(Theme.SUCCESS + "Item updated");
+        player.sendMessage(Theme.SUCCESS + "已更新物品");
     }
 }
