@@ -34,7 +34,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
 
     public Networks() {
         this.username = "ybw0014";
-        this.repo = "Networks-CN";
+        this.repo = "Networks";
         this.branch = "master";
     }
 

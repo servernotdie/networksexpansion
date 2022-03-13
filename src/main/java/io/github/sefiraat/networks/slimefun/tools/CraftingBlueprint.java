@@ -28,7 +28,6 @@ public class CraftingBlueprint extends UnplaceableBlock {
     @ParametersAreNonnullByDefault
     public static void setBlueprint(ItemStack blueprint, ItemStack[] recipe, ItemStack output) {
         final ItemMeta itemMeta = blueprint.getItemMeta();
-        final ItemMeta outputMeta = output.getItemMeta();
         DataTypeMethods.setCustom(itemMeta, Keys.BLUEPRINT_INSTANCE, PersistentCraftingBlueprintType.TYPE, new BlueprintInstance(recipe, output));
         List<String> lore = new ArrayList<>();
 
@@ -45,11 +44,8 @@ public class CraftingBlueprint extends UnplaceableBlock {
         lore.add("");
         lore.add(Theme.CLICK_INFO + "输出物品");
 
-        if (outputMeta.hasDisplayName()) {
-            lore.add(Theme.PASSIVE + ChatColor.stripColor(outputMeta.getDisplayName()));
-        } else {
-            lore.add(Theme.PASSIVE + StringUtils.toTitleCase(output.getType().name()));
-        }
+        lore.add(Theme.PASSIVE + ChatColor.stripColor(ItemStackHelper.getDisplayName(output)));
+
         itemMeta.setLore(lore);
 
         blueprint.setItemMeta(itemMeta);
