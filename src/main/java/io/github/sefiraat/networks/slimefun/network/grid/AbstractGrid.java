@@ -35,6 +35,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.text.Collator;
 import java.text.MessageFormat;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -69,6 +70,8 @@ public abstract class AbstractGrid extends NetworkObject {
         Theme.CLICK_INFO.getColor() + "设置过滤器 (右键点击以清除)"
     );
 
+    private static final Collator CHINESE_COMPARATOR = Collator.getInstance(Locale.CHINA);
+
     private static final Comparator<Map.Entry<ItemStack, Integer>> ALPHABETICAL_SORT = Comparator.comparing(
         itemStackIntegerEntry -> {
             ItemStack itemStack = itemStackIntegerEntry.getKey();
@@ -78,7 +81,8 @@ public abstract class AbstractGrid extends NetworkObject {
             } else {
                 return ChatColor.stripColor(ItemStackHelper.getDisplayName(itemStack));
             }
-        }
+        },
+        CHINESE_COMPARATOR::compare
     );
 
     private static final Comparator<Map.Entry<ItemStack, Integer>> NUMERICAL_SORT = Map.Entry.comparingByValue();
