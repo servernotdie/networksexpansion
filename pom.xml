@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.sefiraat</groupId>
     <artifactId>Networks</artifactId>
-    <version>MODIFIED</version>
+    <version>Build 38 zh-CN(ybw0014) (git 59da6b9)</version>
 
     <distributionManagement>
         <repository>
@@ -183,7 +183,7 @@
         <dependency>
             <groupId>net.guizhanss</groupId>
             <artifactId>GuizhanLib</artifactId>
-            <version>0.6.0</version>
+            <version>0.6.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
