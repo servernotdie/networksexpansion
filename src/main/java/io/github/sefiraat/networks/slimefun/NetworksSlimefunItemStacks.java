@@ -219,11 +219,11 @@ public class NetworksSlimefunItemStacks {
             Theme.MACHINE,
             "网络监视器",
             "网络监视器可以与附近的方块交互",
-            "实现放入/取出物品",
+            "让指定方块可以接入网络",
             "",
             "目前支持:",
-            "无尽科技存储",
-            "网络读卡器"
+            "无尽科技 - 存储单元",
+            "网络 - 量子存储"
         );
 
         NETWORK_IMPORT = Theme.themedSlimefunItemStack(
@@ -317,97 +317,88 @@ public class NetworksSlimefunItemStacks {
             "NTW_QUANTUM_WORKBENCH",
             new ItemStack(Material.BRAIN_CORAL_BLOCK),
             Theme.MACHINE,
-            "Network Quantum Workbench",
-            "Allows the crafting of Quantum Storages."
+            "网络量子工作台",
+            "可以合成量子存储"
         );
-
 
         NETWORK_QUANTUM_STORAGE_1 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_1",
             new ItemStack(Material.WHITE_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (4K)",
-            "Stores " + NetworkCard.getSizes()[0] + " items",
+            "网络量子存储 (4K)",
+            "可存储 " + NetworkCard.getSizes()[0] + " 个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_QUANTUM_STORAGE_2 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_2",
             new ItemStack(Material.LIGHT_GRAY_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (32K)",
-            "Stores " + NetworkCard.getSizes()[1] + " items",
+            "网络量子存储 (32K)",
+            "可存储 " + NetworkCard.getSizes()[1] + " 个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_QUANTUM_STORAGE_3 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_3",
             new ItemStack(Material.GRAY_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (262K)",
-            "Stores " + NetworkCard.getSizes()[2] + " items",
+            "网络量子存储 (262K)",
+            "可存储 " + NetworkCard.getSizes()[2] + " 个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_QUANTUM_STORAGE_4 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_4",
             new ItemStack(Material.BROWN_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (2M)",
-            "Stores " + NetworkCard.getSizes()[3] + " items",
+            "网络量子存储 (2M)",
+            "可存储 " + NetworkCard.getSizes()[3] + " 个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_QUANTUM_STORAGE_5 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_5",
             new ItemStack(Material.BLACK_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (16M)",
-            "Stores " + NetworkCard.getSizes()[4] + " items",
+            "网络量子存储 (16M)",
+            "可存储 " + NetworkCard.getSizes()[4] + " 个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_QUANTUM_STORAGE_6 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_6",
             new ItemStack(Material.PURPLE_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (134M)",
-            "Stores " + NetworkCard.getSizes()[5] + " items",
+            "网络量子存储 (134M)",
+            "可存储 " + NetworkCard.getSizes()[5] + " 个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_QUANTUM_STORAGE_7 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_7",
             new ItemStack(Material.MAGENTA_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (1B)",
-            "Stores " + NetworkCard.getSizes()[6] + " items",
+            "网络量子存储 (1B)",
+            "可存储 " + NetworkCard.getSizes()[6] + " 个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_QUANTUM_STORAGE_8 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_8",
             new ItemStack(Material.RED_TERRACOTTA),
             Theme.MACHINE,
-            "Network Quantum Storage (∞)",
-            "Stores ∞ items... almost",
+            "网络量子存储 (∞)",
+            "可存储几乎无限多个物品",
             "",
-            "Stores items in mass quantities within",
-            "a quantum singularity."
+            "在量子奇点中存储大量物品"
         );
 
         NETWORK_MEMORY_WIPER_1 = Theme.themedSlimefunItemStack(
