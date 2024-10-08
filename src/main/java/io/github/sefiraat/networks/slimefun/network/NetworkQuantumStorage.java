@@ -248,7 +248,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         blockData.setData(BS_AMOUNT, String.valueOf(cache.getAmount()));
         blockData.setData(BS_VOID, String.valueOf(cache.isVoidExcess()));
         if (cache.supportsCustomMaxAmount()) {
-            BlockStorage.addBlockInfo(location, BS_CUSTOM_MAX_AMOUNT, String.valueOf(cache.getLimit()));
+            StorageCacheUtils.setData(location, BS_CUSTOM_MAX_AMOUNT, String.valueOf(cache.getLimit()));
         }
     }
 
