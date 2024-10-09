@@ -2,7 +2,7 @@ package com.balugaq.netex.api.helpers;
 
 import com.balugaq.netex.api.interfaces.CanTestRecipe;
 import com.balugaq.netex.api.interfaces.HasRecipes;
-import com.ytdd9527.networksexpansion.implementation.items.machines.manual.ExpansionWorkbench;
+import com.ytdd9527.networksexpansion.implementation.machines.manual.ExpansionWorkbench;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;

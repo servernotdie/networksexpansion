@@ -1,7 +1,7 @@
 package com.balugaq.netex.api.data;
 
 import com.balugaq.netex.api.enums.StorageUnitType;
-import com.ytdd9527.networksexpansion.implementation.items.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
 import com.ytdd9527.networksexpansion.utils.databases.DataStorage;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
 import io.github.sefiraat.networks.utils.StackUtils;

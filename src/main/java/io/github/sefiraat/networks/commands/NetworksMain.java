@@ -5,8 +5,8 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.ItemContainer;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.ErrorType;
-import com.ytdd9527.networksexpansion.implementation.items.blueprints.CraftingBlueprint;
-import com.ytdd9527.networksexpansion.implementation.items.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.blueprints.CraftingBlueprint;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
 import io.github.bakedlibs.dough.collections.Pair;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
@@ -745,7 +745,7 @@ public class NetworksMain implements TabExecutor {
                         return true;
                     }
 
-                    if (args.length <= 2) {
+                    if (args.length <= 1) {
                         player.sendMessage(getErrorMessage(ErrorType.MISSING_REQUIRED_ARGUMENT, "amount"));
                         return true;
                     }
@@ -766,7 +766,7 @@ public class NetworksMain implements TabExecutor {
                         return true;
                     }
 
-                    if (args.length <= 2) {
+                    if (args.length <= 1) {
                         player.sendMessage(getErrorMessage(ErrorType.MISSING_REQUIRED_ARGUMENT, "keyInMeta"));
                         return true;
                     }
@@ -782,7 +782,7 @@ public class NetworksMain implements TabExecutor {
                         return true;
                     }
 
-                    if (args.length <= 2) {
+                    if (args.length <= 1) {
                         player.sendMessage(getErrorMessage(ErrorType.MISSING_REQUIRED_ARGUMENT, "amount"));
                         return true;
                     }
@@ -802,7 +802,7 @@ public class NetworksMain implements TabExecutor {
                         return true;
                     }
 
-                    if (args.length <= 2) {
+                    if (args.length <= 1) {
                         player.sendMessage(getErrorMessage(ErrorType.MISSING_REQUIRED_ARGUMENT, "amount"));
                         return true;
                     }
@@ -823,7 +823,7 @@ public class NetworksMain implements TabExecutor {
                         return true;
                     }
 
-                    if (args.length <= 2) {
+                    if (args.length <= 1) {
                         player.sendMessage(getErrorMessage(ErrorType.MISSING_REQUIRED_ARGUMENT, "amount"));
                         return true;
                     }
@@ -844,7 +844,7 @@ public class NetworksMain implements TabExecutor {
                         return true;
                     }
 
-                    if (args.length <= 2) {
+                    if (args.length <= 1) {
                         player.sendMessage(getErrorMessage(ErrorType.MISSING_REQUIRED_ARGUMENT, "containerId"));
                         return true;
                     }

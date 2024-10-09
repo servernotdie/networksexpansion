@@ -1,8 +1,8 @@
 package io.github.sefiraat.networks.slimefun;
 
-import com.ytdd9527.networksexpansion.implementation.items.blueprints.CraftingBlueprint;
-import com.ytdd9527.networksexpansion.implementation.items.machines.autocrafters.basic.AutoCraftingTable;
-import com.ytdd9527.networksexpansion.implementation.items.machines.encoders.CraftingEncoder;
+import com.ytdd9527.networksexpansion.implementation.blueprints.CraftingBlueprint;
+import com.ytdd9527.networksexpansion.implementation.machines.autocrafters.basic.AutoCraftingTable;
+import com.ytdd9527.networksexpansion.implementation.machines.encoders.CraftingEncoder;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.network.NetworkBridge;
 import io.github.sefiraat.networks.slimefun.network.NetworkCell;
