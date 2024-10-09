@@ -1,7 +1,8 @@
-package com.balugaq.netex.api.helper;
+package com.balugaq.netex.api.helpers;
 
 import com.balugaq.netex.api.interfaces.CanTestRecipe;
 import com.balugaq.netex.api.interfaces.HasRecipes;
+import io.github.sefiraat.networks.slimefun.network.NetworkQuantumWorkbench;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -15,14 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @UtilityClass
-public final class SupportedAncientAltarRecipes implements HasRecipes, CanTestRecipe {
+public final class SupportedQuantumWorkbenchRecipes implements HasRecipes, CanTestRecipe {
 
     private static final Map<ItemStack[], ItemStack> RECIPES = new HashMap<>();
 
     static {
         for (SlimefunItem item : Slimefun.getRegistry().getEnabledSlimefunItems()) {
             RecipeType recipeType = item.getRecipeType();
-            if ((recipeType == RecipeType.ANCIENT_ALTAR) && allowedRecipe(item)) {
+            if ((recipeType == NetworkQuantumWorkbench.TYPE) && allowedRecipe(item)) {
                 ItemStack[] itemStacks = new ItemStack[9];
                 int i = 0;
                 for (ItemStack itemStack : item.getRecipe()) {
@@ -35,7 +36,7 @@ public final class SupportedAncientAltarRecipes implements HasRecipes, CanTestRe
                         break;
                     }
                 }
-                SupportedAncientAltarRecipes.addRecipe(itemStacks, item.getRecipeOutput());
+                SupportedQuantumWorkbenchRecipes.addRecipe(itemStacks, item.getRecipeOutput());
             }
         }
     }

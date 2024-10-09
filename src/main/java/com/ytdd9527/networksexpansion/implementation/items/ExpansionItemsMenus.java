@@ -1,4 +1,4 @@
-package com.ytdd9527.networksexpansion.implementation.menus;
+package com.ytdd9527.networksexpansion.implementation.items;
 
 import com.balugaq.netex.api.groups.MainItemGroup;
 import com.balugaq.netex.api.groups.SubFlexItemGroup;

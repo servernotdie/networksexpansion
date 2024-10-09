@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.autocrafters.advanced;
 
-import com.balugaq.netex.api.helper.SupportedArmorForgeRecipes;
+import com.balugaq.netex.api.helpers.SupportedArmorForgeRecipes;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractAdvancedAutoCrafter;
 import com.ytdd9527.networksexpansion.implementation.items.blueprints.ArmorForgeBlueprint;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

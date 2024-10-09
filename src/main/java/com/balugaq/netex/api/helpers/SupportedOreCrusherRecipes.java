@@ -1,4 +1,4 @@
-package com.balugaq.netex.api.helper;
+package com.balugaq.netex.api.helpers;
 
 import com.balugaq.netex.api.interfaces.CanTestRecipe;
 import com.balugaq.netex.api.interfaces.HasRecipes;

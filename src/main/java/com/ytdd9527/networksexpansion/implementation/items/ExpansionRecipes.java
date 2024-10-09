@@ -1,4 +1,4 @@
-package com.ytdd9527.networksexpansion.implementation.recipes;
+package com.ytdd9527.networksexpansion.implementation.items;
 
 import com.ytdd9527.networksexpansion.implementation.items.ExpansionItemStacks;
 import io.github.sefiraat.networks.slimefun.NetworksSlimefunItemStacks;
@@ -956,5 +956,11 @@ public class ExpansionRecipes {
             OPTIC_STAR.getItem(), OPTIC_CABLE.getItem(), OPTIC_STAR.getItem(),
             OPTIC_CABLE.getItem(), ExpansionItemStacks.TRANSFER, OPTIC_CABLE.getItem(),
             OPTIC_STAR.getItem(), OPTIC_CABLE.getItem(), OPTIC_STAR.getItem()
+    };
+
+    public static final ItemStack[] BETTER_GRABBER = new ItemStack[]{
+            OPTIC_STAR.getItem(), NETWORK_PUSHER.getItem(), OPTIC_STAR.getItem(),
+            NETWORK_PUSHER.getItem(), NETWORK_GRABBER.getItem(), NETWORK_PUSHER.getItem(),
+            OPTIC_STAR.getItem(), NETWORK_PUSHER.getItem(), OPTIC_STAR.getItem()
     };
 }

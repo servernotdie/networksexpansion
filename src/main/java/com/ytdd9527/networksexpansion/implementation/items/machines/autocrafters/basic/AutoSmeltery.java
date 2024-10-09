@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.autocrafters.basic;
 
-import com.balugaq.netex.api.helper.SupportedSmelteryRecipes;
+import com.balugaq.netex.api.helpers.SupportedSmelteryRecipes;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractAutoCrafter;
 import com.ytdd9527.networksexpansion.implementation.items.blueprints.SmelteryBlueprint;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

@@ -1,6 +1,6 @@
 package io.github.sefiraat.networks.slimefun.network.grid;
 
-import com.balugaq.netex.api.helper.SupportedCraftingTableRecipes;
+import com.balugaq.netex.api.helpers.SupportedCraftingTableRecipes;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.GridItemRequest;
 import io.github.sefiraat.networks.network.NodeDefinition;

@@ -1,4 +1,4 @@
-package com.balugaq.netex.api.helper;
+package com.balugaq.netex.api.helpers;
 
 import com.balugaq.netex.api.interfaces.CanTestRecipe;
 import com.balugaq.netex.api.interfaces.HasRecipes;
@@ -17,12 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @UtilityClass
-public final class SupportedCraftingTableRecipes implements HasRecipes, CanTestRecipe {
+public final class SupportedJuicerRecipes implements HasRecipes, CanTestRecipe {
 
     private static final Map<ItemStack[], ItemStack> RECIPES = new HashMap<>();
 
     static {
-        String id = SlimefunItems.ENHANCED_CRAFTING_TABLE.getItemId();
+        String id = SlimefunItems.JUICER.getItemId();
         SlimefunItem recipeTypeItem = SlimefunItem.getById(id);
         if (recipeTypeItem != null && recipeTypeItem instanceof MultiBlockMachine mb) {
             boolean isInput = true;
@@ -51,7 +51,7 @@ public final class SupportedCraftingTableRecipes implements HasRecipes, CanTestR
         }
         for (SlimefunItem item : Slimefun.getRegistry().getEnabledSlimefunItems()) {
             RecipeType recipeType = item.getRecipeType();
-            if ((recipeType == RecipeType.ENHANCED_CRAFTING_TABLE) && allowedRecipe(item)) {
+            if ((recipeType == RecipeType.JUICER) && allowedRecipe(item)) {
                 ItemStack[] itemStacks = new ItemStack[9];
                 int i = 0;
                 for (ItemStack itemStack : item.getRecipe()) {
@@ -64,7 +64,7 @@ public final class SupportedCraftingTableRecipes implements HasRecipes, CanTestR
                         break;
                     }
                 }
-                SupportedCraftingTableRecipes.addRecipe(itemStacks, item.getRecipeOutput());
+                SupportedJuicerRecipes.addRecipe(itemStacks, item.getRecipeOutput());
             }
         }
     }
@@ -79,7 +79,7 @@ public final class SupportedCraftingTableRecipes implements HasRecipes, CanTestR
 
     public static boolean testRecipe(@Nonnull ItemStack[] input, @Nonnull ItemStack[] recipe) {
         for (int test = 0; test < recipe.length; test++) {
-            if (!StackUtils.itemsMatch(input[test], recipe[test])) {
+            if (!StackUtils.itemsMatch(input[test], recipe[test], false, true)) {
                 return false;
             }
         }

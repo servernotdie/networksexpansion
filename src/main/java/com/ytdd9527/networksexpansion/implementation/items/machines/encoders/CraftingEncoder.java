@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.encoders;
 
-import com.balugaq.netex.api.helper.SupportedCraftingTableRecipes;
+import com.balugaq.netex.api.helpers.SupportedCraftingTableRecipes;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractEncoder;
 import com.ytdd9527.networksexpansion.implementation.items.blueprints.CraftingBlueprint;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

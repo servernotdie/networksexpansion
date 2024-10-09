@@ -1,4 +1,4 @@
-package com.balugaq.netex.api.helper;
+package com.balugaq.netex.api.helpers;
 
 import com.balugaq.netex.api.interfaces.CanTestRecipe;
 import com.balugaq.netex.api.interfaces.HasRecipes;
@@ -17,12 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @UtilityClass
-public final class SupportedArmorForgeRecipes implements HasRecipes, CanTestRecipe {
+public final class SupportedPressureChamberRecipes implements HasRecipes, CanTestRecipe {
 
     private static final Map<ItemStack[], ItemStack> RECIPES = new HashMap<>();
 
     static {
-        String id = SlimefunItems.ARMOR_FORGE.getItemId();
+        String id = SlimefunItems.PRESSURE_CHAMBER.getItemId();
         SlimefunItem recipeTypeItem = SlimefunItem.getById(id);
         if (recipeTypeItem != null && recipeTypeItem instanceof MultiBlockMachine mb) {
             boolean isInput = true;
@@ -51,7 +51,7 @@ public final class SupportedArmorForgeRecipes implements HasRecipes, CanTestReci
         }
         for (SlimefunItem item : Slimefun.getRegistry().getEnabledSlimefunItems()) {
             RecipeType recipeType = item.getRecipeType();
-            if ((recipeType == RecipeType.ARMOR_FORGE) && allowedRecipe(item)) {
+            if ((recipeType == RecipeType.PRESSURE_CHAMBER) && allowedRecipe(item)) {
                 ItemStack[] itemStacks = new ItemStack[9];
                 int i = 0;
                 for (ItemStack itemStack : item.getRecipe()) {
@@ -64,7 +64,7 @@ public final class SupportedArmorForgeRecipes implements HasRecipes, CanTestReci
                         break;
                     }
                 }
-                SupportedArmorForgeRecipes.addRecipe(itemStacks, item.getRecipeOutput());
+                SupportedPressureChamberRecipes.addRecipe(itemStacks, item.getRecipeOutput());
             }
         }
     }

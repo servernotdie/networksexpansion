@@ -1,4 +1,4 @@
-package com.balugaq.netex.api.helper;
+package com.balugaq.netex.api.helpers;
 
 import com.balugaq.netex.api.interfaces.CanTestRecipe;
 import com.balugaq.netex.api.interfaces.HasRecipes;
@@ -17,12 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @UtilityClass
-public final class SupportedGrindStoneRecipes implements HasRecipes, CanTestRecipe {
+public final class SupportedSmelteryRecipes implements HasRecipes, CanTestRecipe {
 
     private static final Map<ItemStack[], ItemStack> RECIPES = new HashMap<>();
 
     static {
-        String id = SlimefunItems.GRIND_STONE.getItemId();
+        String id = SlimefunItems.SMELTERY.getItemId();
         SlimefunItem recipeTypeItem = SlimefunItem.getById(id);
         if (recipeTypeItem != null && recipeTypeItem instanceof MultiBlockMachine mb) {
             boolean isInput = true;
@@ -51,7 +51,7 @@ public final class SupportedGrindStoneRecipes implements HasRecipes, CanTestReci
         }
         for (SlimefunItem item : Slimefun.getRegistry().getEnabledSlimefunItems()) {
             RecipeType recipeType = item.getRecipeType();
-            if ((recipeType == RecipeType.GRIND_STONE) && allowedRecipe(item)) {
+            if ((recipeType == RecipeType.SMELTERY) && allowedRecipe(item)) {
                 ItemStack[] itemStacks = new ItemStack[9];
                 int i = 0;
                 for (ItemStack itemStack : item.getRecipe()) {
@@ -64,7 +64,7 @@ public final class SupportedGrindStoneRecipes implements HasRecipes, CanTestReci
                         break;
                     }
                 }
-                SupportedGrindStoneRecipes.addRecipe(itemStacks, item.getRecipeOutput());
+                SupportedSmelteryRecipes.addRecipe(itemStacks, item.getRecipeOutput());
             }
         }
     }

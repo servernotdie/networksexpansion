@@ -71,6 +71,7 @@ import com.ytdd9527.networksexpansion.implementation.items.machines.networks.adv
 import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.AdvancedGreedyBlock;
 import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.AdvancedImport;
 import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.AdvancedPurger;
+import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.BetterGrabber;
 import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.DueMachine;
 import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.NetworkBlueprintDecoder;
 import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.NetworkGridNewStyle;
@@ -84,8 +85,6 @@ import com.ytdd9527.networksexpansion.implementation.items.tools.CargoNodeQuickT
 import com.ytdd9527.networksexpansion.implementation.items.tools.ItemMover;
 import com.ytdd9527.networksexpansion.implementation.items.tools.NetworksExpansionWorldEditAxe;
 import com.ytdd9527.networksexpansion.implementation.items.tools.NetworksInfoTool;
-import com.ytdd9527.networksexpansion.implementation.menus.ExpansionItemsMenus;
-import com.ytdd9527.networksexpansion.implementation.recipes.ExpansionRecipes;
 import io.github.sefiraat.networks.slimefun.network.NetworkBridge;
 import io.github.sefiraat.networks.slimefun.network.NetworkPowerNode;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
@@ -1373,5 +1372,12 @@ public class ExpansionItems {
             ExpansionItemStacks.OFFSETTER,
             ExpansionWorkbench.TYPE,
             ExpansionRecipes.OFFSETTER
+    );
+
+    public static final BetterGrabber BETTER_GRABBER = new BetterGrabber(
+            ExpansionItemsMenus.MENU_FUNCTIONAL_MACHINE,
+            ExpansionItemStacks.BETTER_GRABBER,
+            ExpansionWorkbench.TYPE,
+            ExpansionRecipes.BETTER_GRABBER
     );
 }
