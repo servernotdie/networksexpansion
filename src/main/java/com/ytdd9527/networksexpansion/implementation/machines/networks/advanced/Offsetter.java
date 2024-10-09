@@ -51,20 +51,20 @@ public class Offsetter extends SpecialSlimefunItem implements AdminDebuggable {
     private static final ItemStack OFFSET_DECREASE_ICON = ItemStackUtil.getCleanItem(
             new CustomItemStack(
                     Material.RED_DYE,
-                    "&aOffset -1"
+                    "&a偏移量 -1"
             )
     );
     private static final ItemStack OFFSET_SHOW_ICON = ItemStackUtil.getCleanItem(
             new CustomItemStack(
                     Material.TARGET,
-                    "&aShow Offset",
-                    ChatColor.GRAY + "Current Offset: &e0"
+                    "&a偏移量",
+                    ChatColor.GRAY + "当前偏移量: &e0"
             )
     );
     private static final ItemStack OFFSET_INCREASE_ICON = ItemStackUtil.getCleanItem(
             new CustomItemStack(
                     Material.LIME_DYE,
-                    "&aOffset +1"
+                    "&a偏移量 +1"
             )
     );
 
@@ -201,7 +201,7 @@ public class Offsetter extends SpecialSlimefunItem implements AdminDebuggable {
             return;
         }
         List<String> newLore = new ArrayList<>();
-        newLore.add(ChatColor.GRAY + "Current Offset: " + ChatColor.YELLOW + offset);
+        newLore.add(ChatColor.GRAY + "当前偏移量: " + ChatColor.YELLOW + offset);
         meta.setLore(newLore);
         newIcon.setItemMeta(meta);
 
