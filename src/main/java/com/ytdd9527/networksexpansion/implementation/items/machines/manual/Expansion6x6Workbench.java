@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.manual;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.ytdd9527.networksexpansion.api.data.SuperRecipe;
+import com.balugaq.netex.api.data.SuperRecipe;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractManualCrafter;
 import com.ytdd9527.networksexpansion.implementation.recipes.ExpansionRecipes;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;

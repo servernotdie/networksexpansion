@@ -1,8 +1,8 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.manual;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.ytdd9527.networksexpansion.api.data.StorageUnitData;
-import com.ytdd9527.networksexpansion.api.enums.StorageUnitType;
+import com.balugaq.netex.api.data.StorageUnitData;
+import com.balugaq.netex.api.enums.StorageUnitType;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.items.ExpansionItemStacks;
 import com.ytdd9527.networksexpansion.implementation.items.machines.unit.CargoStorageUnit;

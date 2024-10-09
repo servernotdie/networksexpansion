@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.utils.itemstacks;
 
-import com.ytdd9527.networksexpansion.api.data.ItemAmountWrapper;
-import com.ytdd9527.networksexpansion.api.data.ItemWrapper;
+import com.balugaq.netex.api.data.ItemAmountWrapper;
+import com.balugaq.netex.api.data.ItemWrapper;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;

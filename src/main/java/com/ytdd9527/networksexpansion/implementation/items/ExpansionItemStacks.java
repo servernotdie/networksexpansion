@@ -1,8 +1,8 @@
 package com.ytdd9527.networksexpansion.implementation.items;
 
 
-import com.ytdd9527.networksexpansion.api.enums.Skins;
-import com.ytdd9527.networksexpansion.api.enums.StorageUnitType;
+import com.balugaq.netex.api.enums.Skins;
+import com.balugaq.netex.api.enums.StorageUnitType;
 import com.ytdd9527.networksexpansion.utils.TextUtil;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;

@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.utils;
 
-import com.ytdd9527.networksexpansion.api.enums.Skins;
-import com.ytdd9527.networksexpansion.api.enums.Transformations;
+import com.balugaq.netex.api.enums.Skins;
+import com.balugaq.netex.api.enums.Transformations;
 import com.ytdd9527.networksexpansion.implementation.items.ExpansionItemStacks;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;

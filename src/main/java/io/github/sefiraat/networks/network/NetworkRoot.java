@@ -1,11 +1,11 @@
 package io.github.sefiraat.networks.network;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.ytdd9527.networksexpansion.api.data.ItemContainer;
-import com.ytdd9527.networksexpansion.api.data.StorageUnitData;
+import com.balugaq.netex.api.data.ItemContainer;
+import com.balugaq.netex.api.data.StorageUnitData;
 import com.ytdd9527.networksexpansion.implementation.items.machines.networks.advanced.AdvancedGreedyBlock;
 import com.ytdd9527.networksexpansion.implementation.items.machines.unit.CargoStorageUnit;
-import com.ytdd9527.networksexpansion.utils.NetworksVersionedParticle;
+import com.balugaq.netex.utils.NetworksVersionedParticle;
 import io.github.mooy1.infinityexpansion.items.storage.StorageCache;
 import io.github.mooy1.infinityexpansion.items.storage.StorageUnit;
 import io.github.sefiraat.networks.Networks;

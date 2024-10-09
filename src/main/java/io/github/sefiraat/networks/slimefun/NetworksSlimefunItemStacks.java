@@ -1,6 +1,6 @@
 package io.github.sefiraat.networks.slimefun;
 
-import com.ytdd9527.networksexpansion.utils.NetworksVersionedEnchantment;
+import com.balugaq.netex.utils.NetworksVersionedEnchantment;
 import com.ytdd9527.networksexpansion.utils.TextUtil;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;

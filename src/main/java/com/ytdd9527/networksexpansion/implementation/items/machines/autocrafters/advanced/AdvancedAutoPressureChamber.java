@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.autocrafters.advanced;
 
-import com.ytdd9527.networksexpansion.api.helpers.SupportedPressureChamberRecipes;
+import com.balugaq.netex.api.helper.SupportedPressureChamberRecipes;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractAdvancedAutoCrafter;
 import com.ytdd9527.networksexpansion.implementation.items.blueprints.PressureChamberBlueprint;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

@@ -2,9 +2,9 @@ package io.github.sefiraat.networks.commands;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.ytdd9527.networksexpansion.api.data.ItemContainer;
-import com.ytdd9527.networksexpansion.api.data.StorageUnitData;
-import com.ytdd9527.networksexpansion.api.enums.ErrorType;
+import com.balugaq.netex.api.data.ItemContainer;
+import com.balugaq.netex.api.data.StorageUnitData;
+import com.balugaq.netex.api.enums.ErrorType;
 import com.ytdd9527.networksexpansion.implementation.items.blueprints.CraftingBlueprint;
 import com.ytdd9527.networksexpansion.implementation.items.machines.unit.CargoStorageUnit;
 import io.github.bakedlibs.dough.collections.Pair;

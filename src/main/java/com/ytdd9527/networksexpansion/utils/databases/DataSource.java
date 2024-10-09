@@ -1,8 +1,8 @@
 package com.ytdd9527.networksexpansion.utils.databases;
 
-import com.ytdd9527.networksexpansion.api.data.ItemContainer;
-import com.ytdd9527.networksexpansion.api.data.StorageUnitData;
-import com.ytdd9527.networksexpansion.api.enums.StorageUnitType;
+import com.balugaq.netex.api.data.ItemContainer;
+import com.balugaq.netex.api.data.StorageUnitData;
+import com.balugaq.netex.api.enums.StorageUnitType;
 import com.ytdd9527.networksexpansion.implementation.items.machines.unit.CargoStorageUnit;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.StackUtils;

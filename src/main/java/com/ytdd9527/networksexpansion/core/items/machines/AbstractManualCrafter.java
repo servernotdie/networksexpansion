@@ -1,8 +1,8 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
-import com.ytdd9527.networksexpansion.api.data.SuperRecipe;
+import com.balugaq.netex.api.data.SuperRecipe;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
-import com.ytdd9527.networksexpansion.utils.BlockMenuUtil;
+import com.balugaq.netex.utils.BlockMenuUtil;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.slimefun.network.AdminDebuggable;
 import io.github.sefiraat.networks.utils.StackUtils;

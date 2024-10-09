@@ -1,8 +1,8 @@
 package com.ytdd9527.networksexpansion.utils.itemstacks;
 
-import com.ytdd9527.networksexpansion.api.data.ItemAmountWrapper;
-import com.ytdd9527.networksexpansion.api.data.ItemWrapper;
-import com.ytdd9527.networksexpansion.utils.NetworksVersionedEnchantment;
+import com.balugaq.netex.api.data.ItemAmountWrapper;
+import com.balugaq.netex.api.data.ItemWrapper;
+import com.balugaq.netex.utils.NetworksVersionedEnchantment;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;

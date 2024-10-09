@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.utils.itemstacks;
 
-import com.ytdd9527.networksexpansion.api.data.RandomMachineRecipe;
-import com.ytdd9527.networksexpansion.api.interfaces.RecipeItem;
+import com.balugaq.netex.api.data.RandomMachineRecipe;
+import com.balugaq.netex.api.interfaces.RecipeItem;
 import com.ytdd9527.networksexpansion.core.items.unusable.ReplaceableCard;
 import com.ytdd9527.networksexpansion.utils.ReflectionUtil;
 import io.github.sefiraat.networks.utils.StackUtils;

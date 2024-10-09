@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.items;
 
-import com.ytdd9527.networksexpansion.api.enums.StorageUnitType;
+import com.balugaq.netex.api.enums.StorageUnitType;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.core.items.unusable.AuthorHead;
 import com.ytdd9527.networksexpansion.core.items.unusable.NetworksExpansionGuide;

@@ -2,12 +2,12 @@ package com.ytdd9527.networksexpansion.implementation.items.machines.unit;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.ytdd9527.networksexpansion.api.data.ItemContainer;
-import com.ytdd9527.networksexpansion.api.data.StorageUnitData;
-import com.ytdd9527.networksexpansion.api.enums.QuickTransferMode;
-import com.ytdd9527.networksexpansion.api.enums.StorageUnitType;
-import com.ytdd9527.networksexpansion.api.interfaces.Configurable;
-import com.ytdd9527.networksexpansion.api.interfaces.ModelledItem;
+import com.balugaq.netex.api.data.ItemContainer;
+import com.balugaq.netex.api.data.StorageUnitData;
+import com.balugaq.netex.api.enums.QuickTransferMode;
+import com.balugaq.netex.api.enums.StorageUnitType;
+import com.balugaq.netex.api.interfaces.Configurable;
+import com.balugaq.netex.api.interfaces.ModelledItem;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.items.tools.ItemMover;
 import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;

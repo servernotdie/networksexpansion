@@ -2,7 +2,7 @@ package com.ytdd9527.networksexpansion.implementation.items.machines.networks.ad
 
 import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
 import com.ytdd9527.networksexpansion.implementation.items.ExpansionItems;
-import com.ytdd9527.networksexpansion.utils.BlockMenuUtil;
+import com.balugaq.netex.utils.BlockMenuUtil;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.network.stackcaches.BlueprintInstance;

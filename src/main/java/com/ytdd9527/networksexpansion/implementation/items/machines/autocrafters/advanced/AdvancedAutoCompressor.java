@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.autocrafters.advanced;
 
-import com.ytdd9527.networksexpansion.api.helpers.SupportedCompressorRecipes;
+import com.balugaq.netex.api.helper.SupportedCompressorRecipes;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractAdvancedAutoCrafter;
 import com.ytdd9527.networksexpansion.implementation.items.blueprints.CompressorBlueprint;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

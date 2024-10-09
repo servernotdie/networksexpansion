@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.autocrafters.basic;
 
-import com.ytdd9527.networksexpansion.api.helpers.SupportedCraftingTableRecipes;
+import com.balugaq.netex.api.helper.SupportedCraftingTableRecipes;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractAutoCrafter;
 import com.ytdd9527.networksexpansion.implementation.items.blueprints.CraftingBlueprint;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

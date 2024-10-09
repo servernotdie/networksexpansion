@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.implementation.items.machines.cargo.power.power_outlet.line;
 
-import com.ytdd9527.networksexpansion.api.interfaces.Configurable;
-import com.ytdd9527.networksexpansion.utils.LineOperationUtil;
+import com.balugaq.netex.api.interfaces.Configurable;
+import com.balugaq.netex.utils.LineOperationUtil;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NetworkRoot;

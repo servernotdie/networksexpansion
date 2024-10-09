@@ -4,7 +4,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.implementation.items.ExpansionItems;
 import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
-import com.ytdd9527.networksexpansion.utils.NetworksVersionedParticle;
+import com.balugaq.netex.utils.NetworksVersionedParticle;
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;

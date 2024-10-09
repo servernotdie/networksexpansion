@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.implementation.menus;
 
-import com.ytdd9527.networksexpansion.api.groups.MainItemGroup;
-import com.ytdd9527.networksexpansion.api.groups.SubFlexItemGroup;
+import com.balugaq.netex.api.groups.MainItemGroup;
+import com.balugaq.netex.api.groups.SubFlexItemGroup;
 import com.ytdd9527.networksexpansion.utils.GroupConfigUtil;
 import com.ytdd9527.networksexpansion.utils.TextUtil;
 import io.github.sefiraat.networks.utils.Keys;
