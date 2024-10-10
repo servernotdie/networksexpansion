@@ -211,8 +211,6 @@ public class LineTransfer extends NetworkDirectional implements RecipeDisplayIte
                 maxDistance,
                 false,
                 false,
-                drawParticle,
-                PARTICLE_INTERVAL,
                 (targetMenu) -> {
                     LineOperationUtil.pushItem(root, targetMenu, templates, TransportMode.FIRST_STOP, 64);
                 });
@@ -239,8 +237,6 @@ public class LineTransfer extends NetworkDirectional implements RecipeDisplayIte
                 maxDistance,
                 true,
                 true,
-                drawParticle,
-                PARTICLE_INTERVAL,
                 (targetMenu) -> {
                     LineOperationUtil.grabItem(root, targetMenu, TransportMode.FIRST_STOP, 64);
                 });

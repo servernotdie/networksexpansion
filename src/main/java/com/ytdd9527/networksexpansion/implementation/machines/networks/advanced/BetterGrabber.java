@@ -2,6 +2,7 @@ package com.ytdd9527.networksexpansion.implementation.machines.networks.advanced
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.slimefun.network.NetworkDirectional;
@@ -22,6 +23,8 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BetterGrabber extends NetworkDirectional {
     public static final CustomItemStack TEMPLATE_BACKGROUND_STACK = new CustomItemStack(
@@ -69,24 +72,33 @@ public class BetterGrabber extends NetworkDirectional {
             return;
         }
 
-        int[] slots = targetMenu.getPreset().getSlotsAccessedByItemTransport(targetMenu, ItemTransportFlow.WITHDRAW, null);
-
-        for (int templateSlot : getItemSlots()) {
-            final ItemStack template = blockMenu.getItemInSlot(templateSlot);
-
+        List<ItemStack> templates = new ArrayList<>();
+        for (int slot : getItemSlots()) {
+            final ItemStack template = blockMenu.getItemInSlot(slot);
             if (template != null && template.getType() != Material.AIR) {
-                for (int slot : slots) {
-                    final ItemStack itemStack = targetMenu.getItemInSlot(slot);
-                    if (itemStack != null && itemStack.getType() != Material.AIR) {
-                        if (StackUtils.itemsMatch(template, itemStack)) {
-                            int before = itemStack.getAmount();
-                            definition.getNode().getRoot().addItemStack(itemStack);
-                            if (definition.getNode().getRoot().isDisplayParticles() && itemStack.getAmount() < before) {
-                                showParticle(blockMenu.getLocation(), direction);
-                            }
-                            break;
+                templates.add(template.clone());
+            }
+        }
+        final int[] slots = targetMenu.getPreset().getSlotsAccessedByItemTransport(targetMenu, ItemTransportFlow.WITHDRAW, null);
+
+        for (int slot : slots) {
+            final ItemStack itemInSlot = targetMenu.getItemInSlot(slot);
+
+            if (itemInSlot != null && itemInSlot.getType() != Material.AIR) {
+                boolean found = false;
+                for (ItemStack template : templates) {
+                    if (StackUtils.itemsMatch(template, itemInSlot)) {
+                        int before = itemInSlot.getAmount();
+                        definition.getNode().getRoot().addItemStack(itemInSlot);
+                        if (definition.getNode().getRoot().isDisplayParticles() && itemInSlot.getAmount() < before) {
+                            showParticle(blockMenu.getLocation(), direction);
                         }
+                        found = true;
+                        break;
                     }
+                }
+                if (found) {
+                    break;
                 }
             }
         }

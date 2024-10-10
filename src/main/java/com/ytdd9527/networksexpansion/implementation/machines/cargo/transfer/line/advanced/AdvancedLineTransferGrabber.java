@@ -155,8 +155,6 @@ public class AdvancedLineTransferGrabber extends AdvancedDirectional implements 
                 maxDistance,
                 true,
                 true,
-                drawParticle,
-                PARTICLE_INTERVAL,
                 (targetMenu) -> {
                     LineOperationUtil.grabItem(root, targetMenu, mode, limitQuantity);
                 });

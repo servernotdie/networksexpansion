@@ -161,8 +161,6 @@ public class LineTransferPusher extends NetworkDirectional implements RecipeDisp
                 maxDistance,
                 false,
                 false,
-                drawParticle,
-                PARTICLE_INTERVAL,
                 (targetMenu) -> {
                     LineOperationUtil.pushItem(root, targetMenu, templates, TransportMode.FIRST_STOP, 64);
                 });

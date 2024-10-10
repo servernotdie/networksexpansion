@@ -17,9 +17,9 @@ public class ExpansionRecipes {
 
     // Workbench
     public static final ItemStack[] NETWORKS_EXPANSION_WORKBENCH = new ItemStack[]{
-            EMPOWERED_AI_CORE.getItem(), SlimefunItems.ADVANCED_CIRCUIT_BOARD, EMPOWERED_AI_CORE.getItem(),
-            OPTIC_CABLE.getItem(), NETWORK_BRIDGE.getItem(), OPTIC_CABLE.getItem(),
-            EMPOWERED_AI_CORE.getItem(), SlimefunItems.ADVANCED_CIRCUIT_BOARD, EMPOWERED_AI_CORE.getItem()
+            NETWORK_BRIDGE.getItem(), SlimefunItems.ADVANCED_CIRCUIT_BOARD, NETWORK_BRIDGE.getItem(),
+            OPTIC_CABLE.getItem(), AI_CORE.getItem(), OPTIC_CABLE.getItem(),
+            NETWORK_BRIDGE.getItem(), SlimefunItems.ADVANCED_CIRCUIT_BOARD, NETWORK_BRIDGE.getItem()
     };
 
     // Line Transfers

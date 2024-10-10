@@ -181,8 +181,6 @@ public class AdvancedLineTransferPusher extends AdvancedDirectional implements R
                 maxDistance,
                 false,
                 false,
-                drawParticle,
-                PARTICLE_INTERVAL,
                 (targetMenu) -> {
                     LineOperationUtil.pushItem(root, targetMenu, templates, currentTransportMode, limitQuantity);
                 });

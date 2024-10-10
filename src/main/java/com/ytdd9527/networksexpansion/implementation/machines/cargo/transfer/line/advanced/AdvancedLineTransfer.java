@@ -228,8 +228,6 @@ public class AdvancedLineTransfer extends AdvancedDirectional implements RecipeD
                 maxDistance,
                 false,
                 false,
-                drawParticle,
-                PARTICLE_INTERVAL,
                 (targetMenu) -> {
                     LineOperationUtil.pushItem(root, targetMenu, templates, currentTransportMode, limitQuantity);
                 });
@@ -258,8 +256,6 @@ public class AdvancedLineTransfer extends AdvancedDirectional implements RecipeD
                 maxDistance,
                 false,
                 false,
-                drawParticle,
-                PARTICLE_INTERVAL,
                 (targetMenu) -> {
                     LineOperationUtil.grabItem(root, targetMenu, mode, limitQuantity);
                 });
