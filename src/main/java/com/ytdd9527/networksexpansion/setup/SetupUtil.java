@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.setup;
 
-import com.ytdd9527.networksexpansion.implementation.items.ExpansionItems;
-import com.ytdd9527.networksexpansion.implementation.menus.ExpansionItemsMenus;
+import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
+import com.ytdd9527.networksexpansion.implementation.ExpansionItemsMenus;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.NetworkSlimefunItems;
 import net.guizhanss.slimefun4.utils.WikiUtils;
@@ -130,7 +130,8 @@ public class SetupUtil {
                 ExpansionItems.LINE_POWER_OUTLET_10.registerThis(),
                 ExpansionItems.LINE_POWER_OUTLET_11.registerThis(),
                 ExpansionItems.DUE_MACHINE.registerThis(),
-                ExpansionItems.OFFSETTER.registerThis()
+                ExpansionItems.OFFSETTER.registerThis(),
+                ExpansionItems.BETTER_GRABBER.registerThis()
         );
         ExpansionItemsMenus.SUB_MENU_BRIDGE.addTo(
                 ExpansionItems.NETWORK_BRIDGE_WHITE.registerThis(),

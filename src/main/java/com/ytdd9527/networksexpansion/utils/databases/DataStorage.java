@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.utils.databases;
 
-import com.ytdd9527.networksexpansion.api.data.StorageUnitData;
-import com.ytdd9527.networksexpansion.api.enums.StorageUnitType;
+import com.balugaq.netex.api.data.StorageUnitData;
+import com.balugaq.netex.api.enums.StorageUnitType;
 import io.github.sefiraat.networks.Networks;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;

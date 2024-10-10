@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.utils;
 
-import com.ytdd9527.networksexpansion.api.groups.MainItemGroup;
-import com.ytdd9527.networksexpansion.api.groups.SubFlexItemGroup;
+import com.balugaq.netex.api.groups.MainItemGroup;
+import com.balugaq.netex.api.groups.SubFlexItemGroup;
 import io.github.sefiraat.networks.Networks;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.experimental.UtilityClass;

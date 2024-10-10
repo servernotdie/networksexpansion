@@ -86,6 +86,25 @@ public enum Theme {
 
     @Nonnull
     @ParametersAreNonnullByDefault
+    public static SlimefunItemStack themedSlimefunItemStack(String id, String texture, Theme themeType, String name, String... lore) {
+        ChatColor passiveColor = Theme.PASSIVE.getColor();
+        List<String> finalLore = new ArrayList<>();
+        finalLore.add("");
+        for (String s : lore) {
+            finalLore.add(passiveColor + s);
+        }
+        finalLore.add("");
+        finalLore.add(applyThemeToString(Theme.CLICK_INFO, themeType.getLoreLine()));
+        return new SlimefunItemStack(
+                id,
+                texture,
+                Theme.applyThemeToString(themeType, name),
+                finalLore.toArray(new String[finalLore.size() - 1])
+        );
+    }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
     public static SlimefunItemStack tsItem(String id, ItemStack itemStack, Theme themeType, String name, String... lore) {
         List<String> finalLore = new ArrayList<>(Arrays.stream(lore).toList());
         finalLore.add("");

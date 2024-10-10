@@ -2,10 +2,10 @@ package io.github.sefiraat.networks;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.ytdd9527.networksexpansion.api.enums.MCVersion;
+import com.balugaq.netex.api.enums.MCVersion;
 import com.ytdd9527.networksexpansion.core.managers.ConfigManager;
-import com.ytdd9527.networksexpansion.implementation.guide.CheatGuideImpl;
-import com.ytdd9527.networksexpansion.implementation.guide.SurvivalGuideImpl;
+import com.balugaq.netex.api.guide.CheatGuideImpl;
+import com.balugaq.netex.api.guide.SurvivalGuideImpl;
 import com.ytdd9527.networksexpansion.setup.SetupUtil;
 import com.ytdd9527.networksexpansion.utils.ReflectionUtil;
 import com.ytdd9527.networksexpansion.utils.databases.DataSource;

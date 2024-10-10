@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.core.items;
 
-import com.ytdd9527.networksexpansion.api.factories.MachineRecipeFactory;
-import com.ytdd9527.networksexpansion.api.interfaces.RecipeItem;
+import com.balugaq.netex.api.factories.MachineRecipeFactory;
+import com.balugaq.netex.api.interfaces.RecipeItem;
 import io.github.sefiraat.networks.Networks;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
