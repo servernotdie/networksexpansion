@@ -3,7 +3,9 @@ package com.ytdd9527.networksexpansion.core.items.machines;
 import com.github.houbb.pinyin.constant.enums.PinyinStyleEnum;
 import com.github.houbb.pinyin.util.PinyinHelper;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.GridItemRequest;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
@@ -247,7 +249,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
                     displayStack.setItemMeta(itemMeta);
                     blockMenu.replaceExistingItem(getDisplaySlots()[i], displayStack);
                     blockMenu.addMenuClickHandler(getDisplaySlots()[i], (player, slot, item, action) -> {
-                        retrieveItem(player, definition, item, action, blockMenu);
+                        retrieveItem(player, item, action, blockMenu);
                         return false;
                     });
                 } else {
@@ -302,7 +304,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
                     displayStack.setItemMeta(itemMeta);
                     blockMenu.replaceExistingItem(getDisplaySlots()[i], displayStack);
                     blockMenu.addMenuClickHandler(getDisplaySlots()[i], (player, slot, item, action) -> {
-                        retrieveItem(player, definition, item, action, blockMenu);
+                        retrieveItem(player, item, action, blockMenu);
                         return false;
                     });
                 } else {
@@ -353,8 +355,17 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
                 s = s.toLowerCase(Locale.ROOT);
                 gridCache.setFilter(s);
                 player.sendMessage(Theme.SUCCESS + "已启用过滤器");
-                if (blockMenu.getBlock().getType() != Material.AIR) {
-                    blockMenu.open(player);
+
+                SlimefunBlockData data = StorageCacheUtils.getBlock(blockMenu.getLocation());
+                if (data == null) {
+                    return;
+                }
+
+                if (blockMenu.getPreset().getID().equals(data.getSfId())) {
+                    BlockMenu actualMenu = data.getBlockMenu();
+                    if (actualMenu != null) {
+                        actualMenu.open(player);
+                    }
                 }
             });
         }
@@ -376,7 +387,15 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
     }
 
     @ParametersAreNonnullByDefault
-    protected void retrieveItem(Player player, NodeDefinition definition, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
+    protected void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
+        NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
+        if (definition == null || definition.getNode() == null) {
+            clearDisplay(blockMenu);
+            blockMenu.close();
+            Networks.getInstance().getLogger().warning("Player \"%s\" attempted to use network grid from a invalid node at %s, the player may trying to cheat or duplicate items.".formatted(player.getName(), blockMenu.getLocation()));
+            return;
+        }
+
         if (itemStack == null || itemStack.getType() == Material.AIR) {
             return;
         }
