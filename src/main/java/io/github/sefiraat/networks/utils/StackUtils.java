@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ArmorMeta;
@@ -106,6 +107,14 @@ public class StackUtils {
 
         // If types do not match, then the items cannot possibly match
         if (itemStack.getType() != cache.getItemType()) {
+            return false;
+        }
+
+        if (Tag.SHULKER_BOXES.isTagged(itemStack.getType())) {
+            return false;
+        }
+
+        if (itemStack.getType() == Material.BUNDLE) {
             return false;
         }
 
