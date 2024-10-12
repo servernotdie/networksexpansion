@@ -3,6 +3,7 @@ package io.github.sefiraat.networks.slimefun.network.grid;
 import com.github.houbb.pinyin.constant.enums.PinyinStyleEnum;
 import com.github.houbb.pinyin.util.PinyinHelper;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.GridItemRequest;
 import io.github.sefiraat.networks.network.NetworkRoot;
@@ -271,8 +272,17 @@ public abstract class AbstractGrid extends NetworkObject {
                 }
                 gridCache.setFilter(s.toLowerCase(Locale.ROOT));
                 player.sendMessage(Theme.SUCCESS + "已启用过滤器");
-                if (blockMenu.getBlock().getType() != Material.AIR) {
-                    blockMenu.open(player);
+
+                SlimefunBlockData data = StorageCacheUtils.getBlock(blockMenu.getLocation());
+                if (data == null) {
+                    return;
+                }
+
+                if (blockMenu.getPreset().getID().equals(data.getSfId())) {
+                    BlockMenu actualMenu = data.getBlockMenu();
+                    if (actualMenu != null) {
+                        actualMenu.open(player);
+                    }
                 }
             });
         }
