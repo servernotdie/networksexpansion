@@ -6,6 +6,7 @@ import com.balugaq.netex.api.enums.MCVersion;
 import com.ytdd9527.networksexpansion.core.managers.ConfigManager;
 import com.balugaq.netex.api.guide.CheatGuideImpl;
 import com.balugaq.netex.api.guide.SurvivalGuideImpl;
+import com.ytdd9527.networksexpansion.core.services.LocalizationService;
 import com.ytdd9527.networksexpansion.setup.SetupUtil;
 import com.ytdd9527.networksexpansion.utils.ReflectionUtil;
 import com.ytdd9527.networksexpansion.utils.databases.DataSource;
@@ -58,6 +59,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     private ConfigManager configManager;
     private ListenerManager listenerManager;
     private SupportedPluginManager supportedPluginManager;
+    private LocalizationService localizationService;
     private long slimefunTickCount;
 
 
@@ -94,6 +96,10 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
 
     public static SupportedPluginManager getSupportedPluginManager() {
         return Networks.getInstance().supportedPluginManager;
+    }
+
+    public static LocalizationService getLocalizationService() {
+        return Networks.getInstance().localizationService;
     }
 
     public static ListenerManager getListenerManager() {
@@ -145,6 +151,10 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         seconds = seconds <= 0 ? 300 : seconds;
         long period = 20L * seconds;
         autoSaveThread.runTaskTimerAsynchronously(this, 2 * period, period);
+
+        getLogger().info("正在加载语言...");
+        localizationService = new LocalizationService(this);
+        localizationService.addLanguage("zh-CN");
 
         getLogger().info("正在注册物品...");
         SetupUtil.setupAll();
