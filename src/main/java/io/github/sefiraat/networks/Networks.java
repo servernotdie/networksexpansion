@@ -154,6 +154,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
 
         getLogger().info("正在加载语言...");
         localizationService = new LocalizationService(this);
+        localizationService.addLanguage(configManager.getLanguage());
         localizationService.addLanguage("zh-CN");
 
         getLogger().info("正在注册物品...");
