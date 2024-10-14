@@ -135,7 +135,6 @@ public class LocalizationService {
         FileConfiguration defaultConfig = YamlConfiguration.loadConfiguration(defaultReader);
         this.langMap.put(langFilename, new Language(langFilename, langFile, defaultConfig));
     }
-
     @Nonnull
     public String getString0(@Nonnull String path) {
         Preconditions.checkArgument(path != null, "path cannot be null");
@@ -145,7 +144,7 @@ public class LocalizationService {
         do {
             if (!var2.hasNext()) {
                 Networks.getInstance().getLogger().severe("No localization found for path: " + path);
-                return "";
+                return path;
             }
 
             String lang = (String) var2.next();
