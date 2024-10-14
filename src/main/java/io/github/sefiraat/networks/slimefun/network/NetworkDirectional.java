@@ -348,7 +348,7 @@ public abstract class NetworkDirectional extends NetworkObject {
     }
 
     @Nullable
-    protected CustomItemStack getOtherBackgroundStack() {
+    protected ItemStack getOtherBackgroundStack() {
         return null;
     }
 

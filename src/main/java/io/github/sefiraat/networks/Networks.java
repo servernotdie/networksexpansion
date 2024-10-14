@@ -115,6 +115,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         instance = this;
 
+        this.configManager = new ConfigManager();
         localizationService = new LocalizationService(this);
         localizationService.addLanguage(configManager.getLanguage());
         localizationService.addLanguage("zh-CN");
@@ -125,9 +126,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         getLogger().info(getLocalizationService().getString("messages.startup.getting-config"));
         saveDefaultConfig();
 
-        getLogger().info(Bukkit.getVersion());
         getLogger().info(getLocalizationService().getString("messages.startup.trying-auto-update"));
-        this.configManager = new ConfigManager();
         tryUpdate();
 
         this.supportedPluginManager = new SupportedPluginManager();

@@ -59,8 +59,200 @@ messages:
     not-found-netheopoiesis: "你必须安装下界乌托邦才能让相关物品注册. "
   save-all: "正在保存网络拓展数据."
 icons:
-  # TODO
-  1: 1
+  output-background-stack:
+    name: "<passive>输出"
+    lore:
+      - ""
+  blueprint-background-stack:
+    name: "<passive>合成蓝图"
+    lore:
+      - ""
+  blueprint-back-stack:
+    name: "<passive>空白蓝图"
+    lore:
+      - ""
+  encode-stack:
+    name: "<passive>点击此处进行编码"
+    lore:
+      - ""
+  blank-slot-stack:
+    name: ""
+    lore:
+      - ""
+  page-previous-stack:
+    name: "<click_info>上一页"
+    lore:
+      - ""
+  page-next-stack:
+    name: "<click_info>下一页"
+    lore:
+      - ""
+  change-sort-stack:
+    name: "<click_info>更改排序方式"
+    lore:
+      - ""
+  filter-stack:
+    name: "<click_info>左键设置过滤器 (右键点击以清除)"
+    lore:
+      - ""
+  display-mode-stack:
+    name: "<click_info>点击切换&2显示模式"
+    lore:
+      - "<click_info>当前&2显示模式&7: &6显示网络所有物品"
+      - "<click_info>&e↑ &7在上方放入物品以&e自动搜索物品"
+      - "<click_info>&6Shift+左键&7以切换&2显示模式"
+  history-mode-stack:
+    name: "<click_info>点击切换&2显示模式"
+    lore:
+      - "<click_info>当前&2显示模式&7: &6显示取出物品历史"
+      - "<click_info>&e↑ &7在上方放入物品以&e自动搜索物品"
+      - "<click_info>&6Shift+左键&7以切换&2显示模式"
+      - "<click_info>&c当前模式不可使用搜索！"
+  minus-icon:
+    name: "<color_random_string>减少数量"
+    lore:
+      - ""
+  show-icon:
+    name: "<color_random_string>数量"
+    lore:
+      - "<color_random_string>当前数量: 64"
+  add-icon:
+    name: "<color_random_string>增加数量"
+    lore:
+      - ""
+  transport-mode-icon:
+    name: "<color_random_string>运输模式"
+    lore:
+      - "<color_random_string>当前模式: 无"
+  pusher-template-background-stack:
+    name: "<passive>指定需要推送的物品"
+    lore:
+      - ""
+  background-stack-6x6:
+    name: "<passive> "
+    lore:
+      - ""
+  background-stack-3x3:
+    name: "<passive> "
+    lore:
+      - ""
+  greedy-template-background-stack:
+    name: "<success>需要阻断的物品"
+    lore:
+      - ""
+  storage-background-stack:
+    name: "<success>物品存储"
+    lore:
+      - ""
+  purger-template-background-stack:
+    name: "<success>指定需要清除的物品"
+    lore:
+      - ""
+  grabber-template-background-stack:
+    name: "<passive>指定需要抓取的物品"
+    lore:
+      - ""
+  control-v-template-background-stack:
+    name: "<passive>粘贴物品模版"
+    lore:
+      - ""
+  control-x-template-background-stack:
+    name: "<passive>剪切物品模版"
+    lore:
+      - "<passive>留空将剪切任何方块"
+  export-template-background-stack:
+    name: "<success>指定输出物品"
+    lore:
+      - ""
+  export-output-background-stack:
+    name: "<success>输出栏"
+    lore:
+      - ""
+  power-display-empty:
+    name: "<click_info>状态"
+    lore:
+      - "<passive>未连接"
+  quantum-storage-back-output:
+    name: "<passive>输出"
+    lore:
+      - ""
+  quantum-storage-set-item-supporting-custom-max:
+    name: "<success>设置"
+    lore:
+      - "<passive>拿起物品并点击这里以设置物品"
+      - "<passive>点击这里以设置更改容量"
+      - "<click_info>Shift+左键点击<passive>切换满载清空输入"
+  quantum-storage-set-item:
+    name: "<success>设置"
+    lore:
+      - "<passive>拿起物品并点击这里以设置物品"
+      - "<click_info>Shift+左键点击<passive>切换满载清空输入"
+  quantum-storage-back-input:
+    name: "<passive>输入"
+    lore:
+      - ""
+  quantum-storage-no-item:
+    name: "<error>未指定物品"
+    lore:
+      - "<passive>拿起物品并点击下方的按钮"
+      - "<passive>以设置量子存储保存的物品"
+  quantum-storage-back-item:
+    name: "<passive>当前存储的物品"
+    lore:
+      - ""
+  quantum-workbench-craft-button-stack:
+    name: "<click_info>点击进行量子纠缠"
+    lore:
+      - ""
+  received-background-stack:
+    name: "<success>接收的物品"
+    lore:
+      - ""
+  transmitter-template-background-stack:
+    name: "<success>发送的物品"
+    lore:
+      - ""
+  due-border-icon:
+    name: "&a← 在此放置预期物品"
+    lore:
+      - ""
+  due-input-split-icon:
+    name: "&a↑ 预期物品 & 输入物品 ↓"
+    lore:
+      - ""
+  input-output-split-icon:
+    name: "&a↑ 输入物品 & 输出物品 ↓"
+    lore:
+      - ""
+  decode-item:
+    name: "&6网络解码器"
+    lore:
+      - "&7点击解码网络蓝图"
+  offset-decrease-icon:
+    name: "&a偏移量 -1"
+    lore:
+      - ""
+  offset-show-icon:
+    name: "&a偏移量"
+    lore:
+      - "&7当前偏移量: &e0"
+  offset-increase-icon:
+    name: "&a偏移量 +1"
+    lore:
+      - ""
+  recipe-types:
+    expansion_workbench_6x6:
+      name: "网络拓展工作台6x6"
+      lore:
+        - "在6x6拓展工作台中制作"
+    expansion_workbench_3x3:
+      name: "网络拓展工作台"
+      lore:
+        - "在拓展工作台中制作"
+    quantum_workbench:
+      name: "网络量子工作台"
+      lore:
+        - "在量子工作台中制作"
 items:
   NTW_EXPANSION_SURVIVAL_GUIDE:
     name: "网络拓展指南 (生存模式)"
@@ -132,7 +324,7 @@ items:
       - "能源网络的电力并存储起来"
       - "以供其他网络设备使用"
       - ""
-      - "&x&e&4&e&d&3&2容量: &7100,000,000"
+      - "<click_info>容量: &7100,000,000"
 
   NTW_EXPANSION_CAPACITOR_6:
     name: "网络电容 (6)"
@@ -141,7 +333,7 @@ items:
       - "能源网络的电力并存储起来"
       - "以供其他网络设备使用"
       - ""
-      - "&x&e&4&e&d&3&2容量: &72,147,483,647"
+      - "<click_info>容量: &72,147,483,647"
 
   NTW_INPUT_ONLY_MONITOR:
     name: "网络监视器（仅输入）"
@@ -577,77 +769,77 @@ items:
     lore:
       - "可以根据输入的物品来制作魔法工作台蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_ARMOR_FORGE_RECIPE_ENCODER:
     name: "网络盔甲锻造台配方编码器"
     lore:
       - "可以根据输入的物品来制作盔甲锻造台蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_SMELTERY_RECIPE_ENCODER:
     name: "网络冶炼炉配方编码器"
     lore:
       - "可以根据输入的物品来制作冶炼炉蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_QUANTUM_WORKBENCH_RECIPE_ENCODER:
     name: "网络量子工作台配方编码器"
     lore:
       - "可以根据输入的物品来制作量子工作台蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_ANCIENT_ALTAR_RECIPE_ENCODER:
     name: "网络古代祭坛配方编码器"
     lore:
       - "可以根据输入的物品来制作古代祭坛蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_EXPANSION_WORKBENCH_RECIPE_ENCODER:
     name: "网络拓展工作台配方编码器"
     lore:
       - "可以根据输入的物品来制作网络拓展工作台蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_COMPRESSOR_RECIPE_ENCODER:
     name: "网络压缩机配方编码器"
     lore:
       - "可以根据输入的物品来制作压缩机蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_GRIND_STONE_RECIPE_ENCODER:
     name: "网络磨石配方编码器"
     lore:
       - "可以根据输入的物品来制作磨石蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_JUICER_RECIPE_ENCODER:
     name: "网络榨汁机配方编码器"
     lore:
       - "可以根据输入的物品来制作榨汁机蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_ORE_CRUSHER_RECIPE_ENCODER:
     name: "网络矿石粉碎机配方编码器"
     lore:
       - "可以根据输入的物品来制作矿石粉碎机蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_PRESSURE_CHAMBER_RECIPE_ENCODER:
     name: "网络压力机配方编码器"
     lore:
       - "可以根据输入的物品来制作压力机蓝图"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &72,000 每次编码"
+      - "<click_info>网络电力消耗: &72,000 每次编码"
 
   NTW_EXPANSION_AUTO_MAGIC_WORKBENCH:
     name: "网络自动魔法工作台"
@@ -657,7 +849,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_MAGIC_WORKBENCH_WITHHOLDING:
     name: "网络自动魔法工作台 (预留版)"
@@ -672,7 +864,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_ARMOR_FORGE:
     name: "网络自动盔甲锻造台"
@@ -682,7 +874,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_ARMOR_FORGE_WITHHOLDING:
     name: "网络自动盔甲锻造台 (预留版)"
@@ -697,7 +889,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_SMELTERY:
     name: "网络自动冶炼炉"
@@ -707,7 +899,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_SMELTERY_WITHHOLDING:
     name: "网络自动冶炼炉 (预留版)"
@@ -722,7 +914,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_QUANTUM_WORKBENCH:
     name: "网络自动量子工作台"
@@ -732,7 +924,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_QUANTUM_WORKBENCH_WITHHOLDING:
     name: "网络自动量子工作台 (预留版)"
@@ -747,7 +939,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_ANCIENT_ALTAR:
     name: "网络自动古代祭坛"
@@ -757,7 +949,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_ANCIENT_ALTAR_WITHHOLDING:
     name: "网络自动古代祭坛 (预留版)"
@@ -772,7 +964,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_EXPANSION_WORKBENCH:
     name: "网络自动网络拓展工作台"
@@ -782,7 +974,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_EXPANSION_WORKBENCH_WITHHOLDING:
     name: "网络自动网络拓展工作台 (预留版)"
@@ -797,7 +989,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_COMPRESSOR:
     name: "网络自动压缩机"
@@ -807,7 +999,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_COMPRESSOR_WITHHOLDING:
     name: "网络自动压缩机 (预留版)"
@@ -822,7 +1014,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_GRIND_STONE:
     name: "网络自动磨石"
@@ -832,7 +1024,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_GRIND_STONE_WITHHOLDING:
     name: "网络自动磨石 (预留版)"
@@ -847,7 +1039,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_JUICER:
     name: "网络自动榨汁机"
@@ -857,7 +1049,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_JUICER_WITHHOLDING:
     name: "网络自动榨汁机 (预留版)"
@@ -872,7 +1064,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_ORE_CRUSHER:
     name: "网络自动矿石粉碎机"
@@ -882,7 +1074,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_ORE_CRUSHER_WITHHOLDING:
     name: "网络自动矿石粉碎机 (预留版)"
@@ -897,7 +1089,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_AUTO_PRESSURE_CHAMBER:
     name: "网络自动压力机"
@@ -907,7 +1099,7 @@ items:
       - "机器会自动从网络中选取材料进行合成"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &764 每次合成"
+      - "<click_info>网络电力消耗: &764 每次合成"
 
   NTW_EXPANSION_AUTO_PRESSURE_CHAMBER_WITHHOLDING:
     name: "网络自动压力机 (预留版)"
@@ -922,7 +1114,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7128 每次合成"
+      - "<click_info>网络电力消耗: &7128 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_MAGIC_WORKBENCH:
     name: "高级网络自动魔法工作台"
@@ -933,7 +1125,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_MAGIC_WORKBENCH_WITHHOLDING:
     name: "高级网络自动魔法工作台 (预留版)"
@@ -949,7 +1141,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_ARMOR_FORGE:
     name: "高级网络自动盔甲锻造台"
@@ -960,7 +1152,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_ARMOR_FORGE_WITHHOLDING:
     name: "高级网络自动盔甲锻造台 (预留版)"
@@ -976,7 +1168,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_SMELTERY:
     name: "高级网络自动冶炼炉"
@@ -987,7 +1179,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_SMELTERY_WITHHOLDING:
     name: "高级网络自动冶炼炉 (预留版)"
@@ -1003,7 +1195,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_QUANTUM_WORKBENCH:
     name: "高级网络自动量子工作台"
@@ -1014,7 +1206,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_QUANTUM_WORKBENCH_WITHHOLDING:
     name: "高级网络自动量子工作台 (预留版)"
@@ -1030,7 +1222,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_ANCIENT_ALTAR:
     name: "高级网络自动古代祭坛"
@@ -1041,7 +1233,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_ANCIENT_ALTAR_WITHHOLDING:
     name: "高级网络自动古代祭坛 (预留版)"
@@ -1057,7 +1249,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_EXPANSION_WORKBENCH:
     name: "高级网络自动网络拓展工作台"
@@ -1068,7 +1260,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_EXPANSION_WORKBENCH_WITHHOLDING:
     name: "高级网络自动网络拓展工作台 (预留版)"
@@ -1084,7 +1276,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_COMPRESSOR:
     name: "高级网络自动压缩机"
@@ -1095,7 +1287,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_COMPRESSOR_WITHHOLDING:
     name: "高级网络自动压缩机 (预留版)"
@@ -1111,7 +1303,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_GRIND_STONE:
     name: "高级网络自动磨石"
@@ -1122,7 +1314,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_GRIND_STONE_WITHHOLDING:
     name: "高级网络自动磨石 (预留版)"
@@ -1138,7 +1330,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_JUICER:
     name: "高级网络自动榨汁机"
@@ -1149,7 +1341,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_JUICER_WITHHOLDING:
     name: "高级网络自动榨汁机 (预留版)"
@@ -1165,7 +1357,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_ORE_CRUSHER:
     name: "高级网络自动矿石粉碎机"
@@ -1176,7 +1368,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_ORE_CRUSHER_WITHHOLDING:
     name: "高级网络自动矿石粉碎机 (预留版)"
@@ -1192,7 +1384,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_PRESSURE_CHAMBER:
     name: "高级网络自动压力机"
@@ -1203,7 +1395,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_PRESSURE_CHAMBER_WITHHOLDING:
     name: "高级网络自动压力机 (预留版)"
@@ -1219,7 +1411,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_CRAFTING:
     name: "高级网络自动合成机"
@@ -1230,7 +1422,7 @@ items:
       - "允许堆叠蓝图 (不向下兼容)"
       - "(需要网络中有足够的原材料)"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &7640 每次合成"
+      - "<click_info>网络电力消耗: &7640 每次合成"
 
   NTW_EXPANSION_ADVANCED_AUTO_CRAFTING_WITHHOLDING:
     name: "高级网络自动合成机 (预留版)"
@@ -1246,7 +1438,7 @@ items:
       - "这一组物品可以在网络中访问"
       - "也可以通过货运系统取出"
       - ""
-      - "&x&e&4&e&d&3&2网络电力消耗: &71,280 每次合成"
+      - "<click_info>网络电力消耗: &71,280 每次合成"
 
   NTW_EXPANSION_BRIDGE_WHITE:
     name: "网桥(白色)"
@@ -1373,7 +1565,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &764J"
+      - "<click_info>可存储: &764J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_2:
     name: "链式网络插口 (2)"
@@ -1381,7 +1573,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &7256J"
+      - "<click_info>可存储: &7256J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_3:
     name: "链式网络插口 (3)"
@@ -1389,7 +1581,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &71,024J"
+      - "<click_info>可存储: &71,024J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_4:
     name: "链式网络插口 (4)"
@@ -1397,7 +1589,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &74,096J"
+      - "<click_info>可存储: &74,096J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_5:
     name: "链式网络插口 (5)"
@@ -1405,7 +1597,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &732,768J"
+      - "<click_info>可存储: &732,768J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_6:
     name: "链式网络插口 (6)"
@@ -1413,7 +1605,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &7262,144J"
+      - "<click_info>可存储: &7262,144J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_7:
     name: "链式网络插口 (7)"
@@ -1421,7 +1613,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &72,097,152J"
+      - "<click_info>可存储: &72,097,152J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_8:
     name: "链式网络插口 (8)"
@@ -1429,7 +1621,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &716,777,216J"
+      - "<click_info>可存储: &716,777,216J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_9:
     name: "链式网络插口 (9)"
@@ -1437,7 +1629,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &7134,217,728J"
+      - "<click_info>可存储: &7134,217,728J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_10:
     name: "链式网络插口 (10)"
@@ -1445,7 +1637,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &71,073,741,824J"
+      - "<click_info>可存储: &71,073,741,824J"
 
   NTW_EXPANSION_LINE_POWER_OUTLET_11:
     name: "链式网络插口 (11)"
@@ -1453,7 +1645,7 @@ items:
       - "链式网络插口可以将网络中存储的电力"
       - "传输至指定的机器中."
       - ""
-      - "&x&e&4&e&d&3&2可存储: &72,147,483,647J"
+      - "<click_info>可存储: &72,147,483,647J"
   
   NTW_EXPANSION_AUTHOR_SEFIRAAT:
     name: "Sefiraat"

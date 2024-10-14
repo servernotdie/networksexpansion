@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.network;
 
+import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
@@ -73,40 +74,6 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
             Integer.MAX_VALUE
     };
     private static final String WIKI_PAGE = "network-storage/quantum-storage";
-    private static final ItemStack BACK_INPUT = new CustomItemStack(
-            Material.GREEN_STAINED_GLASS_PANE,
-            Theme.PASSIVE + "输入"
-    );
-
-    private static final ItemStack BACK_ITEM = new CustomItemStack(
-            Material.BLUE_STAINED_GLASS_PANE,
-            Theme.PASSIVE + "当前存储的物品"
-    );
-
-    private static final ItemStack NO_ITEM = new CustomItemStack(
-            Material.RED_STAINED_GLASS_PANE,
-            Theme.ERROR + "未指定物品",
-            Theme.PASSIVE + "拿起物品并点击下方的按钮",
-            Theme.PASSIVE + "以设置量子存储保存的物品"
-    );
-
-    private static final ItemStack SET_ITEM = new CustomItemStack(
-            Material.LIME_STAINED_GLASS_PANE,
-            Theme.SUCCESS + "设置",
-            Theme.PASSIVE + "拿起物品并点击这里以设置物品",
-            Theme.CLICK_INFO + "Shift+左键点击" + Theme.PASSIVE + "切换满载清空输入");
-
-    private static final ItemStack SET_ITEM_SUPPORTING_CUSTOM_MAX = new CustomItemStack(
-            Material.LIME_STAINED_GLASS_PANE,
-            Theme.SUCCESS + "设置",
-            Theme.PASSIVE + "拿起物品并点击这里以设置物品",
-            Theme.PASSIVE + "点击这里以设置更改容量",
-            Theme.CLICK_INFO + "Shift+左键点击" + Theme.PASSIVE + "切换满载清空输入"
-    );
-    private static final ItemStack BACK_OUTPUT = new CustomItemStack(
-            Material.ORANGE_STAINED_GLASS_PANE,
-            Theme.PASSIVE + "输出"
-    );
 
     private static final int[] INPUT_SLOTS = new int[]{0, 2};
     private static final int[] ITEM_SLOTS = new int[]{3, 5};
@@ -116,9 +83,9 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
     private static final Map<Location, QuantumCache> CACHES = new HashMap<>();
 
     static {
-        final ItemMeta itemMeta = NO_ITEM.getItemMeta();
+        final ItemMeta itemMeta = Icon.QUANTUM_STORAGE_NO_ITEM.getItemMeta();
         PersistentDataAPI.setBoolean(itemMeta, Keys.newKey("display"), true);
-        NO_ITEM.setItemMeta(itemMeta);
+        Icon.QUANTUM_STORAGE_NO_ITEM.setItemMeta(itemMeta);
     }
 
     private final List<Integer> slotsToDrop = new ArrayList<>();
@@ -222,7 +189,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
     public static void updateDisplayItem(@Nonnull BlockMenu menu, @Nonnull QuantumCache cache) {
         if (cache.getItemStack() == null) {
-            menu.replaceExistingItem(ITEM_SLOT, NO_ITEM);
+            menu.replaceExistingItem(ITEM_SLOT, Icon.QUANTUM_STORAGE_NO_ITEM);
         } else {
             final ItemStack itemStack = cache.getItemStack().clone();
             final ItemMeta itemMeta = itemStack.getItemMeta();
@@ -392,15 +359,15 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
             @Override
             public void init() {
                 for (int i : INPUT_SLOTS) {
-                    addItem(i, BACK_INPUT, (p, slot, item, action) -> false);
+                    addItem(i, Icon.QUANTUM_STORAGE_BACK_INPUT, (p, slot, item, action) -> false);
                 }
                 for (int i : ITEM_SLOTS) {
-                    addItem(i, BACK_ITEM, (p, slot, item, action) -> false);
+                    addItem(i, Icon.QUANTUM_STORAGE_BACK_ITEM, (p, slot, item, action) -> false);
                 }
                 for (int i : OUTPUT_SLOTS) {
-                    addItem(i, BACK_OUTPUT, (p, slot, item, action) -> false);
+                    addItem(i, Icon.QUANTUM_STORAGE_BACK_OUTPUT, (p, slot, item, action) -> false);
                 }
-                ItemStack setItemItemstack = supportsCustomMaxAmount ? SET_ITEM_SUPPORTING_CUSTOM_MAX : SET_ITEM;
+                ItemStack setItemItemstack = supportsCustomMaxAmount ? Icon.QUANTUM_STORAGE_SET_ITEM_SUPPORTING_CUSTOM_MAX : Icon.QUANTUM_STORAGE_SET_ITEM;
                 addItem(ITEM_SET_SLOT, setItemItemstack, (p, slot, item, action) -> false);
                 addMenuClickHandler(ITEM_SLOT, ChestMenuUtils.getEmptyClickHandler());
                 drawBackground(BACKGROUND_SLOTS);
@@ -597,7 +564,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
     private QuantumCache createCache(@Nullable ItemStack itemStack, @Nonnull BlockMenu menu, int amount, int maxAmount, boolean voidExcess, boolean supportsCustomMaxAmount) {
         if (itemStack == null || itemStack.getType() == Material.AIR || isDisplayItem(itemStack)) {
-            menu.addItem(ITEM_SLOT, ItemStackUtil.getCleanItem(NO_ITEM));
+            menu.addItem(ITEM_SLOT, ItemStackUtil.getCleanItem(Icon.QUANTUM_STORAGE_NO_ITEM));
             return new QuantumCache(null, 0, maxAmount, false, this.supportsCustomMaxAmount);
         } else {
             final ItemStack clone = itemStack.clone();

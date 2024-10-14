@@ -3,9 +3,12 @@ package com.ytdd9527.networksexpansion.core.services;
 import com.balugaq.netex.api.data.Language;
 import com.google.common.base.Preconditions;
 import com.ytdd9527.networksexpansion.utils.TextUtil;
+import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.Networks;
+import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.Getter;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -37,6 +40,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
@@ -58,6 +63,8 @@ public class LocalizationService {
     private String itemGroupKey = "categories";
     private String itemsKey = "items";
     private String recipesKey = "recipes";
+    private String colorTagRegex = "<[a-zA-Z0-9]+>";
+    private Pattern pattern = Pattern.compile(this.colorTagRegex);
 
     public LocalizationService(Networks plugin) {
         this(plugin.getJavaPlugin());
@@ -302,8 +309,32 @@ public class LocalizationService {
     public String color(@Nonnull String str) {
         str = ChatColor.translateAlternateColorCodes('&', str);
         if (str.startsWith("<random_color>")) {
-            str.replaceAll("<random_color>", "");
+            str = str.replaceAll("<random_color>", "");
             str = TextUtil.colorPseudorandomString(str);
+        }
+
+        if (str.startsWith("<color_random_string>")) {
+            str = str.replaceAll("<color_random_string>", "");
+            str = TextUtil.colorRandomString(str);
+        }
+
+        Matcher matcher = this.pattern.matcher(str);
+        while (matcher.find()) {
+            boolean found = false;
+            String colorCode = matcher.group();
+            for (Theme testTheme : Theme.values()) {
+                String name = testTheme.name();
+                if (name.equalsIgnoreCase(colorCode.replace("<", "").replace(">", ""))) {
+                    str = str.replaceAll(colorCode, testTheme + "");
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                Networks.getInstance().getLogger().warning("Unknown color code: " + colorCode);
+                str = str.replaceAll(colorCode, "");
+            }
+            matcher = this.pattern.matcher(str);
         }
 
         return str;
@@ -318,5 +349,17 @@ public class LocalizationService {
     @ParametersAreNonnullByDefault
     public void send(CommandSender sender, String message, Object... args) {
         sender.sendMessage(color(MessageFormat.format(message, args)));
+    }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public ItemStack getItemStack(String key, Material material) {
+        return ItemStackUtil.getCleanItem(new CustomItemStack(material, this.getString(key + KEY_NAME), this.getStringArray(key + KEY_LORE)));
+    }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public ItemStack getIcon(String key, Material material) {
+        return getItemStack("icons." + key, material);
     }
 }

@@ -1,5 +1,6 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
+import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.TransportMode;
@@ -69,25 +70,6 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
             BlockFace.WEST
     );
 
-    private static final CustomItemStack MINUS_ICON = new CustomItemStack(
-            Material.RED_CONCRETE, TextUtil.colorRandomString("减少数量")
-    );
-
-    private static final CustomItemStack SHOW_ICON = new CustomItemStack(
-            Material.GOLD_BLOCK,
-            TextUtil.colorRandomString("数量"),
-            TextUtil.colorRandomString("当前数量: 64")
-    );
-
-    private static final CustomItemStack ADD_ICON = new CustomItemStack(
-            Material.GREEN_CONCRETE, TextUtil.colorRandomString("增加数量")
-    );
-
-    private static final CustomItemStack TRANSPORT_MODE_ICON = new CustomItemStack(
-            Material.FURNACE_MINECART,
-            TextUtil.colorRandomString("运输模式"),
-            TextUtil.colorRandomString("当前模式：") + TextUtil.colorRandomString("无")
-    );
     private static final Map<Location, BlockFace> SELECTED_DIRECTION_MAP = new HashMap<>();
     private static final Map<Location, Integer> NETWORK_LIMIT_QUANTITY_MAP = new HashMap<>();
     private static final Map<Location, TransportMode> NETWORK_TRANSPORT_MODE_MAP = new HashMap<>();
@@ -98,8 +80,8 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
 
     protected AdvancedDirectional(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, NodeType type) {
         super(itemGroup, item, recipeType, recipe, type);
-        this.showIconClone = SHOW_ICON.clone();
-        this.transportModeIconClone = TRANSPORT_MODE_ICON.clone();
+        this.showIconClone = Icon.SHOW_ICON.clone();
+        this.transportModeIconClone = Icon.TRANSPORT_MODE_ICON.clone();
 
         addItemHandler(
                 new BlockTicker() {
@@ -419,7 +401,7 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
     }
 
     @Nullable
-    protected CustomItemStack getOtherBackgroundStack() {
+    protected ItemStack getOtherBackgroundStack() {
         return null;
     }
 
@@ -474,16 +456,16 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
         return this.showIconClone;
     }
 
-    public CustomItemStack getMinusIcon() {
-        return MINUS_ICON;
+    public ItemStack getMinusIcon() {
+        return Icon.MINUS_ICON;
     }
 
-    public CustomItemStack getAddIcon() {
-        return ADD_ICON;
+    public ItemStack getAddIcon() {
+        return Icon.ADD_ICON;
     }
 
-    public CustomItemStack getTransportModeIcon() {
-        return TRANSPORT_MODE_ICON;
+    public ItemStack getTransportModeIcon() {
+        return Icon.TRANSPORT_MODE_ICON;
     }
 
 

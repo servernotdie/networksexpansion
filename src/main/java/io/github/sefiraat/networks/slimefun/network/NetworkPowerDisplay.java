@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.network;
 
+import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.NetworkRoot;
@@ -32,12 +33,6 @@ public class NetworkPowerDisplay extends NetworkObject {
             0, 1, 2, 3, 5, 6, 7, 8
     };
     private static final int DISPLAY_SLOT = 4;
-
-    private static final CustomItemStack EMPTY = new CustomItemStack(
-            Material.RED_STAINED_GLASS_PANE,
-            Theme.CLICK_INFO + "状态",
-            Theme.PASSIVE + "未连接"
-    );
 
     public NetworkPowerDisplay(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe, NodeType.POWER_DISPLAY);
@@ -73,7 +68,7 @@ public class NetworkPowerDisplay extends NetworkObject {
             final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
 
             if (definition.getNode() == null) {
-                blockMenu.replaceExistingItem(DISPLAY_SLOT, EMPTY);
+                blockMenu.replaceExistingItem(DISPLAY_SLOT, Icon.POWER_DISPLAY_EMPTY);
                 return;
             }
 
