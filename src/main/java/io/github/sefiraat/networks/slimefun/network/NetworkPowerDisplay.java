@@ -2,7 +2,9 @@ package io.github.sefiraat.networks.slimefun.network;
 
 import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;
@@ -55,12 +57,12 @@ public class NetworkPowerDisplay extends NetworkObject {
         );
     }
 
-    private static CustomItemStack getChargeStack(long charge) {
-        return new CustomItemStack(
+    private static ItemStack getChargeStack(long charge) {
+        return ItemStackUtil.getCleanItem(new CustomItemStack(
                 Material.GREEN_STAINED_GLASS_PANE,
-                Theme.CLICK_INFO + "状态",
-                Theme.PASSIVE + "网络电力: " + charge + "J"
-        );
+                Networks.getLocalizationService().getString("icons.power_display.name"),
+                String.format(Networks.getLocalizationService().getString("icons.power_display.charge"), String.valueOf(charge))
+        ));
     }
 
     private void setDisplay(BlockMenu blockMenu) {

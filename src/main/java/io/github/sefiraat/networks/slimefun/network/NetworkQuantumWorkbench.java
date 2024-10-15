@@ -2,6 +2,7 @@ package io.github.sefiraat.networks.slimefun.network;
 
 import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.QuantumCache;
 import io.github.sefiraat.networks.utils.Keys;
 import io.github.sefiraat.networks.utils.Theme;
@@ -150,7 +151,7 @@ public class NetworkQuantumWorkbench extends SlimefunItem {
                 }
                 menu.pushItem(crafted, OUTPUT_SLOT);
             } else {
-                player.sendMessage(Theme.WARNING + "需要清空输出烂");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.quantum_workbench.output_slot_full"));
             }
         }
     }

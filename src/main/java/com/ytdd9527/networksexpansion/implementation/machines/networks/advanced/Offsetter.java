@@ -6,6 +6,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.TransportFacing;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.balugaq.netex.utils.BlockMenuUtil;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.network.AdminDebuggable;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -181,7 +182,7 @@ public class Offsetter extends SpecialSlimefunItem implements AdminDebuggable {
             return;
         }
         List<String> newLore = new ArrayList<>();
-        newLore.add(ChatColor.GRAY + "当前偏移量: " + ChatColor.YELLOW + offset);
+        newLore.add(String.format(Networks.getLocalizationService().getString("icons.offset_show_icon.lore"), offset));
         meta.setLore(newLore);
         newIcon.setItemMeta(meta);
 
@@ -294,6 +295,7 @@ public class Offsetter extends SpecialSlimefunItem implements AdminDebuggable {
                 }
 
                 setOffset(location, 0);
+                updateOffsetShowIcon(location, getOffset(location));
 
                 // Click handler
                 blockMenu.addMenuClickHandler(OFFSET_INCREASE_SLOT, (player, slot, item, clickAction) -> {

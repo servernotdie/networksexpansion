@@ -207,7 +207,7 @@ public enum Theme {
         for (String s : lore) {
             finalLore.add(passiveColor + s);
         }
-        finalLore.add(applyThemeToString(Theme.SUCCESS, themeType.getLoreLine()));
+        finalLore.add(applyThemeToString(Theme.CLICK_INFO, themeType.getLoreLine()));
         return new SlimefunItemStack(
                 id,
                 itemStack,

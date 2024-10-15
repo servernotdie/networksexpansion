@@ -306,14 +306,14 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
             gridCache.setFilter(null);
         } else {
             player.closeInventory();
-            player.sendMessage(Theme.WARNING + "请输入你想要过滤的物品名称(显示名)或类型");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.normal-operation.grid.waiting_for_filter"));
             ChatUtils.awaitInput(player, s -> {
                 if (s.isBlank()) {
                     return;
                 }
                 s = s.toLowerCase(Locale.ROOT);
                 gridCache.setFilter(s);
-                player.sendMessage(Theme.SUCCESS + "已启用过滤器");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.grid.filter_set"));
 
                 SlimefunBlockData data = StorageCacheUtils.getBlock(blockMenu.getLocation());
                 if (data == null) {
@@ -351,7 +351,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
         if (definition == null || definition.getNode() == null) {
             clearDisplay(blockMenu);
             blockMenu.close();
-            Networks.getInstance().getLogger().warning("Player \"%s\" attempted to use network grid from a invalid node at %s, the player may trying to cheat or duplicate items.".formatted(player.getName(), blockMenu.getLocation()));
+            Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.grid.may_duping"), player.getName(), blockMenu.getLocation()));
             return;
         }
 

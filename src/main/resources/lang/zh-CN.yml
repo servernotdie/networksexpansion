@@ -1,4 +1,68 @@
+# <click_info> = Theme.CLICK_INFO
 messages:
+  normal-operation:
+    quantum_storage:
+      waiting_for_input_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <warning>请输入网络高级量子存储的容量.最大限制为: 2147483647!"
+    grid:
+      waiting_for_filter: "<warning>请输入你想要过滤的物品名称(显示名)或类型"
+    directional:
+      display_empty: "&7设置朝向: %s"
+      display_name: "<passive>设置朝向: %s (%s)"
+      display_lore:
+        - "<click_info>左键点击: <passive>设置朝向"
+        - "<click_info>Shift+左键点击: <passive>打开目标方块"
+      set_facing: "<success>已设置朝向此容器!"
+  completed-operation:
+    grid:
+      filter_set: "<success>已启用过滤器"
+    quantum_storage:
+      changed_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <success>已更改容量: %s"
+    remote:
+      bound_to_grid: "<success>网格已绑定至远程访问器"
+    probe:
+      split: "------------------------------"
+      networks_title: "         网络 - 组件统计        "
+      expansion_title: "        网络拓展 - 组件统计      "
+      distinct_items: "物品类型数量"
+      total_items: "累计物品数量"
+      overburdened: "<error>警告: <passive>该网络已达到最大节点数量限制, 部分节点可能会无法正常工作. 请减少网络节点的数量."
+    crayon:
+      enabled: "<success>已开启网络绘制"
+      disabled: "<warning>已关闭网络绘制"
+    configurator:
+      copied: "<success>已复制设置"
+      copied_limit_quantity: "<success>已保存传输数量为: %s"
+      pasted_limit_quantity: "<success>已设置传输数量为: %s"
+      copied_transport_mode: "<success>已保存传输模式为: %s"
+      pasted_transport_mode: "<success>已设置传输模式为: %s"
+      pasted_facing: "<success>方向: <passive>成功应用"
+      pasted_item: "<success>物品 [%d]: <passive>已添加到过滤器"
+  unsupported-operation:
+    directional:
+      unexcepted_value: "意外的值: %s"
+    remote:
+      must_connect_to_grid: "<error>必须连接到一个网格"
+      not_a_grid_found: "<error>无法找到绑定的网格"
+      grid_not_in_range: "<error>绑定的网格不在范围内"
+      no_grid_bound: "<error>该远程访问器没有绑定网格"
+      grid_not_loaded: "<error>绑定的网格所在区块没有加载"
+    quantum_storage:
+      quantum_storage_not_empty: "<warning>量子存储必须为空才能更换物品"
+      custom_max_amount_not_supported: "<warning>这不是一个有效的高级量子存储"
+      invalid_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <error>网络高级量子存储必须为: 1 至 2147483647!"
+    configurator:
+      not_a_copyable_block: "<error>该方块没有指定朝向"
+      not_a_pasteable_block: "<error>你必须指向一个带方向选择的网络方块"
+      facing_not_found: "<error>方向: <passive>未提供"
+      not_enough_items: "<warning>物品 [%d]: <passive>没有足够的物品填充过滤器"
+      no_item_configured_pusher: "<warning>物品 [%d]: <passive>存储的配置中没有物品"
+      no_item_configured: "<warning>物品: <passive>存储的配置中没有物品"
+    debugger:
+      player_is_not_op: "<error>该物品只能由 OP 玩家使用."
+    quantum_workbench:
+      output_slot_full: "<warning>需要清空输出烂"
+    grid:
+      may_duping: "Player \"%s\" attempted to use network grid from a invalid node at %s, the player may trying to cheat or duplicate items."
   super-head:
     - "#########################################################################"
     - "███╗   ██╗███████╗████████╗██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗           "
@@ -59,6 +123,9 @@ messages:
     not-found-netheopoiesis: "你必须安装下界乌托邦才能让相关物品注册. "
   save-all: "正在保存网络拓展数据."
 icons:
+  power_display:
+    status_title: "<click_info>状态"
+    charge: "<passive>网络电力: %sJ"
   output-background-stack:
     name: "<passive>输出"
     lore:
@@ -235,11 +302,22 @@ icons:
   offset-show-icon:
     name: "&a偏移量"
     lore:
-      - "&7当前偏移量: &e0"
+      - "&7当前偏移量: &e%s"
   offset-increase-icon:
     name: "&a偏移量 +1"
     lore:
       - ""
+  quick-input:
+    name: "&b快速存入"
+    lore:
+      - "&7> 点击此处将物品栏中所有可用物品"
+      - "&7存入量子存储"
+  quick-output:
+    name: "&6快速取出"
+    lore:
+      - "&7> [左键]点击将物品取出并填满你的物品栏"
+      - "&7> [右键]点击取出1个物品"
+      - "&7> [shift+右键]点击取出64个物品"
   recipe-types:
     expansion_workbench_6x6:
       name: "网络拓展工作台6x6"
@@ -2024,3 +2102,17 @@ items:
     lore:
       - "更好的网络抓取器会尝试从"
       - "指定的机器中抓取第一个物品"
+displays:
+  quantum_storage:
+    void_excess: "<click_info>满载清空输入: <passive>%s"
+    enabled_void_excess: "已启用"
+    disabled_void_excess: "已禁用"
+    stored_amount: "<click_info>数量: <passive>%s"
+    custom_max_amount: "<click_info>当前容量: <success>%s"
+groups:
+  main: "<main>网络 (Networks)"
+  materials: "<main>合成材料"
+  tools: "<main>网络管理工具"
+  network_items: "<main>网络物品"
+  network_quantums: "<main>量子存储设备"
+  disabled_items: "<main>已禁用/移除的物品"

@@ -5,11 +5,11 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.ItemStackCache;
 import io.github.sefiraat.networks.network.stackcaches.QuantumCache;
 import io.github.sefiraat.networks.utils.Keys;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.sefiraat.networks.utils.datatypes.DataTypeMethods;
 import io.github.sefiraat.networks.utils.datatypes.PersistentQuantumStorageType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -21,7 +21,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -196,12 +195,12 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
             final List<String> lore = itemMeta.hasLore() ? itemMeta.getLore() : new ArrayList<>();
 
             lore.add("");
-            lore.add(Theme.CLICK_INFO + "满载清空输入: " + Theme.PASSIVE + (cache.isVoidExcess() ? "已启用" : "已禁用"));
-            lore.add(Theme.CLICK_INFO + "数量: " + Theme.PASSIVE + cache.getAmount());
+            lore.add(String.format(Networks.getLocalizationService().getString("displays.quantum_storage.void_excess"), (cache.isVoidExcess() ? Networks.getLocalizationService().getString("displays.quantum_storage.enabled_void_excess") : Networks.getLocalizationService().getString("displays.quantum_storage.disabled_void_excess"))));
+            lore.add(String.format(Networks.getLocalizationService().getString("displays.quantum_storage.stored_amount"), cache.getAmount()) + cache.getAmount());
             if (cache.supportsCustomMaxAmount()) {
                 // Cache limit is set at the potentially custom max amount set
                 // The player could set the custom maximum amount to be the actual maximum amount
-                lore.add(Theme.CLICK_INFO + "当前容量: " + Theme.SUCCESS + cache.getLimit());
+                lore.add(String.format(Networks.getLocalizationService().getString("displays.quantum_storage.custom_max_amount"), cache.getLimit()));
             }
             itemMeta.setLore(lore);
             itemStack.setItemMeta(itemMeta);
@@ -319,7 +318,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
         final QuantumCache cache = CACHES.get(blockMenu.getLocation());
         if (cache == null || cache.getAmount() > 0) {
-            player.sendMessage(Theme.WARNING + "量子存储必须为空才能更换物品");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported_operation.quantum_storage.quantum_storage_not_empty"));
             return;
         }
         itemStack.setAmount(1);
@@ -332,7 +331,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
     private void setCustomMaxAmount(@Nonnull BlockMenu blockMenu, @Nonnull Player player, int newMaxAmount) {
         final QuantumCache cache = CACHES.get(blockMenu.getLocation());
         if (cache == null || !cache.supportsCustomMaxAmount()) {
-            ItemStackUtil.send(player, "高级量子存储不存在 不可设置 请检查高级量子存储是否存在!");
+            ItemStackUtil.send(player, Networks.getLocalizationService().getString("messages.unsupported-operation.quantum_storage.custom_max_amount_not_supported"));
 
             return;
         }
@@ -341,10 +340,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         syncBlock(blockMenu.getLocation(), cache);
         CACHES.put(blockMenu.getLocation(), cache);
 
-        player.sendMessage(
-                Theme.PASSIVE + "[" + Theme.GOLD + "网络拓展" + Theme.PASSIVE + "] " +
-                        Theme.SUCCESS + "已更改容量: " + newMaxAmount
-        );
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.completed-operation.changed_custom_max_amount"), newMaxAmount));
     }
 
     public void setSupportsCustomMaxAmount(boolean supportsCustomMaxAmount) {
@@ -401,9 +397,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
                                     p.getItemOnCursor().getType() == Material.AIR
                     ) {
                         p.closeInventory();
-                        p.sendMessage(
-                                Theme.PASSIVE + "[" + Theme.GOLD + "网络拓展" + Theme.PASSIVE + "] " +
-                                        Theme.WARNING + "请输入网络高级量子存储的容量.最大限制为: " + Integer.MAX_VALUE + " !");
+                        p.sendMessage(Networks.getLocalizationService().getString("messages.normal-operation.quantum_storage.waiting_for_input_custom_max_amount"));
                         ChatUtils.awaitInput(p, s -> {
                             // Catching the error is cleaner than directly validating the string
                             try {
@@ -413,9 +407,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
                                 int newMax = Math.max(1, Math.min(Integer.parseInt(s), maxAmount));
                                 setCustomMaxAmount(menu, p, newMax);
                             } catch (NumberFormatException e) {
-                                p.sendMessage(
-                                        Theme.PASSIVE + "[" + Theme.GOLD + "网络拓展" + Theme.PASSIVE + "] " +
-                                                Theme.ERROR + "网络高级量子存储必须为: 1 至 " + Integer.MAX_VALUE + " !");
+                                p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.quantum_storage.invalid_custom_max_amount"));
                             }
                         });
                     } else {
@@ -426,9 +418,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
                 // Insert all
                 int INSERT_ALL_SLOT = 16;
-                menu.replaceExistingItem(INSERT_ALL_SLOT,
-                        new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, "&b快速存入",
-                                "&7> 点击此处将物品栏中所有可用物品", "&7存入高级量子存储"));
+                menu.replaceExistingItem(INSERT_ALL_SLOT, Icon.QUICK_INPUT);
                 menu.addMenuClickHandler(INSERT_ALL_SLOT, (pl, slot, item, action) -> {
                     insertAll(pl, menu, block);
                     return false;
@@ -436,12 +426,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
                 // Extract all
                 int EXTRACT_SLOT = 17;
-                menu.replaceExistingItem(EXTRACT_SLOT,
-                        new CustomItemStack(Material.RED_STAINED_GLASS_PANE, "&6快速取出",
-                                "&7> [左键]点击将物品取出并填满你的物品栏",
-                                "&7> [右键]点击取出1个物品",
-                                "&7> [shift+右键]点击取出64个物品"
-                        ));
+                menu.replaceExistingItem(EXTRACT_SLOT, Icon.QUICK_OUTPUT);
                 menu.addMenuClickHandler(EXTRACT_SLOT, (pl, slot, item, action) -> {
                     extract(pl, menu, block, action);
                     return false;

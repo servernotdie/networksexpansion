@@ -148,7 +148,7 @@ public class Icon {
     );
     public static final ItemStack OFFSET_SHOW_ICON = Networks.getLocalizationService().getIcon(
             "offset-show-icon",
-            Material.TARGET 
+            Material.TARGET
     );
     public static final ItemStack OFFSET_INCREASE_ICON = Networks.getLocalizationService().getIcon(
             "offset-increase-icon",
@@ -209,5 +209,13 @@ public class Icon {
     public static final ItemStack TRANSMITTER_TEMPLATE_BACKGROUND_STACK = Networks.getLocalizationService().getIcon(
             "transmitter-template-background-stack",
             Material.GREEN_STAINED_GLASS_PANE 
+    );
+    public static final ItemStack QUICK_INPUT = Networks.getLocalizationService().getIcon(
+            "quick-input",
+            Material.PINK_STAINED_GLASS_PANE
+    );
+    public static final ItemStack QUICK_OUTPUT = Networks.getLocalizationService().getIcon(
+            "quick-output",
+            Material.RED_STAINED_GLASS_PANE
     );
 }

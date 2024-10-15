@@ -63,7 +63,7 @@ public class LocalizationService {
     private String itemGroupKey = "categories";
     private String itemsKey = "items";
     private String recipesKey = "recipes";
-    private String colorTagRegex = "<[a-zA-Z0-9]+>";
+    private String colorTagRegex = "<[a-zA-Z0-9_]+>";
     private Pattern pattern = Pattern.compile(this.colorTagRegex);
 
     public LocalizationService(Networks plugin) {
@@ -181,7 +181,7 @@ public class LocalizationService {
 
     @Nonnull
     public String[] getStringArray(@Nonnull String path) {
-        return (String[]) this.getStringList(path).toArray(new String[0]);
+        return (String[]) this.getStringList(path).stream().map(this::color).toList().toArray(new String[0]);
     }
 
     protected JavaPlugin getPlugin() {
