@@ -235,7 +235,8 @@ public class SetupUtil {
                 ExpansionItems.NTW_EXPANSION_ANNOUNCE_4.registerThis(),
                 ExpansionItems.NTW_EXPANSION_ANNOUNCE_5.registerThis(),
                 ExpansionItems.NTW_EXPANSION_ANNOUNCE_6.registerThis(),
-                ExpansionItems.NTW_EXPANSION_ANNOUNCE_7.registerThis()
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_7.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_8.registerThis()
         );
     }
 

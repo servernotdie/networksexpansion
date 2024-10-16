@@ -60,7 +60,7 @@ public class NetworkPowerDisplay extends NetworkObject {
     private static ItemStack getChargeStack(long charge) {
         return ItemStackUtil.getCleanItem(new CustomItemStack(
                 Material.GREEN_STAINED_GLASS_PANE,
-                Networks.getLocalizationService().getString("icons.power_display.name"),
+                Networks.getLocalizationService().getString("icons.power_display.status"),
                 String.format(Networks.getLocalizationService().getString("icons.power_display.charge"), String.valueOf(charge))
         ));
     }

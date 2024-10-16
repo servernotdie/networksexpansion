@@ -1430,4 +1430,10 @@ public class ExpansionItems {
             RecipeType.NULL,
             ExpansionRecipes.NULL
     );
+    public static final UnusableSlimefunItem NTW_EXPANSION_ANNOUNCE_8 = new UnusableSlimefunItem(
+            ExpansionItemsMenus.MENU_TROPHY,
+            ExpansionItemStacks.NTW_EXPANSION_ANNOUNCE_8,
+            RecipeType.NULL,
+            ExpansionRecipes.NULL
+    );
 }
