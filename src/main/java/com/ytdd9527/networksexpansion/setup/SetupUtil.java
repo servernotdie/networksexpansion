@@ -286,7 +286,8 @@ public class SetupUtil {
         );
 
         ExpansionItemsMenus.MAIN_ITEM_GROUP.addTo(ExpansionItemsMenus.MAIN_MENU_TROPHY,
-                ExpansionItemsMenus.SUB_MENU_AUTHOR
+                ExpansionItemsMenus.SUB_MENU_AUTHOR,
+                ExpansionItemsMenus.SUB_MENU_ANNOUNCE
         );
         ExpansionItemsMenus.MAIN_MENU_TROPHY.addFrom(
                 ExpansionItemsMenus.SUB_MENU_AUTHOR,
