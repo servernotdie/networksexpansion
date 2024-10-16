@@ -361,8 +361,11 @@ items:
       - "<passive> 此附属灵感来源于广大玩家"
       - "<passive> 尤其要感谢 Utoboy, TouRuya, haiman233 等玩家的意见提供"
       - "<passive> 感谢 Utoboy, TouRuya, haiman233, yitoudaidai, tinalness, matl114 等测试员的测试"
+  # 增加构建站链接，github链接，issues链接，pr链接，作者github页面链接等
   NTW_EXPANSION_ANNOUNCE_3:
-    name:
+    name: ""
+    lore:
+      - ""
 
   NTW_EXPANSION_SURVIVAL_GUIDE:
     name: "网络拓展指南 (生存模式)"
