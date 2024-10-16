@@ -25,7 +25,7 @@ messages:
       expansion_title: "        网络拓展 - 组件统计      "
       distinct_items: "物品类型数量"
       total_items: "累计物品数量"
-      overburdened: "<error>警告: <passive>该网络已达到最大节点数量限制, 部分节点可能会无法正常工作. 请减少网络节点的数量."
+      overburdened: "<error>警告: <passive>该网络已达到最大节点数量限制，部分节点可能会无法正常工作. 请减少网络节点的数量."
     crayon:
       enabled: "<success>已开启网络绘制"
       disabled: "<warning>已关闭网络绘制"
@@ -62,7 +62,7 @@ messages:
     quantum_workbench:
       output_slot_full: "<warning>需要清空输出烂"
     grid:
-      may_duping: "Player \"%s\" attempted to use network grid from a invalid node at %s, the player may trying to cheat or duplicate items."
+      may_duping: "Player \"%s\" attempted to use network grid from a invalid node at %s，the player may trying to cheat or duplicate items."
   super-head:
     - "#########################################################################"
     - "███╗   ██╗███████╗████████╗██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗           "
@@ -81,7 +81,7 @@ messages:
     - "                           Networks - 网络                                "
     - "                      作者: Sefiraat 汉化: ybw0014                         "
     - "                      NetworksExpansion - 网络拓展                         "
-    - "                      作者: yitoudaidai, tinalness                        "
+    - "                      作者: yitoudaidai，tinalness                        "
     - "                       如遇bug请优先反馈至改版仓库:                           "
     - "        https://github.com/ytdd9527/NetworksExpansion/issues             "
     - "                      使用此附属时，请不要直接叉掉进程                         "
@@ -108,7 +108,7 @@ messages:
     enabled-replacing-survival-guide: "已开启生存模式指南替换功能"
     disabled-replacing-creative-guide: "已关闭作弊模式指南替换功能"
     enabled-replacing-creative-guide: "已开启作弊模式指南替换功能"
-    guide-risk-warning: "如遇开启后其他插件报错, 请在配置文件(config.yml)中关闭此功能"
+    guide-risk-warning: "如遇开启后其他插件报错，请在配置文件(config.yml)中关闭此功能"
     enabled-successfully: "已启用附属!"
   shutdown:
     saving-config: "正在保存配置信息..."
@@ -332,13 +332,13 @@ icons:
       lore:
         - "在量子工作台中制作"
 items:
-  # DO NOT TRANSLATE, CHANGE OR DELETE ANNOUNCE
+  # DO NOT TRANSLATE，CHANGE OR DELETE ANNOUNCE
   NTW_EXPANSION_ANNOUNCE_1:
     name: "<color_random_string>定义"
     lore:
       - "<warning> 声明 既可以指代此篇声明，也可以指代此处的所有声明。"
       - "<warning> 网络(Networks) 是指一个粘液附属，而不是互联网、物联网等意义上的网络，或其他传统意义上的网络。"
-      - "<warning> 网络拓展(NetworksExpansion) (下称'网络拓展'、'此附属'或'此项目') 是一个由网络拓展开发组开发的，基于 Paper 1.20.1， 汉化版 Slimefun 开发的， 不完全兼容 Paper 1.20.5 及以上版本的粘液科技附属。"
+      - "<warning> 网络拓展(NetworksExpansion) (下称'网络拓展'、'此附属'或'此项目') 是一个由网络拓展开发组开发的，基于 Paper 1.20.1，汉化版 Slimefun 开发的，不完全兼容 Paper 1.20.5 及以上版本的粘液科技附属。"
       - "<warning> 网络拓展开发者们(下称'网络拓展开发组','网络拓展创作者们') 是开发网络拓展的群体，并非由任何公司或组织所拥有。"
   NTW_EXPANSION_ANNOUNCE_2:
     name: "<color_random_string>网络拓展作品声明"
@@ -359,8 +359,8 @@ items:
     name: "<color_random_string>网络拓展使用声明"
     lore:
       - "<warning> 阅读此声明前，请务必先阅读网络拓展作品声明。"
-      - "<warning> GuizhanLibPlugin 是此附属的前置插件, 请确保其已正确安装."
-      - "<warning> 开发版汉化版 Slimefun 是此附属的前置插件, 同样请确保其已正确安装."
+      - "<warning> GuizhanLibPlugin 是此附属的前置插件，请确保其已正确安装。"
+      - "<warning> 开发版汉化版 Slimefun 是此附属的前置插件，同样请确保其已正确安装。"
       - "<warning> 您在使用网络拓展或网络拓展内容时须遵守法律法规，不得利用网络拓展或网络拓展内容从事违法违规行为，包括但不限于以下行为："
       - "<warning> 违反宪法所确定的基本原则的；"
       - "<warning> 危害国家安全、泄露国家秘密，颠覆国家政策，破坏国家统一的；"
@@ -395,12 +395,12 @@ items:
       - "<warning> 如有辱骂攻击网络拓展开发组或网络拓展开发组成员等行为将依法处理，若发现“开盒”等网络暴力行为将报警处理。"
       - "<warning> 本声明仅代表网络拓展开发组的立场，不代表他人、任何游戏、组织、公司、国家、社会团体，并不代表任何游戏的玩家群体。"
       - "<warning> 本声明主观上没有偏袒任何一方的行为，仅针对事情本身，对事不对人。"
-      - "<passive> 此附属由 Sefiraat 编写而成, 经 ybw0014 汉化, 并由 yitoudaidai 与 tinalness 进行了增添删改及后续维护。"
+      - "<passive> 此附属由 Sefiraat 编写而成，经 ybw0014 汉化，并由 yitoudaidai 与 tinalness 进行了增添删改及后续维护。"
       - "<passive> 感谢逻辑工艺(LogiTech)的机器提供的作者头颅 hash。"
       - "<passive> 感谢所有给予信任并安装网络拓展的服主。"
       - "<passive> 此附属灵感来源于广大玩家。"
-      - "<passive> 尤其要感谢 Utoboy, TouRuya, haiman233 等玩家的意见提供。"
-      - "<passive> 感谢 Utoboy, TouRuya, haiman233, yitoudaidai, tinalness, matl114 等测试员的测试。"
+      - "<passive> 尤其要感谢 Utoboy，TouRuya，haiman233 等玩家的意见提供。"
+      - "<passive> 感谢 Utoboy，TouRuya，haiman233，yitoudaidai，tinalness，matl114 等测试员的测试。"
   NTW_EXPANSION_ANNOUNCE_5:
     name: "<color_random_string>网络拓展相关链接"
     lore:
