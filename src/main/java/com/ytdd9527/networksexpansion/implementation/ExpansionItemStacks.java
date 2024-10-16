@@ -2,19 +2,12 @@ package com.ytdd9527.networksexpansion.implementation;
 
 
 import com.balugaq.netex.api.enums.Skins;
-import com.balugaq.netex.api.enums.StorageUnitType;
-import com.ytdd9527.networksexpansion.utils.TextUtil;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.Networks;
-import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
 import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.text.MessageFormat;
-import java.util.List;
 
 
 /**
@@ -716,8 +709,32 @@ public class ExpansionItemStacks {
             Theme.MACHINE
     );
 
-    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE = Theme.themedSlimefunItemStack(
-            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE", Material.BOOK),
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE_1 = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE_1", Material.BOOK),
+            Theme.GUIDE
+    );
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE_2 = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE_2", Material.BOOK),
+            Theme.GUIDE
+    );
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE_3 = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE_3", Material.BOOK),
+            Theme.GUIDE
+    );
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE_4 = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE_4", Material.BOOK),
+            Theme.GUIDE
+    );
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE_5 = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE_5", Material.BOOK),
+            Theme.GUIDE
+    );
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE_6 = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE_6", Material.BOOK),
+            Theme.GUIDE
+    );
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE_7 = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE_7", Material.BOOK),
             Theme.GUIDE
     );
 
