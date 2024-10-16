@@ -332,6 +332,38 @@ icons:
       lore:
         - "在量子工作台中制作"
 items:
+  # DO NOT TRANSLATE, CHANGE OR DELETE ANNOUNCE
+  NTW_EXPANSION_ANNOUNCE:
+    name: "网络拓展作品声明"
+    lore:
+      - "<warning> 本附属所有声明解释权归网络拓展开发者们所有。"
+      - "<warning> 网络拓展(NetworksExpansion, 下称'网络拓展'、'此附属'或'此项目') 是一个基于 Paper 1.20.1， 汉化版 Slimefun 开发的， 不完全兼容 1.21 及以上版本的粘液科技附属。"
+      - "<warning> 上述插件，包括但不限于 Slimefun、 网络拓展 是完全免费、共享、开源在 GitHub 上的，供广大支持者、维护者、创作者学习和使用。"
+      - "<warning> GPL-3.0 协议 是网络拓展的开源协议，任何人都可以自由使用、修改、分发、商用，但任何修改、分发都必须遵守 GPL-3.0 协议。"
+      - "<warning> 其中，'网络拓展'仅为该文件的标题，不包含任何歧义和盈利牵涉。"
+      - "<warning> 网络拓展开发者们仅作为此附属的创作者，并不对其提供任何商业支持，也不再活跃维护此附属。此外，网络拓展开发者们从不参与任何有关任何服务器的任何直接或间接的经营活动。"
+      - "<warning> 严禁利用上述插件与此附属宣扬任意形式的负面、暴力信息；严禁利用上述文件进行违法、侵权活动；严禁涉及任何有关政治和低俗内容。"
+      - "<warning> 严禁倒卖，包括但不限于变相交易活动，私自篡改并利用上述文件进行任何的盈利行为。"
+      - "<warning> 我们对上述严禁项持以强烈的谴责，并鼓励大众互相监督，积极举报违规违法行为。"
+      - "<warning> 若因您个人或团体的使用不当所造成的的一切后果须由自己承担，严禁以任何形式将责任推脱至上述插件及配置文件的相关维护者与创作者。"
+      - "<warning> 对于侵权人，应当根据情况，承担停止侵害、消除影响、赔礼道歉、赔偿损失等民事责任；同时损害公共利益的，可以由著作权行政管理部门责令停止侵权行为，没收违法所得，没收、销毁侵权复制品，并可处以罚款；情节严重构成犯罪的，依法追究刑事责任。"
+      - "<warning> 其中，网络拓展开发者们不追究侵权人的侵权行为，不代表网络拓展开发者们对侵权行为的认可。也不代表侵权人无需承担任何责任。"
+      - "<warning> 网络拓展开发者们保留随时修改、终止本声明的权利。"
+      - "<warning> 请您务必遵守上述声明。"
+  NTW_EXPANSION_ANNOUNCE_2:
+    name: "网络拓展作者声明"
+    lore:
+      - "<warning> GuizhanLibPlugin 是本附属的前置插件, 请确保其已正确安装."
+      - "<warning> 开发版汉化版 Slimefun 是本附属的前置插件, 同样请确保其已正确安装."
+      - "<passive> 本附属由 Sefiraat 编写而成, 经 ybw0014 汉化, 并由 yitoudaidai 与 tinalness 进行了增添删改及后续维护."
+      - "<passive> 感谢逻辑工艺(LogiTech)的机器提供的作者头颅 hash"
+      - "<passive> 感谢所有给予信任并安装网络拓展的服主"
+      - "<passive> 此附属灵感来源于广大玩家"
+      - "<passive> 尤其要感谢 Utoboy, TouRuya, haiman233 等玩家的意见提供"
+      - "<passive> 感谢 Utoboy, TouRuya, haiman233, yitoudaidai, tinalness, matl114 等测试员的测试"
+  NTW_EXPANSION_ANNOUNCE_3:
+    name:
+
   NTW_EXPANSION_SURVIVAL_GUIDE:
     name: "网络拓展指南 (生存模式)"
     lore:
@@ -2116,3 +2148,27 @@ groups:
   network_items: "<main>网络物品"
   network_quantums: "<main>量子存储设备"
   disabled_items: "<main>已禁用/移除的物品"
+  expansion:
+    slimefun:
+      items: "<color_random_string>网络拓展 - 物品"
+      cargo_system: "<color_random_string>网络拓展 - 货运与存储"
+      functional_machine: "<color_random_string>网络拓展 - 功能机器"
+      trophy: "<color_random_string>网络拓展 - 贡献"
+    custom:
+      main_item_group: "<color_random_string>Networks - Expansion"
+      main_menu_item: "<color_random_string>物品"
+      sub_menu_tool: "<color_random_string>物品 - 工具"
+      sub_menu_blueprint: "<color_random_string>物品 - 蓝图"
+      main_menu_cargo_system: "<color_random_string>货运与存储"
+      sub_menu_advanced_storage: "<color_random_string>货运与存储 - 高级存储"
+      sub_menu_networks_drawers: "<color_random_string>货运与存储 - 网络抽屉"
+      sub_menu_cargo: "<color_random_string>货运与存储 - 货运"
+      main_menu_functional_machine: "<color_random_string>功能机器"
+      sub_menu_core_machine: "<color_random_string>功能机器 - 核心机器"
+      sub_menu_advanced_networks: "<color_random_string>功能机器 - 更高级的网络机器"
+      sub_menu_bridge: "<color_random_string>功能机器 - 更多的网桥"
+      sub_menu_encoder: "<color_random_string>功能机器 - 编码器"
+      sub_menu_crafter_machine: "<color_random_string>功能机器 - 自动合成机器"
+      main_menu_trophy: "<color_random_string>贡献"
+      sub_menu_author: "<color_random_string>贡献 - 作者"
+      sub_menu_announce: "<color_random_string>贡献 - 声明"

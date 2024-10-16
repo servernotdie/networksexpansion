@@ -4,6 +4,7 @@ import com.balugaq.netex.api.enums.StorageUnitType;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.core.items.unusable.AuthorHead;
 import com.ytdd9527.networksexpansion.core.items.unusable.NetworksExpansionGuide;
+import com.ytdd9527.networksexpansion.core.items.unusable.UnusableSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.blueprints.AncientAltarBlueprint;
 import com.ytdd9527.networksexpansion.implementation.blueprints.ArmorForgeBlueprint;
 import com.ytdd9527.networksexpansion.implementation.blueprints.CompressorBlueprint;
@@ -1379,5 +1380,12 @@ public class ExpansionItems {
             ExpansionItemStacks.BETTER_GRABBER,
             ExpansionWorkbench.TYPE,
             ExpansionRecipes.BETTER_GRABBER
+    );
+
+    public static final UnusableSlimefunItem NTW_EXPANSION_ANNOUNCE = new UnusableSlimefunItem(
+            ExpansionItemsMenus.MENU_TROPHY,
+            ExpansionItemStacks.NTW_EXPANSION_ANNOUNCE,
+            RecipeType.NULL,
+            ExpansionRecipes.NULL
     );
 }

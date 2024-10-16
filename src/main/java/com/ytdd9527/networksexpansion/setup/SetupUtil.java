@@ -226,6 +226,11 @@ public class SetupUtil {
                 ExpansionItems.AUTHOR_YITOUDAIDAI.registerThis(),
                 ExpansionItems.AUTHOR_TINALNESS.registerThis()
         );
+
+        /* announce */
+        ExpansionItemsMenus.SUB_MENU_ANNOUNCE.addTo(
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE.registerThis()
+        );
     }
 
     private static void setupMenu() {
@@ -277,7 +282,8 @@ public class SetupUtil {
                 ExpansionItemsMenus.SUB_MENU_AUTHOR
         );
         ExpansionItemsMenus.MAIN_MENU_TROPHY.addFrom(
-                ExpansionItemsMenus.SUB_MENU_AUTHOR
+                ExpansionItemsMenus.SUB_MENU_AUTHOR,
+                ExpansionItemsMenus.SUB_MENU_ANNOUNCE
         );
 
         ExpansionItemsMenus.MAIN_ITEM_GROUP.setTier(0);

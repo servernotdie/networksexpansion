@@ -716,6 +716,11 @@ public class ExpansionItemStacks {
             Theme.MACHINE
     );
 
+    public static final SlimefunItemStack NTW_EXPANSION_ANNOUNCE = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ANNOUNCE", Material.BOOK),
+            Theme.GUIDE
+    );
+
     public static ItemStack Enchanted(Material material) {
         return ItemStackUtil.getPreEnchantedItemStack(material);
     }

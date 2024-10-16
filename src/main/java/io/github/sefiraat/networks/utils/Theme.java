@@ -38,7 +38,7 @@ public enum Theme {
 
     TOOL(ChatColor.of("#6b32a8"), "工具"),
     MECHANISM(ChatColor.of("#3295a8"), "装置"),
-    FUEL(ChatColor.of("#112211"), "染料"),
+    FUEL(ChatColor.of("#112211"), "燃料"),
     MATERIAL_CLASS(ChatColor.of("#a4c2ba"), "材料"),
     RECIPE_TYPE(ChatColor.of("#ffe89c"), "配方类型"),
 
