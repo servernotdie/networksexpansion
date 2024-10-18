@@ -13,6 +13,7 @@ import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.tools.ItemMover;
 import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
 import com.ytdd9527.networksexpansion.utils.databases.DataStorage;
+import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
@@ -65,7 +66,7 @@ import java.util.function.Function;
 
 //TODO 对于一些复杂的逻辑，需要重构
 @SuppressWarnings({"deprecation", "unused"})
-public class CargoStorageUnit extends SpecialSlimefunItem implements DistinctiveItem, ModelledItem, Configurable {
+public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveItem, ModelledItem, Configurable {
     private static final boolean DEFAULT_USE_SPECIAL_MODEL = false;
     private static final Map<Location, StorageUnitData> storages = new HashMap<>();
     private static final Map<Location, QuickTransferMode> quickTransferModes = new HashMap<>();
@@ -85,7 +86,7 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
     private Function<Location, DisplayGroup> displayGroupGenerator;
     private boolean useSpecialModel;
 
-    public CargoStorageUnit(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, StorageUnitType sizeType) {
+    public NetworksDrawer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, StorageUnitType sizeType) {
         super(itemGroup, item, recipeType, recipe);
 
         this.sizeType = sizeType;
@@ -246,12 +247,10 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
         List<String> lore;
         if (meta != null) {
             lore = meta.getLore();
-            if (lore != null) {
-                lore.add(ChatColor.BLUE + "已绑定容器ID: " + ChatColor.YELLOW + id);
-            } else {
+            if (lore == null) {
                 lore = new ArrayList<>();
-                lore.add(ChatColor.BLUE + "已绑定容器ID: " + ChatColor.YELLOW + id);
             }
+            lore.add(String.format(Networks.getLocalizationService().getString("messages.completed-operation.drawer.bound_id")));
             meta.setLore(lore);
             meta.getPersistentDataContainer().set(idKey, PersistentDataType.INTEGER, id);
         }
@@ -289,7 +288,7 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
             return Icon.ERROR_BORDER;
         }
         try {
-            return new CustomItemStack(item, (String) null, "", "&b存储数量: &e" + amount + " &7/ &6" + max);
+            return new CustomItemStack(item, (String) null, "", String.format(Networks.getLocalizationService().getString("icons.drawer.stored_item"), amount, max));
         } catch (NullPointerException e) {
             return item.clone();
         }
@@ -399,18 +398,18 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
     private static void quickTransfer(BlockMenu blockMenu, Location location, Player player) {
         final ItemStack itemStack = blockMenu.getItemInSlot(QUANTUM_SLOT);
         if (itemStack == null || itemStack.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "请在量子存储槽放入量子存储 或 物品转移棒");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.invalid_container"));
             return;
         }
 
-        if (itemStack.getAmount() > 1) {
-            player.sendMessage(ChatColor.RED + "量子存储槽只能放入一个物品！");
+        if (itemStack.getAmount() != 1) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.invalid_container_amount"));
             return;
         }
 
         final ItemStack toTransfer = blockMenu.getItemInSlot(ITEM_CHOOSE_SLOT);
         if (toTransfer == null || toTransfer.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "请在下方放入你要传输的物品");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.invalid_chosen_item"));
             return;
         }
 
@@ -440,17 +439,17 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
                     switch (mode) {
                         case FROM_QUANTUM -> {
                             if (quantumCache == null || quantumCache.getItemStack() == null || quantumCache.getAmount() <= 0) {
-                                player.sendMessage(ChatColor.RED + "量子存储无物品或已损坏");
+                                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.invalid_quantum_storage"));
                                 return;
                             }
                             if (!StackUtils.itemsMatch(quantumCache.getItemStack(), sample)) {
-                                player.sendMessage(ChatColor.RED + "量子存储中的物品与要传输的物品不同");
+                                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.quantum_storage_item_mismatch"));
                                 return;
                             }
                             final long quantumAmount = quantumCache.getAmount();
                             final int canAdd = (int) Math.min(quantumAmount, thisStorage.getSizeType().getEachMaxSize() - each.getAmount());
                             if (canAdd <= 0) {
-                                player.sendMessage(ChatColor.RED + "量子存储中没有足够的物品或无法存入更多的物品");
+                                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.quantum_storage_full"));
                                 return;
                             }
 
@@ -472,7 +471,7 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
 
                         case TO_QUANTUM -> {
                             if (each.getAmount() == 0 && locked.contains(location)) {
-                                player.sendMessage(ChatColor.RED + "此容器物品不足，无法转移至量子存储");
+                                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.not_enough_item"));
                                 return;
                             }
 
@@ -483,7 +482,7 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
                                 final int unitAmount = each.getAmount();
                                 final int canAdd = Math.min(unitAmount, quantumLimit);
                                 if (canAdd <= 0) {
-                                    player.sendMessage(ChatColor.RED + "没有更多物品可以转移或量子存储已满");
+                                    player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.each_not_enough_item"));
                                     return;
                                 }
                                 final ItemStack clone = sample.clone();
@@ -504,7 +503,7 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
                                 final int unitAmount = each.getAmount();
                                 final int canAdd = Math.min(unitAmount, quantumLimit - quantumAmount);
                                 if (canAdd <= 0) {
-                                    player.sendMessage(ChatColor.RED + "没有更多物品可以转移或量子存储已满");
+                                    player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.each_not_enough_item"));
                                     return;
                                 }
                                 final ItemStack clone = sample.clone();
@@ -525,22 +524,22 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
                     }
                 }
             }
-            player.sendMessage(ChatColor.RED + "未找到物品" + ItemStackHelper.getDisplayName(toTransfer));
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.not_found_chosen_item"), ItemStackHelper.getDisplayName(toTransfer)));
         } else if (isMover) {
             ItemStack moverStored = ItemMover.getStoredItemStack(itemStack);
             if (mode == QuickTransferMode.FROM_QUANTUM) {
                 if (moverStored == null) {
-                    player.sendMessage(ChatColor.RED + "物品转移棒中没有物品");
+                    player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.item_mover_empty"));
                     return;
                 }
                 if (!StackUtils.itemsMatch(moverStored, toTransfer)) {
-                    player.sendMessage(ChatColor.RED + "物品不匹配");
+                    player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.item_mover_item_mismatch"));
                     return;
                 }
             }
             if (mode == QuickTransferMode.TO_QUANTUM) {
                 if (moverStored != null && !StackUtils.itemsMatch(moverStored, toTransfer)) {
-                    player.sendMessage(ChatColor.RED + "物品不匹配");
+                    player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.item_mover_item_mismatch"));
                     return;
                 }
             }
@@ -552,7 +551,7 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
                         case FROM_QUANTUM -> {
                             ItemStack stored = StackUtils.getAsQuantity(ItemMover.getStoredItemStack(itemStack), ItemMover.getStoredAmount(itemStack));
                             if (stored == null || stored.getType() == Material.AIR) {
-                                player.sendMessage(ChatColor.RED + "物品转移棒中没有物品");
+                                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.item_mover_empty"));
                             }
                             int before = stored.getAmount();
                             String name = ItemStackHelper.getDisplayName(stored);
@@ -580,9 +579,9 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
                     return;
                 }
             }
-            player.sendMessage(ChatColor.RED + "未找到物品" + ItemStackHelper.getDisplayName(toTransfer));
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.not_found_chosen_item"), ItemStackHelper.getDisplayName(toTransfer)));
         } else {
-            player.sendMessage(ChatColor.RED + "请在量子存储槽放入量子存储 或 物品转移棒");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.invalid_container"));
             return;
         }
     }
@@ -593,20 +592,16 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
     }
 
     private static ItemStack getQuickTransferItem(QuickTransferMode mode) {
-        return new CustomItemStack(
-                mode == QuickTransferMode.FROM_QUANTUM ? Material.GREEN_CONCRETE_POWDER : Material.BLUE_CONCRETE_POWDER,
-                "&6快速转移模式",
-                "",
-                "&b状态: " + (mode == QuickTransferMode.FROM_QUANTUM ? "&a从量子存储/物品转移棒转移至此" : "&c从此转移至量子存储/物品转移棒"),
-                " ",
-                "&e在上方放入量子存储/物品转移棒",
-                "&e在下方放入要转移的物品",
-                " ",
-                "&e点击左键开始转移",
-                "&e点击右键切换模式",
-                " ",
-                "&c需要货运单元中存在此物品才能运输！"
+        List<String> lore = new ArrayList<>();
+        lore.addAll(Networks.getLocalizationService().getStringList("icons.drawer.quick_transfer.lore_before_status"));
+        lore.add(String.format(Networks.getLocalizationService().getString("icons.drawer.quick_transfer.status"), mode == QuickTransferMode.FROM_QUANTUM ? Networks.getLocalizationService().getString("icons.drawer.quick_transfer.from_quantum") : Networks.getLocalizationService().getString("icons.drawer.quick_transfer.to_quantum")));
+        lore.addAll(Networks.getLocalizationService().getStringList("icons.drawer.quick_transfer.lore_after_status"));
+        CustomItemStack cis = new CustomItemStack(mode == QuickTransferMode.FROM_QUANTUM ? Material.GREEN_CONCRETE_POWDER : Material.BLUE_CONCRETE_POWDER,
+                Networks.getLocalizationService().getString("icons.drawer.quick_transfer.name"),
+                lore
         );
+
+        return ItemStackUtil.getCleanItem(cis);
     }
 
     public void loadConfigurations() {
@@ -659,7 +654,7 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
             StorageUnitData data = DataStorage.getCachedStorageData(id).orElse(null);
             if (data != null && data.isPlaced() && !l.equals(data.getLastLocation())) {
                 // This container already exists and placed in another location
-                p.sendMessage(ChatColor.RED + "该容器已在其它位置存在！");
+                p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.drawer.already_exists"));
                 Location currLoc = data.getLastLocation();
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e" + (currLoc.getWorld() == null ? "Unknown" : currLoc.getWorld().getName()) + " &7| &e" + currLoc.getBlockX() + "&7/&e" + currLoc.getBlockY() + "&7/&e" + currLoc.getBlockZ() + "&7;"));
                 e.setCancelled(true);
@@ -813,18 +808,6 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
     }
 
     private ItemStack getLocationErrorItem(int id, Location lastLoc) {
-        if (lastLoc == null) {
-            return new CustomItemStack(Material.REDSTONE_TORCH, "&c位置错误", "",
-                    "&e这个容器已在其它位置存在",
-                    "&e请不要将同ID的容器放在多个不同的位置",
-                    "&e如果您认为这是个意外，请联系管理员处理",
-                    " ",
-                    "&6容器信息:",
-                    "&b容器ID: &a" + id,
-                    "&b所在世界: &e Unknown",
-                    "&b所在坐标: &e Unknown"
-            );
-        }
         return new CustomItemStack(Material.REDSTONE_TORCH, "&c位置错误", "",
                 "&e这个容器已在其它位置存在",
                 "&e请不要将同ID的容器放在多个不同的位置",
@@ -832,8 +815,8 @@ public class CargoStorageUnit extends SpecialSlimefunItem implements Distinctive
                 " ",
                 "&6容器信息:",
                 "&b容器ID: &a" + id,
-                "&b所在世界: &e" + (lastLoc.getWorld() == null ? "Unknown" : lastLoc.getWorld().getName()),
-                "&b所在坐标: &e" + lastLoc.getBlockX() + " &7/ &e" + lastLoc.getBlockY() + " &7/ &e" + lastLoc.getBlockZ()
+                "&b所在世界: &e" + (lastLoc == null || lastLoc.getWorld() == null ? "Unknown" : lastLoc.getWorld().getName()),
+                "&b所在坐标: &e" + (lastLoc == null ? "Unknown" : (lastLoc.getBlockX() + " &7/ &e" + lastLoc.getBlockY() + " &7/ &e" + lastLoc.getBlockZ()))
         );
     }
 

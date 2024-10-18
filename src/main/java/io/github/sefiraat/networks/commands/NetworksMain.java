@@ -5,15 +5,17 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.ItemContainer;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.ErrorType;
-import com.ytdd9527.networksexpansion.implementation.blueprints.CraftingBlueprint;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import io.github.bakedlibs.dough.collections.Pair;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.BlueprintInstance;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
 import io.github.sefiraat.networks.network.stackcaches.QuantumCache;
 import io.github.sefiraat.networks.slimefun.NetworksSlimefunItemStacks;
+import io.github.sefiraat.networks.slimefun.network.AdminDebuggable;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
 import io.github.sefiraat.networks.utils.Keys;
 import io.github.sefiraat.networks.utils.StackUtils;
@@ -126,41 +128,68 @@ public class NetworksMain implements TabExecutor {
         }
     }
 
-    public static void setQuantum(Player player, int amount) {
+    public static void viewLog(Player player) {
         final Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         if (targetBlock == null || targetBlock.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络存储才能执行该指令!");
-            return;
-        }
-
-        final ItemStack itemInHand = player.getInventory().getItemInMainHand();
-        if (itemInHand.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须手持物品才能执行该指令!");
-            return;
-        }
-
-        final SlimefunBlockData blockData = StorageCacheUtils.getBlock(targetBlock.getLocation());
-        if (blockData == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络存储才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-admin-debuggable"));
             return;
         }
 
         final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(targetBlock.getLocation());
         if (slimefunItem == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络存储才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-admin-debuggable"));
+            return;
+        }
+
+        if (!(slimefunItem instanceof AdminDebuggable debuggable)) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-admin-debuggable"));
+            return;
+        }
+
+        if (debuggable.hasViewer(player)) {
+            debuggable.removeViewer(player);
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.viewer-removed"));
+        } else {
+            debuggable.addViewer(player);
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.viewer-added"));
+        }
+    }
+
+    public static void setQuantum(Player player, int amount) {
+        final Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
+        if (targetBlock == null || targetBlock.getType() == Material.AIR) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-quantum-storage"));
+            return;
+        }
+
+        final ItemStack itemInHand = player.getInventory().getItemInMainHand();
+        if (itemInHand.getType() == Material.AIR) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-hand-item"));
+            return;
+        }
+
+        final SlimefunBlockData blockData = StorageCacheUtils.getBlock(targetBlock.getLocation());
+        if (blockData == null) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-quantum-storage"));
+            return;
+        }
+
+        final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(targetBlock.getLocation());
+        if (slimefunItem == null) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-quantum-storage"));
             return;
         }
 
         final Location targetLocation = targetBlock.getLocation();
         final ItemStack clone = itemInHand.clone();
         if (!(slimefunItem instanceof NetworkQuantumStorage)) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络存储才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.invalid-quantum-storage"));
             return;
         }
 
         final BlockMenu blockMenu = StorageCacheUtils.getMenu(targetLocation);
         if (blockMenu == null) {
-            player.sendMessage(Theme.ERROR + "这是一个无效的网络存储");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.invalid-quantum-storage"));
             return;
         }
 
@@ -184,7 +213,7 @@ public class NetworksMain implements TabExecutor {
 
         final ItemStack itemInHand = player.getInventory().getItemInMainHand();
         if (itemInHand.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须手持物品才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-hand-item"));
             return;
         }
 
@@ -200,13 +229,13 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (!(slimefunItem instanceof CargoStorageUnit)) {
+        if (!(slimefunItem instanceof NetworksDrawer)) {
             player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
         }
 
         final Location targetLocation = targetBlock.getLocation();
         final ItemStack clone = itemInHand.clone();
-        final StorageUnitData data = CargoStorageUnit.getStorageData(targetLocation);
+        final StorageUnitData data = NetworksDrawer.getStorageData(targetLocation);
 
         if (data == null) {
             player.sendMessage(Theme.ERROR + "该网络抽屉不存在或已损坏!");
@@ -215,7 +244,7 @@ public class NetworksMain implements TabExecutor {
 
         clone.setAmount(amount);
         data.depositItemStack(clone, false);
-        CargoStorageUnit.setStorageData(targetLocation, data);
+        NetworksDrawer.setStorageData(targetLocation, data);
         player.sendMessage(ChatColor.GREEN + "已更新物品");
     }
 
@@ -228,7 +257,7 @@ public class NetworksMain implements TabExecutor {
 
         final ItemStack itemInHand = player.getInventory().getItemInMainHand();
         if (itemInHand.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须手持物品才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-hand-item"));
             return;
         }
 
@@ -244,13 +273,13 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (!(slimefunItem instanceof CargoStorageUnit)) {
+        if (!(slimefunItem instanceof NetworksDrawer)) {
             player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
         }
 
         final Location targetLocation = targetBlock.getLocation();
         final ItemStack clone = itemInHand.clone();
-        final StorageUnitData data = CargoStorageUnit.getStorageData(targetLocation);
+        final StorageUnitData data = NetworksDrawer.getStorageData(targetLocation);
 
         if (data == null) {
             player.sendMessage(Theme.ERROR + "该网络抽屉不存在或已损坏!");
@@ -259,7 +288,7 @@ public class NetworksMain implements TabExecutor {
 
         clone.setAmount(1);
         data.requestItem(new ItemRequest(clone, amount));
-        CargoStorageUnit.setStorageData(targetLocation, data);
+        NetworksDrawer.setStorageData(targetLocation, data);
         player.sendMessage(ChatColor.GREEN + "已更新物品");
     }
 
@@ -276,7 +305,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (!(slimefunItem instanceof CargoStorageUnit)) {
+        if (!(slimefunItem instanceof NetworksDrawer)) {
             player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
             return;
         }
@@ -284,7 +313,7 @@ public class NetworksMain implements TabExecutor {
         final Location location = targetBlock.getLocation();
 
         player.sendMessage(ChatColor.GREEN + "已请求数据，请稍候...");
-        CargoStorageUnit.requestData(location, containerId);
+        NetworksDrawer.requestData(location, containerId);
         player.sendMessage(ChatColor.GREEN +
                 "已设置位于为" + location.getWorld().getName()
                 + " " + location.getBlockX()
@@ -306,9 +335,9 @@ public class NetworksMain implements TabExecutor {
     public static void worldeditPos1(Player player, Location location) {
         setPos1(player, location);
         if (getPos2(player) == null) {
-            player.sendMessage(ChatColor.GREEN + "Set Pos1 to " + locationToString(getPos1(player)));
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-pos1"), locationToString(getPos1(player))));
         } else {
-            player.sendMessage(ChatColor.GREEN + "Set Pos1 to " + locationToString(getPos1(player)) + "(" + locationRange(getPos1(player), getPos2(player)) + " Blocks)");
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-pos1-with-blocks"), locationToString(getPos1(player)), locationRange(getPos1(player), getPos2(player))));
         }
     }
 
@@ -324,9 +353,9 @@ public class NetworksMain implements TabExecutor {
     public static void worldeditPos2(Player player, Location location) {
         setPos2(player, location);
         if (getPos1(player) == null) {
-            player.sendMessage(ChatColor.GREEN + "Set Pos2 to " + locationToString(getPos2(player)));
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-pos2"), locationToString(getPos2(player))));
         } else {
-            player.sendMessage(ChatColor.GREEN + "Set Pos2 to " + locationToString(getPos2(player)) + "(" + locationRange(getPos1(player), getPos2(player)) + " Blocks)");
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-pos2-with-blocks"), locationToString(getPos1(player)), locationRange(getPos1(player), getPos2(player))));
         }
     }
 
@@ -342,61 +371,56 @@ public class NetworksMain implements TabExecutor {
         final SlimefunItem sfItem = SlimefunItem.getById(sfid);
 
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(ChatColor.RED + "请先选中一个区域！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
             return;
         }
 
         if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
-            player.sendMessage(ChatColor.RED + "请选择同一世界的两个位置！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
 
         if (sfItem == null) {
-            player.sendMessage(ChatColor.RED + "这不是一个有效的粘液方块ID！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.invalid-slimefun-block-id"));
             return;
         }
 
         if (!sfItem.getItem().getType().isBlock()) {
-            player.sendMessage(ChatColor.RED + "这不是一个有效的粘液方块ID！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.invalid-slimefun-block-id"));
             return;
         }
 
         if (sfItem.getItem().getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "不可放置的粘液方块！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.not-a-placeable-block"));
             return;
         }
 
         if (!force && sfItem instanceof NotPlaceable) {
-            player.sendMessage(ChatColor.RED + "不可放置的粘液方块！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.not-placeable-block"));
             return;
         }
 
-        player.sendMessage(ChatColor.GREEN + "Pasting blocks from " + locationToString(getPos1(player)) + " to " + locationToString(getPos2(player)));
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.pasting-block"), locationToString(getPos1(player)), locationToString(getPos2(player))));
         final long currentMillSeconds = System.currentTimeMillis();
 
         final AtomicInteger count = new AtomicInteger();
         final Material t = sfItem.getItem().getType();
         final ItemStack itemStack = sfItem.getItem();
+        PlayerSkin skin0 = null;
+        boolean isHead0 = false;
         final PlayerSkin skin;
         final boolean isHead;
         if (itemStack.getType() == Material.PLAYER_HEAD || itemStack.getType() == Material.PLAYER_WALL_HEAD) {
             if (itemStack instanceof SlimefunItemStack sfis) {
                 Optional<String> texture = sfis.getSkullTexture();
                 if (texture.isPresent()) {
-                    skin = PlayerSkin.fromBase64(texture.get());
-                    isHead = true;
-                } else {
-                    isHead = false;
-                    skin = null;
+                    skin0 = PlayerSkin.fromBase64(texture.get());
+                    isHead0 = true;
                 }
-            } else {
-                isHead = false;
-                skin = null;
             }
-        } else {
-            isHead = false;
-            skin = null;
         }
+        skin = skin0;
+        isHead = isHead0;
         // java's operation ↑
         doWorldEdit(getPos1(player), getPos2(player), (location -> {
             final Block targetBlock = getPos1(player).getWorld().getBlockAt(location);
@@ -423,21 +447,21 @@ public class NetworksMain implements TabExecutor {
             count.addAndGet(1);
         }));
 
-        player.sendMessage("Paste " + count + " blocks done in " + (System.currentTimeMillis() - currentMillSeconds) + "ms");
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.paste-done"), count, System.currentTimeMillis() - currentMillSeconds));
     }
 
     public static void worldeditClear(Player player, boolean callHandler, boolean skipVanilla) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(ChatColor.RED + "请先选中一个区域！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
             return;
         }
 
-        if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
-            player.sendMessage(ChatColor.RED + "请选择同一世界的两个位置！");
+        if (!getPos1(player).getWorld().getName().equals(getPos2(player).getWorld().getName())) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
 
-        player.sendMessage(ChatColor.GREEN + "Pasting blocks from " + getPos1(player).toString() + " to " + getPos2(player).toString());
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.clearing-area"), locationToString(getPos1(player)), locationToString(getPos2(player))));
         final long currentMillSeconds = System.currentTimeMillis();
 
         final AtomicInteger count = new AtomicInteger();
@@ -461,28 +485,28 @@ public class NetworksMain implements TabExecutor {
             count.addAndGet(1);
         }));
 
-        player.sendMessage("Clear " + count + " blocks done in " + (System.currentTimeMillis() - currentMillSeconds) + "ms");
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.clear-done"), count, System.currentTimeMillis() - currentMillSeconds));
     }
 
     public static void worldeditBlockMenuSetSlot(Player player, int slot) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(ChatColor.RED + "请先选中一个区域！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
             return;
         }
 
         if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
-            player.sendMessage(ChatColor.RED + "请选择同一世界的两个位置！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
 
         if (!(0 <= slot && slot <= 53)) {
-            player.sendMessage(ChatColor.RED + "槽位号必须在0-53之间！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.invalid-slot"));
             return;
         }
 
         final ItemStack hand = player.getInventory().getItemInMainHand();
 
-        player.sendMessage(ChatColor.GREEN + "Setting slot " + slot + " to " + ItemStackHelper.getDisplayName(hand));
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-slot"), slot, ItemStackHelper.getDisplayName(hand)));
         final long currentMillSeconds = System.currentTimeMillis();
 
         final AtomicInteger count = new AtomicInteger();
@@ -494,17 +518,17 @@ public class NetworksMain implements TabExecutor {
             count.addAndGet(1);
         }));
 
-        player.sendMessage("Set slot " + slot + " done in " + (System.currentTimeMillis() - currentMillSeconds) + "ms");
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-slot-done"), slot, System.currentTimeMillis() - currentMillSeconds));
     }
 
     public static void worldeditBlockInfoAdd(Player player, String key, String value) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(ChatColor.RED + "请先选中一个区域！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
             return;
         }
 
         if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
-            player.sendMessage(ChatColor.RED + "请选择同一世界的两个位置！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
 
@@ -524,12 +548,12 @@ public class NetworksMain implements TabExecutor {
 
     public static void worldeditBlockInfoRemove(Player player, String key) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(ChatColor.RED + "请先选中一个区域！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
             return;
         }
 
         if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
-            player.sendMessage(ChatColor.RED + "请选择同一世界的两个位置！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
 
@@ -550,13 +574,13 @@ public class NetworksMain implements TabExecutor {
         final ItemStack itemInHand = player.getInventory().getItemInMainHand();
         final SlimefunItem slimefunItem = SlimefunItem.getByItem(itemInHand);
         if (slimefunItem == null) {
-            player.sendMessage(ChatColor.RED + "无法更新非粘液物品！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.not-a-slimefun-item"));
             return;
         }
 
         final String currentId = slimefunItem.getId();
-        if (slimefunItem instanceof CargoStorageUnit) {
-            player.sendMessage(ChatColor.RED + "暂不支持此物品的更新");
+        if (slimefunItem instanceof NetworksDrawer) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.cannot-update-cargo-storage-unit"));
         } else if (slimefunItem instanceof NetworkQuantumStorage) {
             final ItemMeta meta = itemInHand.getItemMeta();
             final QuantumCache quantumCache = DataTypeMethods.getCustom(
@@ -567,7 +591,7 @@ public class NetworksMain implements TabExecutor {
 
             if (quantumCache == null || quantumCache.getItemStack() == null) {
                 itemInHand.setItemMeta(SlimefunItem.getById(currentId).getItem().getItemMeta());
-                player.sendMessage(ChatColor.GREEN + "已更新物品！");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.commands.updated-item"));
                 return;
             }
 
@@ -576,15 +600,15 @@ public class NetworksMain implements TabExecutor {
             if (sfi != null) {
                 final String quantumStoredId = sfi.getId();
                 stored.setItemMeta(SlimefunItem.getById(quantumStoredId).getItem().getItemMeta());
-                player.sendMessage(ChatColor.GREEN + "已更新存储内的物品！");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.commands.updated-item-in-quantum-storage"));
             }
             DataTypeMethods.setCustom(meta, Keys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE, quantumCache);
             quantumCache.updateMetaLore(meta);
             itemInHand.setItemMeta(meta);
-            player.sendMessage(ChatColor.GREEN + "已更新物品！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.updated-item"));
         } else {
             itemInHand.setItemMeta(SlimefunItem.getById(currentId).getItem().getItemMeta());
-            player.sendMessage(ChatColor.GREEN + "已更新物品！");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.updated-item"));
         }
     }
 
@@ -607,12 +631,12 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (!(slimefunItem instanceof CargoStorageUnit)) {
+        if (!(slimefunItem instanceof NetworksDrawer)) {
             player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
         }
 
         final Location targetLocation = targetBlock.getLocation();
-        final StorageUnitData data = CargoStorageUnit.getStorageData(targetLocation);
+        final StorageUnitData data = NetworksDrawer.getStorageData(targetLocation);
 
         if (data == null) {
             player.sendMessage(Theme.ERROR + "该网络抽屉不存在或已损坏!");
@@ -635,69 +659,71 @@ public class NetworksMain implements TabExecutor {
 
     public static void help(CommandSender sender, String mainCommand) {
         if (mainCommand == null) {
-            sender.sendMessage(ChatColor.GOLD + "网络命令帮助:");
-            sender.sendMessage(ChatColor.GOLD + "/networks help - 显示此帮助信息.");
-            sender.sendMessage(ChatColor.GOLD + "/networks fillquantum <amount> - 填充手持量子存储物品的存储量.");
-            sender.sendMessage(ChatColor.GOLD + "/networks fixblueprint <keyInMeta> - 修复手持合成蓝图.");
-            sender.sendMessage(ChatColor.GOLD + "/networks addstorageitem <amount> - 使看向的网络抽屉中添加物品.");
-            sender.sendMessage(ChatColor.GOLD + "/networks reducestorageitem <amount> - 使看向的网络抽屉中减少物品.");
-            sender.sendMessage(ChatColor.GOLD + "/networks setquantum <amount> - 设置手持量子存储物品的存储量.");
-            sender.sendMessage(ChatColor.GOLD + "/networks setcontainerid <containerId> - 设置网络抽屉的容器ID.");
-            sender.sendMessage(ChatColor.GOLD + "/networks worldedit <subCommand> - 粘液创世神功能.");
-            sender.sendMessage(ChatColor.GOLD + "/networks updateItem - 更新手持物品.");
-            sender.sendMessage(ChatColor.GOLD + "/networks getstorageitem <slot> - 获取看向的网络抽屉指定槽位的物品.");
+            for (String message : Networks.getLocalizationService().getStringList("messages.commands.help")) {
+                sender.sendMessage(message);
+            }
             return;
         }
         switch (mainCommand.toLowerCase(Locale.ROOT)) {
             case "help" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks help - 显示此帮助信息.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks help");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.help")) {
+                    sender.sendMessage(message);
+                }
             }
             case "fillquantum" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks fillQuantum <amount> - 设置手持量子存储的存储量.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks fillQuantum 1000");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.fillquantum")) {
+                    sender.sendMessage(message);
+                }
             }
             case "fixblueprint" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks fixBlueprint <keyInMeta> - 修复手持合成蓝图.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks fixBlueprint networks-changed");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.fixblueprint")) {
+                    sender.sendMessage(message);
+                }
             }
             case "addstorageitem" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks addStorageItem <amount> - 向指向的货运存储中添加手中物品指定数量.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks addstorageItem 1000");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.addstorageitem")) {
+                    sender.sendMessage(message);
+                }
             }
             case "reducestorageitem" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks reduceStorageItem <amount> - 向指向的货运存储中减少手中物品指定数量.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks reduceStorageItem 1000");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.reducestorageitem")) {
+                    sender.sendMessage(message);
+                }
             }
             case "setquantum" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks setQuantum <amount> - 设置指向的量子存储的物品为手上的物品，并设置存储指定数量.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks setQuantum 1000");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.setquantum")) {
+                    sender.sendMessage(message);
+                }
             }
             case "setcontainerid" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks setContainerId <containerId> - 设置指向的货运存储的容器ID.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks setContainerId 6");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.setcontainerid")) {
+                    sender.sendMessage(message);
+                }
             }
             case "getstorageitem" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks getStorageItem <slot> - 获取指向的货运存储指定槽位的物品.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks getStorageItem 0");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.getstorageitem")) {
+                    sender.sendMessage(message);
+                }
             }
             case "worldedit" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit <subCommand> - 粘液创世神功能.");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit pos1 - 选择第一个位置");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit pos2 - 选择第二个位置");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit paste <sfid> <handler> <force> - 粘贴粘液方块");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit clear <callHandler> <skipVanilla> - 清除粘液方块");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit blockMenu setSlot <slot> - 修改选中区域的粘液方法的菜单的对应槽位为手上物品");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit blockInfo add <key> <value> - 增加粘液方块信息");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit blockInfo remove <value> - 移除粘液方块信息");
-                sender.sendMessage(ChatColor.GOLD + "/networks worldedit blockInfo set <key> <value> - 设置粘液方块信息");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.worldedit")) {
+                    sender.sendMessage(message);
+                }
             }
             case "updateitem" -> {
-                sender.sendMessage(ChatColor.GOLD + "/networks updateItem - 更新手持物品.");
-                sender.sendMessage(ChatColor.GOLD + "ex: /networks updateItem");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.updateitem")) {
+                    sender.sendMessage(message);
+                }
+            }
+            case "viewlog" -> {
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.viewlog")) {
+                    sender.sendMessage(message);
+                }
             }
             default -> {
-                sender.sendMessage(ChatColor.RED + "未知命令! 请使用 /networks help 查看帮助信息.");
+                for (String message : Networks.getLocalizationService().getStringList("messages.commands.example.unknown-command")) {
+                    sender.sendMessage(message);
+                }
             }
         }
     }
@@ -1024,6 +1050,16 @@ public class NetworksMain implements TabExecutor {
                     return true;
                 }
 
+                case "viewlog" -> {
+                    if (!player.hasPermission("networks.admin") && !player.hasPermission("networks.commands.viewlog")) {
+                        player.sendMessage(getErrorMessage(ErrorType.NO_PERMISSION));
+                        return true;
+                    }
+
+                    viewLog(player);
+                    return true;
+                }
+
                 default -> {
                     help(player, null);
                 }
@@ -1036,14 +1072,14 @@ public class NetworksMain implements TabExecutor {
     public void fillQuantum(Player player, int amount) {
         final ItemStack itemStack = player.getInventory().getItemInMainHand();
         if (itemStack.getType() == Material.AIR) {
-            player.sendMessage(Theme.ERROR + "你必须手持量子存储");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.no-item-in-hand"));
             return;
         }
 
         SlimefunItem slimefunItem = SlimefunItem.getByItem(itemStack);
 
         if (!(slimefunItem instanceof NetworkQuantumStorage)) {
-            player.sendMessage(Theme.ERROR + "你手中的物品必须为量子存储");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-hand-quantum-storage"));
             return;
         }
 
@@ -1055,7 +1091,7 @@ public class NetworksMain implements TabExecutor {
         );
 
         if (quantumCache == null || quantumCache.getItemStack() == null) {
-            player.sendMessage(Theme.ERROR + "量子存储未指定物品或已损坏");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.no-set-item"));
             return;
         }
 
@@ -1063,20 +1099,21 @@ public class NetworksMain implements TabExecutor {
         DataTypeMethods.setCustom(meta, Keys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE, quantumCache);
         quantumCache.updateMetaLore(meta);
         itemStack.setItemMeta(meta);
-        player.sendMessage(Theme.SUCCESS + "已更新物品");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.commands.updated-quantum-storage"));
     }
 
+    // change "networks-changed:recipe" -> "networks:recipe"
     public void fixBlueprint(Player player, String before) {
         ItemStack blueprint = player.getInventory().getItemInMainHand();
         if (blueprint.getType() == Material.AIR) {
-            player.sendMessage(Theme.ERROR + "你必须手持合成蓝图");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-hand-blueprint"));
             return;
         }
 
         final SlimefunItem item = SlimefunItem.getByItem(blueprint);
 
-        if (!(item instanceof CraftingBlueprint)) {
-            player.sendMessage(Theme.ERROR + "你必须手持合成蓝图");
+        if (!(item instanceof AbstractBlueprint)) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-hand-blueprint"));
             return;
         }
 
@@ -1084,23 +1121,23 @@ public class NetworksMain implements TabExecutor {
 
         final Optional<BlueprintInstance> optional = DataTypeMethods.getOptionalCustom(
                 blueprintMeta,
-                new NamespacedKey(before, "ntw_blueprint"),
+                new NamespacedKey(before, Keys.BLUEPRINT_INSTANCE.getKey()),
                 PersistentCraftingBlueprintType.TYPE
         );
 
         if (optional.isEmpty()) {
-            player.sendMessage(Theme.ERROR + "无法获取 instance");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.invalid-blueprint"));
             return;
         }
 
         BlueprintInstance instance = optional.get();
 
         ItemStack fix = NetworksSlimefunItemStacks.CRAFTING_BLUEPRINT.clone();
-        CraftingBlueprint.setBlueprint(fix, instance.getRecipeItems(), instance.getItemStack());
+        AbstractBlueprint.setBlueprint(fix, instance.getRecipeItems(), instance.getItemStack());
 
         blueprint.setItemMeta(fix.getItemMeta());
 
-        player.sendMessage(Theme.SUCCESS + "已修复蓝图");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.commands.fixed-blueprint"));
 
     }
 
@@ -1124,6 +1161,7 @@ public class NetworksMain implements TabExecutor {
                         "setContainerId",
                         "setQuantum",
                         "updateItem",
+                        "viewLog",
                         "worldedit"
                 );
             }
@@ -1186,12 +1224,12 @@ public class NetworksMain implements TabExecutor {
 
     public String getErrorMessage(ErrorType errorType, String argument) {
         return switch (errorType) {
-            case NO_PERMISSION -> "你没有权限执行此命令! ";
-            case NO_ITEM_IN_HAND -> "你必须在手上持有物品! ";
-            case MISSING_REQUIRED_ARGUMENT -> "缺少必要参数: <" + argument + ">";
-            case INVALID_REQUIRED_ARGUMENT -> "无效的参数: <" + argument + ">";
-            case MUST_BE_PLAYER -> "此命令只能由玩家执行! ";
-            default -> "未知错误! ";
+            case NO_PERMISSION -> Networks.getLocalizationService().getString("messages.commands.no-permission");
+            case NO_ITEM_IN_HAND -> Networks.getLocalizationService().getString("messages.commands.no-item-in-hand");
+            case MISSING_REQUIRED_ARGUMENT -> String.format(Networks.getLocalizationService().getString("messages.commands.missing-required-argument"), argument);
+            case INVALID_REQUIRED_ARGUMENT -> String.format(Networks.getLocalizationService().getString("messages.commands.invalid-required-argument"), argument);
+            case MUST_BE_PLAYER -> Networks.getLocalizationService().getString("messages.commands.must-be-player");
+            default -> Networks.getLocalizationService().getString("messages.commands.unknown-error");
         };
     }
 }

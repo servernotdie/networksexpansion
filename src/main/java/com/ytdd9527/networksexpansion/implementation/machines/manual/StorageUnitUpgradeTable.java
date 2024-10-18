@@ -5,7 +5,7 @@ import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.StorageUnitType;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import com.ytdd9527.networksexpansion.utils.databases.DataStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.network.AdminDebuggable;
@@ -111,7 +111,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
         for (Map.Entry<ItemStack[], ItemStack> each : recipes.entrySet()) {
             if (match(menu, each.getKey())) {
                 ItemStack itemInSlot = menu.getItemInSlot(outputSlot);
-                int id = CargoStorageUnit.getBoundId(menu.getItemInSlot(inputSlots[4]));
+                int id = NetworksDrawer.getBoundId(menu.getItemInSlot(inputSlots[4]));
                 ItemStack out = each.getValue().clone();
                 if (id != -1) {
                     if (DataStorage.isContainerLoaded(id)) {
@@ -130,7 +130,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
                             return true;
                         });
                     }
-                    out = CargoStorageUnit.bindId(out, id);
+                    out = NetworksDrawer.bindId(out, id);
                 }
                 SlimefunItemStack sfis = (SlimefunItemStack) out;
                 SlimefunItem sfi = SlimefunItem.getById(sfis.getItemId());

@@ -1,5 +1,104 @@
 # <click_info> = Theme.CLICK_INFO
 messages:
+  debug:
+    info: "%s - %s"
+    viewer-info: "<warning>%s - %s"
+    toggle-debug: "<success>该方块的调试模式已设置为：%s。"
+    enable-debug: "<success>该模式将持续至服务器关闭，或者手动关闭。"
+  commands:
+    no-permission: "&c你没有权限执行该指令!"
+    no-item-in-hand: "&c你必须在手上持有物品!"
+    missing-required-argument: "&c缺少必要参数: <%s>"
+    invalid-argument: "&c无效的参数: <%s>"
+    must-be-player: "&c此命令只能由玩家执行!"
+    unknown-error: "&c未知错误!"
+    must-admin-debuggable: "&c你必须指着一个 AdminDebuggable 才能执行该指令!"
+    viewer-added: "&a已将你添加到该 AdminDebuggable 的日志查看者列表中."
+    viewer-removed: "&a已将你从该 AdminDebuggable 的日志查看者列表中移除."
+    invalid-quantum-storage: "<error>这是一个无效的量子存储"
+    must-look-at-quantum-storage: "&c你必须指着一个网络存储才能执行该指令!"
+    must-hand-item: "&c你必须手持物品才能执行该指令!"
+    must-hand-blueprint: "<error>你必须手持蓝图"
+    invalid-blueprint: "<error>无法获取蓝图NBT"
+    fixed-blueprint: "<success>已修复蓝图"
+    updated-quantum-storage: "<success>已更新物品"
+    must-hand-quantum-storage: "<error>你必须手持量子存储"
+    no-set-item: "<error>量子存储未指定物品或已损坏"
+    not-a-slimefun-item: "<error>这不是一个 Slimefun 物品"
+    cannot-update-cargo-storage-unit: "<error>暂不支持更新网络抽屉"
+    updated-item: "<success>已更新物品"
+    updated-item-in-quantum-storage: "<success>已更新存储内的物品!"
+    help:
+      - "&6网络命令帮助:"
+      - "&6/networks help - 显示此帮助信息."
+      - "&6/networks fillquantum <amount> - 填充手持量子存储物品的存储量."
+      - "&6/networks fixblueprint <keyInMeta> - 修复手持合成蓝图."
+      - "&6/networks addstorageitem <amount> - 使看向的网络抽屉中添加物品."
+      - "&6/networks reducestorageitem <amount> - 使看向的网络抽屉中减少物品."
+      - "&6/networks setquantum <amount> - 设置手持量子存储物品的存储量."
+      - "&6/networks setcontainerid <containerId> - 设置网络抽屉的容器ID."
+      - "&6/networks worldedit <subCommand> - 粘液创世神功能."
+      - "&6/networks updateItem - 更新手持物品."
+      - "&6/networks getstorageitem <slot> - 获取看向的网络抽屉指定槽位的物品."
+    example:
+      help:
+        - "&6/networks help - 显示此帮助信息."
+        - "&6ex: /networks help"
+      fillquantum:
+        - "&6/networks fillQuantum <amount> - 设置手持量子存储的存储量."
+        - "&6ex: /networks fillQuantum 1000"
+      fixblueprint:
+        - "&6/networks fixBlueprint <keyInMeta> - 修复手持合成蓝图."
+        - "&6ex: /networks fixBlueprint networks-changed"
+      addstorageitem:
+        - "&6/networks addStorageItem <amount> - 向指向的货运存储中添加手中物品指定数量."
+        - "&6ex: /networks addstorageItem 1000"
+      reducestorageitem:
+        - "&6/networks reduceStorageItem <amount> - 向指向的货运存储中减少手中物品指定数量."
+        - "&6ex: /networks reduceStorageItem 1000"
+      setquantum:
+        - "&6/networks setQuantum <amount> - 设置指向的量子存储的物品为手上的物品，并设置存储指定数量."
+        - "&6ex: /networks setQuantum 1000"
+      setcontainerid:
+        - "&6/networks setContainerId <containerId> - 设置指向的货运存储的容器ID."
+        - "&6ex: /networks setContainerId 6"
+      getstorageitem:
+        - "&6/networks getStorageItem <slot> - 获取指向的货运存储指定槽位的物品."
+        - "&6ex: /networks getStorageItem 0"
+      worldedit:
+        - "&6/networks worldedit <subCommand> - 粘液创世神功能."
+        - "&6/networks worldedit pos1 - 选择第一个位置"
+        - "&6/networks worldedit pos2 - 选择第二个位置"
+        - "&6/networks worldedit paste <sfid> <handler> <force> - 粘贴粘液方块"
+        - "&6/networks worldedit clear <callHandler> <skipVanilla> - 清除粘液方块"
+        - "&6/networks worldedit blockMenu setSlot <slot> - 修改选中区域的粘液方法的菜单的对应槽位为手上物品"
+        - "&6/networks worldedit blockInfo add <key> <value> - 增加粘液方块信息"
+        - "&6/networks worldedit blockInfo remove <value> - 移除粘液方块信息"
+        - "&6/networks worldedit blockInfo set <key> <value> - 设置粘液方块信息"
+      updateitem:
+        - "&6/networks updateItem - 更新手持物品."
+        - "&6ex: /networks updateItem"
+      viewlog:
+        - "&6/networks viewLog - 将指向的 AdminDebuggable 的日志输出."
+        - "&6ex: /networks viewLog"
+      unknown-command:
+        - "<error>未知命令! 请使用 /networks help 查看帮助信息."
+    worldedit:
+      must-select-range: "&c请先选中一个区域!"
+      must-select-same-world: "&c请选择同一世界的两个位置!"
+      clearing-area: "&aClearing blocks from %s to %s"
+      clear-done: "&aClear %s blocks done in %s ms"
+      set-slot: "&aSetting slot %s to %s"
+      set-slot-done: "&aSet slot %s to %s done in %s ms"
+      pasting-block: "&aPasting blocks from %s to %s"
+      paste-done: "&aPaste %s blocks done in %s ms"
+      invalid-slimefun-block-id: "&c这不是一个有效的粘液方块ID!"
+      not-a-placeable-block: "&c不可放置的粘液方块!"
+      set-pos1: "&aSet pos1 to %s"
+      set-pos2: "&aSet pos2 to %s"
+      set-pos1-with-blocks: "&aSet pos1 to %s (%s Blocks)"
+      set-pos2-with-blocks: "&aSet pos2 to %s (%s Blocks)"
+      invalid-slot: "&c槽位号必须在0-53之间!"
   normal-operation:
     quantum_storage:
       waiting_for_input_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <warning>请输入网络高级量子存储的容量.最大限制为: 2147483647!"
@@ -37,7 +136,22 @@ messages:
       pasted_transport_mode: "<success>已设置传输模式为: %s"
       pasted_facing: "<success>方向: <passive>成功应用"
       pasted_item: "<success>物品 [%d]: <passive>已添加到过滤器"
+    drawer:
+      bound_id: "&9已绑定容器ID: &e%s"
   unsupported-operation:
+    drawer:
+      already_exists: "&c该容器已在其它位置存在!"
+      invalid_container: "&c请在量子存储槽放入量子存储 或 物品转移棒"
+      invalid_container_amount: "&c量子存储槽只能放入一个物品！"
+      invalid_chosen_item: "&c请在下方放入你要传输的物品"
+      invalid_quantum_storage: "&c量子存储无物品或已损坏"
+      quantum_storage_item_mismatch: "&c量子存储中的物品与要传输的物品不同"
+      quantum_storage_full: "&c量子存储中没有足够的物品或无法存入更多的物品"
+      not_enough_item: "&c此容器物品不足，无法转移至量子存储"
+      each_not_enough_item: "&c没有更多物品可以转移"
+      not_found_chosen_item: "&c未找到物品: %s"
+      item_mover_empty: "&c物品转移棒中没有物品"
+      item_mover_item_mismatch: "&c物品不匹配"
     directional:
       unexcepted_value: "意外的值: %s"
     remote:
@@ -123,6 +237,36 @@ messages:
     not-found-netheopoiesis: "你必须安装下界乌托邦才能让相关物品注册. "
   save-all: "正在保存网络拓展数据."
 icons:
+  drawer:
+    stored_item: "&b存储数量: &e%s &7/ &6%s"
+    quick_transfer:
+      name: "&6快速转移模式"
+      lore_before_status:
+        - ""
+      status: "&b状态: %s"
+      lore_after_status:
+        - " "
+        - "&e在上方放入量子存储/物品转移棒"
+        - "&e在下方放入要转移的物品"
+        - " "
+        - "&e点击左键开始转移"
+        - "&e点击右键切换模式"
+        - " "
+        - "&c需要网络抽屉中存在此物品才能运输！"
+      from_quantum: "&a从量子存储/物品转移棒转移至此"
+      to_quantum: "&a从此转移至量子存储/物品转移棒"
+    location_error:
+      name: "&c位置错误"
+      lore_before_info:
+        - "&e这个容器已在其它位置存在",
+        - "&e请不要将同ID的容器放在多个不同的位置",
+        - "&e如果您认为这是个意外，请联系管理员处理",
+        - " ",
+        - "&6容器信息:",
+      id: "&b容器ID: &a%s"
+      world: "&b所在世界: &e%s"
+      location: "&b所在位置: &e%s &7/ &e%s &7/ &e%s"
+      unknown: "Unknown"
   power_display:
     status_title: "<click_info>状态"
     charge: "<passive>网络电力: %sJ"
@@ -338,15 +482,15 @@ items:
     lore:
       - "<warning> 声明 既可以指代此篇声明，也可以指代此处的所有声明。"
       - "<warning> 网络(Networks) 是指一个粘液附属，而不是互联网、物联网等意义上的网络，或其他传统意义上的网络。"
-      - "<warning> 网络拓展(NetworksExpansion) (下称'网络拓展'、'此附属'或'此项目') 是一个由网络拓展开发组开发的，基于 Paper 1.20.1，汉化版 Slimefun 开发的，不完全兼容 Paper 1.20.5 及以上版本的粘液科技附属。"
-      - "<warning> 网络拓展开发者们(下称'网络拓展开发组','网络拓展创作者们') 是开发网络拓展的群体，并非由任何公司或组织所拥有。"
+      - "<warning> 网络拓展(NetworksExpansion) (下称\"网络拓展\"、\"此附属\"或\"此项目\") 是一个由网络拓展开发组开发的，基于 Paper 1.20.1，汉化版 Slimefun 开发的，不完全兼容 Paper 1.20.5 及以上版本的粘液科技附属。"
+      - "<warning> 网络拓展开发者们(下称\"网络拓展开发组\",\"网络拓展创作者们\") 是开发网络拓展的群体，并非由任何公司或组织所拥有。"
   NTW_EXPANSION_ANNOUNCE_2:
     name: "<color_random_string>网络拓展作品声明"
     lore:
       - "<warning> 阅读此声明前，请务必先阅读定义。"
       - "<warning> 网络拓展是完全免费、共享、开源在 GitHub 上的，供广大支持者、维护者、创作者学习和使用。"
       - "<warning> GPL-3.0 协议 是网络拓展的开源协议，任何人都可以自由使用、修改、分发，但任何修改、分发都必须遵守 GPL-3.0 协议。"
-      - "<warning> 其中，'网络拓展'仅为该文件的标题，不包含任何歧义和盈利牵涉。"
+      - "<warning> 其中，\"网络拓展\"仅为该文件的标题，不包含任何歧义和盈利牵涉。"
       - "<warning> 网络拓展开发者们仅作为此附属的创作者们，并不对其提供任何商业支持，也不再活跃维护此附属。此外，网络拓展开发者们从不参与任何有关任何服务器的任何直接或间接的经营活动。"
       - "<warning> 严禁利用上述插件与此附属宣扬任意形式的负面、暴力信息；严禁利用上述文件进行违法、侵权活动；严禁涉及任何有关政治和低俗内容。"
       - "<warning> 严禁倒卖，包括但不限于变相交易活动，私自篡改并利用上述文件进行任何的盈利行为。"
@@ -444,7 +588,7 @@ items:
       - "<warning> 当您使用或游玩网络拓展时，即默认您同意遵守这些声明。"
       - "<passive> 网络拓展开发者们保留随时修改、终止本声明的权利。"
       - "<warning> 当本声明更新后，您应自觉查阅是否有异议。通常来说，在版本更新后，网络拓展开发组默认您同意遵守这些声明。"
-      - "<passive> 您应避免因使用网络拓展而使'网络拓展'或'网络拓展开发组'或'网络拓展开发组成员'卷入政治和公共事件。"
+      - "<passive> 您应避免因使用网络拓展而使\"网络拓展\"或\"网络拓展开发组\"或\"网络拓展开发组成员\"卷入政治和公共事件。"
       - "<warning> 否则网络拓展开发组有权暂停或终止对网络拓展的维护。"
       - "<passive> 如若出现网络拓展开发者们发布的其他语言的此声明，请以中文版本为准。"
       - "<passive> 本声明的生效、履行、解释及纠纷解决，适用中华人民共和国大陆地区法律（不包括冲突法）"
@@ -2224,6 +2368,513 @@ items:
     lore:
       - "更好的网络抓取器会尝试从"
       - "指定的机器中抓取第一个物品"
+
+  NTW_SYNTHETIC_EMERALD_SHARD:
+    name: "人造绿宝石碎片"
+    lore:
+      - "一块人造绿宝石的碎片"
+      - "是信息传输的支柱"
+  
+  NTW_OPTIC_GLASS:
+    name: "光学玻璃"
+    lore:
+      - "能够传输少量信息的玻璃"
+  
+  NTW_OPTIC_CABLE:
+    name: "光缆"
+    lore:
+      - "能够传输大量信息的光缆"
+  
+  NTW_OPTIC_STAR:
+    name: "光学之星"
+    lore:
+      - "能够传输大量信息的星"
+
+  NTW_RADIOACTIVE_OPTIC_STAR:
+    name: "放射性光学之星"
+    lore:
+      - "能够传输几乎无限信息的星"
+
+  NTW_SHRINKING_BASE:
+    name: "缩小底座"
+    lore:
+      - "可以让大型物体变小的装置"
+
+  NTW_SIMPLE_NANOBOTS:
+    name: "简易纳米机器人"
+    lore:
+      - "可以帮助你完成精密任务的微型机器人"
+
+  NTW_ADVANCED_NANOBOTS:
+    name: "高级纳米机器人"
+    lore:
+      - "可以帮助你完成精密任务的微型机器人"
+      - "比简易版更智能，更高效"
+
+  NTW_AI_CORE:
+    name: "人工智能核心"
+    lore:
+      - "在脆弱外壳中的初代人工智能"
+
+  NTW_EMPOWERED_AI_CORE:
+    name: "充能人工智能核心"
+    lore:
+      - "在外壳中的高级人工智能"
+
+  NTW_PRISTINE_AI_CORE:
+    name: "古代人工智能核心"
+    lore:
+      - "据说是从上古遗迹中挖掘出来的"
+      - "完美级人工智能"
+
+  NTW_INTERDIMENSIONAL_PRESENCE:
+    name: "跨跃维度的存在"
+    lore:
+      - "这种完美级的人工智能"
+      - "甚至还掌握了跨越维度的能力"
+
+  NTW_CONTROLLER:
+    name: "网络控制器"
+    lore:
+      - "网络控制器是网络的核心部分"
+      - "每个网络最多有1个控制器"
+
+  NTW_BRIDGE:
+    name: "网桥"
+    lore:
+      - "网桥用于连接不同的网络物品"
+      - "来形成一个完整的网络"
+
+  NTW_MONITOR:
+    name: "网络监视器"
+    lore:
+      - "网络监视器可以与附近的方块交互"
+      - "让指定方块可以接入网络"
+      - ""
+      - "目前支持:"
+      - "无尽科技 - 存储单元"
+      - "蓬松科技 - 蓬松桶"
+      - "网络 - 量子存储"
+      - "<random_color>网络拓展 - 网络抽屉"
+
+  NTW_IMPORT:
+    name: "网络入口"
+    lore:
+      - "网络入口会将其中的物品送入网络中"
+      - "每个SF tick可传输最多9组物品"
+      - "可接收来自货运网络的物品"
+
+  NTW_EXPORT:
+    name: "网络出口"
+    lore:
+      - "网络出口可以设置成"
+      - "持续将1组指定的物品送出网络"
+      - "可以使用货运网络从中提取物品"
+
+  NTW_GRABBER:
+    name: "网络抓取器"
+    lore:
+      - "网络抓取器会尝试从"
+      - "指定的机器中抓取第一个物品"
+
+  NTW_PUSHER:
+    name: "网络推送器"
+    lore:
+      - "网络推送器会尝试将"
+      - "指定的物品送入机器中"
+
+  NTW_MOREPUSHER:
+    name: "网络推送器V2"
+    lore:
+      - "网络推送器会尝试将"
+      - "指定的物品送入机器中"
+      - "本推送器有9个槽位供推送"
+
+  NTW_BESTPUSHER:
+    name: "网络推送器V3"
+    lore:
+      - "网络推送器会尝试将"
+      - "指定的物品送入机器中"
+      - "本推送器有12个槽位供推送"
+
+  NTW_CONTROL_X:
+    name: "网络剪切器"
+    lore:
+      - "网络剪切器会尝试将"
+      - "方块从世界中\"剪切\"到网络中"
+      - "仅支持原版非容器方块."
+      - ""
+      - "<click_info>网络电力消耗: <passive>每次操作 100J"
+
+  NTW_CONTROL_V:
+    name: "网络粘贴器"
+    lore:
+      - "网络粘贴器会尝试将"
+      - "方块从网络中\"粘贴\"到世界中"
+      - "仅支持原版方块."
+      - ""
+      - "<click_info>网络电力消耗: <passive>每次操作 100J"
+
+  NTW_VACUUM:
+    name: "网络吸尘器"
+    lore:
+      - "网络吸尘器可以将周围"
+      - "4x4范围内的掉落物品吸收,"
+      - "然后尝试将这些物品送入网络中."
+      - ""
+      - "<click_info>网络电力消耗: <passive>100J/粘液刻"
+
+  NTW_VANILLA_GRABBER:
+    name: "网络原版容器抓取器"
+    lore:
+      - "网络原版容器抓取器会尝试"
+      - "抓取指定原版容器中的第一个物品."
+      - ""
+      - "该机器不能与网络直接交互,"
+      - "你还需要一个网络抓取器"
+      - "将本机器中的物品输入到网络中."
+
+  NTW_VANILLA_PUSHER:
+    name: "网络原版容器推送器"
+    lore:
+      - "网络原版容器推送器会尝试"
+      - "推送其中的物品到指定原版容器中."
+      - ""
+      - "该机器不能与网络直接交互,"
+      - "你还需要一个网络推送器"
+      - "将网络中的物品推送到本机器中."
+
+  NTW_NETWORK_WIRELESS_TRANSMITTER:
+    name: "网络无线发射器"
+    lore:
+      - "网络无线发射器可以"
+      - "将其中的物品传输到绑定的"
+      - "网络无线接收器中(只能在同一世界)."
+      - "使用网络无线配置器来进行绑定."
+      - "每次传输会消耗 500 J 网络电力."
+
+  NTW_NETWORK_WIRELESS_RECEIVER:
+    name: "网络无线接收器"
+    lore:
+      - "网络无线接收器可以"
+      - "接收来自绑定的网络无线发射器"
+      - "中的物品(只能在同一世界)."
+      - "每粘液刻会把接收到的物品"
+      - "尝试推送到网络中."
+
+  NTW_TRASH:
+    name: "网络清除器"
+    lore:
+      - "网络清除器会从网络中"
+      - "不断地移除指定物品"
+      - "清除的物品会立即消失，谨慎使用!"
+
+  NTW_GRID:
+    name: "网格"
+    lore:
+      - "网格允许你查看网络中所有的物品"
+      - "你也可以直接放入或取出物品"
+      - "支持拼音搜索"
+
+  NTW_CRAFTING_GRID:
+    name: "网格(带合成)"
+    lore:
+      - "这种网格与普通网格类似"
+      - "但会显示更少的物品"
+      - "不过你可以直接使用网络中的物品"
+      - "进行合成"
+      - "支持拼音搜索"
+
+  NTW_CELL:
+    name: "网络单元"
+    lore:
+      - "网络单元拥有54格空间(相当于一个大箱子)"
+      - "可以通过网络访问其中的物品"
+      - "也可以直接打开"
+
+  NTW_GREEDY_BLOCK:
+    name: "网络阻断器"
+    lore:
+      - "网络阻断器可以设置一个物品,"
+      - "然后会从网络各处输入中"
+      - "收集指定的物品,最多为1组."
+      - "收集满后,会阻断该物品在网络中的传输,"
+      - "任何其他网络方块都不会收到该物品."
+
+  NTW_QUANTUM_WORKBENCH:
+    name: "网络量子工作台"
+    lore:
+      - "可以合成量子存储"
+
+  NTW_QUANTUM_STORAGE_0:
+    name: "网络量子存储 (64)"
+    lore:
+      - "可存储 64 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_9:
+    name: "网络量子存储 (256)"
+    lore:
+      - "可存储 256 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_10:
+    name: "网络量子存储 (1024)"
+    lore:
+      - "可存储 1024 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_1:
+    name: "网络量子存储 (4k)"
+    lore:
+      - "可存储 4096 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_2:
+    name: "网络量子存储 (32K)"
+    lore:
+      - "可存储 32768 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_3:
+    name: "网络量子存储 (262K)"
+    lore:
+      - "可存储 262144 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_4:
+    name: "网络量子存储 (2M)"
+    lore:
+      - "可存储 2097152 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_5:
+    name: "网络量子存储 (16M)"
+    lore:
+      - "可存储 16777216 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_6:
+    name: "网络量子存储 (134M)"
+    lore:
+      - "可存储 134217728 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_7:
+    name: "网络量子存储 (1B)"
+    lore:
+      - "可存储 1073741824 个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_QUANTUM_STORAGE_8:
+    name: "网络量子存储 (∞)"
+    lore:
+      - "可存储几乎无限多个物品"
+      - ""
+      - "在量子奇点中存储大量物品"
+
+  NTW_CAPACITOR_1:
+    name: "网络电容 (1)"
+    lore:
+      - "网络电容可以接收来自"
+      - "能源网络的电力并存储起来"
+      - "以供其他网络设备使用"
+      - ""
+      - "<click_info>容量: <passive>1,000"
+
+  NTW_CAPACITOR_2:
+    name: "网络电容 (2)"
+    lore:
+      - "网络电容可以接收来自"
+      - "能源网络的电力并存储起来"
+      - "以供其他网络设备使用"
+      - ""
+      - "<click_info>容量: <passive>10,000"
+
+  NTW_CAPACITOR_3:
+    name: "网络电容 (3)"
+    lore:
+      - "网络电容可以接收来自"
+      - "能源网络的电力并存储起来"
+      - "以供其他网络设备使用"
+      - ""
+      - "<click_info>容量: <passive>100,000"
+
+  NTW_CAPACITOR_4:
+    name: "网络电容 (4)"
+    lore:
+      - "网络电容可以接收来自"
+      - "能源网络的电力并存储起来"
+      - "以供其他网络设备使用"
+      - ""
+      - "<click_info>容量: <passive>1,000,000"
+
+  NTW_POWER_OUTLET_1:
+    name: "网络插口 (1)"
+    lore:
+      - "网络插口可以将网络中存储的电力"
+      - "传输至指定的机器中."
+      - ""
+      - "<click_info>可存储: <passive>500J"
+
+  NTW_POWER_OUTLET_2:
+    name: "网络插口 (2)"
+    lore:
+      - "网络插口可以将网络中存储的电力"
+      - "传输至指定的机器中."
+      - ""
+      - "<click_info>可存储: <passive>2,000J"
+
+  NTW_POWER_DISPLAY:
+    name: "网络电表"
+    lore:
+      - "网络电表会显示网络中的电力情况"
+      - "很简单, 对吧?"
+
+  NTW_RECIPE_ENCODER:
+    name: "网络配方编码器"
+    lore:
+      - "可以根据输入的物品来制作合成蓝图"
+      - ""
+      - "<click_info>网络电力消耗: <passive>2,000 每次编码"
+
+  NTW_AUTO_CRAFTER:
+    name: "网络自动合成机"
+    lore:
+      - "网络自动合成机需要合成蓝图才能工作。"
+      - "当网络中没有蓝图的目标物品时，"
+      - "机器会自动从网络中选取材料进行合成"
+      - "(需要网络中有足够的原材料)"
+      - ""
+      - "<click_info>网络电力消耗: <passive>64 每次合成"
+
+  NTW_AUTO_CRAFTER_WITHHOLDING:
+    name: "网络自动合成机 (预留版)"
+    lore:
+      - "网络自动合成机需要合成蓝图才能工作。"
+      - "当网络中没有蓝图的目标物品时，"
+      - "机器会自动从网络中选取材料进行合成"
+      - "(需要网络中有足够的原材料)"
+      - ""
+      - "预留版的自动合成机会不断进行合成"
+      - "直到输出栏拥有1组物品"
+      - "这一组物品可以在网络中访问"
+      - "也可以通过货运系统取出"
+      - ""
+      - "<click_info>网络电力消耗: <passive>128 每次合成"
+
+  NTW_CRAFTING_BLUEPRINT:
+    name: "合成蓝图"
+    lore:
+      - "一张空白的蓝图"
+      - "可以存储一个合成配方"
+
+  NTW_PROBE:
+    name: "网络探测器"
+    lore:
+      - "右键点击网络控制器"
+      - "可以查看网络中的节点数量"
+
+  NTW_REMOTE:
+    name: "网络远程访问器"
+    lore:
+      - "远程打开绑定的网格"
+      - "需要加载网格所在区块"
+      - ""
+      - "<click_info>Shift+右键点击 <passive>普通网格以进行绑定"
+      - ""
+      - "<click_info>范围: <passive>150格"
+
+  NTW_REMOTE_EMPOWERED:
+    name: "充能网络远程访问器"
+    lore:
+      - "远程打开绑定的网格"
+      - "需要加载网格所在区块"
+      - ""
+      - "<click_info>Shift+右键点击 <passive>普通网格以进行绑定"
+      - ""
+      - "<click_info>范围: <passive>500格"
+
+  NTW_REMOTE_PRISTINE:
+    name: "古代网络远程访问器"
+    lore:
+      - "远程打开绑定的网格"
+      - "需要加载网格所在区块"
+      - ""
+      - "<click_info>Shift+右键点击 <passive>普通网格以进行绑定"
+      - ""
+      - "<click_info>范围: <passive>无限制(仅同一世界)"
+
+  NTW_REMOTE_ULTIMATE:
+    name: "终极网络远程访问器"
+    lore:
+      - "远程打开绑定的网格"
+      - "需要加载网格所在区块"
+      - ""
+      - "<click_info>Shift+右键点击 <passive>普通网格以进行绑定"
+      - ""
+      - "<click_info>范围: <passive>跨维度"
+
+  NTW_CRAYON:
+    name: "网络绘制器"
+    lore:
+      - "当对着网络控制器使用时"
+      - "可以让该网络中的方块展示出粒子效果"
+
+  NTW_CONFIGURATOR:
+    name: "网络配置器"
+    lore:
+      - "用于复制网络部件的设置"
+      - "可复制带方向选择的网络方块的设置"
+      - ""
+      - "<click_info>右键点击: <passive>应用设置"
+      - "<click_info>Shift+右键点击: <passive>存储设置"
+
+  NTW_WIRELESS_CONFIGURATOR:
+    name: "网络无线配置器"
+    lore:
+      - "用于储存一个接收器的位置,"
+      - "并设置到发射器中."
+      - ""
+      - "<click_info>右键点击: <passive>储存接收器的位置"
+      - "<click_info>Shift+右键点击: <passive>将位置设置到发射器中"
+
+  NTW_RAKE_1:
+    name: "网络扳手 (1)"
+    lore:
+      - "右键点击一个网络节点"
+      - "可以立即破坏"
+      - ""
+
+  NTW_RAKE_2:
+    name: "网络扳手 (2)"
+    lore:
+      - "右键点击一个网络节点"
+      - "可以立即破坏"
+      - ""
+
+  NTW_RAKE_3:
+    name: "网络扳手 (3)"
+    lore:
+      - "右键点击一个网络节点"
+      - "可以立即破坏"
+      - ""
+
+  NTW_DEBUG_STICK:
+    name: "网络调试棒"
+    lore:
+      - "右键点击一个网络方块开启调试。"
+
 displays:
   quantum_storage:
     void_excess: "<click_info>满载清空输入: <passive>%s"

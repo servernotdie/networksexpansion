@@ -2,7 +2,7 @@ package io.github.sefiraat.networks.listeners;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractGridNewStyle;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import io.github.sefiraat.networks.slimefun.network.NetworkCell;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
 import io.github.sefiraat.networks.slimefun.network.grid.AbstractGrid;
@@ -36,7 +36,7 @@ public class ExplosiveToolListener implements Listener {
     }
 
     private boolean isAntiExplosiveBlock(SlimefunItem item) {
-        return item instanceof CargoStorageUnit ||
+        return item instanceof NetworksDrawer ||
                 item instanceof NetworkQuantumStorage ||
                 item instanceof NetworkCell ||
                 item instanceof AbstractGrid ||

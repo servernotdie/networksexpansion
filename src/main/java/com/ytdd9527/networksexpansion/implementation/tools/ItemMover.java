@@ -5,7 +5,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import io.github.mooy1.infinityexpansion.items.storage.StorageCache;
 import io.github.mooy1.infinityexpansion.items.storage.StorageUnit;
 import io.github.sefiraat.networks.managers.SupportedPluginManager;
@@ -250,7 +250,7 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
             return getFluffyBarrel(location, barrel);
         } else if (sfitem instanceof NetworkQuantumStorage) {
             return getNetworkStorage(location);
-        } else if (sfitem instanceof CargoStorageUnit) {
+        } else if (sfitem instanceof NetworksDrawer) {
             player.sendMessage(ChatColor.RED + "请使用网络抽屉的快速转移模式");
             return null;
         }

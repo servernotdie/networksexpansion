@@ -33,6 +33,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -46,6 +47,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class LocalizationService {
+    private static final Map<String, String> CACHE = new HashMap<>();
     private static final String KEY_NAME = ".name";
     private static final String KEY_LORE = ".lore";
     private static final String MSG_KEY_NULL = "key cannot be null";
@@ -145,35 +147,41 @@ public class LocalizationService {
     @Nonnull
     public String getString0(@Nonnull String path) {
         Preconditions.checkArgument(path != null, "path cannot be null");
-        Iterator<String> var2 = this.languages.iterator();
+        String cached = CACHE.get(path);
+        if (cached != null) {
+            return cached;
+        }
+
+        Iterator<String> languages = this.languages.iterator();
 
         String localization;
         do {
-            if (!var2.hasNext()) {
+            if (!languages.hasNext()) {
                 Networks.getInstance().getLogger().severe("No localization found for path: " + path);
                 return path;
             }
 
-            String lang = (String) var2.next();
-            localization = ((Language) this.langMap.get(lang)).getLang().getString(path);
+            String lang = languages.next();
+            localization = this.langMap.get(lang).getLang().getString(path);
         } while (localization == null);
 
+        CACHE.put(path, localization);
         return localization;
     }
 
     @Nonnull
     public List<String> getStringList(@Nonnull String path) {
         Preconditions.checkArgument(path != null, "path cannot be null");
-        Iterator<String> var2 = this.languages.iterator();
+        Iterator<String> languages = this.languages.iterator();
 
         List<String> localization;
         do {
-            if (!var2.hasNext()) {
+            if (!languages.hasNext()) {
                 return new ArrayList<>();
             }
 
-            String lang = (String) var2.next();
-            localization = ((Language) this.langMap.get(lang)).getLang().getStringList(path);
+            String lang = languages.next();
+            localization = this.langMap.get(lang).getLang().getStringList(path);
         } while (localization.isEmpty());
 
         return localization;
@@ -181,7 +189,7 @@ public class LocalizationService {
 
     @Nonnull
     public String[] getStringArray(@Nonnull String path) {
-        return (String[]) this.getStringList(path).stream().map(this::color).toList().toArray(new String[0]);
+        return this.getStringList(path).stream().map(this::color).toList().toArray(new String[0]);
     }
 
     protected JavaPlugin getPlugin() {
@@ -212,7 +220,7 @@ public class LocalizationService {
         Preconditions.checkArgument(key != null, MSG_KEY_NULL);
         Preconditions.checkArgument(id != null, MSG_ID_NULL);
         Preconditions.checkArgument(texture != null, MSG_TEXTURE_NULL);
-        return (SlimefunItemStack) appendLore(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), texture, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore")), extraLore);
+        return appendLore(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), texture, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore")), extraLore);
     }
 
     @Nonnull
@@ -221,7 +229,7 @@ public class LocalizationService {
         Preconditions.checkArgument(key != null, MSG_KEY_NULL);
         Preconditions.checkArgument(id != null, MSG_ID_NULL);
         Preconditions.checkArgument(itemStack != null, MSG_ITEMSTACK_NULL);
-        return (SlimefunItemStack) appendLore(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), itemStack, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore")), extraLore);
+        return appendLore(new SlimefunItemStack((this.idPrefix + id).toUpperCase(Locale.ROOT), itemStack, this.getString(key + "." + id + ".name"), this.getStringArray(key + "." + id + ".lore")), extraLore);
     }
 
     @Nonnull
@@ -296,8 +304,8 @@ public class LocalizationService {
         if (extraLore != null && extraLore.length != 0) {
             ItemMeta meta = itemStack.getItemMeta();
             List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList();
-            ((List)lore).addAll(color(Arrays.asList(extraLore)));
-            meta.setLore((List)lore);
+            lore.addAll(color(Arrays.asList(extraLore)));
+            meta.setLore(lore);
             itemStack.setItemMeta(meta);
             return itemStack;
         } else {
@@ -343,7 +351,7 @@ public class LocalizationService {
     @Nonnull
     public List<String> color(@Nonnull List<String> strList) {
         Preconditions.checkArgument(strList != null, "String list cannot be null");
-        return (List)strList.stream().map(this::color).collect(Collectors.toList());
+        return strList.stream().map(this::color).collect(Collectors.toList());
     }
 
     @ParametersAreNonnullByDefault

@@ -81,7 +81,7 @@ import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.Offsetter;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.SmartGrabber;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.SmartPusher;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import com.ytdd9527.networksexpansion.implementation.tools.CargoNodeQuickTool;
 import com.ytdd9527.networksexpansion.implementation.tools.ItemMover;
 import com.ytdd9527.networksexpansion.implementation.tools.NetworksExpansionWorldEditAxe;
@@ -925,7 +925,7 @@ public class ExpansionItems {
             ExpansionRecipes.STORAGE_UNIT_UPGRADE_TABLE
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_1 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_1 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_1,
             StorageUnitUpgradeTable.TYPE,
@@ -933,7 +933,7 @@ public class ExpansionItems {
             StorageUnitType.TINY
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_2 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_2 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_2,
             StorageUnitUpgradeTable.TYPE,
@@ -941,7 +941,7 @@ public class ExpansionItems {
             StorageUnitType.MINI
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_3 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_3 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_3,
             StorageUnitUpgradeTable.TYPE,
@@ -949,7 +949,7 @@ public class ExpansionItems {
             StorageUnitType.SMALL
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_4 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_4 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_4,
             StorageUnitUpgradeTable.TYPE,
@@ -957,7 +957,7 @@ public class ExpansionItems {
             StorageUnitType.MEDIUM
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_5 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_5 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_5,
             StorageUnitUpgradeTable.TYPE,
@@ -965,7 +965,7 @@ public class ExpansionItems {
             StorageUnitType.LARGE
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_6 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_6 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_6,
             StorageUnitUpgradeTable.TYPE,
@@ -973,7 +973,7 @@ public class ExpansionItems {
             StorageUnitType.ENHANCED
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_7 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_7 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_7,
             StorageUnitUpgradeTable.TYPE,
@@ -981,7 +981,7 @@ public class ExpansionItems {
             StorageUnitType.ADVANCED
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_8 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_8 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_8,
             StorageUnitUpgradeTable.TYPE,
@@ -989,7 +989,7 @@ public class ExpansionItems {
             StorageUnitType.EXTRA
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_9 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_9 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_9,
             StorageUnitUpgradeTable.TYPE,
@@ -997,35 +997,35 @@ public class ExpansionItems {
             StorageUnitType.ULTRA
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_10 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_10 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_10,
             StorageUnitUpgradeTable.TYPE,
             ExpansionRecipes.CARGO_STORAGE_UNIT_10,
             StorageUnitType.END_GAME_BASIC
     );
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_11 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_11 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_11,
             StorageUnitUpgradeTable.TYPE,
             ExpansionRecipes.CARGO_STORAGE_UNIT_11,
             StorageUnitType.END_GAME_INTERMEDIATE
     );
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_12 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_12 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_12,
             StorageUnitUpgradeTable.TYPE,
             ExpansionRecipes.CARGO_STORAGE_UNIT_12,
             StorageUnitType.END_GAME_ADVANCED
     );
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_13 = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_13 = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_13,
             StorageUnitUpgradeTable.TYPE,
             ExpansionRecipes.CARGO_STORAGE_UNIT_13,
             StorageUnitType.END_GAME_MAX
     );
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_1_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_1_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_1_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1033,7 +1033,7 @@ public class ExpansionItems {
             StorageUnitType.TINY
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_2_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_2_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_2_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1041,7 +1041,7 @@ public class ExpansionItems {
             StorageUnitType.MINI
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_3_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_3_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_3_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1049,7 +1049,7 @@ public class ExpansionItems {
             StorageUnitType.SMALL
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_4_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_4_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_4_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1057,7 +1057,7 @@ public class ExpansionItems {
             StorageUnitType.MEDIUM
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_5_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_5_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_5_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1065,7 +1065,7 @@ public class ExpansionItems {
             StorageUnitType.LARGE
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_6_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_6_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_6_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1073,7 +1073,7 @@ public class ExpansionItems {
             StorageUnitType.ENHANCED
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_7_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_7_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_7_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1081,7 +1081,7 @@ public class ExpansionItems {
             StorageUnitType.ADVANCED
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_8_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_8_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_8_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1089,7 +1089,7 @@ public class ExpansionItems {
             StorageUnitType.EXTRA
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_9_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_9_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_9_MODEL,
             ExpansionWorkbench.TYPE,
@@ -1097,28 +1097,28 @@ public class ExpansionItems {
             StorageUnitType.ULTRA
     );
 
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_10_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_10_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_10_MODEL,
             ExpansionWorkbench.TYPE,
             ExpansionRecipes.CARGO_STORAGE_UNIT_10_MODEL,
             StorageUnitType.END_GAME_BASIC
     );
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_11_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_11_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_11_MODEL,
             ExpansionWorkbench.TYPE,
             ExpansionRecipes.CARGO_STORAGE_UNIT_11_MODEL,
             StorageUnitType.END_GAME_INTERMEDIATE
     );
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_12_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_12_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_12_MODEL,
             ExpansionWorkbench.TYPE,
             ExpansionRecipes.CARGO_STORAGE_UNIT_12_MODEL,
             StorageUnitType.END_GAME_ADVANCED
     );
-    public static final CargoStorageUnit CARGO_STORAGE_UNIT_13_MODEL = new CargoStorageUnit(
+    public static final NetworksDrawer CARGO_STORAGE_UNIT_13_MODEL = new NetworksDrawer(
             ExpansionItemsMenus.MENU_CARGO_SYSTEM,
             ExpansionItemStacks.CARGO_STORAGE_UNIT_13_MODEL,
             ExpansionWorkbench.TYPE,

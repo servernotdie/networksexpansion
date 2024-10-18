@@ -3,7 +3,7 @@ package com.ytdd9527.networksexpansion.utils.databases;
 import com.balugaq.netex.api.data.ItemContainer;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.StorageUnitType;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
@@ -157,7 +157,7 @@ public class DataSource {
     }
 
     void updateItemAmount(int containerId, int itemId, int amount) {
-        if (CargoStorageUnit.isLocked(containerId)) {
+        if (NetworksDrawer.isLocked(containerId)) {
             if (amount < 0) {
                 deleteStoredItem(containerId, itemId);
                 return;

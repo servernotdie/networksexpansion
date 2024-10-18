@@ -4,7 +4,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.ItemContainer;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.AdvancedGreedyBlock;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import com.balugaq.netex.utils.NetworksVersionedParticle;
 import io.github.mooy1.infinityexpansion.items.storage.StorageCache;
 import io.github.mooy1.infinityexpansion.items.storage.StorageUnit;
@@ -604,7 +604,7 @@ public class NetworkRoot extends NetworkNode {
 
             final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(testLocation);
 
-            if (slimefunItem instanceof CargoStorageUnit) {
+            if (slimefunItem instanceof NetworksDrawer) {
                 final StorageUnitData data = getCargoStorageUnitData(testLocation);
                 if (data != null) {
                     dataSet.put(data, testLocation);
@@ -718,12 +718,12 @@ public class NetworkRoot extends NetworkNode {
 
     @Nullable
     private StorageUnitData getCargoStorageUnitData(@Nonnull BlockMenu blockMenu) {
-        return CargoStorageUnit.getStorageData(blockMenu.getLocation());
+        return NetworksDrawer.getStorageData(blockMenu.getLocation());
     }
 
     @Nullable
     private StorageUnitData getCargoStorageUnitData(@Nonnull Location location) {
-        return CargoStorageUnit.getStorageData(location);
+        return NetworksDrawer.getStorageData(location);
     }
 
     @Nonnull
@@ -1577,7 +1577,7 @@ public class NetworkRoot extends NetworkNode {
 
             final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(testLocation);
 
-            if (slimefunItem instanceof CargoStorageUnit) {
+            if (slimefunItem instanceof NetworksDrawer) {
                 final StorageUnitData data = getCargoStorageUnitData(testLocation);
                 if (data != null) {
                     dataSet.put(data, testLocation);
@@ -1618,7 +1618,7 @@ public class NetworkRoot extends NetworkNode {
 
             final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(testLocation);
 
-            if (slimefunItem instanceof CargoStorageUnit) {
+            if (slimefunItem instanceof NetworksDrawer) {
                 final StorageUnitData data = getCargoStorageUnitData(testLocation);
                 if (data != null) {
                     dataSet.put(data, testLocation);
