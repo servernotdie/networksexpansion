@@ -66,7 +66,7 @@ public class DataSource {
                 storageData.getSizeType().ordinal() + "," +
                 (storageData.isPlaced() ? 1 : 0) + ",'" +
                 DataStorage.formatLocation(storageData.getLastLocation()) + "');";
-        scheduleExecute(sql, "保存新存储单元信息时发生异常：");
+        scheduleExecute(sql, Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-saving-new-data"));
     }
 
     int getNextContainerId() {
@@ -77,7 +77,7 @@ public class DataSource {
             sql = "INSERT INTO " + DataTables.ENVIRONMENT + " VALUES ('" + CONTAINER_ID_KEY + "'," + nextContainerId + ");";
             environment.put(CONTAINER_ID_KEY, "" + nextContainerId);
         }
-        scheduleExecute(sql, "更新环境变量时发生异常：");
+        scheduleExecute(sql, Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-updating-environment-var"));
 
         return re;
     }
@@ -104,7 +104,7 @@ public class DataSource {
                 re = new StorageUnitData(result.getInt("ContainerID"), result.getString("PlayerUUID"), StorageUnitType.values()[result.getInt("SizeType")], result.getBoolean("IsPlaced"), l, getStoredItem(id));
             }
         } catch (SQLException e) {
-            logger.warning("读取存储单元信息时发生异常：");
+            logger.warning(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-loading-data"));
             e.printStackTrace();
         }
         return re;
@@ -136,7 +136,7 @@ public class DataSource {
                 stat.execute("INSERT INTO " + DataTables.ITEM_STACK + " VALUES (" + re + ",'" + getBase64String(clone) + "');");
                 return true;
             } catch (SQLException | IOException e) {
-                logger.warning("物品更新发生异常：");
+                logger.warning(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-saving-itemstack"));
                 e.printStackTrace();
                 return false;
             }
@@ -147,13 +147,13 @@ public class DataSource {
 
     void updateContainer(int id, String key, String value) {
         String sql = "UPDATE " + DataTables.CONTAINER + " SET " + key + " = '" + value + "' WHERE ContainerID = " + id + ";";
-        scheduleExecute(sql, "容器更新发生异常：");
+        scheduleExecute(sql, Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-updating-container-data"));
     }
 
     void addStoredItem(int containerId, int itemId, int amount) {
         if (amount <= 0) return;
         String sql = "INSERT INTO " + DataTables.ITEM_STORED + " VALUES(" + containerId + "," + itemId + "," + amount + ");";
-        scheduleExecute(sql, "存储更新发生异常：");
+        scheduleExecute(sql, Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-updating-storage"));
     }
 
     void updateItemAmount(int containerId, int itemId, int amount) {
@@ -167,12 +167,12 @@ public class DataSource {
             return;
         }
         String sql = "UPDATE " + DataTables.ITEM_STORED + " SET Amount = " + amount + " WHERE ContainerID = " + containerId + " AND ItemID = " + itemId + ";";
-        scheduleExecute(sql, "存储更新发生异常：");
+        scheduleExecute(sql, Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-updating-storage"));
     }
 
     void deleteStoredItem(int containerId, int itemId) {
         String sql = "DELETE FROM " + DataTables.ITEM_STORED + " WHERE ContainerID = " + containerId + " AND ItemID = " + itemId + ";";
-        scheduleExecute(sql, "存储更新发生异常：");
+        scheduleExecute(sql, Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-updating-storage"));
     }
 
     int getIdFromLocation(Location l) {
@@ -182,7 +182,7 @@ public class DataSource {
                 return resultSet.getInt(1);
             }
         } catch (SQLException e) {
-            logger.warning("容器恢复发生异常：");
+            logger.warning(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-fixing-data"));
             e.printStackTrace();
         }
         return -1;
@@ -192,7 +192,7 @@ public class DataSource {
         File dataFolder = Networks.getInstance().getDataFolder();
         if (!dataFolder.exists() || !dataFolder.isDirectory()) {
             if (!dataFolder.mkdir()) {
-                throw new IllegalStateException("无法创建数据文件夹");
+                throw new IllegalStateException(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-creating-data-folder"));
             }
         }
         Class.forName("org.sqlite.JDBC");
@@ -217,7 +217,7 @@ public class DataSource {
                     itemMap.put(result.getInt("ItemID"), getItemStack(result.getString("Item")));
                 }
             } catch (SQLException | IOException | ClassNotFoundException e) {
-                logger.warning("物品加载发生异常：");
+                logger.warning(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-loading-itemstack"));
                 e.printStackTrace();
             }
         });
@@ -233,7 +233,7 @@ public class DataSource {
                     environment.put(result.getString(1), result.getString(2));
                 }
             } catch (SQLException e) {
-                logger.warning("环境加载发生异常：");
+                logger.warning(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-loading-environment-var"));
                 e.printStackTrace();
             }
         });
@@ -273,7 +273,7 @@ public class DataSource {
                         }
                     } catch (SQLException e) {
                         success = false;
-                        logger.warning("读取存储物品时发生异常：");
+                        logger.warning(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-loading-storage"));
                         e.printStackTrace();
                     }
                 });
@@ -298,7 +298,7 @@ public class DataSource {
         ) {
             usage.accept(result);
         } catch (SQLException e) {
-            logger.warning("数据请求发生异常：");
+            logger.warning(Networks.getLocalizationService().getString("messages.data-saving.error-occurred-when-executing-query"));
             e.printStackTrace();
         }
     }

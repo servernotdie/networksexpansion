@@ -1,6 +1,7 @@
 package com.balugaq.netex.api.enums;
 
 import com.ytdd9527.networksexpansion.utils.TextUtil;
+import io.github.sefiraat.networks.Networks;
 
 public enum TransportMode {
     NONE,
@@ -17,13 +18,13 @@ public enum TransportMode {
 
     public String getRawName() {
         return switch (this) {
-            case NONE -> "无限制";
-            case NULL_ONLY -> "仅空";
-            case NONNULL_ONLY -> "仅非空";
-            case FIRST_ONLY -> "仅首位";
-            case LAST_ONLY -> "仅末位";
-            case FIRST_STOP -> "首位阻断";
-            case LAZY -> "懒惰模式";
+            case NONE -> Networks.getLocalizationService().getString("icons.transport_mode.none");
+            case NULL_ONLY -> Networks.getLocalizationService().getString("icons.transport_mode.null_only");
+            case NONNULL_ONLY -> Networks.getLocalizationService().getString("icons.transport_mode.nonnull_only");
+            case FIRST_ONLY -> Networks.getLocalizationService().getString("icons.transport_mode.first_only");
+            case LAST_ONLY -> Networks.getLocalizationService().getString("icons.transport_mode.last_only");
+            case FIRST_STOP -> Networks.getLocalizationService().getString("icons.transport_mode.first_stop");
+            case LAZY -> Networks.getLocalizationService().getString("icons.transport_mode.lazy");
         };
     }
 

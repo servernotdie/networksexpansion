@@ -370,4 +370,10 @@ public class LocalizationService {
     public ItemStack getIcon(String key, Material material) {
         return getItemStack("icons." + key, material);
     }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public ItemStack getMechanism(String key) {
+        return getIcon("mechanisms." + key, Material.BOOK);
+    }
 }

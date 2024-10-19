@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.network.pusher;
 
+import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.NodeDefinition;
@@ -7,11 +8,9 @@ import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
 import io.github.sefiraat.networks.slimefun.network.NetworkDirectional;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Color;
@@ -25,10 +24,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class AbstractNetworkPusher extends NetworkDirectional {
-
-    public static final CustomItemStack TEMPLATE_BACKGROUND_STACK = new CustomItemStack(
-            Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "指定需要推送的物品"
-    );
     private static final int NORTH_SLOT = 11;
     private static final int SOUTH_SLOT = 29;
     private static final int EAST_SLOT = 21;
@@ -140,7 +135,7 @@ public abstract class AbstractNetworkPusher extends NetworkDirectional {
     @Nullable
     @Override
     protected ItemStack getOtherBackgroundStack() {
-        return TEMPLATE_BACKGROUND_STACK;
+        return Icon.PUSHER_TEMPLATE_BACKGROUND_STACK;
     }
 
     @Nonnull

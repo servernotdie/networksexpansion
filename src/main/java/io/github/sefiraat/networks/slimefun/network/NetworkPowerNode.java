@@ -50,7 +50,7 @@ public class NetworkPowerNode extends NetworkObject implements EnergyNetComponen
 
     @Override
     public void preRegister() {
-        // 只有当 useSpecialModel 为 true 时，才添加放置处理器
+
         if (useSpecialModel) {
             addItemHandler(new BlockPlaceHandler(false) {
                 @Override
@@ -60,7 +60,6 @@ public class NetworkPowerNode extends NetworkObject implements EnergyNetComponen
                     Block aboveBlock = block.getWorld().getBlockAt(block.getLocation().add(0, 1, 0));
                     aboveBlock.setType(Material.BARRIER);
 
-                    // 记录两个方块的位置关系
                     placedBlocks.put(block, aboveBlock);
                     placedBlocks.put(aboveBlock, block);
 
@@ -69,7 +68,6 @@ public class NetworkPowerNode extends NetworkObject implements EnergyNetComponen
             });
         }
 
-        // 添加破坏处理器，不管 useSpecialModel 的值如何，破坏时的逻辑都应该执行
         addItemHandler(new BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
@@ -77,15 +75,12 @@ public class NetworkPowerNode extends NetworkObject implements EnergyNetComponen
                 Block pairedBlock = placedBlocks.get(brokenBlock);
 
                 if (pairedBlock != null) {
-                    // 如果找到了配对的方块，执行删除逻辑
                     removeDisplay(brokenBlock.getLocation());
                     removeDisplay(pairedBlock.getLocation());
 
-                    // 清除记录
                     placedBlocks.remove(brokenBlock);
                     placedBlocks.remove(pairedBlock);
 
-                    // 将两个方块都设置为空气
                     brokenBlock.setType(Material.AIR);
                     pairedBlock.setType(Material.AIR);
                 }

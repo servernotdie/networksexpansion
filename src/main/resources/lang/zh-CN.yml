@@ -1,10 +1,49 @@
 # <click_info> = Theme.CLICK_INFO
 messages:
+  blueprint:
+    title: "<click_info>已指定配方"
+    empty: "<passive>空"
+    output: "<click_info>输出物品"
+  data-saving:
+    saving-drawer: "正在保存网络抽屉物品数据..."
+    saved-drawer: "保存成功!"
+    error-occurred-when-creating-data-folder: "无法创建数据文件夹"
+    error-occurred-when-saving-new-data: "保存新存储单元信息时发生异常："
+    error-occurred-when-updating-environment-var: "更新环境变量时发生异常："
+    error-occurred-when-loading-data: "读取存储单元信息时发生异常："
+    error-occurred-when-saving-itemstack: "物品更新发生异常："
+    error-occurred-when-updating-container-data: "容器更新发生异常："
+    error-occurred-when-updating-storage: "存储更新发生异常："
+    error-occurred-when-fixing-data: "容器恢复发生异常："
+    error-occurred-when-loading-itemstack: "物品加载发生异常："
+    error-occurred-when-loading-environment-var: "环境加载发生异常："
+    error-occurred-when-loading-storage: "读取存储物品时发生异常："
+    error-occurred-when-executing-query:  "数据请求发生异常："
+  guide:
+    survival-title: "&a网络拓展指南 &7(箱子界面)"
+    creative-title: "&c网络拓展指南 &4(作弊模式)"
+    locked-in: "&f需要在 %s 中解锁"
+    no-permission: "&f无权限"
+    cost-vault: " 游戏币"
+    cost-level: " 级经验"
+    click-to-research: "&a> 单击解锁"
+    cost: "&7需要 &b"
+    searching: "你正在搜索: %item%"
+    back: "&f左键: &7返回上一页"
+    super-back: "&fShift + 左键: &7返回主菜单"
+    survival: "网络拓展指南 (生存模式)"
+    creative: "网络拓展指南 (作弊模式)"
+    internal-error: "&4服务器发生了一个内部错误. 请联系管理员处理."
+    error-occurred: "在打开指南书里的 Slimefun 物品时发生了意外!"
   debug:
     info: "%s - %s"
     viewer-info: "<warning>%s - %s"
     toggle-debug: "<success>该方块的调试模式已设置为：%s。"
     enable-debug: "<success>该模式将持续至服务器关闭，或者手动关闭。"
+    wildchests: "WildChests 已安装：%s"
+    ischest: "该方块是否被 WildChest 判断为方块：%s"
+    wildchests_test_success: "WildChests 测试成功！"
+    wildchests_test_failed: "WildChests 测试失败！"
   commands:
     no-permission: "&c你没有权限执行该指令!"
     no-item-in-hand: "&c你必须在手上持有物品!"
@@ -17,6 +56,9 @@ messages:
     viewer-removed: "&a已将你从该 AdminDebuggable 的日志查看者列表中移除."
     invalid-quantum-storage: "<error>这是一个无效的量子存储"
     must-look-at-quantum-storage: "&c你必须指着一个网络存储才能执行该指令!"
+    must-look-at-drawer: "&c你必须指着一个网络抽屉才能执行该指令!"
+    invalid-drawer: "<error>该网络抽屉不存在或已损坏!"
+    updated-drawer: "&a已更新物品"
     must-hand-item: "&c你必须手持物品才能执行该指令!"
     must-hand-blueprint: "<error>你必须手持蓝图"
     invalid-blueprint: "<error>无法获取蓝图NBT"
@@ -28,6 +70,10 @@ messages:
     cannot-update-cargo-storage-unit: "<error>暂不支持更新网络抽屉"
     updated-item: "<success>已更新物品"
     updated-item-in-quantum-storage: "<success>已更新存储内的物品!"
+    wait-for-data: "<green>已请求数据，请稍候..."
+    set-container-id: "&a已设置位于为 %s 的网络抽屉的容器ID为 %d."
+    invalid-slot-index: "<error>槽位号必须在 0-%d 之间!"
+    empty-slot: "<error>该槽位没有物品!"
     help:
       - "&6网络命令帮助:"
       - "&6/networks help - 显示此帮助信息."
@@ -92,6 +138,10 @@ messages:
       set-slot-done: "&aSet slot %s to %s done in %s ms"
       pasting-block: "&aPasting blocks from %s to %s"
       paste-done: "&aPaste %s blocks done in %s ms"
+      setting-info: "&aSetting %s to %s"
+      set-info-done: "&aSet %s to %s done in %s ms"
+      removing-info: "&aRemoving %s"
+      remove-info-done: "&aRemove %s done in %s ms"
       invalid-slimefun-block-id: "&c这不是一个有效的粘液方块ID!"
       not-a-placeable-block: "&c不可放置的粘液方块!"
       set-pos1: "&aSet pos1 to %s"
@@ -100,10 +150,24 @@ messages:
       set-pos2-with-blocks: "&aSet pos2 to %s (%s Blocks)"
       invalid-slot: "&c槽位号必须在0-53之间!"
   normal-operation:
+    quantum_cache:
+      empty: "空"
+      stored_item: "<click_info>物品: %s"
+      stored_amount: "<click_info>数量: <white>%s"
+      custom_max_limit: "<click_info>当前容量限制: <error>%s"
+    memory_card:
+      empty: "<warning>空"
+    item_mover:
+      stored_item: "&b已存储: %s"
+      stored_amount: "&b数量: %d"
+      suggest_use_drawers: "&c请使用网络抽屉的快速转移模式"
     quantum_storage:
       waiting_for_input_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <warning>请输入网络高级量子存储的容量.最大限制为: 2147483647!"
     grid:
       waiting_for_filter: "<warning>请输入你想要过滤的物品名称(显示名)或类型"
+      item_amount: "{0}数量: {1}{2}"
+    grid_new_style:
+      click_to_withdraw: "<passive>点击取出物品"
     directional:
       display_empty: "&7设置朝向: %s"
       display_name: "<passive>设置朝向: %s (%s)"
@@ -112,6 +176,15 @@ messages:
         - "<click_info>Shift+左键点击: <passive>打开目标方块"
       set_facing: "<success>已设置朝向此容器!"
   completed-operation:
+    decoder:
+      decode_blueprint_success: "&a蓝图解码成功!"
+    wireless_configurator:
+      transmitter_linked: "<success>已设置网络无线发射器。"
+      receiver_set: "<success>已存储网络无线接收器的位置。"
+    cargo_node_quick_tool:
+      node_set: "&9物品: %s"
+      config_saved: "&a加载成功"
+      pasted_config: "&a设置成功！"
     grid:
       filter_set: "<success>已启用过滤器"
     quantum_storage:
@@ -124,6 +197,7 @@ messages:
       expansion_title: "        网络拓展 - 组件统计      "
       distinct_items: "物品类型数量"
       total_items: "累计物品数量"
+      total_nodes: "累计节点: %s/%s"
       overburdened: "<error>警告: <passive>该网络已达到最大节点数量限制，部分节点可能会无法正常工作. 请减少网络节点的数量."
     crayon:
       enabled: "<success>已开启网络绘制"
@@ -138,7 +212,55 @@ messages:
       pasted_item: "<success>物品 [%d]: <passive>已添加到过滤器"
     drawer:
       bound_id: "&9已绑定容器ID: &e%s"
+      deposited_item: "&a已存入物品!"
+      transferred_to_quantum_storage: "&a已转移至量子存储!"
+      transferred_to_drawer: "&a已存入: %sx%d 至抽屉中!"
+      transferred_to_item_mover: "&a已转移: %sx%d 至物品转移棒中!"
+    item_mover:
+      deposit_success: "已存储 %sx%d 至物品转移棒"
+      withdraw_success: "已输出 %sx%d 至存储"
   unsupported-operation:
+    comprehensive:
+      no-permission: "&c你没有权限使用此物品!"
+      invalid_queue: "无法将任务添加到队列，请尝试重启服务器！"
+    decoder:
+      no_input: "&c没有输入蓝图"
+      not_blueprint: "&c该物品不是蓝图"
+      invalid_blueprint: "&c该物品没有蓝图信息"
+      output_full: "&c输出栏不足"
+    storage_unit_upgrade_table:
+      no_recipe_match: "&c没有合适的配方"
+    wireless_configurator:
+      not_network_wireless_block: "<error>必须对着网络无线方块使用。"
+      no_target_location: "<error>需要先设置接收器位置。"
+      not_same_world: "<error>网络无线接收器在不同的世界中。"
+    item_mover:
+      invalid_item_mover: "&c不是一个有效的物品转移棒"
+      invalid_storage: "&c请选择一个有效的存储."
+      empty_storage: "&c存储中没有可用的物品."
+      invalid_item: "&c无法获取物品."
+      empty_mover: "&c没有可用的物品."
+      full_storage: "&c存储已满"
+    encoder:
+      not_enough_power: "<warning>网络中的电力不足，无法完成该任务"
+      invalid_blueprint: "<warning>你需要提供一个正确的空白的蓝图"
+      disabled_blueprint: "<warning>该蓝图已被禁用"
+      disabled_output: "<warning>该配方的输出已被禁用"
+      invalid_recipe: "<warning>这似乎不是一个有效的配方"
+      output_full: "<warning>需要清空输出烂"
+    cargo_node_quick_tool:
+      invalid_tool: "&c工具无效，请勿堆叠使用"
+      invalid_node: "&c请指向一个货运节点"
+      not-enough-items: "&c没有足够的材料"
+      node-type-not-same: "&c储存的配置种类与目标不一致"
+      no-config: "&c请先加载一个配置"
+    display:
+      unknown_type: "未知的展示组类型 '%s', 特殊模型已禁用。"
+    memory_card:
+      blacklisted_item: "<warning>该物品无法存储至内存卡中"
+      invalid_amount: "<warning>请单独拿出一张内存卡，不要堆叠"
+      not_empty: "<warning>只有空内存卡才能分配物品"
+    can_cooldown: "<warning>探测器仍在冷却中"
     drawer:
       already_exists: "&c该容器已在其它位置存在!"
       invalid_container: "&c请在量子存储槽放入量子存储 或 物品转移棒"
@@ -153,6 +275,8 @@ messages:
       item_mover_empty: "&c物品转移棒中没有物品"
       item_mover_item_mismatch: "&c物品不匹配"
     directional:
+      limit_quantity: "<random_color>当前数量: %s"
+      mode: "<random_color>当前模式: <mechanism>%s"
       unexcepted_value: "意外的值: %s"
     remote:
       must_connect_to_grid: "<error>必须连接到一个网格"
@@ -235,10 +359,131 @@ messages:
     not-found-slimehud: "你必须更新 SlimeHUD 才能让网络添加相关功能. "
     found-netheopoiesis: "检测到安装了下界乌托邦，注册相关物品！"
     not-found-netheopoiesis: "你必须安装下界乌托邦才能让相关物品注册. "
+    slimehud:
+      empty_quantum_storage: "&7| 空"
+    netheopoiesis:
+      dirt_tips: "(或净化等级更高的)"
+      dirt_level:
+        highest: "下界草方块"
+        high: "贪婪泥土"
+      stone_chunk_seed:
+        name: "石块之种"
+        lore:
+          - "这种植物成熟后,"
+          - "收获时将获得石块."
+      synthetic_seed:
+        name: "人造之种"
+        lore:
+          - "这个种子没有任何效果."
+      synthetic_emerald_seed:
+        name: "人造绿宝石之种"
+        lore:
+          - "这种植物成熟后,"
+          - "收获时将获得人造绿宝石."
+      synthetic_diamond_seed:
+        name: "人造钻石之种"
+        lore:
+          - "这种植物成熟后,"
+          - "收获时将获得人造钻石."
+      fragmented_seed:
+        name: "碎片之种"
+        lore:
+          - "这种植物成熟后,"
+          - "收获时将获得人造绿宝石碎片."
   save-all: "正在保存网络拓展数据."
 icons:
+  craft-button-stack-6x6:
+    name: "<click_info>合成"
+    lore:
+      - ""
+  craft-button-stack-3x3:
+    name: "<click_info>合成"
+    lore:
+      - ""
+  craft-button:
+    name: "<click_info>合成",
+    lore:
+      - "<click_info>左键点击: <passive>合成",
+      - "<click_info>Shift+左键点击: <passive>将合成台内物品送回网络"
+  docs_icon:
+    click_to_visit_wiki: "单击此处访问Wiki"
+    name: "附属 Wiki"
+    lore:
+      - "点击获取网络的 Wiki 链接"
+  transport_mode:
+    none: "无限制"
+    null_only: "仅空"
+    nonnull_only: "仅非空"
+    first_only: "仅首位"
+    last_only: "仅末位"
+    first_stop: "首位阻断"
+    lazy: "懒惰模式"
+  mechanism:
+    transfers:
+      data_title: "&a⇩传输数据⇩"
+      max_distance: "&7[&a最大距离&7]&f:&6%d 方块"
+      push_tick: "&7[&a推送频率&7]&f:&7 每 &6%d SF tick &7推送一次"
+      grab_tick: "&7[&a抓取频率&7]&f:&7 每 &6%d SF tick &7抓取一次"
+      required_power: "&7[&a运输耗电&7]&f:&7 每次运输消耗 &6%d J 网络电力"
+    advanced_purger:
+      name: "&a ⇩清理机制⇩"
+      lore:
+        - "",
+        - "&e&f功能描述:"
+        - "&f-&7 网络高级清除器会从网络中"
+        - "&f-&7 不断地移除指定物品(需要按顺序放置)"
+        - "&f-&7 清除的物品会立即消失，谨慎使用!"
+    import:
+      name: "&a ⇩导入机制⇩"
+      lore:
+        - "&7智能自动化物品收集与网络集成系统"
+        - ""
+        - "&e核心特性&f:"
+        - "&f-&7 实时监控：持续检测所有54个输入槽位的物品状态"
+        - "&f-&7 动态传输：基于设定频率，智能地将物品批量传输至网络"
+        - ""
+        - "&e使用指南&f:"
+        - "&f-&7 将待导入物品放置于输入槽位"
+        - "&f-&7 自动执行物品导入流程，释放双手，提升效率"
+    export:
+      name: "&a ⇩运输机制⇩"
+      lore:
+        - ""
+        - "&e每 SF tick 尝试从网络中获取指定数量的输入槽内的所有物品并输出到输出槽"
   drawer:
+    click_to_disable: "&e点击禁用"
+    click_to_enable: "&e点击启用"
     stored_item: "&b存储数量: &e%s &7/ &6%s"
+    storage_info:
+      enabled: "&a✔"
+      disabled: "&4✘"
+      name: "&c存储信息"
+      id: "&b容器ID: &a%s"
+      type_count: "&b物品种类: &e%s &7/ &6%s"
+      max_each: "&b容量上限: &e%s &7* &6%s"
+      locked: "&b内容锁定模式: %s"
+      void_excess: "&b满载清空模式: %s"
+    content_lock:
+      locked: "&c已锁定"
+      unlocked: "&a未锁定"
+      name: "&6内容锁定模式"
+      lore_before_status:
+        - ""
+      status: "&b状态: %s"
+      lore_after_status:
+        - ""
+        - "&7当容器锁定后，将仅允许当前存在的物品输入"
+        - "&7并且输出时将会留下至少一个物品"
+    void_excess:
+      voidExcess: "&a已开启"
+      unVoidExcess: "&c未关闭"
+      name: "&6满载清空模式"
+      lore_before_status:
+        - ""
+      status: "&b状态: %s"
+      lore_after_status:
+        - ""
+        - "&7开启此模式后，超过存储上限的物品的数量不会再增加，但仍能存入"
     quick_transfer:
       name: "&6快速转移模式"
       lore_before_status:
@@ -258,6 +503,7 @@ icons:
     location_error:
       name: "&c位置错误"
       lore_before_info:
+        - ""
         - "&e这个容器已在其它位置存在",
         - "&e请不要将同ID的容器放在多个不同的位置",
         - "&e如果您认为这是个意外，请联系管理员处理",
@@ -462,6 +708,10 @@ icons:
       - "&7> [左键]点击将物品取出并填满你的物品栏"
       - "&7> [右键]点击取出1个物品"
       - "&7> [shift+右键]点击取出64个物品"
+  action-button:
+    name: "&6点击升级"
+    lore:
+      - ""
   recipe-types:
     expansion_workbench_6x6:
       name: "网络拓展工作台6x6"
@@ -622,8 +872,8 @@ items:
     name: "网络粘液创世神"
     lore:
       - "仅管理员可用"
-      - "右键选择第一个位置"
-      - "Shift + 右键选择第二个位置"
+      - "左键选择第一个位置"
+      - "右键选择第二个位置"
 
   NTW_EXPANSION_INFO_TOOL:
     name: "网络信息工具"
@@ -2891,12 +3141,13 @@ groups:
   disabled_items: "<main>已禁用/移除的物品"
   expansion:
     slimefun:
+      main: "<color_random_string>网络拓展 - NetworksExpansion"
       items: "<color_random_string>网络拓展 - 物品"
       cargo_system: "<color_random_string>网络拓展 - 货运与存储"
       functional_machine: "<color_random_string>网络拓展 - 功能机器"
       trophy: "<color_random_string>网络拓展 - 贡献"
     custom:
-      main_item_group: "<color_random_string>Networks - Expansion"
+      main_item_group: "<color_random_string>NetworksExpansion"
       main_menu_item: "<color_random_string>物品"
       sub_menu_tool: "<color_random_string>物品 - 工具"
       sub_menu_blueprint: "<color_random_string>物品 - 蓝图"
@@ -2913,3 +3164,26 @@ groups:
       main_menu_trophy: "<color_random_string>贡献"
       sub_menu_author: "<color_random_string>贡献 - 作者"
       sub_menu_announce: "<color_random_string>贡献 - 声明"
+theme:
+  gold: ""
+  white: ""
+  aqua: ""
+  warning: "警告"
+  error: "错误"
+  notice: "通知"
+  passive: ""
+  success: "成功"
+  main: "网络"
+  click_info: "单击此处"
+  research: "研究"
+  crafting: "合成材料"
+  machine: "机器"
+  tool: "工具"
+  mechanism: "装置"
+  fuel: "燃料"
+  material_class: "材料"
+  recipe_type: "配方类型"
+  guide: "指南"
+  name_not_found: "Name not found"
+  lore_not_found: "Lore not found"
+  model: " &f(&a模型&f)"

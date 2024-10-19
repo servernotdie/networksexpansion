@@ -87,10 +87,10 @@ public class NetworksMain implements TabExecutor {
 
     public static String locationToString(Location l) {
         if (l == null) {
-            return "Unknown";
+            return Networks.getLocalizationService().getString("icons.drawer.location_error.unknown");
         }
         if (l.getWorld() == null) {
-            return "Unknown";
+            return Networks.getLocalizationService().getString("icons.drawer.location_error.unknown");
         }
         return l.getWorld().getName() + "," + l.getBlockX() + "," + l.getBlockY() + "," + l.getBlockZ();
     }
@@ -207,7 +207,7 @@ public class NetworksMain implements TabExecutor {
     private static void addStorageItem(Player player, int amount) {
         final Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         if (targetBlock == null || targetBlock.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
@@ -219,18 +219,18 @@ public class NetworksMain implements TabExecutor {
 
         final SlimefunBlockData blockData = StorageCacheUtils.getBlock(targetBlock.getLocation());
         if (blockData == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(targetBlock.getLocation());
         if (slimefunItem == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         if (!(slimefunItem instanceof NetworksDrawer)) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
         }
 
         final Location targetLocation = targetBlock.getLocation();
@@ -238,20 +238,20 @@ public class NetworksMain implements TabExecutor {
         final StorageUnitData data = NetworksDrawer.getStorageData(targetLocation);
 
         if (data == null) {
-            player.sendMessage(Theme.ERROR + "该网络抽屉不存在或已损坏!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.invalid-drawer"));
             return;
         }
 
         clone.setAmount(amount);
         data.depositItemStack(clone, false);
         NetworksDrawer.setStorageData(targetLocation, data);
-        player.sendMessage(ChatColor.GREEN + "已更新物品");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.commands.updated-drawer"));
     }
 
     private static void reduceStorageItem(Player player, int amount) {
         final Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         if (targetBlock == null || targetBlock.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
@@ -263,18 +263,18 @@ public class NetworksMain implements TabExecutor {
 
         final SlimefunBlockData blockData = StorageCacheUtils.getBlock(targetBlock.getLocation());
         if (blockData == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(targetBlock.getLocation());
         if (slimefunItem == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         if (!(slimefunItem instanceof NetworksDrawer)) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
         }
 
         final Location targetLocation = targetBlock.getLocation();
@@ -282,44 +282,39 @@ public class NetworksMain implements TabExecutor {
         final StorageUnitData data = NetworksDrawer.getStorageData(targetLocation);
 
         if (data == null) {
-            player.sendMessage(Theme.ERROR + "该网络抽屉不存在或已损坏!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.invalid-drawer"));
             return;
         }
 
         clone.setAmount(1);
         data.requestItem(new ItemRequest(clone, amount));
         NetworksDrawer.setStorageData(targetLocation, data);
-        player.sendMessage(ChatColor.GREEN + "已更新物品");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.commands.updated-drawer"));
     }
 
     public static void setContainerId(Player player, int containerId) {
         final Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         if (targetBlock == null || targetBlock.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(targetBlock.getLocation());
         if (slimefunItem == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         if (!(slimefunItem instanceof NetworksDrawer)) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         final Location location = targetBlock.getLocation();
 
-        player.sendMessage(ChatColor.GREEN + "已请求数据，请稍候...");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.commands.wait-for-data"));
         NetworksDrawer.requestData(location, containerId);
-        player.sendMessage(ChatColor.GREEN +
-                "已设置位于为" + location.getWorld().getName()
-                + " " + location.getBlockX()
-                + " " + location.getBlockY()
-                + " " + location.getBlockZ()
-                + " 的网络抽屉的容器ID为" + containerId + ".");
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.set-container-id"), locationToString(location), containerId));
     }
 
 
@@ -532,7 +527,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        player.sendMessage(ChatColor.GREEN + "Setting " + key + " to " + value);
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.setting-info"), key, value));
         final long currentMillSeconds = System.currentTimeMillis();
 
         final AtomicInteger count = new AtomicInteger();
@@ -543,7 +538,7 @@ public class NetworksMain implements TabExecutor {
             }
         }));
 
-        player.sendMessage("Set " + key + " done in " + (System.currentTimeMillis() - currentMillSeconds) + "ms");
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.setting-info"), key, System.currentTimeMillis() - currentMillSeconds));
     }
 
     public static void worldeditBlockInfoRemove(Player player, String key) {
@@ -557,7 +552,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        player.sendMessage(ChatColor.GREEN + "Removing " + key);
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.removing-info"), key));
         final long currentMillSeconds = System.currentTimeMillis();
 
         final AtomicInteger count = new AtomicInteger();
@@ -567,7 +562,7 @@ public class NetworksMain implements TabExecutor {
                 count.addAndGet(1);
             }
         }));
-        player.sendMessage("Remove " + key + " done in " + (System.currentTimeMillis() - currentMillSeconds) + "ms");
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.removing-info"), key, System.currentTimeMillis() - currentMillSeconds));
     }
 
     private static void updateItem(Player player) {
@@ -615,41 +610,41 @@ public class NetworksMain implements TabExecutor {
     public static void getStorageItem(Player player, int slot) {
         final Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         if (targetBlock == null || targetBlock.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         final SlimefunBlockData blockData = StorageCacheUtils.getBlock(targetBlock.getLocation());
         if (blockData == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(targetBlock.getLocation());
         if (slimefunItem == null) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
             return;
         }
 
         if (!(slimefunItem instanceof NetworksDrawer)) {
-            player.sendMessage(ChatColor.RED + "你必须指着一个网络抽屉才能执行该指令!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.must-look-at-drawer"));
         }
 
         final Location targetLocation = targetBlock.getLocation();
         final StorageUnitData data = NetworksDrawer.getStorageData(targetLocation);
 
         if (data == null) {
-            player.sendMessage(Theme.ERROR + "该网络抽屉不存在或已损坏!");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.invalid-drawer"));
             return;
         }
 
         final List<ItemContainer> stored = data.getStoredItems();
         if (slot >= stored.size()) {
-            player.sendMessage(Theme.ERROR + "槽位号必须在0-" + (stored.size() - 1) + "之间!");
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.invalid-slot"), stored.size() - 1));
         } else {
             final ItemStack stack = stored.get(slot).getSample();
             if (stack == null || stack.getType() == Material.AIR) {
-                player.sendMessage(Theme.ERROR + "该槽位没有物品!");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.commands.empty-slot"));
                 return;
             }
 
@@ -746,7 +741,7 @@ public class NetworksMain implements TabExecutor {
             }
         }
 
-        // 玩家或控制台皆可
+        // Player or console
         switch (args[0].toLowerCase(Locale.ROOT)) {
             case "help" -> {
                 if (sender.isOp()) {
@@ -762,7 +757,7 @@ public class NetworksMain implements TabExecutor {
             }
         }
 
-        // 仅玩家
+        // Player only
         if (sender instanceof Player player) {
             switch (args[0].toLowerCase(Locale.ROOT)) {
                 case "fillquantum" -> {

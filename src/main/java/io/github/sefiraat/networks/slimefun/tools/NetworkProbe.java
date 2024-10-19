@@ -151,7 +151,7 @@ public class NetworkProbe extends SlimefunItem implements CanCooldown {
             player.sendMessage(formatter(Networks.getLocalizationService().getString("messages.completed-operation.probe.distinct_items"), distinctItems));
             player.sendMessage(formatter(Networks.getLocalizationService().getString("messages.completed-operation.probe.total_items"), totalItems));
             player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.probe.split"));
-            player.sendMessage(formatter("累计节点", nodeCount + "/" + root.getMaxNodes()));
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.completed-operation.probe.total_nodes"), nodeCount, root.getMaxNodes()));
             if (root.isOverburdened()) {
                 player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.probe.overburdened"));
             }

@@ -474,7 +474,6 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
             }
         }
 
-        // 同步更新区块状态和界面显示
         syncBlock(b.getLocation(), cache);
         updateDisplayItem(menu, cache);
     }
@@ -486,41 +485,38 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         ItemStack storedItem = cache.getItemStack();
         int stored = Math.toIntExact(cache.getAmount());
         if (action.isShiftClicked() && action.isRightClicked()) {
-            // 如果同时按下Shift和右键，提取64个物品
             ItemStack extractedItem = cache.withdrawItem(64);
             if (extractedItem != null) {
                 ItemStackUtil.giveOrDropItem(p, extractedItem);
             }
         } else if (action.isRightClicked()) {
-            // 如果只按下右键，提取单个物品
             ItemStack extractedItem = cache.withdrawItem(1);
             if (extractedItem != null) {
                 ItemStackUtil.giveOrDropItem(p, extractedItem);
             }
         } else {
             PlayerInventory inv = p.getInventory();
-            ItemStack[] contents = inv.getStorageContents(); // 获取玩家背包内容
+            ItemStack[] contents = inv.getStorageContents();
 
             for (int i = 0; i < contents.length; i++) {
                 if (contents[i] == null || contents[i].getType() == Material.AIR) {
-                    // 玩家背包中有空槽位
-                    if (stored == 0) break; // 如果量子存储已空，退出循环
+                    if (stored == 0) break;
 
                     int amountToExtract = Math.min(stored, storedItem.getMaxStackSize());
                     ItemStack itemToInsert = storedItem.clone();
                     itemToInsert.setAmount(amountToExtract);
-                    contents[i] = itemToInsert; // 尝试填入物品
+                    contents[i] = itemToInsert;
 
-                    cache.reduceAmount(amountToExtract); // 减少量子存储中的物品数量
-                    stored -= amountToExtract; // 更新已存储的物品数量
+                    cache.reduceAmount(amountToExtract);
+                    stored -= amountToExtract;
 
-                    if (stored == 0) break; // 如果量子存储已空，退出循环
+                    if (stored == 0) break;
                 }
             }
 
-            p.getInventory().setStorageContents(contents); // 设置玩家背包内容
-            syncBlock(b.getLocation(), cache); // 同步区块状态
-            updateDisplayItem(menu, cache); // 更新界面显示
+            p.getInventory().setStorageContents(contents);
+            syncBlock(b.getLocation(), cache);
+            updateDisplayItem(menu, cache);
         }
     }
 

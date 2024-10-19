@@ -65,8 +65,8 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
         addItemSetting(this.tickRate);
 
 
-        for (int testitemslot : TEST_ITEM_SLOT) {
-            this.getSlotsToDrop().add(testitemslot);
+        for (int testItemSlot : TEST_ITEM_SLOT) {
+            this.getSlotsToDrop().add(testItemSlot);
         }
         addItemHandler(
                 new BlockTicker() {
@@ -166,19 +166,16 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
 
     @Override
     public void preRegister() {
-        // 只有当 useSpecialModel 为 true 时，才添加放置处理器
         if (useSpecialModel) {
             addItemHandler(new BlockPlaceHandler(false) {
                 @Override
                 public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
-                    // 放置方块时的逻辑
                     e.getBlock().setType(Material.BARRIER);
                     setupDisplay(e.getBlock().getLocation());
                 }
             });
         }
 
-        // 添加破坏处理器，不管 useSpecialModel 的值如何，破坏时的逻辑都应该执行
         addItemHandler(new BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
@@ -227,14 +224,7 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>();
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a ⇩清理机制⇩",
-                "",
-                "&e&f功能描述:",
-                "&f-&7 网络高级清除器会从网络中",
-                "&f-&7 不断地移除指定物品(需要按顺序放置)",
-                "&f-&7 清除的物品会立即消失，谨慎使用!"
-        ));
+        displayRecipes.add(Networks.getLocalizationService().getMechanism("advanced_purger"));
         return displayRecipes;
     }
 }

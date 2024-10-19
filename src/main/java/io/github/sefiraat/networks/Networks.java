@@ -49,6 +49,7 @@ import java.util.Map;
 import java.util.logging.Level;
 
 public class Networks extends JavaPlugin implements SlimefunAddon {
+    private static final String DEFAULT_LANGUAGE = "zh-CN";
     private static Networks instance;
     private static DataSource dataSource;
     private static QueryQueue queryQueue;
@@ -115,10 +116,19 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         instance = this;
 
+        getLogger().info("loading language");
         this.configManager = new ConfigManager();
         localizationService = new LocalizationService(this);
-        localizationService.addLanguage(configManager.getLanguage());
-        localizationService.addLanguage("zh-CN");
+        String language = configManager.getLanguage();
+        try {
+            localizationService.addLanguage(language);
+            getLogger().info("Language " + language + " loaded successfully.");
+        } catch (Exception e) {
+            getLogger().log(Level.WARNING, "Failed to load language " + language, e);
+        }
+
+        localizationService.addLanguage(DEFAULT_LANGUAGE);
+        getLogger().info("Default language " + DEFAULT_LANGUAGE + " loaded successfully.");
 
         superHead();
         environmentCheck();

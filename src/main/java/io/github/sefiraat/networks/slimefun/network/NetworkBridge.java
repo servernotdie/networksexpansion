@@ -55,7 +55,7 @@ public class NetworkBridge extends NetworkObject {
             String generatorKey = config.getString("items." + itemId + ".use-special-model.type");
             this.displayGroupGenerator = generatorMap.get(generatorKey);
             if (this.displayGroupGenerator == null) {
-                Networks.getInstance().getLogger().warning("未知的展示组类型 '" + generatorKey + "', 特殊模型已禁用。");
+                Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.display.unknown_type"), generatorKey));
                 this.useSpecialModel = false;
             }
         }

@@ -218,4 +218,21 @@ public class Icon {
             "quick-output",
             Material.RED_STAINED_GLASS_PANE
     );
+    public static final ItemStack CRAFT_BUTTON = Networks.getLocalizationService().getIcon(
+            "craft-button",
+            Material.CRAFTING_TABLE
+    );
+    public static final ItemStack CRAFT_BUTTON_STACK_6x6 = Networks.getLocalizationService().getIcon(
+            "craft-button-stack-6x6",
+            Material.KNOWLEDGE_BOOK
+    );
+    public static final ItemStack CRAFT_BUTTON_STACK_3x3 = Networks.getLocalizationService().getIcon(
+            "craft-button-stack-3x3",
+            Material.BOOK
+    );
+    public static final ItemStack ACTION_BUTTON = Networks.getLocalizationService().getIcon(
+            "action-button",
+            Material.REDSTONE_TORCH
+    );
+
 }

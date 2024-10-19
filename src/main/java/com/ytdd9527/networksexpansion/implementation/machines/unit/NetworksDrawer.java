@@ -64,8 +64,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 
-//TODO 对于一些复杂的逻辑，需要重构
-@SuppressWarnings({"deprecation", "unused"})
+@SuppressWarnings("unused")
 public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveItem, ModelledItem, Configurable {
     private static final boolean DEFAULT_USE_SPECIAL_MODEL = false;
     private static final Map<Location, StorageUnitData> storages = new HashMap<>();
@@ -310,9 +309,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
             return;
         }
         final StorageUnitData data = storages.get(l);
-        // 遍历每一个显示槽
         for (int s : DISPLAY_SLOTS) {
-            // 添加点击事件
             blockMenu.addMenuClickHandler(s, (player, slot, clickItem, action) -> {
                 final ItemStack itemOnCursor = player.getItemOnCursor();
                 if (StackUtils.itemsMatch(clickItem, Icon.ERROR_BORDER)) {
@@ -360,12 +357,12 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
     }
 
     private static ItemStack getStorageInfoItem(int id, int typeCount, int maxType, int maxEach, boolean locked, boolean voidExcess) {
-        return new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE, "&c存储信息", "",
-                "&b容器ID: &a" + id,
-                "&b物品种类: &e" + typeCount + " &7/ &6" + maxType,
-                "&b容量上限: &e" + maxType + " &7* &6" + maxEach,
-                "&b内容锁定模式: " + (locked ? (ChatColor.DARK_GREEN + "✔") : (ChatColor.DARK_RED + "✘")),
-                "&b满载清空模式: " + (voidExcess ? (ChatColor.DARK_GREEN + "✔") : (ChatColor.DARK_RED + "✘"))
+        return new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE, Networks.getLocalizationService().getString("icons.drawer.storage_info.name"), "",
+                String.format(Networks.getLocalizationService().getString("icons.drawer.storage_info.id"), id),
+                String.format(Networks.getLocalizationService().getString("icons.drawer.storage_info.type_count"), typeCount, maxType),
+                String.format(Networks.getLocalizationService().getString("icons.drawer.storage_info.max_each"), maxType, maxEach),
+                String.format(Networks.getLocalizationService().getString("icons.drawer.storage_info.locked"), locked ? Networks.getLocalizationService().getString("icons.drawer.storage_info.enabled") : Networks.getLocalizationService().getString("icons.drawer.storage_info.disabled")),
+                String.format(Networks.getLocalizationService().getString("icons.drawer.storage_info.void_excess"), voidExcess ? Networks.getLocalizationService().getString("icons.drawer.storage_info.enabled") : Networks.getLocalizationService().getString("icons.drawer.storage_info.disabled"))
         );
     }
 
@@ -465,7 +462,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
                             final ItemStack clone = quantumCache.getItemStack().clone();
                             clone.setAmount(canAdd);
                             thisStorage.depositItemStack(clone, true);
-                            player.sendMessage(ChatColor.GREEN + "已存入物品！");
+                            player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.drawer.deposited_item"));
                             return;
                         }
 
@@ -495,7 +492,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
                                 quantumCache.updateMetaLore(meta);
                                 itemStack.setItemMeta(meta);
 
-                                player.sendMessage(ChatColor.GREEN + "已转移至量子存储！");
+                                player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.drawer.transferred_to_quantum_storage"));
                                 return;
                             } else if (StackUtils.itemsMatch(quantumCache.getItemStack(), sample)) {
                                 final int quantumLimit = quantumCache.getLimit();
@@ -515,7 +512,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
                                 DataTypeMethods.setCustom(meta, Keys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE, quantumCache);
                                 quantumCache.updateMetaLore(meta);
                                 itemStack.setItemMeta(meta);
-                                player.sendMessage(ChatColor.GREEN + "已转移至量子存储！");
+                                player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.drawer.transferred_to_quantum_storage"));
                                 return;
                             } else {
                                 return;
@@ -558,7 +555,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
                             thisStorage.depositItemStack(stored, true);
                             int left = stored.getAmount();
                             ItemMover.setStoredAmount(itemStack, left);
-                            player.sendMessage(ChatColor.GREEN + "已存入 " + name + "x" + (before - left) + " 至抽屉中!");
+                            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.completed-operation.drawer.transferred_to_drawer"), name, before - left));
                         }
                         case TO_QUANTUM -> {
                             ItemRequest itemRequest = new ItemRequest(sample, each.getAmount());
@@ -571,7 +568,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
                                 if (fetched.getAmount() > 0) {
                                     thisStorage.depositItemStack(fetched, false);
                                 }
-                                player.sendMessage(ChatColor.GREEN + "已转移 " + name + "x" + (before - left) + " 至物品转移棒!");
+                                player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.completed-operation.drawer.transferred_to_item_mover"), name, before - left));
                             }
                         }
                     }
@@ -631,7 +628,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
             String generatorKey = config.getString("items." + configKey + ".use-special-model.type");
             this.displayGroupGenerator = generatorMap.get(generatorKey);
             if (this.displayGroupGenerator == null) {
-                Networks.getInstance().getLogger().warning("未知的展示组类型 '" + generatorKey + "', 特殊模型已禁用。");
+                Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.display.unknown_type"), generatorKey));
                 this.useSpecialModel = false;
             }
         }
@@ -692,11 +689,9 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
         BlockMenu menu = StorageCacheUtils.getMenu(l);
         if (menu != null) {
             update(l, true);
-            // 如果存在菜单，添加点击事件
             addClickHandler(l);
         }
         if (useSpecialModel) {
-            // 如果为 true，执行特殊逻辑
             e.getBlock().setType(Material.BARRIER);
             setupDisplay(e.getBlock().getLocation());
         }
@@ -708,7 +703,6 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
         Block b = e.getBlock();
         Location l = b.getLocation();
 
-        // 如果启用了特殊模型，移除展示组
         if (useSpecialModel) {
             removeDisplay(l);
         }
@@ -808,15 +802,14 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
     }
 
     private ItemStack getLocationErrorItem(int id, Location lastLoc) {
-        return new CustomItemStack(Material.REDSTONE_TORCH, "&c位置错误", "",
-                "&e这个容器已在其它位置存在",
-                "&e请不要将同ID的容器放在多个不同的位置",
-                "&e如果您认为这是个意外，请联系管理员处理",
-                " ",
-                "&6容器信息:",
-                "&b容器ID: &a" + id,
-                "&b所在世界: &e" + (lastLoc == null || lastLoc.getWorld() == null ? "Unknown" : lastLoc.getWorld().getName()),
-                "&b所在坐标: &e" + (lastLoc == null ? "Unknown" : (lastLoc.getBlockX() + " &7/ &e" + lastLoc.getBlockY() + " &7/ &e" + lastLoc.getBlockZ()))
+        List<String> lore = new ArrayList<>();
+        lore.addAll(Networks.getLocalizationService().getStringList("icons.drawer.location_error.lore_before_info"));
+        lore.add(String.format(Networks.getLocalizationService().getString("icons.drawer.location_error.id"), id));
+        lore.add(lastLoc == null ? Networks.getLocalizationService().getString("icons.drawer.location_error.unknown") : String.format(Networks.getLocalizationService().getString("icons.drawer.location_error.world"), lastLoc.getWorld().getName()));
+        lore.add(lastLoc == null ? Networks.getLocalizationService().getString("icons.drawer.location_error.unknown") : String.format(Networks.getLocalizationService().getString("icons.drawer.location_error.location"), lastLoc.getBlockX(), lastLoc.getBlockY(), lastLoc.getBlockZ()));
+        return new CustomItemStack(Material.REDSTONE_TORCH,
+                Networks.getLocalizationService().getString("icons.drawer.location_error.name"),
+                lore
         );
     }
 
@@ -845,27 +838,28 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
     }
 
     private ItemStack getContentLockItem(boolean locked) {
+        List<String> lore = new ArrayList<>();
+        lore.addAll(Networks.getLocalizationService().getStringList("icons.drawer.content_lock.lore_before_status"));
+        lore.add(String.format(Networks.getLocalizationService().getString("icons.drawer.content_lock.status"), locked ? Networks.getLocalizationService().getString("icons.drawer.content_lock.locked") : Networks.getLocalizationService().getString("icons.drawer.content_lock.unlocked")));
+        lore.addAll(Networks.getLocalizationService().getStringList("icons.drawer.content_lock.lore_after_status"));
+        lore.add(locked ? Networks.getLocalizationService().getString("icons.drawer.click_to_disable") : Networks.getLocalizationService().getString("icons.drawer.click_to_enable"));
         return new CustomItemStack(
                 locked ? Material.RED_STAINED_GLASS_PANE : Material.LIME_STAINED_GLASS_PANE,
-                "&6内容锁定模式",
-                "",
-                "&b状态: " + (locked ? "&c已锁定" : "&a未锁定"),
-                "",
-                "&7当容器锁定后，将仅允许当前存在的物品输入",
-                "&7并且输出时将会留下至少一个物品",
-                locked ? "&e点击禁用" : "&e点击启用"
+                Networks.getLocalizationService().getString("icons.drawer.content_lock.name"),
+                lore
         );
     }
 
     private ItemStack getVoidExcessItem(boolean voidExcess) {
+        List<String> lore = new ArrayList<>();
+        lore.addAll(Networks.getLocalizationService().getStringList("icons.drawer.void_excess.lore_before_status"));
+        lore.add(String.format(Networks.getLocalizationService().getString("icons.drawer.void_excess.status"), voidExcess ? Networks.getLocalizationService().getString("icons.drawer.void_excess.enabled") : Networks.getLocalizationService().getString("icons.drawer.void_excess.disabled")));
+        lore.addAll(Networks.getLocalizationService().getStringList("icons.drawer.void_excess.lore_after_status"));
+        lore.add(voidExcess ? Networks.getLocalizationService().getString("icons.drawer.click_to_disable") : Networks.getLocalizationService().getString("icons.drawer.click_to_enable"));
         return new CustomItemStack(
                 voidExcess ? Material.LIME_STAINED_GLASS_PANE : Material.RED_STAINED_GLASS_PANE,
-                "&6满载清空模式",
-                "",
-                "&b状态: " + (voidExcess ? "&a已开启" : "&c未开启"),
-                "",
-                "&7开启此模式后，超过存储上限的物品的数量不会再增加，但仍能存入",
-                voidExcess ? "&e点击禁用" : "&e点击启用"
+                Networks.getLocalizationService().getString("icons.drawer.void_excess.name"),
+                lore
         );
     }
 

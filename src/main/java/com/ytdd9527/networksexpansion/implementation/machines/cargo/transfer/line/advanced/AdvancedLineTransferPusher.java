@@ -105,7 +105,7 @@ public class AdvancedLineTransferPusher extends AdvancedDirectional implements R
             String generatorKey = config.getString("items." + configKey + ".use-special-model.type");
             this.displayGroupGenerator = generatorMap.get(generatorKey);
             if (this.displayGroupGenerator == null) {
-                Networks.getInstance().getLogger().warning("未知的展示组类型 '" + generatorKey + "', 特殊模型已禁用。");
+                Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.display.unknown_type"), generatorKey));
                 this.useSpecialModel = false;
             }
         }
@@ -307,23 +307,10 @@ public class AdvancedLineTransferPusher extends AdvancedDirectional implements R
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>(6);
         displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩传输数据⇩",
+                Networks.getLocalizationService().getString("icons.mechanism.transfers.data_title"),
                 "",
-                "&7[&a最大距离&7]&f:&6" + maxDistance + "方块",
-                "&7[&a推送频率&7]&f:&7 每 &6" + pushItemTick + " SfTick &7推送一次"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩参数⇩",
-                "&7默认运输模式: &6首位阻断",
-                "&a可调整运输模式",
-                "&7默认运输数量: &63456",
-                "&a可调整运输数量"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩功能⇩",
-                "",
-                "&e与链式不同的是，此机器&c只有连续推送的功能",
-                "&c而不是连续转移物品！"
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.max_distance"), maxDistance),
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.push_item_tick"), pushItemTick)
         ));
         return displayRecipes;
     }

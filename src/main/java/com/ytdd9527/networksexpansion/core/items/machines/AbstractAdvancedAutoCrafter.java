@@ -196,10 +196,8 @@ public abstract class AbstractAdvancedAutoCrafter extends NetworkObject {
                 if (fetched != null) {
                     acutalInputs[i] = fetched;
                     ItemStack fetchedClone = fetched.clone();
-                    // 不使用requested.getAmount()
                     fetchedClone.setAmount((int) (fetched.getAmount() / blueprintAmount));
                     inputs[i] = fetchedClone;
-                    // 如果除出来的数量不等于request的数量，说明没有足够的物品
                     if (fetchedClone.getAmount() != requested.getAmount()) {
                         returnItems(root, acutalInputs);
                     }

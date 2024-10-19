@@ -113,18 +113,18 @@ public class NetworkVanillaPusher extends NetworkDirectional {
         boolean wildChests = Networks.getSupportedPluginManager().isWildChests();
         boolean isChest = wildChests && WildChestsAPI.getChest(targetBlock.getLocation()) != null;
 
-        sendDebugMessage(block.getLocation(), "WildChests 已安装：" + wildChests);
-        sendDebugMessage(block.getLocation(), "该方块是否被 WildChest 判断为方块：" + isChest);
+        sendDebugMessage(block.getLocation(), String.format(Networks.getLocalizationService().getString("messages.debug.wildchests"), wildChests));
+        sendDebugMessage(block.getLocation(), String.format(Networks.getLocalizationService().getString("messages.debug.ischest"), isChest));
 
         if (inventory instanceof FurnaceInventory furnace) {
             handleFurnace(stack, furnace);
         } else if (inventory instanceof BrewerInventory brewer) {
             handleBrewingStand(stack, brewer);
         } else if (wildChests && isChest) {
-            sendDebugMessage(block.getLocation(), "WildChest 测试失败！");
+            sendDebugMessage(block.getLocation(), Networks.getLocalizationService().getString("messages.debug.wildchests_test_failed"));
             return;
         } else if (InvUtils.fits(holder.getInventory(), stack)) {
-            sendDebugMessage(block.getLocation(), "WildChest 测试成功。");
+            sendDebugMessage(block.getLocation(), Networks.getLocalizationService().getString("messages.debug.wildchests_test_success"));
             holder.getInventory().addItem(stack);
             stack.setAmount(0);
         }

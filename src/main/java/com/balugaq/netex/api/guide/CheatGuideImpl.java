@@ -64,13 +64,13 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
     private final ItemStack item;
 
     public CheatGuideImpl() {
-        item = new SlimefunGuideItem(this, "&cSlimefun 指南 &4(作弊模式)");
+        item = new SlimefunGuideItem(this, Networks.getLocalizationService().getString("messages.guide.creative-title"));
     }
 
     // fallback
     @Deprecated
     public CheatGuideImpl(boolean v1, boolean v2) {
-        item = new SlimefunGuideItem(this, "&cSlimefun 指南 &4(作弊模式)");
+        item = new SlimefunGuideItem(this, Networks.getLocalizationService().getString("messages.guide.creative-title"));
     }
 
     @ParametersAreNonnullByDefault
@@ -83,8 +83,8 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
             }
 
             String lore = hasPermission(p, slimefunItem)
-                    ? "&f需要在 " + slimefunItem.getItemGroup().getDisplayName(p) + " 中解锁"
-                    : "&f无权限";
+                    ? String.format(Networks.getLocalizationService().getString("messages.guide.locked-in"), slimefunItem.getItemGroup().getDisplayName(p))
+                    : Networks.getLocalizationService().getString("messages.guide.no-permission");
             return slimefunItem.canUse(p, false)
                     ? item
                     : new CustomItemStack(
@@ -142,7 +142,7 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
                 if (addon != null) {
                     addon.getLogger().log(Level.SEVERE, x, () -> "Could not display item group: " + group);
                 } else {
-                    Slimefun.logger().log(Level.SEVERE, x, () -> "Could not display item group: " + group);
+                    Networks.getInstance().getLogger().log(Level.SEVERE, x, () -> "Could not display item group: " + group);
                 }
             }
         }
@@ -335,9 +335,9 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
             String lore;
 
             if (VaultIntegration.isEnabled()) {
-                lore = String.format("%.2f", research.getCurrencyCost()) + " 游戏币";
+                lore = String.format("%.2f", research.getCurrencyCost()) + Networks.getLocalizationService().getString("messages.guide.cost-vault");
             } else {
-                lore = research.getLevelCost() + " 级经验";
+                lore = research.getLevelCost() + Networks.getLocalizationService().getString("messages.guide.cost-level");
             }
 
             menu.addItem(
@@ -348,9 +348,9 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
                             "&7" + sfitem.getId(),
                             "&4&l" + Slimefun.getLocalization().getMessage(p, "guide.locked"),
                             "",
-                            "&a> 单击解锁",
+                            Networks.getLocalizationService().getString("messages.guide.click-to-research"),
                             "",
-                            "&7需要 &b",
+                            Networks.getLocalizationService().getString("messages.guide.cost"),
                             lore)));
             menu.addMenuClickHandler(index, (pl, slot, item, action) -> {
                 research.unlockFromGuide(this, p, profile, sfitem, itemGroup, page);
@@ -403,7 +403,7 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
             return;
         }
 
-        ChestMenu menu = new ChestMenu("你正在搜索: %item%"
+        ChestMenu menu = new ChestMenu(Networks.getLocalizationService().getString("messages.guide.searching")
                 .replace("%item%", ChatUtils.crop(ChatColor.WHITE, input)));
         String searchTerm = ChatColor.stripColor(input.toLowerCase(Locale.ROOT));
 
@@ -761,7 +761,7 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
         if (!isCheatMode() && history.size() > 1) {
             menu.addItem(
                     slot,
-                    new CustomItemStack(ChestMenuUtils.getBackButton(p, "", "&f左键: &7返回上一页", "&fShift + 左键: &7返回主菜单")));
+                    new CustomItemStack(ChestMenuUtils.getBackButton(p, "", Networks.getLocalizationService().getString("messages.guide.back"), Networks.getLocalizationService().getString("messages.guide.super-back"))));
 
             menu.addMenuClickHandler(slot, (pl, s, is, action) -> {
                 if (action.isShiftClicked()) {
@@ -868,7 +868,7 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
     }
 
     private @Nonnull ChestMenu create(@Nonnull Player p) {
-        ChestMenu menu = new ChestMenu("网络拓展指南 (作弊模式)");
+        ChestMenu menu = new ChestMenu(Networks.getLocalizationService().getString("messages.guide.creative"));
 
         menu.setEmptySlotsClickable(false);
         menu.addMenuOpeningHandler(SoundEffect.GUIDE_BUTTON_CLICK_SOUND::playFor);
@@ -877,8 +877,8 @@ public class CheatGuideImpl extends CheatSheetSlimefunGuide implements SlimefunG
 
     @ParametersAreNonnullByDefault
     private void printErrorMessage(Player p, Throwable x) {
-        p.sendMessage(ChatColor.DARK_RED + "服务器发生了一个内部错误. 请联系管理员处理.");
-        Slimefun.logger().log(Level.SEVERE, "在打开指南书里的 Slimefun 物品时发生了意外!", x);
+        p.sendMessage(Networks.getLocalizationService().getString("messages.guide.internal-error"));
+        Networks.getInstance().getLogger().log(Level.SEVERE, Networks.getLocalizationService().getString("messages.guide.error-occurred"), x);
     }
 
     @ParametersAreNonnullByDefault

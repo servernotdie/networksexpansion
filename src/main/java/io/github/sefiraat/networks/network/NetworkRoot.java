@@ -1111,7 +1111,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有贪婪方块
+
         for (BlockMenu blockMenu : getGreedyBlockMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             ItemStack inputSlotItem = blockMenu.getItemInSlot(slots[0]);
@@ -1119,7 +1119,7 @@ public class NetworkRoot extends NetworkNode {
                 totalAmount += inputSlotItem.getAmount();
             }
         }
-        // 遍历所有桶
+
         for (BarrelIdentity barrelIdentity : getOutputAbleBarrels()) {
             if (StackUtils.itemsMatch(barrelIdentity.getItemStack(), itemStack)) {
                 totalAmount += barrelIdentity.getAmount();
@@ -1137,7 +1137,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有单元格菜单
+
         for (BlockMenu blockMenu : getCellMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             for (int slot : slots) {
@@ -1169,7 +1169,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有贪婪方块
+
         for (BlockMenu blockMenu : getGreedyBlockMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             ItemStack inputSlotItem = blockMenu.getItemInSlot(slots[0]);
@@ -1181,7 +1181,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有桶
+
         for (BarrelIdentity barrelIdentity : getOutputAbleBarrels()) {
             for (ItemStack itemStack : itemStacks) {
                 if (StackUtils.itemsMatch(barrelIdentity.getItemStack(), itemStack)) {
@@ -1205,7 +1205,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有单元格菜单
+
         for (BlockMenu blockMenu : getCellMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             for (int slot : slots) {
@@ -1312,7 +1312,6 @@ public class NetworkRoot extends NetworkNode {
         for (StorageUnitData cache : getInputAbleCargoStorageUnitDatas().keySet()) {
             cache.depositItemStack(incoming, true);
 
-            // 填充完成
             if (incoming.getAmount() == 0) {
                 return;
             }

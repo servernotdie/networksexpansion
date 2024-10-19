@@ -1,5 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.machines.manual;
 
+import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.StorageUnitType;
@@ -51,8 +52,6 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
     private final int[] inputSlots = {2, 3, 4, 11, 12, 13, 20, 21, 22};
     private final int outputSlot = 15;
     private final int actionBtnSlot = 17;
-    private final ItemStack actionBtn = new CustomItemStack(Material.REDSTONE_TORCH, "&6点击升级", "");
-
     public StorageUnitUpgradeTable(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -88,7 +87,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
                     craft(p, menu);
                     return false;
                 });
-                menu.replaceExistingItem(actionBtnSlot, actionBtn);
+                menu.replaceExistingItem(actionBtnSlot, Icon.ACTION_BUTTON);
             }
 
             @Override
@@ -156,9 +155,8 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
             }
         }
 
-        p.sendMessage(ChatColor.RED + "没有合适的配方");
+        p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.storage_unit_upgrade_table.no_recipe_match"));
     }
-
     private boolean match(BlockMenu menu, ItemStack[] recipe) {
         for (int i = 0; i < 9; i++) {
             if (i == 4) {

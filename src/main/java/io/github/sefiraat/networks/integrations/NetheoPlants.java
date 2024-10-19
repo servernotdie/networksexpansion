@@ -23,45 +23,45 @@ public class NetheoPlants {
             "NTW_STONE_CHUNK_SEED",
             Skulls.SEED_PURPLE.getPlayerHead(),
             Theme.SEED,
-            "石块之种",
-            new String[]{"这种植物成熟后,", "收获时将获得石块."},
-            Stacks.getCanBePlacedOnLore("下界草方块", "(或净化等级更高的)")
+            Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.stone_chunk_seed.name"),
+            Networks.getLocalizationService().getStringArray("messages.integrations.netheopoiesis.stone_chunk_seed.lore"),
+            Stacks.getCanBePlacedOnLore(Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_level.highest"), Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_tips"))
     );
 
     public static final SlimefunItemStack SYNTHETIC_SEED = Theme.themedSeed(
             "NTW_SYNTHETIC_SEED",
             Skulls.SEED_ORANGE.getPlayerHead(),
             Theme.SEED,
-            "人造之种",
-            new String[]{"这个种子没有任何效果."},
-            Stacks.getCanBePlacedOnLore("下界草方块", "(或净化等级更高的)")
+            Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.synthetic_seed.name"),
+            Networks.getLocalizationService().getStringArray("messages.integrations.netheopoiesis.synthetic_seed.lore"),
+            Stacks.getCanBePlacedOnLore(Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_level.highest"), Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_tips"))
     );
 
     public static final SlimefunItemStack SYNTHETIC_EMERALD_SEED = Theme.themedSeed(
             "NTW_SYNTHETIC_EMERALD_SEED",
             Skulls.SEED_GREEN.getPlayerHead(),
             Theme.SEED,
-            "人造绿宝石之种",
-            new String[]{"这种植物成熟后,", "收获时将获得人造绿宝石."},
-            Stacks.getCanBePlacedOnLore("贪婪泥土", "(或净化等级更高的)")
+            Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.synthetic_emerald_seed.name"),
+            Networks.getLocalizationService().getStringArray("messages.integrations.netheopoiesis.synthetic_emerald_seed.lore"),
+            Stacks.getCanBePlacedOnLore(Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_level.high"), Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_tips"))
     );
 
     public static final SlimefunItemStack SYNTHETIC_DIAMOND_SEED = Theme.themedSeed(
             "NTW_SYNTHETIC_DIAMOND_SEED",
             Skulls.SEED_GREEN.getPlayerHead(),
             Theme.SEED,
-            "人造钻石之种",
-            new String[]{"这种植物成熟后,", "收获时将获得人造钻石."},
-            Stacks.getCanBePlacedOnLore("贪婪泥土", "(或净化等级更高的)")
+            Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.synthetic_diamond_seed.name"),
+            Networks.getLocalizationService().getStringArray("messages.integrations.netheopoiesis.synthetic_diamond_seed.lore"),
+            Stacks.getCanBePlacedOnLore(Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_level.high"), Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_tips"))
     );
 
     public static final SlimefunItemStack FRAGMENTED_SEED = Theme.themedSeed(
             "NTW_FRAGMENTED_SEED",
             Skulls.SEED_GREEN.getPlayerHead(),
             Theme.SEED,
-            "碎片之种",
-            new String[]{"这种植物成熟后,", "收获时将获得人造绿宝石碎片."},
-            Stacks.getCanBePlacedOnLore("贪婪泥土", "(或净化等级更高的)")
+            Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.fragmented_seed.name"),
+            Networks.getLocalizationService().getStringArray("messages.integrations.netheopoiesis.fragmented_seed.lore"),
+            Stacks.getCanBePlacedOnLore(Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_level.high"), Networks.getLocalizationService().getString("messages.integrations.netheopoiesis.dirt_tips"))
     );
 
     public static void setup() {

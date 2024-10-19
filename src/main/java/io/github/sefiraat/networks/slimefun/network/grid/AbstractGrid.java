@@ -125,7 +125,7 @@ public abstract class AbstractGrid extends NetworkObject {
 
     @Nonnull
     private static List<String> getLoreAddition(long amount) {
-        final MessageFormat format = new MessageFormat("{0}数量: {1}{2}", Locale.ROOT);
+        final MessageFormat format = new MessageFormat(Networks.getLocalizationService().getString("messages.normal-operation.grid.item_amount"), Locale.ROOT);
         return List.of(
                 "",
                 format.format(new Object[]{Theme.CLICK_INFO.getColor(), Theme.PASSIVE.getColor(), amount}, new StringBuffer(), null).toString()

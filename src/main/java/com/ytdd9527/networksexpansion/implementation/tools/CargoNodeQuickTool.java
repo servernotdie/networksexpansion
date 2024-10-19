@@ -15,6 +15,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -56,14 +57,14 @@ public class CargoNodeQuickTool extends SpecialSlimefunItem {
             Player p = e.getPlayer();
             if (!isTool(tool)) {
                 // Not holding the a valid tool, return
-                p.sendMessage(ChatColor.RED + "工具无效，请勿堆叠使用");
+                p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.cargo_node_quick_tool.invalid_tool"));
                 return;
             }
             Location bLoc = target.getLocation();
             // If not cargo node block, return.
             SlimefunBlockData blockData = StorageCacheUtils.getBlock(bLoc);
             if (blockData == null || !blockData.getSfId().startsWith("CARGO_NODE_")) {
-                p.sendMessage(ChatColor.RED + "请指向一个货运节点");
+                p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.cargo_node_quick_tool.invalid_node"));
                 return;
             }
             ItemMeta meta = tool.getItemMeta();
@@ -87,23 +88,23 @@ public class CargoNodeQuickTool extends SpecialSlimefunItem {
                         container.set(configKey, PersistentDataType.STRING, gson.toJson(blockData.getAllData()));
                         //update lore
                         List<String> lore = meta.getLore();
-                        lore.set(lore.size() - 1, ChatColor.BLUE + "物品: " + SlimefunItem.getById(blockData.getSfId()).getItemName());
+                        lore.set(lore.size() - 1,String.format(Networks.getLocalizationService().getString("messages.completed-operation.cargo_node_quick_tool.node_set"), SlimefunItem.getById(blockData.getSfId()).getItemName()));
                         meta.setLore(lore);
                         tool.setItemMeta(meta);
-                        p.sendMessage(ChatColor.GREEN + "加载成功");
+                        p.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.cargo_node_quick_tool.config_saved"));
                         return;
                     default:
-                        p.sendMessage(ChatColor.RED + "请指向一个货运节点");
+                        p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.cargo_node_quick_tool.invalid_node"));
                 }
             } else {
                 //process to set config to target
                 String storedId = container.get(cargoKey, PersistentDataType.STRING);
                 if (storedId == null) {
-                    p.sendMessage(ChatColor.RED + "请先加载一个配置");
+                    p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.cargo_node_quick_tool.no-config"));
                     return;
                 }
                 if (!storedId.equalsIgnoreCase(blockData.getSfId())) {
-                    p.sendMessage(ChatColor.RED + "储存的配置种类与目标不一致");
+                    p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.cargo_node_quick_tool.nod-type-not-same"));
                     return;
                 }
                 BlockMenu inv = blockData.getBlockMenu();
@@ -155,11 +156,10 @@ public class CargoNodeQuickTool extends SpecialSlimefunItem {
 
                                 }
                             } else {
-                                p.sendMessage(ChatColor.RED + "没有足够的材料");
+                                p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.cargo_node_quick_tool.not_enough_items"));
                                 for (ItemStack item : itemList.keySet()) {
                                     if (!itemList.get(item)) {
-                                        ItemMeta itemMeta = item.getItemMeta();
-                                        p.sendMessage("- " + ChatColor.YELLOW + (itemMeta.hasDisplayName() ? itemMeta.getDisplayName() : item.getType().name()) + "x" + item.getAmount());
+                                        p.sendMessage("- " + ChatColor.YELLOW + ItemStackHelper.getDisplayName(item) + "x" + item.getAmount());
                                     } else {
                                         for (int slot : listSlots) {
                                             inv.replaceExistingItem(slot, null);
@@ -178,10 +178,10 @@ public class CargoNodeQuickTool extends SpecialSlimefunItem {
                         );
                         config.forEach(blockData::setData);
                         inv.getPreset().newInstance(inv, bLoc);
-                        p.sendMessage(ChatColor.GREEN + "设置成功！");
+                        p.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.cargo_node_quick_tool.pasted_config"));
                         return;
                     default:
-                        p.sendMessage(ChatColor.RED + "请指向一个货运节点");
+                        p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.cargo_node_quick_tool.invalid_node"));
                 }
             }
         });

@@ -4,6 +4,7 @@ import com.balugaq.netex.api.helpers.Icon;
 import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
 import com.balugaq.netex.utils.BlockMenuUtil;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.network.stackcaches.BlueprintInstance;
 import io.github.sefiraat.networks.slimefun.network.NetworkObject;
@@ -97,19 +98,19 @@ public class NetworkBlueprintDecoder extends NetworkObject {
     private void decode(Player player, BlockMenu menu) {
         ItemStack input = menu.getItemInSlot(getInputSlot());
         if (input == null || input.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "没有输入蓝图");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.no-input"));
             return;
         }
 
         SlimefunItem item = SlimefunItem.getByItem(input);
         if (!(item instanceof AbstractBlueprint)) {
-            player.sendMessage(ChatColor.RED + "该物品不是蓝图");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.not-blueprint"));
             return;
         }
 
         ItemMeta meta = input.getItemMeta();
         if (meta == null) {
-            player.sendMessage(ChatColor.RED + "该物品没有蓝图信息");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.invalid-blueprint"));
             return;
         }
 
@@ -121,14 +122,14 @@ public class NetworkBlueprintDecoder extends NetworkObject {
             blueprintInstance = DataTypeMethods.getCustom(meta, Keys.BLUEPRINT_INSTANCE3, PersistentCraftingBlueprintType.TYPE);
         }
         if (blueprintInstance == null) {
-            player.sendMessage(ChatColor.RED + "该物品没有蓝图信息");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.invalid-blueprint"));
             return;
         }
 
         ItemStack[] inputs = blueprintInstance.getRecipeItems();
 
         if (!BlockMenuUtil.fits(menu, inputs, getOutputSlots())) {
-            player.sendMessage(ChatColor.RED + "输出栏不足");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.output_full"));
             return;
         }
 
@@ -136,11 +137,11 @@ public class NetworkBlueprintDecoder extends NetworkObject {
         Map<ItemStack, Integer> left = BlockMenuUtil.pushItem(menu, inputs, getOutputSlots());
         if (left != null && !left.isEmpty()) {
             for (Map.Entry<ItemStack, Integer> entry : left.entrySet()) {
-                player.sendMessage(ChatColor.RED + "没有足够的位置输出物品! ");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.output_full"));
                 menu.getLocation().getWorld().dropItem(menu.getLocation(), entry.getKey());
             }
         }
 
-        player.sendMessage(ChatColor.GREEN + "蓝图解码成功!");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.decoder.decode_blueprint_success"));
     }
 }

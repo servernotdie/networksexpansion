@@ -5,19 +5,15 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.SuperRecipe;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractManualCrafter;
 import com.ytdd9527.networksexpansion.implementation.ExpansionRecipes;
-import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.utils.Keys;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -57,17 +53,13 @@ public class Expansion6x6Workbench extends AbstractManualCrafter {
     };
     private static final int CRAFT_SLOT = 16;
     private static final int OUTPUT_SLOT = 43;
-    private static final ItemStack CRAFT_BUTTON_STACK = ItemStackUtil.getCleanItem(new CustomItemStack(
-            Material.KNOWLEDGE_BOOK,
-            Theme.CLICK_INFO + "合成"
-    ));
 
     static {
         for (int slot : BACKGROUND_SLOTS) {
             BACKGROUNDS.put(slot, Icon.BACKGROUND_STACK_6x6);
         }
 
-        BACKGROUNDS.put(CRAFT_SLOT, CRAFT_BUTTON_STACK);
+        BACKGROUNDS.put(CRAFT_SLOT, Icon.CRAFT_BUTTON_STACK_6x6);
     }
 
     @ParametersAreNonnullByDefault

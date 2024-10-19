@@ -151,8 +151,6 @@ public abstract class AbstractManualCrafter extends SpecialSlimefunItem implemen
             return false;
         }
 
-        // player.sendMessage(ChatColor.GREEN + "正在尝试消耗" + Arrays.toString(Arrays.stream(recipe.getInput()).map(ItemStackHelper::getDisplayName).toArray()) + " 合成 " + Arrays.toString(Arrays.stream(recipe.getOutput()).map(ItemStackHelper::getDisplayName).toArray()));
-
         for (int i = 0; i < Math.min(recipe.getInput().length, getInputSlots().length); i++) {
             ItemStack wanted = recipe.getInput()[i];
             if (wanted == null || wanted.getType() == Material.AIR) {

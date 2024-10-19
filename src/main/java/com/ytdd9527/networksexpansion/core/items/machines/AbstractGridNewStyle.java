@@ -129,7 +129,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
 
     @Nonnull
     private static List<String> getLoreAddition(Long long1) {
-        final MessageFormat format = new MessageFormat("{0}数量: {1}{2}", Locale.ROOT);
+        final MessageFormat format = new MessageFormat(Networks.getLocalizationService().getString("messages.normal-operation.grid.item_amount"), Locale.ROOT);
         return List.of(
                 "",
                 format.format(new Object[]{Theme.CLICK_INFO.getColor(), Theme.PASSIVE.getColor(), long1}, new StringBuffer(), null).toString()
@@ -140,7 +140,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
     private static List<String> getHistoryLoreAddition() {
         return List.of(
                 " ",
-                Theme.PASSIVE.getColor() + "点击取出物品"
+                Networks.getLocalizationService().getString("messages.normal-operation.grid_new_style.click_to_withdraw")
         );
     }
 
@@ -164,7 +164,6 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
 
         autoSetFilter(blockMenu, gridCache);
 
-        // 显示物品模式
         if (gridCache.getDisplayMode() == DisplayMode.DISPLAY) {
             final List<Entry<ItemStack, Long>> entries = getEntries(root, gridCache);
             final int pages = (int) Math.ceil(entries.size() / (double) getDisplaySlots().length) - 1;
@@ -216,7 +215,6 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
                     blockMenu.addMenuClickHandler(getDisplaySlots()[i], (p, slot, item, action) -> false);
                 }
             }
-            // 历史记录模式
         } else {
             final List<ItemStack> history = new ArrayList<>();
             for (ItemStack i : gridCache.getPullItemHistory()) {

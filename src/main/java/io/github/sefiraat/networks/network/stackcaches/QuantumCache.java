@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.network.stackcaches;
 
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.Theme;
 import lombok.Getter;
 import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
@@ -92,15 +93,15 @@ public class QuantumCache extends ItemStackCache {
 
     public void addMetaLore(ItemMeta itemMeta) {
         final List<String> lore = itemMeta.hasLore() ? new ArrayList<>(itemMeta.getLore()) : new ArrayList<>();
-        String itemName = "无";
+        String itemName = Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.empty");
         if (getItemStack() != null) {
             itemName = ItemStackHelper.getDisplayName(this.getItemStack());
         }
         lore.add("");
-        lore.add(Theme.CLICK_INFO + "物品: " + itemName);
-        lore.add(Theme.CLICK_INFO + "数量: " + Theme.WHITE + this.getAmount());
+        lore.add(String.format(Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.stored_item"), itemName));
+        lore.add(String.format(Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.stored_amount"), this.getAmount()));
         if (this.supportsCustomMaxAmount) {
-            lore.add(Theme.CLICK_INFO + "当前容量限制: " + Theme.ERROR + this.getLimit());
+            lore.add(String.format(Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.custom_max_limit"), this.getLimit()));
         }
 
         itemMeta.setLore(lore);
@@ -108,15 +109,15 @@ public class QuantumCache extends ItemStackCache {
 
     public void updateMetaLore(ItemMeta itemMeta) {
         final List<String> lore = itemMeta.hasLore() ? itemMeta.getLore() : new ArrayList<>();
-        String itemName = "无";
+        String itemName = Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.empty");
         if (getItemStack() != null) {
             itemName = ItemStackHelper.getDisplayName(this.getItemStack());
         }
         final int loreIndexModifier = this.supportsCustomMaxAmount ? 1 : 0;
-        lore.set(lore.size() - 2 - loreIndexModifier, Theme.CLICK_INFO + "物品: " + itemName);
-        lore.set(lore.size() - 1 - loreIndexModifier, Theme.CLICK_INFO + "数量: " + Theme.WHITE + this.getAmount());
+        lore.set(lore.size() - 2 - loreIndexModifier, String.format(Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.stored_item"), itemName));
+        lore.set(lore.size() - 1 - loreIndexModifier, String.format(Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.stored_amount"), this.getAmount()));
         if (this.supportsCustomMaxAmount) {
-            lore.set(lore.size() - loreIndexModifier, Theme.CLICK_INFO + "当前容量限制: " + Theme.ERROR + this.getLimit());
+            lore.set(lore.size() - loreIndexModifier, String.format(Networks.getLocalizationService().getString("messages.normal-operation.quantum_cache.custom_max_limit"), this.getLimit()));
         }
 
         itemMeta.setLore(lore);

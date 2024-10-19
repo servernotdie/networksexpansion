@@ -22,13 +22,13 @@ public class QueryQueue {
 
     public synchronized void scheduleUpdate(QueuedTask task) {
         if (!updateTasks.offer(task)) {
-            throw new IllegalStateException("无法将任务添加到队列，请尝试重启服务器！");
+            throw new IllegalStateException(Networks.getLocalizationService().getString("messages.unsupported-operation.comprehensive.invalid_queue"));
         }
     }
 
     public synchronized void scheduleQuery(QueuedTask task) {
         if (!queryTasks.offer(task)) {
-            throw new IllegalStateException("无法将任务添加到队列，请尝试重启服务器！");
+            throw new IllegalStateException(Networks.getLocalizationService().getString("messages.unsupported-operation.comprehensive.invalid_queue"));
         }
     }
 

@@ -107,15 +107,15 @@ public class NetworkVanillaGrabber extends NetworkDirectional {
         boolean wildChests = Networks.getSupportedPluginManager().isWildChests();
         boolean isChest = wildChests && WildChestsAPI.getChest(targetBlock.getLocation()) != null;
 
-        sendDebugMessage(block.getLocation(), "WildChests 已安装：" + wildChests);
-        sendDebugMessage(block.getLocation(), "该方块是否被 WildChest 判断为方块：" + isChest);
+        sendDebugMessage(block.getLocation(), String.format(Networks.getLocalizationService().getString("messages.debug.wildchests"), wildChests));
+        sendDebugMessage(block.getLocation(), String.format(Networks.getLocalizationService().getString("messages.debug.ischest"), isChest));
 
         if (wildChests && isChest) {
-            sendDebugMessage(block.getLocation(), "WildChest 测试失败！");
+            sendDebugMessage(block.getLocation(), Networks.getLocalizationService().getString("messages.debug.wildchests_test_failed"));
             return;
         }
 
-        sendDebugMessage(block.getLocation(), "WildChest 测试通过。");
+        sendDebugMessage(block.getLocation(), Networks.getLocalizationService().getString("messages.debug.wildchests_test_success"));
         final Inventory inventory = holder.getInventory();
 
         if (inventory instanceof FurnaceInventory furnaceInventory) {

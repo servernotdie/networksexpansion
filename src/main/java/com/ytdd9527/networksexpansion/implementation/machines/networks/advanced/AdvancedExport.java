@@ -1,10 +1,12 @@
 package com.ytdd9527.networksexpansion.implementation.machines.networks.advanced;
 
+import com.balugaq.netex.api.helpers.Icon;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
 import com.balugaq.netex.utils.BlockMenuUtil;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;
@@ -51,14 +53,6 @@ public class AdvancedExport extends NetworkObject implements RecipeDisplayItem {
             36, 37, 38, 39, 40, 41, 42, 43, 44,
     };
     private static final int[] OUTPUT_ITEM_BACKDROP = {49};
-    private static final CustomItemStack TEST_BACKDROP_STACK = new CustomItemStack(
-            Material.GREEN_STAINED_GLASS_PANE,
-            Theme.SUCCESS + "指定输出物品"
-    );
-    private static final CustomItemStack OUTPUT_BACKDROP_STACK = new CustomItemStack(
-            Material.ORANGE_STAINED_GLASS_PANE,
-            Theme.SUCCESS + "输出栏"
-    );
     private final int lockModeSlot = 26;
     private final ItemSetting<Integer> tickRate;
 
@@ -126,9 +120,7 @@ public class AdvancedExport extends NetworkObject implements RecipeDisplayItem {
 
         List<ItemRequest> itemRequests = new ArrayList<>();
         int totalFreeStackSpaces = 0;
-        int totalFreeSlot = 0;
 
-        // 计算输出槽的空闲空间
         for (int outputSlot : getOutputSlots()) {
             ItemStack currentStack = blockMenu.getItemInSlot(outputSlot);
             if (currentStack == null || currentStack.getType() == Material.AIR) {
@@ -190,8 +182,8 @@ public class AdvancedExport extends NetworkObject implements RecipeDisplayItem {
                 }
 
                 drawBackground(BACKGROUND_SLOTS);
-                drawBackground(TEST_BACKDROP_STACK, TEST_ITEM_BACKDROP);
-                drawBackground(OUTPUT_BACKDROP_STACK, OUTPUT_ITEM_BACKDROP);
+                drawBackground(Icon.EXPORT_TEMPLATE_BACKGROUND_STACK, TEST_ITEM_BACKDROP);
+                drawBackground(Icon.EXPORT_OUTPUT_BACKGROUND_STACK, OUTPUT_ITEM_BACKDROP);
                 addItem(lockModeSlot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
 
             }
@@ -224,11 +216,7 @@ public class AdvancedExport extends NetworkObject implements RecipeDisplayItem {
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>();
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a ⇩运输机制⇩",
-                "",
-                "&e每 SF tick 尝试从网络中获取指定数量的输入槽内的所有物品并输出到输出槽"
-        ));
+        displayRecipes.add(Networks.getLocalizationService().getMechanism("export"));
         return displayRecipes;
     }
 }

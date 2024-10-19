@@ -11,7 +11,7 @@ public class SetupUtil {
     public static void setupItem() {
         NetworkSlimefunItems.setup();
 
-        /* 物品 */
+        /* items */
         ExpansionItemsMenus.SUB_MENU_TOOL.addTo(
                 ExpansionItems.CARGO_NODE_QUICK_TOOL.registerThis(),
                 ExpansionItems.WORLDEDIT_AXE.registerThis(),
@@ -33,7 +33,7 @@ public class SetupUtil {
                 ExpansionItems.ORE_CRUSHER_BLUEPRINT.registerThis(),
                 ExpansionItems.PRESSURE_CHAMBER_BLUEPRINT.registerThis()
         );
-        /* 货运与存储 */
+        /* cargo */
         ExpansionItems.ADVANCED_QUANTUM_STORAGE.setSupportsCustomMaxAmount(true);
         ExpansionItemsMenus.SUB_MENU_ADVANCED_STORAGE.addTo(
                 ExpansionItems.ADVANCED_QUANTUM_STORAGE.registerThis()
@@ -103,7 +103,7 @@ public class SetupUtil {
                 ExpansionItems.SMART_GRABBER.registerThis(),
                 ExpansionItems.SMART_PUSHER.registerThis()
         );
-        /* 功能机器 */
+        /* functional machines */
         ExpansionItemsMenus.SUB_MENU_CORE_MACHINE.addTo(
                 ExpansionItems.NETWORKS_EXPANSION_WORKBENCH.registerThis(),
                 ExpansionItems.NETWORKS_EXPANSION_6X6_WORKBENCH.registerThis(),
