@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -41,7 +40,7 @@ public class NetworksExpansionWorldEditAxe extends SpecialSlimefunItem {
                         return;
                     }
 
-                    final Location location =  e.getBlock().getLocation();
+                    final Location location = e.getBlock().getLocation();
                     NetworksMain.worldeditPos2(player, location);
 
                     e.setCancelled(true);

@@ -1,8 +1,8 @@
 package io.github.sefiraat.networks.slimefun.network;
 
+import com.balugaq.netex.api.enums.MCVersion;
 import com.bgsoftware.wildchests.api.WildChestsAPI;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.balugaq.netex.api.enums.MCVersion;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NodeDefinition;

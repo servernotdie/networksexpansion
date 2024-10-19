@@ -59,6 +59,7 @@ public class ConfigManager {
     public boolean isAutoUpdate() {
         return Networks.getInstance().getConfig().getBoolean("auto-update");
     }
+
     public String getLanguage() {
         return Networks.getInstance().getConfig().getString("language");
     }

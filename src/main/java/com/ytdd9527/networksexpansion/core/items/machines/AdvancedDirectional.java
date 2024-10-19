@@ -1,19 +1,17 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
-import com.balugaq.netex.api.helpers.Icon;
-import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.TransportMode;
+import com.balugaq.netex.api.helpers.Icon;
 import com.balugaq.netex.utils.NetworksVersionedEnchantment;
 import com.balugaq.netex.utils.NetworksVersionedParticle;
-import com.ytdd9527.networksexpansion.utils.TextUtil;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.slimefun.network.NetworkDirectional;
 import io.github.sefiraat.networks.utils.NetworkUtils;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -181,7 +179,8 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
                             blockMenu.replaceExistingItem(getUpSlot(), getDirectionalSlotPane(blockFace, slimefunItem, blockFace == direction));
                     case DOWN ->
                             blockMenu.replaceExistingItem(getDownSlot(), getDirectionalSlotPane(blockFace, slimefunItem, blockFace == direction));
-                    default -> throw new IllegalStateException(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.directional.unexcepted_value"), blockFace));
+                    default ->
+                            throw new IllegalStateException(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.directional.unexcepted_value"), blockFace));
                 }
             } else {
                 final Material material = block.getType();
@@ -198,7 +197,8 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
                             blockMenu.replaceExistingItem(getUpSlot(), getDirectionalSlotPane(blockFace, material, blockFace == direction));
                     case DOWN ->
                             blockMenu.replaceExistingItem(getDownSlot(), getDirectionalSlotPane(blockFace, material, blockFace == direction));
-                    default -> throw new IllegalStateException(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.directional.unexcepted_value"), blockFace));
+                    default ->
+                            throw new IllegalStateException(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.directional.unexcepted_value"), blockFace));
                 }
             }
         }

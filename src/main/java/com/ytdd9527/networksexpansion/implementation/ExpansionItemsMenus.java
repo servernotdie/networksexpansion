@@ -3,7 +3,6 @@ package com.ytdd9527.networksexpansion.implementation;
 import com.balugaq.netex.api.groups.MainItemGroup;
 import com.balugaq.netex.api.groups.SubFlexItemGroup;
 import com.ytdd9527.networksexpansion.utils.GroupConfigUtil;
-import com.ytdd9527.networksexpansion.utils.TextUtil;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.Keys;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;

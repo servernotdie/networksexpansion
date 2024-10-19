@@ -248,12 +248,14 @@ public enum Theme {
     public static SlimefunItemStack model(SlimefunItemStack sfis, Theme themeType) {
         String id = sfis.getItemId();
         AtomicReference<String> texture = new AtomicReference<>("");
-        sfis.getSkullTexture().ifPresentOrElse(texture::set, () -> {});
+        sfis.getSkullTexture().ifPresentOrElse(texture::set, () -> {
+        });
         String name = sfis.getDisplayName();
         ItemMeta meta = sfis.getItemMeta();
         List<String> lore = meta == null ? new ArrayList<>() : meta.getLore();
         return model(id, texture.get(), themeType, name == null ? Networks.getLocalizationService().getString("theme.name_not_found") : name, lore == null ? new String[]{Networks.getLocalizationService().getString("theme.lore_not_found")} : lore.toArray(new String[0]));
     }
+
     /**
      * Applies the theme color to a given string
      *

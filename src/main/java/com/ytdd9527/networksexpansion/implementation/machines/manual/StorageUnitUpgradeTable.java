@@ -1,9 +1,9 @@
 package com.ytdd9527.networksexpansion.implementation.machines.manual;
 
-import com.balugaq.netex.api.helpers.Icon;
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.StorageUnitType;
+import com.balugaq.netex.api.helpers.Icon;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
 import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
@@ -26,7 +26,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -52,6 +51,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
     private final int[] inputSlots = {2, 3, 4, 11, 12, 13, 20, 21, 22};
     private final int outputSlot = 15;
     private final int actionBtnSlot = 17;
+
     public StorageUnitUpgradeTable(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -157,6 +157,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
 
         p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.storage_unit_upgrade_table.no_recipe_match"));
     }
+
     private boolean match(BlockMenu menu, ItemStack[] recipe) {
         for (int i = 0; i < 9; i++) {
             if (i == 4) {

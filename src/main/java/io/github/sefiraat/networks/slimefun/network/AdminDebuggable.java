@@ -2,7 +2,6 @@ package io.github.sefiraat.networks.slimefun.network;
 
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.Networks;
-import io.github.sefiraat.networks.utils.Theme;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 

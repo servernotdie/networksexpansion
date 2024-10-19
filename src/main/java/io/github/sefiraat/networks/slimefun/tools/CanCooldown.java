@@ -2,7 +2,6 @@ package io.github.sefiraat.networks.slimefun.tools;
 
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.sefiraat.networks.utils.Theme;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 

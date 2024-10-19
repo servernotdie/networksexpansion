@@ -95,6 +95,7 @@ public class LocalizationService {
         }
 
     }
+
     @ParametersAreNonnullByDefault
     public LocalizationService(JavaPlugin plugin, String folderName, String langFile) {
         this(plugin, folderName);
@@ -144,6 +145,7 @@ public class LocalizationService {
         FileConfiguration defaultConfig = YamlConfiguration.loadConfiguration(defaultReader);
         this.langMap.put(langFilename, new Language(langFilename, langFile, defaultConfig));
     }
+
     @Nonnull
     public String getString0(@Nonnull String path) {
         Preconditions.checkArgument(path != null, "path cannot be null");
@@ -299,6 +301,7 @@ public class LocalizationService {
     public void setRecipesKey(String recipesKey) {
         this.recipesKey = recipesKey;
     }
+
     private <T extends ItemStack> T appendLore(@Nonnull T itemStack, @Nullable String... extraLore) {
         Preconditions.checkArgument(itemStack != null, MSG_ITEMSTACK_NULL);
         if (extraLore != null && extraLore.length != 0) {

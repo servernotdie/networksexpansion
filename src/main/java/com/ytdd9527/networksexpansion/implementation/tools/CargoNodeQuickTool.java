@@ -88,7 +88,7 @@ public class CargoNodeQuickTool extends SpecialSlimefunItem {
                         container.set(configKey, PersistentDataType.STRING, gson.toJson(blockData.getAllData()));
                         //update lore
                         List<String> lore = meta.getLore();
-                        lore.set(lore.size() - 1,String.format(Networks.getLocalizationService().getString("messages.completed-operation.cargo_node_quick_tool.node_set"), SlimefunItem.getById(blockData.getSfId()).getItemName()));
+                        lore.set(lore.size() - 1, String.format(Networks.getLocalizationService().getString("messages.completed-operation.cargo_node_quick_tool.node_set"), SlimefunItem.getById(blockData.getSfId()).getItemName()));
                         meta.setLore(lore);
                         tool.setItemMeta(meta);
                         p.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.cargo_node_quick_tool.config_saved"));

@@ -1,9 +1,9 @@
 package io.github.sefiraat.networks.slimefun.network;
 
 import com.balugaq.netex.api.helpers.Icon;
+import com.balugaq.netex.utils.NetworksVersionedParticle;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
-import com.balugaq.netex.utils.NetworksVersionedParticle;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;

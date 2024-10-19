@@ -1,8 +1,8 @@
 package com.ytdd9527.networksexpansion.core.listener;
 
 import com.balugaq.netex.api.event.NetworksExpansionGuideOpenEvent;
-import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
 import com.balugaq.netex.utils.GuideUtil;
+import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideImplementation;

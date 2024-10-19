@@ -18,7 +18,7 @@ messages:
     error-occurred-when-loading-itemstack: "物品加载发生异常："
     error-occurred-when-loading-environment-var: "环境加载发生异常："
     error-occurred-when-loading-storage: "读取存储物品时发生异常："
-    error-occurred-when-executing-query:  "数据请求发生异常："
+    error-occurred-when-executing-query: "数据请求发生异常："
   guide:
     survival-title: "&a网络拓展指南 &7(箱子界面)"
     creative-title: "&c网络拓展指南 &4(作弊模式)"

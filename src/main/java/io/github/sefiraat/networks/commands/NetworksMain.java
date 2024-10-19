@@ -1,10 +1,10 @@
 package io.github.sefiraat.networks.commands;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.ItemContainer;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.ErrorType;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
 import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import io.github.bakedlibs.dough.collections.Pair;
@@ -19,7 +19,6 @@ import io.github.sefiraat.networks.slimefun.network.AdminDebuggable;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
 import io.github.sefiraat.networks.utils.Keys;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.sefiraat.networks.utils.datatypes.DataTypeMethods;
 import io.github.sefiraat.networks.utils.datatypes.PersistentCraftingBlueprintType;
 import io.github.sefiraat.networks.utils.datatypes.PersistentQuantumStorageType;
@@ -31,7 +30,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
-import org.bukkit.ChatColor;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -1221,8 +1219,10 @@ public class NetworksMain implements TabExecutor {
         return switch (errorType) {
             case NO_PERMISSION -> Networks.getLocalizationService().getString("messages.commands.no-permission");
             case NO_ITEM_IN_HAND -> Networks.getLocalizationService().getString("messages.commands.no-item-in-hand");
-            case MISSING_REQUIRED_ARGUMENT -> String.format(Networks.getLocalizationService().getString("messages.commands.missing-required-argument"), argument);
-            case INVALID_REQUIRED_ARGUMENT -> String.format(Networks.getLocalizationService().getString("messages.commands.invalid-required-argument"), argument);
+            case MISSING_REQUIRED_ARGUMENT ->
+                    String.format(Networks.getLocalizationService().getString("messages.commands.missing-required-argument"), argument);
+            case INVALID_REQUIRED_ARGUMENT ->
+                    String.format(Networks.getLocalizationService().getString("messages.commands.invalid-required-argument"), argument);
             case MUST_BE_PLAYER -> Networks.getLocalizationService().getString("messages.commands.must-be-player");
             default -> Networks.getLocalizationService().getString("messages.commands.unknown-error");
         };

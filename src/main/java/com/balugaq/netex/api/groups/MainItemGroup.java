@@ -1,7 +1,6 @@
 package com.balugaq.netex.api.groups;
 
 import com.balugaq.netex.utils.GuideUtil;
-import com.ytdd9527.networksexpansion.utils.TextUtil;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.Keys;
