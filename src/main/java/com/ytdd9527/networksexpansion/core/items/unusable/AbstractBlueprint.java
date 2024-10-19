@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

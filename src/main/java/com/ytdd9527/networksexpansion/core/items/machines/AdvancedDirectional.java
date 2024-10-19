@@ -532,7 +532,7 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
     public void updateShowIcon(Location location) {
         ItemMeta itemMeta = this.showIconClone.getItemMeta();
         List<String> lore = new ArrayList<>(itemMeta.getLore());
-        lore.set(0, String.format(Networks.getLocalizationService().getString("messages.directional.limit_quantity"), getLimitQuantity(location)));
+        lore.set(0, String.format(Networks.getLocalizationService().getString("messages.normal-operation.directional.limit_quantity"), getLimitQuantity(location)));
         itemMeta.setLore(lore);
         this.showIconClone.setItemMeta(itemMeta);
 
@@ -545,7 +545,7 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
     public void updateTransportModeIcon(Location location) {
         ItemMeta itemMeta = this.transportModeIconClone.getItemMeta();
         List<String> lore = new ArrayList<>(itemMeta.getLore());
-        lore.set(0, String.format(Networks.getLocalizationService().getString("messages.directional.transport_mode"), getCurrentTransportMode(location).getName()));
+        lore.set(0, String.format(Networks.getLocalizationService().getString("messages.normal-operation.directional.transport_mode"), getCurrentTransportMode(location).getName()));
         itemMeta.setLore(lore);
         this.transportModeIconClone.setItemMeta(itemMeta);
 

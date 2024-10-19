@@ -2,7 +2,7 @@ package io.github.sefiraat.networks.network.stackcaches;
 
 import io.github.sefiraat.networks.Networks;
 import lombok.Getter;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 

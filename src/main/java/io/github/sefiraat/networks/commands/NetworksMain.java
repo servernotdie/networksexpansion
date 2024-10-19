@@ -29,7 +29,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;

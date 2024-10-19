@@ -63,13 +63,13 @@ public class SurvivalGuideImpl extends SurvivalSlimefunGuide implements Slimefun
     private final ItemStack item;
 
     public SurvivalGuideImpl() {
-        item = new SlimefunGuideItem(this, Networks.getLocalizationService().getString("messages.guide.survival_title"));
+        item = new SlimefunGuideItem(this, Networks.getLocalizationService().getString("messages.guide.survival-title"));
     }
 
     // fallback
     @Deprecated
     public SurvivalGuideImpl(boolean v1, boolean v2) {
-        item = new SlimefunGuideItem(this, Networks.getLocalizationService().getString("messages.guide.survival_title"));
+        item = new SlimefunGuideItem(this, Networks.getLocalizationService().getString("messages.guide.survival-title"));
     }
 
     @ParametersAreNonnullByDefault

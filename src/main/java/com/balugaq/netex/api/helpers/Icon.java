@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * @author Final_ROOT
+ * @author balugaq
  */
 public class Icon {
     public static final ItemStack BORDER_ICON = ItemStackUtil.getCleanItem(ChestMenuUtils.getBackground());

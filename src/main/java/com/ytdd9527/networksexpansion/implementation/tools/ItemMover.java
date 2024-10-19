@@ -28,7 +28,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.ncbpfluffybear.fluffymachines.items.Barrel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

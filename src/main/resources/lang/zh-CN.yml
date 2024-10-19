@@ -169,6 +169,8 @@ messages:
     grid_new_style:
       click_to_withdraw: "<passive>点击取出物品"
     directional:
+      limit_quantity: "<random_color>当前数量: %s"
+      mode: "<random_color>当前模式: <mechanism>%s"
       display_empty: "&7设置朝向: %s"
       display_name: "<passive>设置朝向: %s (%s)"
       display_lore:
@@ -275,8 +277,6 @@ messages:
       item_mover_empty: "&c物品转移棒中没有物品"
       item_mover_item_mismatch: "&c物品不匹配"
     directional:
-      limit_quantity: "<random_color>当前数量: %s"
-      mode: "<random_color>当前模式: <mechanism>%s"
       unexcepted_value: "意外的值: %s"
     remote:
       must_connect_to_grid: "<error>必须连接到一个网格"
@@ -401,9 +401,9 @@ icons:
     lore:
       - ""
   craft-button:
-    name: "<click_info>合成",
+    name: "<click_info>合成"
     lore:
-      - "<click_info>左键点击: <passive>合成",
+      - "<click_info>左键点击: <passive>合成"
       - "<click_info>Shift+左键点击: <passive>将合成台内物品送回网络"
   docs_icon:
     click_to_visit_wiki: "单击此处访问Wiki"
@@ -422,13 +422,13 @@ icons:
     transfers:
       data_title: "&a⇩传输数据⇩"
       max_distance: "&7[&a最大距离&7]&f:&6%d 方块"
-      push_tick: "&7[&a推送频率&7]&f:&7 每 &6%d SF tick &7推送一次"
-      grab_tick: "&7[&a抓取频率&7]&f:&7 每 &6%d SF tick &7抓取一次"
+      push_item_tick: "&7[&a推送频率&7]&f:&7 每 &6%d SF tick &7推送一次"
+      grab_item_tick: "&7[&a抓取频率&7]&f:&7 每 &6%d SF tick &7抓取一次"
       required_power: "&7[&a运输耗电&7]&f:&7 每次运输消耗 &6%d J 网络电力"
     advanced_purger:
       name: "&a ⇩清理机制⇩"
       lore:
-        - "",
+        - ""
         - "&e&f功能描述:"
         - "&f-&7 网络高级清除器会从网络中"
         - "&f-&7 不断地移除指定物品(需要按顺序放置)"
@@ -504,11 +504,11 @@ icons:
       name: "&c位置错误"
       lore_before_info:
         - ""
-        - "&e这个容器已在其它位置存在",
-        - "&e请不要将同ID的容器放在多个不同的位置",
-        - "&e如果您认为这是个意外，请联系管理员处理",
-        - " ",
-        - "&6容器信息:",
+        - "&e这个容器已在其它位置存在"
+        - "&e请不要将同ID的容器放在多个不同的位置"
+        - "&e如果您认为这是个意外，请联系管理员处理"
+        - " "
+        - "&6容器信息:"
       id: "&b容器ID: &a%s"
       world: "&b所在世界: &e%s"
       location: "&b所在位置: &e%s &7/ &e%s &7/ &e%s"

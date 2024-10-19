@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.network.barrel;
 
+import com.balugaq.netex.utils.BlockMenuUtil;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.network.stackcaches.BarrelIdentity;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -38,47 +40,36 @@ public class FluffyBarrel extends BarrelIdentity {
             return null;
         }
 
-        int stored = (int) getAmount();
-        if (stored <= 1) {
+        int received = 0;
+        ItemStack targetItem = itemRequest.getItemStack();
+        for (int slot : getOutputSlot()) {
+            ItemStack item = menu.getItemInSlot(slot);
+            if (item == null || item.getType() == Material.AIR) {
+                continue;
+            }
+
+            if (StackUtils.itemsMatch(item, targetItem)) {
+                int max = Math.min(item.getAmount(), itemRequest.getAmount() - received);
+                menu.consumeItem(slot, max);
+                received += max;
+            }
+        }
+
+        if (received <= 0) {
             return null;
         }
-        if (StackUtils.itemsMatch(getItemStack(), itemRequest.getItemStack())) {
-            int need = itemRequest.getAmount();
-            int have = stored - 1;
-            int take = Math.min(need, have);
-            if (take <= 0) {
-                return null;
-            }
-            setStored(getLocation(), stored - take);
 
-            return StackUtils.getAsQuantity(getItemStack(), take);
-        }
-
-        return null;
-    }
-
-    public void setStored(Location location, int amount) {
-        StorageCacheUtils.setData(location, "stored", String.valueOf(amount));
-        setAmount(amount);
+        return StackUtils.getAsQuantity(targetItem, received);
     }
 
     @Override
     public void depositItemStack(ItemStack[] itemsToDeposit) {
-        int received = 0;
-        for (ItemStack item : itemsToDeposit) {
-            if (StackUtils.itemsMatch(item, getItemStack())) {
-                int maxCanReceive = (int) (getLimit() - getAmount());
-                if (voidExcess && maxCanReceive == 0) {
-                    item.setAmount(0);
-                    continue;
-                }
-                int canReceive = Math.min(item.getAmount(), maxCanReceive);
-                item.setAmount(item.getAmount() - canReceive);
-                received += canReceive;
-            }
+        BlockMenu menu = StorageCacheUtils.getMenu(getLocation());
+        if (menu == null) {
+            return;
         }
 
-        setStored(getLocation(), (int) (getAmount() + received));
+        BlockMenuUtil.pushItem(menu, itemsToDeposit, getInputSlot());
     }
 
     @Override

@@ -29,7 +29,7 @@ public class MainFlexGroup extends FlexItemGroup {
 
 
     private static final ItemStack DOCS_ITEM_STACK = Theme.themedItemStack(
-            Networks.getLocalizationService().getIcon("icons.docs_icon", Material.BOOK),
+            Networks.getLocalizationService().getIcon("docs_icon", Material.BOOK),
             Theme.GUIDE
     );
 

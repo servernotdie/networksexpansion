@@ -186,6 +186,9 @@ public class LocalizationService {
             localization = this.langMap.get(lang).getLang().getStringList(path);
         } while (localization.isEmpty());
 
+        for (int i = 0; i < localization.size(); i++) {
+            localization.set(i, color(localization.get(i)));
+        }
         return localization;
     }
 

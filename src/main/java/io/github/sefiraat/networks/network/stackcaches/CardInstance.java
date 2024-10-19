@@ -3,7 +3,7 @@ package io.github.sefiraat.networks.network.stackcaches;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.Theme;
 import lombok.Getter;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
