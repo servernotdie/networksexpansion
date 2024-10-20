@@ -97,19 +97,19 @@ public class NetworkBlueprintDecoder extends NetworkObject {
     private void decode(Player player, BlockMenu menu) {
         ItemStack input = menu.getItemInSlot(getInputSlot());
         if (input == null || input.getType() == Material.AIR) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.no-input"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.no_input"));
             return;
         }
 
         SlimefunItem item = SlimefunItem.getByItem(input);
         if (!(item instanceof AbstractBlueprint)) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.not-blueprint"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.not_blueprint"));
             return;
         }
 
         ItemMeta meta = input.getItemMeta();
         if (meta == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.invalid-blueprint"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.invalid_blueprint"));
             return;
         }
 
@@ -121,7 +121,7 @@ public class NetworkBlueprintDecoder extends NetworkObject {
             blueprintInstance = DataTypeMethods.getCustom(meta, Keys.BLUEPRINT_INSTANCE3, PersistentCraftingBlueprintType.TYPE);
         }
         if (blueprintInstance == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.invalid-blueprint"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.decoder.invalid_blueprint"));
             return;
         }
 

@@ -98,20 +98,20 @@ public abstract class AbstractEncoder extends NetworkObject {
         final long networkCharge = root.getRootPower();
 
         if (networkCharge < CHARGE_COST) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.not-enough-power"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.not_enough_power"));
             return;
         }
 
         ItemStack blueprint = blockMenu.getItemInSlot(BLANK_BLUEPRINT_SLOT);
 
         if (!isValidBlueprint(blueprint)) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.invalid-blueprint"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.invalid_blueprint"));
             return;
         }
 
         SlimefunItem sfi = SlimefunItem.getByItem(blueprint);
         if (sfi != null && sfi.isDisabled()) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.disabled-blueprint"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.disabled_blueprint"));
             return;
         }
 
@@ -150,7 +150,7 @@ public abstract class AbstractEncoder extends NetworkObject {
         if (crafted != null) {
             final SlimefunItem sfi2 = SlimefunItem.getByItem(crafted);
             if (sfi2 != null && sfi2.isDisabled()) {
-                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.disabled-output"));
+                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.disabled_output"));
                 return;
             }
         }
@@ -165,7 +165,7 @@ public abstract class AbstractEncoder extends NetworkObject {
         }
 
         if (crafted == null || crafted.getType() == Material.AIR) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.invalid-recipe"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.invalid_recipe"));
             return;
         }
 

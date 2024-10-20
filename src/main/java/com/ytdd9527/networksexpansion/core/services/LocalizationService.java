@@ -380,6 +380,6 @@ public class LocalizationService {
     @Nonnull
     @ParametersAreNonnullByDefault
     public ItemStack getMechanism(String key) {
-        return getIcon("mechanisms." + key, Material.BOOK);
+        return getIcon("mechanism." + key, Material.BOOK);
     }
 }

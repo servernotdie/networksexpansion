@@ -15,6 +15,7 @@ import java.util.Random;
  */
 @UtilityClass
 public class TextUtil {
+    public static final String PLACEHOLDER = "†";
     public static final String COLOR_NORMAL = "§x§8§8§f§f§f§f";
     public static final String COLOR_STRESS = "§x§f§f§f§f§8§8";
     public static final String COLOR_ACTION = "§x§f§f§8§8§0§0";
@@ -31,14 +32,15 @@ public class TextUtil {
     private static long COUNT = 0;
 
     @Nonnull
-    public static String colorString(@Nonnull String string, @Nonnull List<Color> colorList) {
+    public static String colorString(@Nonnull String string0, @Nonnull List<Color> colorList) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (string.length() == 0) {
-            string += " ";
+        if (string0.length() == 0) {
+            string0 += " ";
         }
-        if (string.length() == 1) {
-            string += " ";
+        if (string0.length() == 1) {
+            string0 += " ";
         }
+        String string = string0.replaceAll("%s", PLACEHOLDER);
         for (int i = 0, length = string.length() - 1; i <= length; i++) {
             double p = ((double) i) / length * (colorList.size() - 1);
             Color color1 = colorList.get((int) Math.floor(p));
@@ -55,7 +57,10 @@ public class TextUtil {
                     .append("§").append(TextUtil.codeColor(blue % 16));
             stringBuilder.append(string.charAt(i));
         }
-        return stringBuilder.toString();
+
+        String re = stringBuilder.toString();
+        re = re.replaceAll(PLACEHOLDER, "%s");
+        return re;
     }
 
     @Nonnull
@@ -89,9 +94,10 @@ public class TextUtil {
     }
 
     @Nonnull
-    public static String colorPseudorandomString(@Nonnull String string, long seed) {
+    public static String colorPseudorandomString(@Nonnull String string0, long seed) {
         List<Color> colorList = new ArrayList<>();
         double r = 1;
+        String string = string0.replaceAll("%s", PLACEHOLDER);
         Random random = new Random(string.hashCode() / 2 + seed / 2);
         while (1 / r >= random.nextDouble() && r * r <= string.length()) {
             int red = (int) ((random.nextDouble() * 8 + 8) * 15 + random.nextDouble() * 12 + 4);

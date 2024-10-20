@@ -71,8 +71,8 @@ messages:
     updated-item: "<success>已更新物品"
     updated-item-in-quantum-storage: "<success>已更新存储内的物品!"
     wait-for-data: "<green>已请求数据，请稍候..."
-    set-container-id: "&a已设置位于为 %s 的网络抽屉的容器ID为 %d."
-    invalid-slot-index: "<error>槽位号必须在 0-%d 之间!"
+    set-container-id: "&a已设置位于为 %s 的网络抽屉的容器ID为 %s."
+    invalid-slot-index: "<error>槽位号必须在 0-%s 之间!"
     empty-slot: "<error>该槽位没有物品!"
     help:
       - "&6网络命令帮助:"
@@ -159,7 +159,7 @@ messages:
       empty: "<warning>空"
     item_mover:
       stored_item: "&b已存储: %s"
-      stored_amount: "&b数量: %d"
+      stored_amount: "&b数量: %s"
       suggest_use_drawers: "&c请使用网络抽屉的快速转移模式"
     quantum_storage:
       waiting_for_input_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <warning>请输入网络高级量子存储的容量.最大限制为: 2147483647!"
@@ -170,7 +170,7 @@ messages:
       click_to_withdraw: "<passive>点击取出物品"
     directional:
       limit_quantity: "<random_color>当前数量: %s"
-      mode: "<random_color>当前模式: <mechanism>%s"
+      transport_mode: "<random_color>当前模式: %s"
       display_empty: "&7设置朝向: %s"
       display_name: "<passive>设置朝向: %s (%s)"
       display_lore:
@@ -211,16 +211,16 @@ messages:
       copied_transport_mode: "<success>已保存传输模式为: %s"
       pasted_transport_mode: "<success>已设置传输模式为: %s"
       pasted_facing: "<success>方向: <passive>成功应用"
-      pasted_item: "<success>物品 [%d]: <passive>已添加到过滤器"
+      pasted_item: "<success>物品 [%s]: <passive>已添加到过滤器"
     drawer:
       bound_id: "&9已绑定容器ID: &e%s"
       deposited_item: "&a已存入物品!"
       transferred_to_quantum_storage: "&a已转移至量子存储!"
-      transferred_to_drawer: "&a已存入: %sx%d 至抽屉中!"
-      transferred_to_item_mover: "&a已转移: %sx%d 至物品转移棒中!"
+      transferred_to_drawer: "&a已存入: %sx%s 至抽屉中!"
+      transferred_to_item_mover: "&a已转移: %sx%s 至物品转移棒中!"
     item_mover:
-      deposit_success: "已存储 %sx%d 至物品转移棒"
-      withdraw_success: "已输出 %sx%d 至存储"
+      deposit_success: "已存储 %sx%s 至物品转移棒"
+      withdraw_success: "已输出 %sx%s 至存储"
   unsupported-operation:
     comprehensive:
       no-permission: "&c你没有权限使用此物品!"
@@ -292,8 +292,8 @@ messages:
       not_a_copyable_block: "<error>该方块没有指定朝向"
       not_a_pasteable_block: "<error>你必须指向一个带方向选择的网络方块"
       facing_not_found: "<error>方向: <passive>未提供"
-      not_enough_items: "<warning>物品 [%d]: <passive>没有足够的物品填充过滤器"
-      no_item_configured_pusher: "<warning>物品 [%d]: <passive>存储的配置中没有物品"
+      not_enough_items: "<warning>物品 [%s]: <passive>没有足够的物品填充过滤器"
+      no_item_configured_pusher: "<warning>物品 [%s]: <passive>存储的配置中没有物品"
       no_item_configured: "<warning>物品: <passive>存储的配置中没有物品"
     debugger:
       player_is_not_op: "<error>该物品只能由 OP 玩家使用."
@@ -421,10 +421,10 @@ icons:
   mechanism:
     transfers:
       data_title: "&a⇩传输数据⇩"
-      max_distance: "&7[&a最大距离&7]&f:&6%d 方块"
-      push_item_tick: "&7[&a推送频率&7]&f:&7 每 &6%d SF tick &7推送一次"
-      grab_item_tick: "&7[&a抓取频率&7]&f:&7 每 &6%d SF tick &7抓取一次"
-      required_power: "&7[&a运输耗电&7]&f:&7 每次运输消耗 &6%d J 网络电力"
+      max_distance: "&7[&a最大距离&7]&f: &6%s 方块"
+      push_item_tick: "&7[&a推送频率&7]&f:&7 每 &6%s SF tick &7推送一次"
+      grab_item_tick: "&7[&a抓取频率&7]&f:&7 每 &6%s SF tick &7抓取一次"
+      required_power: "&7[&a运输耗电&7]&f:&7 每次运输消耗 &6%s J 网络电力"
     advanced_purger:
       name: "&a ⇩清理机制⇩"
       lore:
@@ -533,7 +533,7 @@ icons:
     lore:
       - ""
   blank-slot-stack:
-    name: ""
+    name: " "
     lore:
       - ""
   page-previous-stack:

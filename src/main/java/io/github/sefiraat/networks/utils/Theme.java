@@ -321,7 +321,7 @@ public enum Theme {
         return ItemStackUtil.getCleanItem(new CustomItemStack(
                 itemStack.getType(),
                 Theme.applyThemeToString(themeType, name),
-                lore
+                finalLore
         ));
     }
 
