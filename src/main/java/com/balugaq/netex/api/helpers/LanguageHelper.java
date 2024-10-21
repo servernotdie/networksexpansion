@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 @UtilityClass
 public final class LanguageHelper {
     private static final Gson GSON = new Gson();
-    private static Map<String, String> lang = new HashMap();
+    private static Map<String, String> lang = new HashMap<>();
 
     public static void loadFromStream(@Nonnull InputStream stream) {
         Preconditions.checkArgument(stream != null, "输入流不能为空");

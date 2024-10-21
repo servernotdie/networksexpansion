@@ -4,6 +4,7 @@ import com.balugaq.netex.api.helpers.Icon;
 import com.balugaq.netex.api.helpers.SupportedCraftingTableRecipes;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.GridItemRequest;
+import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.slimefun.NetworkSlimefunItems;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -225,6 +226,9 @@ public class NetworkCraftingGrid extends AbstractGrid {
         // Push item
         menu.pushItem(crafted, CRAFT_OUTPUT_SLOT);
 
+        NetworkRoot root = definition.getNode().getRoot();
+        root.refreshRootItems();
+
         // Let's clear down all the items
         for (int recipeSlot : CRAFT_ITEMS) {
             final ItemStack itemInSlot = menu.getItemInSlot(recipeSlot);
@@ -237,7 +241,7 @@ public class NetworkCraftingGrid extends AbstractGrid {
                 if (menu.getItemInSlot(recipeSlot) == null) {
                     // Process item request
                     final GridItemRequest request = new GridItemRequest(itemInSlotClone, 1, player);
-                    final ItemStack requestingStack = definition.getNode().getRoot().getItemStack(request);
+                    final ItemStack requestingStack = root.getItemStack(request);
                     if (requestingStack != null) {
                         menu.replaceExistingItem(recipeSlot, requestingStack);
                     }
@@ -255,7 +259,7 @@ public class NetworkCraftingGrid extends AbstractGrid {
         }
 
         for (int recipeSlot : CRAFT_ITEMS) {
-            @SuppressWarnings("deprecation") final ItemStack stack = menu.getItemInSlot(recipeSlot);
+            final ItemStack stack = menu.getItemInSlot(recipeSlot);
 
             if (stack == null || stack.getType() == Material.AIR) {
                 continue;

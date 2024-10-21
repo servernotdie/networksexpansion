@@ -117,6 +117,7 @@ public class SetupUtil {
                 ExpansionItems.NETWORK_CAPACITOR_5.registerThis(),
                 ExpansionItems.NETWORK_CAPACITOR_6.registerThis(),
                 ExpansionItems.NETWORK_GRID_NEW_STYLE.registerThis(),
+                ExpansionItems.NETWORK_CRAFTING_GRID_NEW_STYLE.registerThis(),
                 ExpansionItems.NETWORK_BLUEPRINT_DECODER.registerThis(),
                 ExpansionItems.LINE_POWER_OUTLET_1.registerThis(),
                 ExpansionItems.LINE_POWER_OUTLET_2.registerThis(),

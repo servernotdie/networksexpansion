@@ -962,4 +962,9 @@ public class ExpansionRecipes {
             NETWORK_PUSHER.getItem(), NETWORK_GRABBER.getItem(), NETWORK_PUSHER.getItem(),
             OPTIC_STAR.getItem(), NETWORK_PUSHER.getItem(), OPTIC_STAR.getItem()
     };
+    public static final ItemStack[] NETWORK_CRAFTING_GRID_NEW_STYLE = new ItemStack[]{
+            NETWORK_BRIDGE.getItem(), NETWORK_CRAFTING_GRID.getItem(), NETWORK_BRIDGE.getItem(),
+            NETWORK_BRIDGE.getItem(), ExpansionItemStacks.NETWORK_GRID_NEW_STYLE, NETWORK_BRIDGE.getItem(),
+            NETWORK_BRIDGE.getItem(), NETWORK_CRAFTING_GRID.getItem(), NETWORK_BRIDGE.getItem()
+    };
 }

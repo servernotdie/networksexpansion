@@ -3125,6 +3125,17 @@ items:
     lore:
       - "右键点击一个网络方块开启调试。"
 
+  NTW_EXPANSION_CRAFTING_GRID_NEW_STYLE:
+    name: "高级网格（带合成）"
+    lore:
+      - "高级网格（带合成）允许你查看网络中所有的物品"
+      - "你也可以直接放入或取出物品"
+      - "排序方式: "
+      - "&eAZ&7: &e按字母顺序排序"
+      - "&e数量&7: &e按物品数量排序"
+      - "&e附属&7: &e按物品所属附属字母顺序排序"
+      - "支持拼音搜索"
+
 displays:
   quantum_storage:
     void_excess: "<click_info>满载清空输入: <passive>%s"

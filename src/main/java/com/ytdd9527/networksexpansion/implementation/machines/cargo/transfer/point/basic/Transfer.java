@@ -194,10 +194,15 @@ public class Transfer extends NetworkDirectional implements RecipeDisplayItem, C
         }
 
         final NetworkRoot root = definition.getNode().getRoot();
+        if (root.getRootPower() < requiredPower) {
+            return;
+        }
 
         LineOperationUtil.doOperation(blockMenu.getLocation(), direction, 1, false, (targetMenu) -> {
             LineOperationUtil.pushItem(root, targetMenu, templates, TransportMode.FIRST_STOP, 64);
         });
+
+        root.removeRootPower(requiredPower);
     }
 
     private void tryGrabItem(@Nonnull BlockMenu blockMenu) {
@@ -213,10 +218,15 @@ public class Transfer extends NetworkDirectional implements RecipeDisplayItem, C
         }
 
         final NetworkRoot root = definition.getNode().getRoot();
+        if (root.getRootPower() < requiredPower) {
+            return;
+        }
 
         LineOperationUtil.doOperation(blockMenu.getLocation(), direction, 1, true, (targetMenu) -> {
             LineOperationUtil.grabItem(root, targetMenu, TransportMode.FIRST_STOP, 64);
         });
+
+        root.removeRootPower(requiredPower);
     }
 
     @Nonnull

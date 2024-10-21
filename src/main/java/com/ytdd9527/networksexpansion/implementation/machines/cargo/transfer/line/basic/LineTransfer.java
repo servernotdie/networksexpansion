@@ -200,6 +200,9 @@ public class LineTransfer extends NetworkDirectional implements RecipeDisplayIte
         }
 
         final NetworkRoot root = definition.getNode().getRoot();
+        if (root.getRootPower() < requiredPower) {
+            return;
+        }
 
         final boolean drawParticle = blockMenu.hasViewer();
         LineOperationUtil.doOperation(
@@ -211,6 +214,8 @@ public class LineTransfer extends NetworkDirectional implements RecipeDisplayIte
                 (targetMenu) -> {
                     LineOperationUtil.pushItem(root, targetMenu, templates, TransportMode.FIRST_STOP, 64);
                 });
+
+        root.removeRootPower(requiredPower);
     }
 
     private void tryGrabItem(@Nonnull BlockMenu blockMenu) {
@@ -226,6 +231,9 @@ public class LineTransfer extends NetworkDirectional implements RecipeDisplayIte
         }
 
         final NetworkRoot root = definition.getNode().getRoot();
+        if (root.getRootPower() < requiredPower) {
+            return;
+        }
 
         final boolean drawParticle = blockMenu.hasViewer();
         LineOperationUtil.doOperation(
@@ -237,6 +245,8 @@ public class LineTransfer extends NetworkDirectional implements RecipeDisplayIte
                 (targetMenu) -> {
                     LineOperationUtil.grabItem(root, targetMenu, TransportMode.FIRST_STOP, 64);
                 });
+
+        root.removeRootPower(requiredPower);
     }
 
     @Nonnull

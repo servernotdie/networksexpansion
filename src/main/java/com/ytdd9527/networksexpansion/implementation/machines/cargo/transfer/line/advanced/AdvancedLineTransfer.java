@@ -207,6 +207,10 @@ public class AdvancedLineTransfer extends AdvancedDirectional implements RecipeD
         }
 
         final NetworkRoot root = definition.getNode().getRoot();
+        if (root.getRootPower() < requiredPower) {
+            return;
+        }
+
         final TransportMode currentTransportMode = getCurrentTransportMode(blockMenu.getLocation());
         final int limitQuantity = getLimitQuantity(blockMenu.getLocation());
 
@@ -228,6 +232,8 @@ public class AdvancedLineTransfer extends AdvancedDirectional implements RecipeD
                 (targetMenu) -> {
                     LineOperationUtil.pushItem(root, targetMenu, templates, currentTransportMode, limitQuantity);
                 });
+
+        root.removeRootPower(requiredPower);
     }
 
     private void tryGrabItem(@Nonnull BlockMenu blockMenu) {
@@ -243,6 +249,10 @@ public class AdvancedLineTransfer extends AdvancedDirectional implements RecipeD
         }
 
         final NetworkRoot root = definition.getNode().getRoot();
+        if (root.getRootPower() < requiredPower) {
+            return;
+        }
+
         final int limitQuantity = getLimitQuantity(blockMenu.getLocation());
         final TransportMode mode = getCurrentTransportMode(blockMenu.getLocation());
 
@@ -256,6 +266,8 @@ public class AdvancedLineTransfer extends AdvancedDirectional implements RecipeD
                 (targetMenu) -> {
                     LineOperationUtil.grabItem(root, targetMenu, mode, limitQuantity);
                 });
+
+        root.removeRootPower(requiredPower);
     }
 
     @Nonnull

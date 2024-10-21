@@ -75,6 +75,7 @@ import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.BetterGrabber;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.DueMachine;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.NetworkBlueprintDecoder;
+import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.NetworkCraftingGridNewStyle;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.NetworkGridNewStyle;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.NetworkInputOnlyMonitor;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.NetworkOutputOnlyMonitor;
@@ -1435,5 +1436,11 @@ public class ExpansionItems {
             ExpansionItemStacks.NTW_EXPANSION_ANNOUNCE_8,
             RecipeType.NULL,
             ExpansionRecipes.NULL
+    );
+    public static final NetworkCraftingGridNewStyle NETWORK_CRAFTING_GRID_NEW_STYLE = new NetworkCraftingGridNewStyle(
+            ExpansionItemsMenus.MENU_FUNCTIONAL_MACHINE,
+            ExpansionItemStacks.NETWORK_CRAFTING_GRID_NEW_STYLE,
+            ExpansionWorkbench.TYPE,
+            ExpansionRecipes.NETWORK_CRAFTING_GRID_NEW_STYLE
     );
 }
