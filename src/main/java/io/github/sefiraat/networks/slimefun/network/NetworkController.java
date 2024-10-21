@@ -49,7 +49,6 @@ public class NetworkController extends NetworkObject {
 
                     @Override
                     public void tick(Block block, SlimefunItem item, SlimefunBlockData data) {
-                        sendDebugMessage(block.getLocation(), "NetworkController ticked");
                         if (!firstTickMap.containsKey(block.getLocation())) {
                             onFirstTick(block, data);
                             firstTickMap.put(block.getLocation(), true);

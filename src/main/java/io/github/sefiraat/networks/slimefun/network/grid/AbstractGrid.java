@@ -270,7 +270,7 @@ public abstract class AbstractGrid extends NetworkObject {
     }
 
     @ParametersAreNonnullByDefault
-    protected void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
+    protected synchronized void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
         NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
         if (definition == null || definition.getNode() == null) {
             clearDisplay(blockMenu);
