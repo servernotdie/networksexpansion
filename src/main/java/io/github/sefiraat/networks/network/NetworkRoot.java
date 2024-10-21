@@ -1628,4 +1628,21 @@ public class NetworkRoot extends NetworkNode {
         this.outputAbleCargoStorageUnitDatas = dataSet;
         return dataSet;
     }
+
+    public boolean refreshRootItems() {
+        this.barrels = null;
+        this.cargoStorageUnitDatas = null;
+        this.inputAbleBarrels = null;
+        this.outputAbleBarrels = null;
+        this.inputAbleCargoStorageUnitDatas = null;
+        this.outputAbleCargoStorageUnitDatas = null;
+
+        getBarrels();
+        getCargoStorageUnitDatas();
+        getInputAbleBarrels();
+        getOutputAbleBarrels();
+        getInputAbleCargoStorageUnitDatas();
+        getOutputAbleCargoStorageUnitDatas();
+        return true;
+    }
 }

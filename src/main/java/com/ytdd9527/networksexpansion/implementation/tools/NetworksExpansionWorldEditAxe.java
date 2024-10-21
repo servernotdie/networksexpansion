@@ -29,7 +29,7 @@ public class NetworksExpansionWorldEditAxe extends SpecialSlimefunItem {
                     final Optional<Block> optional = e.getClickedBlock();
                     if (optional.isPresent()) {
                         final Location location = optional.get().getLocation();
-                        NetworksMain.worldeditPos1(player, location);
+                        NetworksMain.worldeditPos2(player, location);
                     }
                     e.cancel();
                 },
@@ -41,7 +41,7 @@ public class NetworksExpansionWorldEditAxe extends SpecialSlimefunItem {
                     }
 
                     final Location location = e.getBlock().getLocation();
-                    NetworksMain.worldeditPos2(player, location);
+                    NetworksMain.worldeditPos1(player, location);
 
                     e.setCancelled(true);
                 }

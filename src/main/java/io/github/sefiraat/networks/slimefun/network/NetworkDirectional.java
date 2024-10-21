@@ -148,7 +148,7 @@ public abstract class NetworkDirectional extends NetworkObject {
             Material material = active ? Material.GREEN_STAINED_GLASS_PANE : Material.RED_STAINED_GLASS_PANE;
             return ItemStackUtil.getCleanItem(new CustomItemStack(
                     material,
-                    Networks.getLocalizationService().getString("messages.normal-operation.directional.display_empty")
+                    String.format(Networks.getLocalizationService().getString("messages.normal-operation.directional.display_empty"), blockFace)
             ));
         }
     }

@@ -163,6 +163,11 @@ public abstract class AbstractGrid extends NetworkObject {
 
         // Update Screen
         final NetworkRoot root = definition.getNode().getRoot();
+        boolean success = root.refreshRootItems();
+        if (!success) {
+            return;
+        }
+
         final GridCache gridCache = getCacheMap().get(blockMenu.getLocation().clone());
         final List<Map.Entry<ItemStack, Long>> entries = getEntries(root, gridCache);
         final int pages = (int) Math.ceil(entries.size() / (double) getDisplaySlots().length) - 1;
@@ -270,7 +275,7 @@ public abstract class AbstractGrid extends NetworkObject {
     }
 
     @ParametersAreNonnullByDefault
-    protected synchronized void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
+    protected void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
         NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
         if (definition == null || definition.getNode() == null) {
             clearDisplay(blockMenu);
