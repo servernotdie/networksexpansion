@@ -475,8 +475,8 @@ icons:
         - "&7当容器锁定后，将仅允许当前存在的物品输入"
         - "&7并且输出时将会留下至少一个物品"
     void_excess:
-      voidExcess: "&a已开启"
-      unVoidExcess: "&c未关闭"
+      enabled: "&a已开启"
+      disabled: "&c未关闭"
       name: "&6满载清空模式"
       lore_before_status:
         - ""

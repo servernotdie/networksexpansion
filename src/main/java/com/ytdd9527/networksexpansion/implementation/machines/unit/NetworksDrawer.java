@@ -249,7 +249,7 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
             if (lore == null) {
                 lore = new ArrayList<>();
             }
-            lore.add(String.format(Networks.getLocalizationService().getString("messages.completed-operation.drawer.bound_id")));
+            lore.add(String.format(Networks.getLocalizationService().getString("messages.completed-operation.drawer.bound_id"), id));
             meta.setLore(lore);
             meta.getPersistentDataContainer().set(idKey, PersistentDataType.INTEGER, id);
         }
