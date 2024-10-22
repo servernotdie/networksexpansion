@@ -3,6 +3,7 @@ package com.balugaq.netex.api.helpers;
 import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.github.sefiraat.networks.Networks;
 import lombok.experimental.UtilityClass;
 
 import java.io.BufferedReader;
@@ -19,6 +20,13 @@ import javax.annotation.Nullable;
 public final class LanguageHelper {
     private static final Gson GSON = new Gson();
     private static Map<String, String> lang = new HashMap<>();
+    static {
+        String lang = Networks.getConfigManager().getLanguage();
+        InputStream stream = Networks.getInstance().getResource("mc_lang_" + lang + ".json");
+        if (stream != null) {
+            loadFromStream(stream);
+        }
+    }
 
     public static void loadFromStream(@Nonnull InputStream stream) {
         Preconditions.checkArgument(stream != null, "输入流不能为空");
@@ -42,6 +50,6 @@ public final class LanguageHelper {
     @Nullable
     public static String getLangOrNull(@Nonnull String key) {
         Preconditions.checkArgument(key != null, "键名不能为空");
-        return lang.get(key);
+        return Networks.getLocalizationService().getMCMessage(key);
     }
 }

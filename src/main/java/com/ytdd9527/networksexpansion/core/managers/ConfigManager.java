@@ -20,6 +20,7 @@ public class ConfigManager {
     }
 
     private void setupDefaultConfig() {
+        // config.yml
         final Networks plugin = Networks.getInstance();
         final InputStream inputStream = plugin.getResource("config.yml");
         final File existingFile = new File(plugin.getDataFolder(), "config.yml");
