@@ -163,10 +163,6 @@ public abstract class AbstractGrid extends NetworkObject {
 
         // Update Screen
         final NetworkRoot root = definition.getNode().getRoot();
-        boolean success = root.refreshRootItems();
-        if (!success) {
-            return;
-        }
 
         final GridCache gridCache = getCacheMap().get(blockMenu.getLocation().clone());
         final List<Map.Entry<ItemStack, Long>> entries = getEntries(root, gridCache);
