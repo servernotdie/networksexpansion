@@ -344,7 +344,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
     }
 
     @ParametersAreNonnullByDefault
-    protected void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
+    protected synchronized void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
         NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
         if (definition == null || definition.getNode() == null) {
             clearDisplay(blockMenu);
@@ -373,6 +373,12 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
         cloneLore.remove(cloneLore.size() - 1);
         cloneMeta.setLore(cloneLore);
         clone.setItemMeta(cloneMeta);
+
+        NetworkRoot root = definition.getNode().getRoot();
+        boolean success = root.refreshRootItems();
+        if (!success) {
+            return;
+        }
 
         final ItemStack cursor = player.getItemOnCursor();
         if (cursor.getType() != Material.AIR && !StackUtils.itemsMatch(clone, StackUtils.getAsQuantity(player.getItemOnCursor(), 1))) {
