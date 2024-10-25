@@ -53,6 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -368,7 +369,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
+        if (!Objects.equals(getPos1(player).getWorld().getUID(), getPos2(player).getWorld().getUID())) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
@@ -449,7 +450,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (!getPos1(player).getWorld().getName().equals(getPos2(player).getWorld().getName())) {
+        if (!Objects.equals(getPos1(player).getWorld().getUID(), getPos2(player).getWorld().getUID())) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
@@ -487,7 +488,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
+        if (!Objects.equals(getPos1(player).getWorld().getUID(), getPos2(player).getWorld().getUID())) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
@@ -520,7 +521,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
+        if (!Objects.equals(getPos1(player).getWorld().getUID(), getPos2(player).getWorld().getUID())) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }
@@ -545,7 +546,7 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        if (getPos1(player).getWorld() != getPos2(player).getWorld()) {
+        if (!Objects.equals(getPos1(player).getWorld().getUID(), getPos2(player).getWorld().getUID())) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
             return;
         }

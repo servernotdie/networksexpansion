@@ -46,6 +46,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @SuppressWarnings("unused")
 public class NetworkRoot extends NetworkNode {
     @Getter
+    private final long CREATED_TIME = System.currentTimeMillis();
+    @Getter
     private final Set<Location> nodeLocations = new HashSet<>();
     private final int[] CELL_AVAILABLE_SLOTS = NetworkCell.SLOTS.stream().mapToInt(i -> i).toArray();
     private final int[] GREEDY_BLOCK_AVAILABLE_SLOTS = new int[]{NetworkGreedyBlock.INPUT_SLOT};
