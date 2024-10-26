@@ -1,13 +1,13 @@
 package com.ytdd9527.networksexpansion.core.listener;
 
 import com.balugaq.netex.api.event.NetworksExpansionGuideOpenEvent;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import com.balugaq.netex.utils.GuideUtil;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideImplementation;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
-import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

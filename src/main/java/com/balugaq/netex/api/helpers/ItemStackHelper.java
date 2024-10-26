@@ -1,14 +1,19 @@
 package com.balugaq.netex.api.helpers;
 
 import com.google.common.base.Preconditions;
-import javax.annotation.Nonnull;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import javax.annotation.Nonnull;
+
 public final class ItemStackHelper {
     private static final String NULL_ITEMSTACK_MESSAGE = "物品不能为空";
+
+    private ItemStackHelper() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
 
     @Nonnull
     public static String getDisplayName(@Nonnull ItemStack item) {
@@ -20,7 +25,7 @@ public final class ItemStackHelper {
     public static String getName(@Nonnull ItemStack item) {
         Preconditions.checkArgument(item != null, NULL_ITEMSTACK_MESSAGE);
         if (MinecraftTag.POTION_WITH_TIPPED_ARROW.isTagged(item)) {
-            String potion = ((PotionMeta)item.getItemMeta()).getBasePotionData().getType().toString().toLowerCase();
+            String potion = ((PotionMeta) item.getItemMeta()).getBasePotionData().getType().toString().toLowerCase();
             String material = MaterialHelper.getKey(item.getType());
             return LanguageHelper.getLangOrKey(material + ".effect." + potion);
         } else {
@@ -31,11 +36,7 @@ public final class ItemStackHelper {
     @Nonnull
     private static String getPlayerSkullName(@Nonnull ItemStack skull) {
         Preconditions.checkArgument(skull != null, "物品不能为空");
-        SkullMeta meta = (SkullMeta)skull.getItemMeta();
+        SkullMeta meta = (SkullMeta) skull.getItemMeta();
         return meta != null && meta.hasOwner() ? String.format(LanguageHelper.getLangOrKey("block.minecraft.player_head.named"), meta.getOwningPlayer().getName()) : LanguageHelper.getLangOrKey("block.minecraft.player_head");
-    }
-
-    private ItemStackHelper() {
-        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 }

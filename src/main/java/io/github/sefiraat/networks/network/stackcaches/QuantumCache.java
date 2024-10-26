@@ -1,8 +1,8 @@
 package io.github.sefiraat.networks.network.stackcaches;
 
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import io.github.sefiraat.networks.Networks;
 import lombok.Getter;
-import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 

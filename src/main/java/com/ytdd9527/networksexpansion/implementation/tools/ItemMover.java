@@ -1,5 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.tools;
 
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import com.jeff_media.morepersistentdatatypes.DataType;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
@@ -28,7 +29,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.ncbpfluffybear.fluffymachines.items.Barrel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import com.balugaq.netex.api.helpers.ItemStackHelper;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

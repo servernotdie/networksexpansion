@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import io.github.sefiraat.networks.Networks;
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,13 +15,12 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @UtilityClass
 public final class LanguageHelper {
     private static final Gson GSON = new Gson();
     private static Map<String, String> lang = new HashMap<>();
+
     static {
         String lang = Networks.getConfigManager().getLanguage();
         InputStream stream = Networks.getInstance().getResource("mc_lang_" + lang + ".json");

@@ -21,6 +21,7 @@ public class BlockListener implements Listener {
     private static final String S1 = "Listened BlockBreakEvent at {0}";
     private static final String S2 = "Listened BlockPlaceEvent at {0}";
     private static final String S3 = "Listened ChunkUnloadEvent at world: {0}, x: {1}, z: {2}";
+
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent e) {
         Networks.getInstance().debug(MessageFormat.format(S1, e.getBlock().getLocation()));
