@@ -233,5 +233,9 @@ public class Icon {
             "action-button",
             Material.REDSTONE_TORCH
     );
+    public static final ItemStack CRAFT_BUTTON_NEW_STYLE = Networks.getLocalizationService().getIcon(
+            "craft-button-new-style",
+            Material.CRAFTING_TABLE
+    );
 
 }

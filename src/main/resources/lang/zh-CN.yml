@@ -168,6 +168,7 @@ messages:
       item_amount: "{0}数量: {1}{2}"
     grid_new_style:
       click_to_withdraw: "<passive>点击取出物品"
+      crafted: "<success>上次合成 <click_info>%s x%s"
     directional:
       limit_quantity: "<random_color>当前数量: %s"
       transport_mode: "<random_color>当前模式: %s"
@@ -405,6 +406,12 @@ icons:
     lore:
       - "<click_info>左键点击: <passive>合成"
       - "<click_info>Shift+左键点击: <passive>将合成台内物品送回网络"
+  craft-button-new-style:
+    name: "<click_info>合成"
+    lore:
+      - "<click_info>左键点击: <passive>合成 1 次"
+      - "<click_info>Shift+左键点击: <passive>将合成台内物品送回网络"
+      - "<click_info>右键点击: <passive>合成 64 次"
   docs_icon:
     click_to_visit_wiki: "单击此处访问Wiki"
     name: "附属 Wiki"
@@ -2602,14 +2609,15 @@ items:
       - "解码网络蓝图"
   
   NTW_EXPANSION_DUE_MACHINE:
-    name: "&6预期机"
+    name: "&6限流机"
     lore:
-      - "匹配物品时，输出物品"
+      - "当输入槽匹配对应白名单物品，传输对应白名单物品数量至输出槽"
   
   NTW_EXPANSION_OFFSETTER:
-    name: "&a偏移机"
+    name: "&a槽位对应机"
     lore:
-      - "&8顾名思义"
+      - "&8传输对应槽位"
+      - "&8调整偏移值以决定对应"
   
   NTW_EXPANSION_BETTER_GRABBER:
     name: "更好的网络抓取器"

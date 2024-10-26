@@ -1,11 +1,14 @@
 package com.ytdd9527.networksexpansion.implementation.machines.networks.advanced;
 
 import com.balugaq.netex.api.helpers.Icon;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import com.balugaq.netex.api.helpers.SupportedCraftingTableRecipes;
 import com.balugaq.netex.utils.BlockMenuUtil;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractGridNewStyle;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
+import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.GridItemRequest;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
@@ -16,6 +19,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
@@ -140,9 +144,9 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
                     return false;
                 });
 
-                menu.replaceExistingItem(CRAFT_BUTTON_SLOT, Icon.CRAFT_BUTTON);
+                menu.replaceExistingItem(CRAFT_BUTTON_SLOT, Icon.CRAFT_BUTTON_NEW_STYLE);
                 menu.addMenuClickHandler(CRAFT_BUTTON_SLOT, (p, slot, item, action) -> {
-                    tryCraft(menu, p);
+                    tryCraft(menu, p, action);
                     return false;
                 });
 
@@ -192,7 +196,7 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         return FILTER;
     }
 
-    private synchronized void tryCraft(BlockMenu blockMenu, Player player) {
+    private synchronized void tryCraft(BlockMenu blockMenu, Player player, ClickAction action) {
         // Get node and, if it doesn't exist - escape
         final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
         if (definition == null || definition.getNode() == null) {
@@ -200,6 +204,15 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         }
 
         final NetworkRoot root = definition.getNode().getRoot();
+        root.refreshRootItems();
+
+        if (!action.isRightClicked() && action.isShiftClicked()) {
+            ItemStack output = blockMenu.getItemInSlot(OUTPUT_SLOT);
+            if (output != null && output.getType() != Material.AIR) {
+                root.addItemStack(output);
+            }
+            return;
+        }
 
         // Get the recipe input
         final ItemStack[] inputs = new ItemStack[INTEGRATION_SLOTS.length];
@@ -234,8 +247,6 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
             return;
         }
 
-        root.refreshRootItems();
-
         ItemStack output = blockMenu.getItemInSlot(OUTPUT_SLOT);
         if (output != null && output.getType() != Material.AIR) {
             root.addItemStack(output);
@@ -245,7 +256,8 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
             return;
         }
 
-        int maxAmount = Integer.MAX_VALUE;
+        int maxAmount = action.isRightClicked() ? 64 : 1;
+
         if (output != null && output.getType() != Material.AIR) {
             maxAmount = Math.min(maxAmount, (output.getMaxStackSize() - output.getAmount()) / crafted.getAmount());
         }
@@ -276,7 +288,11 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
                 continue;
             }
             int required = entry.getValue();
-            long current = currentItems.get(is);
+            Long current = currentItems.get(is);
+            if (current == null) {
+                maxAmount = 0;
+                break;
+            }
             maxAmount = Math.min(maxAmount, (int) (current / required));
         }
 
@@ -286,9 +302,6 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
             int amount = (int) (maxAmount * required);
             need.put(entry.getKey(), amount);
         }
-
-        // push items
-        BlockMenuUtil.pushItem(blockMenu, StackUtils.getAsQuantity(crafted, crafted.getAmount() * maxAmount), OUTPUT_SLOT);
 
         // consume items
         for (Map.Entry<ItemStack, Integer> entry : need.entrySet()) {
@@ -309,10 +322,10 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
                 }
             }
         }
-    }
 
-    @Override
-    protected void updateDisplay(@NotNull BlockMenu blockMenu) {
-        super.updateDisplay(blockMenu);
+        // push items
+        int outputAmount = crafted.getAmount() * maxAmount;
+        BlockMenuUtil.pushItem(blockMenu, StackUtils.getAsQuantity(crafted, outputAmount), OUTPUT_SLOT);
+        blockMenu.replaceExistingItem(CRAFT_BUTTON_SLOT, ItemStackUtil.getCleanItem(new CustomItemStack(Icon.CRAFT_BUTTON_NEW_STYLE, String.format(Networks.getLocalizationService().getString("messages.normal-operation.grid_new_style.crafted"), ItemStackHelper.getDisplayName(crafted), outputAmount))));
     }
 }
