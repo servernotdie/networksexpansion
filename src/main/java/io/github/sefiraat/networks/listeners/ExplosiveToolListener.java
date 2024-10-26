@@ -3,6 +3,8 @@ package io.github.sefiraat.networks.listeners;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractGridNewStyle;
 import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
+import io.github.sefiraat.networks.Networks;
+import io.github.sefiraat.networks.commands.NetworksMain;
 import io.github.sefiraat.networks.slimefun.network.NetworkCell;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
 import io.github.sefiraat.networks.slimefun.network.grid.AbstractGrid;
@@ -29,6 +31,7 @@ public class ExplosiveToolListener implements Listener {
             if (item != null) {
                 if (isAntiExplosiveBlock(item)) {
                     blocksToRemove.add(block);
+                    Networks.getInstance().debug("Disabled explosive block: " + NetworksMain.locationToString(block.getLocation()));
                 }
             }
         }

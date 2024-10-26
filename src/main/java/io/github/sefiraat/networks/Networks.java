@@ -337,4 +337,10 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     public String getWikiURL() {
         return MessageFormat.format("https://slimefun-addons-wiki.guizhanss.cn/networks/{0}/{1}", this.username, this.repo);
     }
+
+    public void debug(String message) {
+        if (getConfigManager().isDebug()) {
+            getLogger().warning("[DEBUG] " + message);
+        }
+    }
 }

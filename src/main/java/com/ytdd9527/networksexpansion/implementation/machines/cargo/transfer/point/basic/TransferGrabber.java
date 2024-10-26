@@ -127,7 +127,7 @@ public class TransferGrabber extends NetworkDirectional implements RecipeDisplay
 
         final NetworkRoot root = definition.getNode().getRoot();
 
-        LineOperationUtil.doOperation(blockMenu.getLocation(), direction, 1, true, (targetMenu) -> {
+        LineOperationUtil.doOperation(blockMenu.getLocation(), direction, 1, true, false, (targetMenu) -> {
             LineOperationUtil.grabItem(root, targetMenu, TransportMode.FIRST_STOP, 64);
         });
     }

@@ -28,6 +28,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -41,11 +42,11 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
 
     private static final int[] DISPLAY_SLOTS = {
             0, 1, 2, 3, 4,
-            9, 10, 11, 12,
-            18, 19, 20, 21,
-            27, 28, 29, 30,
-            36, 37, 38, 39,
-            45, 46, 47, 48
+            9, 10, 11, 12, 13,
+            18, 19, 20, 21, 22,
+            27, 28, 29, 30, 31,
+            36, 37, 38, 39, 40,
+            45, 46, 47, 48, 49
     };
 
     private static final int AUTO_FILTER_SLOT = 43;
@@ -191,7 +192,7 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         return FILTER;
     }
 
-    private void tryCraft(BlockMenu blockMenu, Player player) {
+    private synchronized void tryCraft(BlockMenu blockMenu, Player player) {
         // Get node and, if it doesn't exist - escape
         final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
         if (definition == null || definition.getNode() == null) {
@@ -252,11 +253,15 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         Map<ItemStack, Integer> requiredItems = new HashMap<>();
         if (isVanilla) {
             for (ItemStack input : inputs) {
-                requiredItems.merge(input, 1, Integer::sum);
+                if (input != null && input.getType() != Material.AIR) {
+                    requiredItems.merge(input, 1, Integer::sum);
+                }
             }
         } else {
             for (ItemStack input : matched.getKey()) {
-                requiredItems.merge(input, input.getAmount(), Integer::sum);
+                if (input != null && input.getType() != Material.AIR) {
+                    requiredItems.merge(input, input.getAmount(), Integer::sum);
+                }
             }
         }
 
@@ -266,8 +271,12 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
 
         // calculate the max amount can be crafted
         for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
+            ItemStack is = entry.getKey();
+            if (is == null || is.getType() == Material.AIR) {
+                continue;
+            }
             int required = entry.getValue();
-            long current = currentItems.get(entry.getKey());
+            long current = currentItems.get(is);
             maxAmount = Math.min(maxAmount, (int) (current / required));
         }
 
@@ -279,7 +288,7 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         }
 
         // push items
-        BlockMenuUtil.pushItem(blockMenu, StackUtils.getAsQuantity(crafted, maxAmount), OUTPUT_SLOT);
+        BlockMenuUtil.pushItem(blockMenu, StackUtils.getAsQuantity(crafted, crafted.getAmount() * maxAmount), OUTPUT_SLOT);
 
         // consume items
         for (Map.Entry<ItemStack, Integer> entry : need.entrySet()) {
@@ -288,14 +297,22 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
             root.getItemStack(request);
             if (StackUtils.itemsMatch(itemStack, new ItemStack(itemStack.getType()))) {
                 switch (itemStack.getType()) {
-                    case WATER_BUCKET, LAVA_BUCKET, MILK_BUCKET -> {
+                    case WATER_BUCKET, LAVA_BUCKET, MILK_BUCKET, COD_BUCKET, SALMON_BUCKET, PUFFERFISH_BUCKET, TROPICAL_FISH_BUCKET, AXOLOTL_BUCKET, POWDER_SNOW_BUCKET, TADPOLE_BUCKET -> {
                         root.addItemStack(new ItemStack(Material.BUCKET, entry.getValue()));
                     }
                     case POTION, SPLASH_POTION, LINGERING_POTION, HONEY_BOTTLE, DRAGON_BREATH -> {
                         root.addItemStack(new ItemStack(Material.GLASS_BOTTLE, entry.getValue()));
                     }
+                    case MUSHROOM_STEW, BEETROOT_SOUP, RABBIT_STEW, SUSPICIOUS_STEW -> {
+                        root.addItemStack(new ItemStack(Material.BOWL, entry.getValue()));
+                    }
                 }
             }
         }
+    }
+
+    @Override
+    protected void updateDisplay(@NotNull BlockMenu blockMenu) {
+        super.updateDisplay(blockMenu);
     }
 }
