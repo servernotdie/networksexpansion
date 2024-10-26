@@ -44,7 +44,6 @@ public class LineTransfer extends NetworkDirectional implements RecipeDisplayIte
     public static final int DEFAULT_GRAB_ITEM_TICK = 1;
     public static final int DEFAULT_REQUIRED_POWER = 5000;
     public static final boolean DEFAULT_USE_SPECIAL_MODEL = false;
-    private static final int PARTICLE_INTERVAL = 2;
     private static final int[] BACKGROUND_SLOTS = new int[]{
             0,
             10,

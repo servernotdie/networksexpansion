@@ -39,7 +39,6 @@ import java.util.UUID;
 import java.util.function.Function;
 
 public class AdvancedLineTransfer extends AdvancedDirectional implements RecipeDisplayItem, Configurable {
-    private static final int PARTICLE_INTERVAL = 2;
     private static final int DEFAULT_MAX_DISTANCE = 64;
     private static final int DEFAULT_PUSH_ITEM_TICK = 1;
     private static final int DEFAULT_GRAB_ITEM_TICK = 1;
