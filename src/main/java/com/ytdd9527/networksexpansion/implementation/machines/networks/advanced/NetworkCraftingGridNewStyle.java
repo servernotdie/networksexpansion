@@ -76,7 +76,6 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
             @Override
             public void init() {
                 drawBackground(getBackgroundSlots());
-                addItem(CRAFT_BUTTON_SLOT, Icon.CRAFT_BUTTON);
                 setSize(54);
             }
 
