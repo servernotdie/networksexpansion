@@ -17,7 +17,7 @@ import java.text.MessageFormat;
  * Fix https://github.com/Sefiraat/Networks/issues/192
  * Fix https://github.com/ytdd9527/NetworksExpansion/issues/119
  */
-public class BlockListener implements Listener {
+public class SyncListener implements Listener {
     private static final String S1 = "Listened BlockBreakEvent at {0}";
     private static final String S2 = "Listened BlockPlaceEvent at {0}";
     private static final String S3 = "Listened ChunkUnloadEvent at world: {0}, x: {1}, z: {2}";
