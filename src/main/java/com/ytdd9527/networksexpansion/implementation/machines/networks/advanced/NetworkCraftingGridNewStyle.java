@@ -16,10 +16,12 @@ import io.github.sefiraat.networks.slimefun.network.grid.GridCache;
 import io.github.sefiraat.networks.slimefun.network.grid.GridCache.DisplayMode;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -31,8 +33,10 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -194,18 +198,18 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         return FILTER;
     }
 
-    private synchronized void tryCraft(BlockMenu blockMenu, Player player, ClickAction action) {
+    private synchronized void tryCraft(BlockMenu menu, Player player, ClickAction action) {
         // Get node and, if it doesn't exist - escape
-        final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
+        final NodeDefinition definition = NetworkStorage.getNode(menu.getLocation());
         if (definition == null || definition.getNode() == null) {
             return;
         }
 
-        final NetworkRoot root = definition.getNode().getRoot();
+        NetworkRoot root = definition.getNode().getRoot();
         root.refreshRootItems();
 
         if (!action.isRightClicked() && action.isShiftClicked()) {
-            ItemStack output = blockMenu.getItemInSlot(OUTPUT_SLOT);
+            ItemStack output = menu.getItemInSlot(OUTPUT_SLOT);
             if (output != null && output.getType() != Material.AIR) {
                 root.addItemStack(output);
             }
@@ -216,18 +220,13 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         final ItemStack[] inputs = new ItemStack[INTEGRATION_SLOTS.length];
         int i = 0;
         for (int recipeSlot : INTEGRATION_SLOTS) {
-            ItemStack stack = blockMenu.getItemInSlot(recipeSlot);
-            if (stack != null && stack.getType() != Material.AIR) {
-                inputs[i] = stack.clone();
-            } else {
-                inputs[i] = null;
-            }
+            ItemStack stack = menu.getItemInSlot(recipeSlot);
+            inputs[i] = stack;
             i++;
         }
 
         ItemStack crafted = null;
         Map.Entry<ItemStack[], ItemStack> matched = null;
-        boolean isVanilla = false;
 
         // Go through each slimefun recipe, test and set the ItemStack if found
         for (Map.Entry<ItemStack[], ItemStack> entry : SupportedCraftingTableRecipes.getRecipes().entrySet()) {
@@ -239,26 +238,33 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         }
 
         // If no slimefun recipe found, try a vanilla one
-        ItemStack[] cloneInputs = inputs.clone();
-        for (int i1 = 0; i1 < inputs.length; i1++) {
-            cloneInputs[i1] = StackUtils.getAsQuantity(inputs[i1], 1);
-        }
         if (crafted == null) {
-            crafted = Bukkit.craftItem(cloneInputs, player.getWorld(), player);
-            isVanilla = true;
+            ItemStack[] _inputs = Arrays.stream(inputs.clone()).map(itemStack -> itemStack != null ? StackUtils.getAsQuantity(itemStack, 1) : null).toArray(ItemStack[]::new);
+            crafted = Bukkit.craftItem(_inputs.clone(), player.getWorld(), player);
+            Map<ItemStack[], ItemStack> v = new HashMap<>();
+            v.put(_inputs, crafted);
+            matched = v.entrySet().stream().findFirst().get();
         }
 
         // If no item crafted OR result doesn't fit, escape
-        if (crafted == null || crafted.getType() == Material.AIR) {
+        if (crafted.getType() == Material.AIR || !menu.fits(crafted, OUTPUT_SLOT)) {
             return;
         }
 
-        ItemStack output = blockMenu.getItemInSlot(OUTPUT_SLOT);
+        if (crafted != null) {
+            final SlimefunItem sfi2 = SlimefunItem.getByItem(crafted);
+            if (sfi2 != null && sfi2.isDisabled()) {
+                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.disabled_output"));
+                return;
+            }
+        }
+
+        ItemStack output = menu.getItemInSlot(OUTPUT_SLOT);
         if (output != null && output.getType() != Material.AIR) {
             root.addItemStack(output);
         }
 
-        if (!BlockMenuUtil.fits(blockMenu, crafted, OUTPUT_SLOT)) {
+        if (!BlockMenuUtil.fits(menu, crafted, OUTPUT_SLOT)) {
             return;
         }
 
@@ -269,17 +275,9 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         }
 
         Map<ItemStack, Integer> requiredItems = new HashMap<>();
-        if (isVanilla) {
-            for (ItemStack input : inputs) {
-                if (input != null && input.getType() != Material.AIR) {
-                    requiredItems.merge(input, 1, Integer::sum);
-                }
-            }
-        } else {
-            for (ItemStack input : matched.getKey()) {
-                if (input != null && input.getType() != Material.AIR) {
-                    requiredItems.merge(input, input.getAmount(), Integer::sum);
-                }
+        for (ItemStack input : matched.getKey()) {
+            if (input != null && input.getType() != Material.AIR) {
+                requiredItems.merge(input, input.getAmount(), Integer::sum);
             }
         }
 
@@ -331,7 +329,7 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
 
         // push items
         int outputAmount = crafted.getAmount() * maxAmount;
-        BlockMenuUtil.pushItem(blockMenu, StackUtils.getAsQuantity(crafted, outputAmount), OUTPUT_SLOT);
-        blockMenu.replaceExistingItem(CRAFT_BUTTON_SLOT, ItemStackUtil.getCleanItem(new CustomItemStack(Icon.CRAFT_BUTTON_NEW_STYLE, String.format(Networks.getLocalizationService().getString("messages.normal-operation.grid_new_style.crafted"), ItemStackHelper.getDisplayName(crafted), outputAmount))));
+        BlockMenuUtil.pushItem(menu, StackUtils.getAsQuantity(crafted, outputAmount), OUTPUT_SLOT);
+        menu.replaceExistingItem(CRAFT_BUTTON_SLOT, ItemStackUtil.getCleanItem(new CustomItemStack(Icon.CRAFT_BUTTON_NEW_STYLE, String.format(Networks.getLocalizationService().getString("messages.normal-operation.grid_new_style.crafted"), ItemStackHelper.getDisplayName(crafted), outputAmount))));
     }
 }
