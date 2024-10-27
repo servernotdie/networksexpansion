@@ -1,5 +1,7 @@
 package io.github.sefiraat.networks.slimefun.network.grid;
 
+import com.balugaq.netex.api.helpers.Icon;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import com.github.houbb.pinyin.constant.enums.PinyinStyleEnum;
 import com.github.houbb.pinyin.util.PinyinHelper;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
@@ -19,13 +21,11 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.settings.IntRangeSetting;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -59,26 +59,6 @@ public abstract class AbstractGrid extends NetworkObject {
                 }
             },
             Collator.getInstance(Locale.CHINA)::compare
-    );
-    private static final CustomItemStack BLANK_SLOT_STACK = new CustomItemStack(
-            Material.LIGHT_GRAY_STAINED_GLASS_PANE,
-            " "
-    );
-    private static final CustomItemStack PAGE_PREVIOUS_STACK = new CustomItemStack(
-            Material.RED_STAINED_GLASS_PANE,
-            Theme.CLICK_INFO.getColor() + "上一页"
-    );
-    private static final CustomItemStack PAGE_NEXT_STACK = new CustomItemStack(
-            Material.RED_STAINED_GLASS_PANE,
-            Theme.CLICK_INFO.getColor() + "下一页"
-    );
-    private static final CustomItemStack CHANGE_SORT_STACK = new CustomItemStack(
-            Material.BLUE_STAINED_GLASS_PANE,
-            Theme.CLICK_INFO.getColor() + "更改排序方式"
-    );
-    private static final CustomItemStack FILTER_STACK = new CustomItemStack(
-            Material.NAME_TAG,
-            Theme.CLICK_INFO.getColor() + "设置过滤器 (右键点击以清除)"
     );
     private static final Comparator<Map.Entry<ItemStack, Long>> NUMERICAL_SORT = Map.Entry.comparingByValue();
     private static final Comparator<Map.Entry<ItemStack, Long>> ADDON_SORT = Comparator.comparing(
@@ -144,7 +124,7 @@ public abstract class AbstractGrid extends NetworkObject {
 
     @Nonnull
     private static List<String> getLoreAddition(long amount) {
-        final MessageFormat format = new MessageFormat("{0}数量: {1}{2}", Locale.ROOT);
+        final MessageFormat format = new MessageFormat(Networks.getLocalizationService().getString("messages.normal-operation.grid.item_amount"), Locale.ROOT);
         return List.of(
                 "",
                 format.format(new Object[]{Theme.CLICK_INFO.getColor(), Theme.PASSIVE.getColor(), amount}, new StringBuffer(), null).toString()
@@ -183,6 +163,7 @@ public abstract class AbstractGrid extends NetworkObject {
 
         // Update Screen
         final NetworkRoot root = definition.getNode().getRoot();
+
         final GridCache gridCache = getCacheMap().get(blockMenu.getLocation().clone());
         final List<Map.Entry<ItemStack, Long>> entries = getEntries(root, gridCache);
         final int pages = (int) Math.ceil(entries.size() / (double) getDisplaySlots().length) - 1;
@@ -230,7 +211,7 @@ public abstract class AbstractGrid extends NetworkObject {
                     return false;
                 });
             } else {
-                blockMenu.replaceExistingItem(getDisplaySlots()[i], BLANK_SLOT_STACK);
+                blockMenu.replaceExistingItem(getDisplaySlots()[i], Icon.BLANK_SLOT_STACK);
                 blockMenu.addMenuClickHandler(getDisplaySlots()[i], (p, slot, item, action) -> false);
             }
         }
@@ -238,7 +219,7 @@ public abstract class AbstractGrid extends NetworkObject {
 
     protected void clearDisplay(BlockMenu blockMenu) {
         for (int displaySlot : getDisplaySlots()) {
-            blockMenu.replaceExistingItem(displaySlot, BLANK_SLOT_STACK);
+            blockMenu.replaceExistingItem(displaySlot, Icon.BLANK_SLOT_STACK);
             blockMenu.addMenuClickHandler(displaySlot, (p, slot, item, action) -> false);
         }
     }
@@ -266,13 +247,13 @@ public abstract class AbstractGrid extends NetworkObject {
             gridCache.setFilter(null);
         } else {
             player.closeInventory();
-            player.sendMessage(Theme.WARNING + "请输入你想要过滤的物品名称(显示名)或类型");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.normal-operation.grid.waiting_for_filter"));
             ChatUtils.awaitInput(player, s -> {
                 if (s.isBlank()) {
                     return;
                 }
                 gridCache.setFilter(s.toLowerCase(Locale.ROOT));
-                player.sendMessage(Theme.SUCCESS + "已启用过滤器");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.grid.filter_set"));
 
                 SlimefunBlockData data = StorageCacheUtils.getBlock(blockMenu.getLocation());
                 if (data == null) {
@@ -290,12 +271,12 @@ public abstract class AbstractGrid extends NetworkObject {
     }
 
     @ParametersAreNonnullByDefault
-    protected void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
+    protected synchronized void retrieveItem(Player player, @Nullable ItemStack itemStack, ClickAction action, BlockMenu blockMenu) {
         NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
         if (definition == null || definition.getNode() == null) {
             clearDisplay(blockMenu);
             blockMenu.close();
-            Networks.getInstance().getLogger().warning("Player \"%s\" attempted to use network grid from a invalid node at %s, the player may trying to cheat or duplicate items.".formatted(player.getName(), blockMenu.getLocation()));
+            Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.grid.may_duping"), player.getName(), blockMenu.getLocation()));
             return;
         }
 
@@ -319,9 +300,15 @@ public abstract class AbstractGrid extends NetworkObject {
         cloneMeta.setLore(cloneLore);
         clone.setItemMeta(cloneMeta);
 
+        NetworkRoot root = definition.getNode().getRoot();
+        boolean success = root.refreshRootItems();
+        if (!success) {
+            return;
+        }
+
         final ItemStack cursor = player.getItemOnCursor();
         if (cursor.getType() != Material.AIR && !StackUtils.itemsMatch(clone, StackUtils.getAsQuantity(player.getItemOnCursor(), 1))) {
-            definition.getNode().getRoot().addItemStack(player.getItemOnCursor());
+            root.addItemStack(player.getItemOnCursor());
             return;
         }
 
@@ -411,23 +398,23 @@ public abstract class AbstractGrid extends NetworkObject {
 
     protected abstract int getFilterSlot();
 
-    protected CustomItemStack getBlankSlotStack() {
-        return BLANK_SLOT_STACK;
+    protected ItemStack getBlankSlotStack() {
+        return Icon.BLANK_SLOT_STACK;
     }
 
-    protected CustomItemStack getPagePreviousStack() {
-        return PAGE_PREVIOUS_STACK;
+    protected ItemStack getPagePreviousStack() {
+        return Icon.PAGE_PREVIOUS_STACK;
     }
 
-    protected CustomItemStack getPageNextStack() {
-        return PAGE_NEXT_STACK;
+    protected ItemStack getPageNextStack() {
+        return Icon.PAGE_NEXT_STACK;
     }
 
-    protected CustomItemStack getChangeSortStack() {
-        return CHANGE_SORT_STACK;
+    protected ItemStack getChangeSortStack() {
+        return Icon.CHANGE_SORT_STACK;
     }
 
-    protected CustomItemStack getFilterStack() {
-        return FILTER_STACK;
+    protected ItemStack getFilterStack() {
+        return Icon.FILTER_STACK;
     }
 }

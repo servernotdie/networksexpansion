@@ -1,10 +1,10 @@
 package com.ytdd9527.networksexpansion.implementation.machines.cargo.transfer.point.basic;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.TransportMode;
 import com.balugaq.netex.api.interfaces.Configurable;
-import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
 import com.balugaq.netex.utils.LineOperationUtil;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
@@ -71,7 +71,7 @@ public class TransferGrabber extends NetworkDirectional implements RecipeDisplay
             String generatorKey = config.getString("items." + configKey + ".use-special-model.type");
             this.displayGroupGenerator = generatorMap.get(generatorKey);
             if (this.displayGroupGenerator == null) {
-                Networks.getInstance().getLogger().warning("未知的展示组类型 '" + generatorKey + "', 特殊模型已禁用。");
+                Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.display.unknown_type"), generatorKey));
                 this.useSpecialModel = false;
             }
         }
@@ -127,7 +127,7 @@ public class TransferGrabber extends NetworkDirectional implements RecipeDisplay
 
         final NetworkRoot root = definition.getNode().getRoot();
 
-        LineOperationUtil.doOperation(blockMenu.getLocation(), direction, 1, true, (targetMenu) -> {
+        LineOperationUtil.doOperation(blockMenu.getLocation(), direction, 1, true, false, (targetMenu) -> {
             LineOperationUtil.grabItem(root, targetMenu, TransportMode.FIRST_STOP, 64);
         });
     }
@@ -191,22 +191,9 @@ public class TransferGrabber extends NetworkDirectional implements RecipeDisplay
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>(6);
         displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩传输数据⇩",
+                Networks.getLocalizationService().getString("icons.mechanism.transfers.data_title"),
                 "",
-                "&7[&a抓取频率&7]&f:&7 每 &6" + grabItemTick + " SfTick &7抓取一次"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩参数⇩",
-                "&7默认运输模式: &6首位阻断",
-                "&c不可调整运输模式",
-                "&7默认运输数量: &664",
-                "&c不可调整运输数量"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩功能⇩",
-                "",
-                "&e与链式不同的是，此机器&c只有抓取的功能",
-                "&c而不是转移物品！"
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.grab_item_tick"), grabItemTick)
         ));
         return displayRecipes;
     }

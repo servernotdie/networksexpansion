@@ -1,11 +1,12 @@
 package io.github.sefiraat.networks;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.MCVersion;
-import com.ytdd9527.networksexpansion.core.managers.ConfigManager;
 import com.balugaq.netex.api.guide.CheatGuideImpl;
 import com.balugaq.netex.api.guide.SurvivalGuideImpl;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import com.ytdd9527.networksexpansion.core.managers.ConfigManager;
+import com.ytdd9527.networksexpansion.core.services.LocalizationService;
 import com.ytdd9527.networksexpansion.setup.SetupUtil;
 import com.ytdd9527.networksexpansion.utils.ReflectionUtil;
 import com.ytdd9527.networksexpansion.utils.databases.DataSource;
@@ -43,10 +44,12 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
 public class Networks extends JavaPlugin implements SlimefunAddon {
+    private static final String DEFAULT_LANGUAGE = "zh-CN";
     private static Networks instance;
     private static DataSource dataSource;
     private static QueryQueue queryQueue;
@@ -58,6 +61,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     private ConfigManager configManager;
     private ListenerManager listenerManager;
     private SupportedPluginManager supportedPluginManager;
+    private LocalizationService localizationService;
     private long slimefunTickCount;
 
 
@@ -96,6 +100,10 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         return Networks.getInstance().supportedPluginManager;
     }
 
+    public static LocalizationService getLocalizationService() {
+        return Networks.getInstance().localizationService;
+    }
+
     public static ListenerManager getListenerManager() {
         return Networks.getInstance().listenerManager;
     }
@@ -108,33 +116,46 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         instance = this;
 
+        getLogger().info("loading language");
+        this.configManager = new ConfigManager();
+        localizationService = new LocalizationService(this);
+        String language = configManager.getLanguage();
+        try {
+            localizationService.addLanguage(language);
+            getLogger().info("Language " + language + " loaded successfully.");
+        } catch (Exception e) {
+            getLogger().log(Level.WARNING, "Failed to load language " + language, e);
+        }
+
+        localizationService.addLanguage(DEFAULT_LANGUAGE);
+        getLogger().info("Default language " + DEFAULT_LANGUAGE + " loaded successfully.");
+
         superHead();
         environmentCheck();
-        getLogger().info("正在获取配置信息...");
+        getLogger().info(getLocalizationService().getString("messages.startup.loaded-language"));
+        getLogger().info(getLocalizationService().getString("messages.startup.getting-config"));
         saveDefaultConfig();
 
-        getLogger().info(Bukkit.getVersion());
-        getLogger().info("尝试自动更新...");
-        this.configManager = new ConfigManager();
+        getLogger().info(getLocalizationService().getString("messages.startup.trying-auto-update"));
         tryUpdate();
 
         this.supportedPluginManager = new SupportedPluginManager();
 
         // Try connect database
-        getLogger().info("正在连接数据库文件...");
+        getLogger().info(getLocalizationService().getString("messages.startup.connecting-database"));
         try {
             dataSource = new DataSource();
         } catch (ClassNotFoundException | SQLException e) {
-            getLogger().warning("数据库文件连接失败！");
+            getLogger().warning(getLocalizationService().getString("messages.startup.failed-to-connect-database"));
             e.printStackTrace();
             onDisable();
         }
 
-        getLogger().info("正在创建队列...");
+        getLogger().info(getLocalizationService().getString("messages.startup.creating-query-queue"));
         queryQueue = new QueryQueue();
         queryQueue.startThread();
 
-        getLogger().info("正在创建自动保存线程...");
+        getLogger().info(getLocalizationService().getString("messages.startup.creating-auto-save-thread"));
         autoSaveThread = new BukkitRunnable() {
             @Override
             public void run() {
@@ -146,11 +167,12 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         long period = 20L * seconds;
         autoSaveThread.runTaskTimerAsynchronously(this, 2 * period, period);
 
-        getLogger().info("正在注册物品...");
+        getLogger().info(getLocalizationService().getString("messages.startup.registering-items"));
         SetupUtil.setupAll();
 
-        getLogger().info("正在注册指令...");
+        getLogger().info(getLocalizationService().getString("messages.startup.registering-listeners"));
         this.listenerManager = new ListenerManager();
+        getLogger().info(getLocalizationService().getString("messages.startup.registering-commands"));
         this.getCommand("networks").setExecutor(new NetworksMain());
 
         setupMetrics();
@@ -180,8 +202,8 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         final boolean survivalOverride = getConfig().getBoolean("integrations.guide.survival-override");
         final boolean cheatOverride = getConfig().getBoolean("integrations.guide.cheat-override");
         if (survivalOverride || cheatOverride) {
-            getLogger().info("检测到已开启指南替换功能");
-            getLogger().info("正在替换指南...");
+            getLogger().info(getLocalizationService().getString("messages.startup.found-enabled-replacing-guide"));
+            getLogger().info(getLocalizationService().getString("messages.startup.replacing-guide"));
             Field field = ReflectionUtil.getField(Slimefun.getRegistry().getClass(), "guides");
             if (field != null) {
                 field.setAccessible(true);
@@ -195,27 +217,27 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
 
                 }
             }
-            getLogger().info(survivalOverride ? "已开启替换生存指南!" : "未关闭替换生存指南!");
-            getLogger().info(cheatOverride ? "已开启替换作弊指南!" : "未关闭替换作弊指南!");
-            getLogger().info("如遇开启后其他插件报错, 请在配置文件(config.yml)中关闭此功能");
+            getLogger().info(survivalOverride ? getLocalizationService().getString("messages.startup.enabled-replacing-survival-guide") : getLocalizationService().getString("messages.startup.disabled-replacing-survival-guide"));
+            getLogger().info(cheatOverride ? getLocalizationService().getString("messages.startup.enabled-replacing-cheat-guide") : getLocalizationService().getString("messages.startup.disabled-replacing-cheat-guide"));
+            getLogger().info(getLocalizationService().getString("messages.startup.guide-risk-warning"));
         }
 
 
-        getLogger().info("已启用附属！");
+        getLogger().info(getLocalizationService().getString("messages.startup.enabled-successfully"));
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("正在保存配置信息...");
+        getLogger().info(getLocalizationService().getString("messages.shutdown.saving-config"));
         this.configManager.saveAll();
-        getLogger().info("正在保存数据库信息，请不要结束进程！");
+        getLogger().info(getLocalizationService().getString("messages.shutdown.disconnecting-database"));
         if (autoSaveThread != null) {
             autoSaveThread.cancel();
         }
         DataStorage.saveAmountChange();
         if (queryQueue != null) {
             while (!queryQueue.isAllDone()) {
-                getLogger().info("当前队列: " + queryQueue.getTaskAmount());
+                getLogger().info(String.format(getLocalizationService().getString("messages.shutdown.saving-data"), queryQueue.getTaskAmount()));
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -224,8 +246,8 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
             }
             queryQueue.scheduleAbort();
         }
-        getLogger().info("已保存数据库信息！");
-        getLogger().info("已安全禁用附属！");
+        getLogger().info(getLocalizationService().getString("messages.shutdown.saved-all-data"));
+        getLogger().info(getLocalizationService().getString("messages.shutdown.disabled-successfully"));
     }
 
     public void tryUpdate() {
@@ -235,36 +257,16 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     }
 
     public void superHead() {
-        getLogger().info("#########################################################################");
-        getLogger().info("███╗   ██╗███████╗████████╗██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗           ");
-        getLogger().info("████╗  ██║██╔════╝╚══██╔══╝██║    ██║██╔═══██╗██╔══██╗██║ ██╔╝           ");
-        getLogger().info("██╔██╗ ██║█████╗     ██║   ██║ █╗ ██║██║   ██║██████╔╝█████╔╝            ");
-        getLogger().info("██║╚██╗██║██╔══╝     ██║   ██║███╗██║██║   ██║██╔══██╗██╔═██╗            ");
-        getLogger().info("██║ ╚████║███████╗   ██║   ╚███╔███╔╝╚██████╔╝██║  ██║██║  ██╗           ");
-        getLogger().info("╚═╝  ╚═══╝╚══════╝   ╚═╝    ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝           ");
-        getLogger().info("███████╗██╗  ██╗██████╗  █████╗ ███╗   ██╗███████╗██╗ ██████╗ ███╗   ██╗ ");
-        getLogger().info("██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗████╗  ██║██╔════╝██║██╔═══██╗████╗  ██║ ");
-        getLogger().info("█████╗   ╚███╔╝ ██████╔╝███████║██╔██╗ ██║███████╗██║██║   ██║██╔██╗ ██║ ");
-        getLogger().info("██╔══╝   ██╔██╗ ██╔═══╝ ██╔══██║██║╚██╗██║╚════██║██║██║   ██║██║╚██╗██║ ");
-        getLogger().info("███████╗██╔╝ ██╗██║     ██║  ██║██║ ╚████║███████║██║╚██████╔╝██║ ╚████║ ");
-        getLogger().info("╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ");
-        getLogger().info("                                                                         ");
-        getLogger().info("                           Networks - 网络                                ");
-        getLogger().info("                      作者: Sefiraat 汉化: ybw0014                         ");
-        getLogger().info("                      NetworksExpansion - 网络拓展                         ");
-        getLogger().info("                      作者: yitoudaidai, tinalness                        ");
-        getLogger().info("                       如遇bug请优先反馈至改版仓库:                           ");
-        getLogger().info("         https://github.com/ytdd9527/NetworksExpansion/issues            ");
-        getLogger().info("                      使用本附属时，请不要直接叉掉进程                         ");
-        getLogger().info("                      而是应该正常/stop以避免数据丢失                         ");
-        getLogger().info("#########################################################################");
+        List<String> superHead = getLocalizationService().getStringList("messages.super-head");
+        for (String line : superHead) {
+            getLogger().info(line);
+        }
     }
 
     public void environmentCheck() {
         if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
-            getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
-            getLogger().log(Level.SEVERE, "从此处下载: https://50l.cc/gzlib");
-            getServer().getPluginManager().disablePlugin(this);
+            getLogger().log(Level.SEVERE, getLocalizationService().getString("messages.depend.not-found-guizhanlib"));
+            getLogger().log(Level.SEVERE, getLocalizationService().getString("messages.depend.suggest-download-guizhanlib"));
             return;
         }
         try {
@@ -273,7 +275,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
             mcVersion = Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_21) ? MCVersion.of(21, 0) : mcVersion;
         } catch (NoClassDefFoundError | NoSuchFieldError e) {
             for (int i = 0; i < 20; i++) {
-                getLogger().severe("你需要更新 Slimefun4 才能正常运行本插件！");
+                getLogger().severe(getLocalizationService().getString("messages.depend.suggest-download-newer-slimefun"));
             }
         }
 
@@ -286,19 +288,19 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
 
     public void setupIntegrations() {
         if (supportedPluginManager.isSlimeHud()) {
-            getLogger().info("检测到安装了 SlimeHUD，注册相关功能！");
+            getLogger().info(getLocalizationService().getString("messages.integrations.found-slimehud"));
             try {
                 HudCallbacks.setup();
             } catch (NoClassDefFoundError e) {
-                getLogger().severe("你必须更新 SlimeHUD 才能让网络添加相关功能。");
+                getLogger().warning(getLocalizationService().getString("messages.integrations.not-found-slimehud"));
             }
         }
         if (supportedPluginManager.isNetheopoiesis()) {
-            getLogger().info("检测到安装了下界乌托邦，注册相关物品！");
+            getLogger().info(getLocalizationService().getString("messages.integrations.found-netheopoiesis"));
             try {
                 NetheoPlants.setup();
             } catch (NoClassDefFoundError e) {
-                getLogger().warning("你必须安装下界乌托邦才能让相关物品注册。");
+                getLogger().warning(getLocalizationService().getString("messages.integrations.not-found-netheopoiesis"));
             }
         }
     }
@@ -334,5 +336,11 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     @Nonnull
     public String getWikiURL() {
         return MessageFormat.format("https://slimefun-addons-wiki.guizhanss.cn/networks/{0}/{1}", this.username, this.repo);
+    }
+
+    public void debug(String message) {
+        if (getConfigManager().isDebug()) {
+            getLogger().warning("[DEBUG] " + message);
+        }
     }
 }

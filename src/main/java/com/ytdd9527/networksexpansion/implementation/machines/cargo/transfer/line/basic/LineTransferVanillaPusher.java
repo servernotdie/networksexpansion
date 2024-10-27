@@ -1,9 +1,9 @@
 package com.ytdd9527.networksexpansion.implementation.machines.cargo.transfer.line.basic;
 
-import com.bgsoftware.wildchests.api.WildChestsAPI;
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.MCVersion;
 import com.balugaq.netex.api.interfaces.Configurable;
+import com.bgsoftware.wildchests.api.WildChestsAPI;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NetworkRoot;
@@ -143,7 +143,6 @@ public class LineTransferVanillaPusher extends NetworkDirectional implements Rec
         // dirty fix
         Block targetBlock = block.getRelative(direction);
         for (int d = 0; d <= maxDistance; d++) {
-            // 如果方块是空气，退出
             if (targetBlock.getType() == Material.AIR) {
                 break;
             }
@@ -183,18 +182,13 @@ public class LineTransferVanillaPusher extends NetworkDirectional implements Rec
                 boolean wildChests = Networks.getSupportedPluginManager().isWildChests();
                 boolean isChest = wildChests && WildChestsAPI.getChest(targetBlock.getLocation()) != null;
 
-                sendDebugMessage(block.getLocation(), "WildChests 已安装：" + wildChests);
-                sendDebugMessage(block.getLocation(), "该方块是否被 WildChest 判断为方块：" + isChest);
-
                 if (inventory instanceof FurnaceInventory furnace) {
                     handleFurnace(root, template, furnace);
                 } else if (inventory instanceof BrewerInventory brewer) {
                     handleBrewingStand(root, template, brewer);
                 } else if (wildChests && isChest) {
-                    sendDebugMessage(block.getLocation(), "WildChest 测试失败！");
-                    return;
+                    continue;
                 } else if (InvUtils.fits(holder.getInventory(), template)) {
-                    sendDebugMessage(block.getLocation(), "WildChest 测试成功。");
                     for (ItemStack targetItem : inventory.getContents()) {
                         if (targetItem == null || targetItem.getType() == Material.AIR) {
                             final ItemStack stack = root.getItemStack(new ItemRequest(template, template.getMaxStackSize()));
@@ -339,23 +333,10 @@ public class LineTransferVanillaPusher extends NetworkDirectional implements Rec
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>(6);
         displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩传输数据⇩",
+                Networks.getLocalizationService().getString("icons.mechanism.transfers.data_title"),
                 "",
-                "&7[&a最大距离&7]&f:&6" + maxDistance + "方块",
-                "&7[&a推送频率&7]&f:&7 每 &6" + pushItemTick + " SfTick &7推送一次"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩参数⇩",
-                "&7默认运输模式: &6首位阻断",
-                "&c不可调整运输模式",
-                "&7默认运输数量: &664",
-                "&c不可调整运输数量"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩功能⇩",
-                "",
-                "&e与链式不同的是，此机器&c只有连续推送的功能",
-                "&c而不是连续转移物品！"
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.max_distance"), maxDistance),
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.push_item_tick"), pushItemTick)
         ));
         return displayRecipes;
     }

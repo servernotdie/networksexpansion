@@ -1,11 +1,11 @@
 package io.github.sefiraat.networks.network;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.ItemContainer;
 import com.balugaq.netex.api.data.StorageUnitData;
-import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.AdvancedGreedyBlock;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
 import com.balugaq.netex.utils.NetworksVersionedParticle;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.AdvancedGreedyBlock;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import io.github.mooy1.infinityexpansion.items.storage.StorageCache;
 import io.github.mooy1.infinityexpansion.items.storage.StorageUnit;
 import io.github.sefiraat.networks.Networks;
@@ -46,6 +46,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @SuppressWarnings("unused")
 public class NetworkRoot extends NetworkNode {
     @Getter
+    private final long CREATED_TIME = System.currentTimeMillis();
+    @Getter
     private final Set<Location> nodeLocations = new HashSet<>();
     private final int[] CELL_AVAILABLE_SLOTS = NetworkCell.SLOTS.stream().mapToInt(i -> i).toArray();
     private final int[] GREEDY_BLOCK_AVAILABLE_SLOTS = new int[]{NetworkGreedyBlock.INPUT_SLOT};
@@ -62,8 +64,6 @@ public class NetworkRoot extends NetworkNode {
     private final Set<Location> grids = ConcurrentHashMap.newKeySet();
     @Getter
     private final Set<Location> cells = ConcurrentHashMap.newKeySet();
-    @Getter
-    private final Set<Location> wipers = ConcurrentHashMap.newKeySet();
     @Getter
     private final Set<Location> grabbers = ConcurrentHashMap.newKeySet();
     @Getter
@@ -163,7 +163,6 @@ public class NetworkRoot extends NetworkNode {
                     cells.add(location);
                 }
             }
-            case WIPER -> wipers.add(location);
             case GRABBER -> grabbers.add(location);
             case PUSHER -> pushers.add(location);
             case PURGER -> purgers.add(location);
@@ -607,7 +606,7 @@ public class NetworkRoot extends NetworkNode {
 
             final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(testLocation);
 
-            if (slimefunItem instanceof CargoStorageUnit) {
+            if (slimefunItem instanceof NetworksDrawer) {
                 final StorageUnitData data = getCargoStorageUnitData(testLocation);
                 if (data != null) {
                     dataSet.put(data, testLocation);
@@ -721,12 +720,12 @@ public class NetworkRoot extends NetworkNode {
 
     @Nullable
     private StorageUnitData getCargoStorageUnitData(@Nonnull BlockMenu blockMenu) {
-        return CargoStorageUnit.getStorageData(blockMenu.getLocation());
+        return NetworksDrawer.getStorageData(blockMenu.getLocation());
     }
 
     @Nullable
     private StorageUnitData getCargoStorageUnitData(@Nonnull Location location) {
-        return CargoStorageUnit.getStorageData(location);
+        return NetworksDrawer.getStorageData(location);
     }
 
     @Nonnull
@@ -1114,7 +1113,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有贪婪方块
+
         for (BlockMenu blockMenu : getGreedyBlockMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             ItemStack inputSlotItem = blockMenu.getItemInSlot(slots[0]);
@@ -1122,7 +1121,7 @@ public class NetworkRoot extends NetworkNode {
                 totalAmount += inputSlotItem.getAmount();
             }
         }
-        // 遍历所有桶
+
         for (BarrelIdentity barrelIdentity : getOutputAbleBarrels()) {
             if (StackUtils.itemsMatch(barrelIdentity.getItemStack(), itemStack)) {
                 totalAmount += barrelIdentity.getAmount();
@@ -1140,7 +1139,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有单元格菜单
+
         for (BlockMenu blockMenu : getCellMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             for (int slot : slots) {
@@ -1172,7 +1171,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有贪婪方块
+
         for (BlockMenu blockMenu : getGreedyBlockMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             ItemStack inputSlotItem = blockMenu.getItemInSlot(slots[0]);
@@ -1184,7 +1183,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有桶
+
         for (BarrelIdentity barrelIdentity : getOutputAbleBarrels()) {
             for (ItemStack itemStack : itemStacks) {
                 if (StackUtils.itemsMatch(barrelIdentity.getItemStack(), itemStack)) {
@@ -1208,7 +1207,7 @@ public class NetworkRoot extends NetworkNode {
                 }
             }
         }
-        // 遍历所有单元格菜单
+
         for (BlockMenu blockMenu : getCellMenus()) {
             int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             for (int slot : slots) {
@@ -1315,7 +1314,6 @@ public class NetworkRoot extends NetworkNode {
         for (StorageUnitData cache : getInputAbleCargoStorageUnitDatas().keySet()) {
             cache.depositItemStack(incoming, true);
 
-            // 填充完成
             if (incoming.getAmount() == 0) {
                 return;
             }
@@ -1580,7 +1578,7 @@ public class NetworkRoot extends NetworkNode {
 
             final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(testLocation);
 
-            if (slimefunItem instanceof CargoStorageUnit) {
+            if (slimefunItem instanceof NetworksDrawer) {
                 final StorageUnitData data = getCargoStorageUnitData(testLocation);
                 if (data != null) {
                     dataSet.put(data, testLocation);
@@ -1621,7 +1619,7 @@ public class NetworkRoot extends NetworkNode {
 
             final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(testLocation);
 
-            if (slimefunItem instanceof CargoStorageUnit) {
+            if (slimefunItem instanceof NetworksDrawer) {
                 final StorageUnitData data = getCargoStorageUnitData(testLocation);
                 if (data != null) {
                     dataSet.put(data, testLocation);
@@ -1631,5 +1629,22 @@ public class NetworkRoot extends NetworkNode {
 
         this.outputAbleCargoStorageUnitDatas = dataSet;
         return dataSet;
+    }
+
+    public boolean refreshRootItems() {
+        this.barrels = null;
+        this.cargoStorageUnitDatas = null;
+        this.inputAbleBarrels = null;
+        this.outputAbleBarrels = null;
+        this.inputAbleCargoStorageUnitDatas = null;
+        this.outputAbleCargoStorageUnitDatas = null;
+
+        getBarrels();
+        getCargoStorageUnitDatas();
+        getInputAbleBarrels();
+        getOutputAbleBarrels();
+        getInputAbleCargoStorageUnitDatas();
+        getOutputAbleCargoStorageUnitDatas();
+        return true;
     }
 }

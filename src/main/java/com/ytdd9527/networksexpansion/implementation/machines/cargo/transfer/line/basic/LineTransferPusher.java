@@ -1,10 +1,11 @@
 package com.ytdd9527.networksexpansion.implementation.machines.cargo.transfer.line.basic;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.TransportMode;
+import com.balugaq.netex.api.helpers.Icon;
 import com.balugaq.netex.api.interfaces.Configurable;
-import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
 import com.balugaq.netex.utils.LineOperationUtil;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
@@ -13,7 +14,6 @@ import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.slimefun.network.NetworkDirectional;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -41,10 +41,6 @@ import java.util.UUID;
 import java.util.function.Function;
 
 public class LineTransferPusher extends NetworkDirectional implements RecipeDisplayItem, Configurable {
-    public static final CustomItemStack TEMPLATE_BACKGROUND_STACK = new CustomItemStack(
-            Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "指定需要推送的物品"
-    );
-    private static final int PARTICLE_INTERVAL = 2;
     private static final int DEFAULT_MAX_DISTANCE = 32;
     private static final int DEFAULT_PUSH_ITEM_TICK = 1;
     private static final boolean DEFAULT_USE_SPECIAL_MODEL = false;
@@ -93,7 +89,7 @@ public class LineTransferPusher extends NetworkDirectional implements RecipeDisp
             String generatorKey = config.getString("items." + configKey + ".use-special-model.type");
             this.displayGroupGenerator = generatorMap.get(generatorKey);
             if (this.displayGroupGenerator == null) {
-                Networks.getInstance().getLogger().warning("未知的展示组类型 '" + generatorKey + "', 特殊模型已禁用。");
+                Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.display.unknown_type"), generatorKey));
                 this.useSpecialModel = false;
             }
         }
@@ -180,8 +176,8 @@ public class LineTransferPusher extends NetworkDirectional implements RecipeDisp
 
     @Nullable
     @Override
-    protected CustomItemStack getOtherBackgroundStack() {
-        return TEMPLATE_BACKGROUND_STACK;
+    protected ItemStack getOtherBackgroundStack() {
+        return Icon.PUSHER_TEMPLATE_BACKGROUND_STACK;
     }
 
     @Override
@@ -278,23 +274,10 @@ public class LineTransferPusher extends NetworkDirectional implements RecipeDisp
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>(6);
         displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩传输数据⇩",
+                Networks.getLocalizationService().getString("icons.mechanism.transfers.data_title"),
                 "",
-                "&7[&a最大距离&7]&f:&6" + maxDistance + "方块",
-                "&7[&a推送频率&7]&f:&7 每 &6" + pushItemTick + " SfTick &7推送一次"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩参数⇩",
-                "&7默认运输模式: &6首位阻断",
-                "&c不可调整运输模式",
-                "&7默认运输数量: &664",
-                "&c不可调整运输数量"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩功能⇩",
-                "",
-                "&e与链式不同的是，此机器&c只有连续推送的功能",
-                "&c而不是连续转移物品！"
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.max_distance"), maxDistance),
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.push_item_tick"), pushItemTick)
         ));
         return displayRecipes;
     }

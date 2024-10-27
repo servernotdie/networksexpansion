@@ -1,13 +1,15 @@
 package com.ytdd9527.networksexpansion.implementation.tools;
 
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import com.jeff_media.morepersistentdatatypes.DataType;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import io.github.mooy1.infinityexpansion.items.storage.StorageCache;
 import io.github.mooy1.infinityexpansion.items.storage.StorageUnit;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.managers.SupportedPluginManager;
 import io.github.sefiraat.networks.network.barrel.FluffyBarrel;
 import io.github.sefiraat.networks.network.barrel.InfinityBarrel;
@@ -27,8 +29,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.ncbpfluffybear.fluffymachines.items.Barrel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -58,15 +58,15 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
                     if (optional.isPresent()) {
                         final ItemStack itemStack = e.getItem();
                         if (itemStack.getType() != Material.DEBUG_STICK) {
-                            player.sendMessage(ChatColor.RED + "不是一个有效的物品转移棒");
+                            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.invalid_item_mover"));
                             return;
                         }
                         if (itemStack.getAmount() != 1) {
-                            player.sendMessage(ChatColor.RED + "不是一个有效的物品转移棒");
+                            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.invalid_item_mover_amount"));
                             return;
                         }
                         if (!itemStack.hasItemMeta() || itemStack.getItemMeta() == null) {
-                            player.sendMessage(ChatColor.RED + "不是一个有效的物品转移棒");
+                            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.invalid_item_mover_meta"));
                             return;
                         }
                         final Location location = optional.get().getLocation();
@@ -223,8 +223,8 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
 
         List<String> lore = cloneDefaultLore();
         if (storedItemStack != null && amount > 0) {
-            lore.add(ChatColor.AQUA + "已存储: " + ItemStackHelper.getDisplayName(storedItemStack));
-            lore.add(ChatColor.AQUA + "数量: " + amount);
+            lore.add(String.format(Networks.getLocalizationService().getString("messages.normal-operation.item_mover.stored_item"), ItemStackHelper.getDisplayName(storedItemStack)));
+            lore.add(String.format(Networks.getLocalizationService().getString("messages.normal-operation.item_mover.stored_amount"), amount));
         } else {
             clearPDC(itemStack);
         }
@@ -250,8 +250,8 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
             return getFluffyBarrel(location, barrel);
         } else if (sfitem instanceof NetworkQuantumStorage) {
             return getNetworkStorage(location);
-        } else if (sfitem instanceof CargoStorageUnit) {
-            player.sendMessage(ChatColor.RED + "请使用网络抽屉的快速转移模式");
+        } else if (sfitem instanceof NetworksDrawer) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.suggest_use_drawers"));
             return null;
         }
 
@@ -370,13 +370,13 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         ItemStack storedItemStack = getStoredItemStack(mover);
         BarrelIdentity barrel = getBarrel(player, clickedLocation);
         if (barrel == null || barrel.getItemStack() == null || barrel.getAmount() <= 0) {
-            player.sendMessage(ChatColor.RED + "请选择一个有效的存储.");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.invalid_storage"));
             return;
         }
 
         int have = barrel.getAmount() > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) barrel.getAmount();
         if (have <= 0) {
-            player.sendMessage(ChatColor.RED + "存储中没有可用的物品.");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.empty_storage"));
             return;
         }
 
@@ -391,7 +391,7 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         ItemStack fetched = barrel.requestItem(itemRequest);
 
         if (fetched == null || fetched.getType() == Material.AIR) {
-            player.sendMessage(ChatColor.RED + "无法获取物品.");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.invalid_item"));
             return;
         }
 
@@ -399,7 +399,7 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         String name = ItemStackHelper.getDisplayName(fetched);
         depositItem(mover, fetched);
         int after = fetched.getAmount();
-        player.sendMessage(ChatColor.GREEN + "已存储 " + name + "x" + (before - after) + " 至物品转移棒");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.item_mover.deposit_success", name, before - after));
         updateLore(mover);
     }
 
@@ -408,19 +408,19 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         ItemStack storedItemStack = getStoredItemStack(mover);
         BarrelIdentity barrel = getBarrel(player, clickedLocation);
         if (barrel == null) {
-            player.sendMessage(ChatColor.RED + "请选择一个有效的存储.");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.invalid_storage"));
             return;
         }
 
         int have = barrel.getAmount() > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) barrel.getAmount();
 
         if (storedItemStack == null || storedAmount <= 0) {
-            player.sendMessage(ChatColor.RED + "没有可用的物品.");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.empty_mover"));
             return;
         }
 
         if (have >= Integer.MAX_VALUE) {
-            player.sendMessage(ChatColor.RED + "存储已满");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.item_mover.full_storage"));
             return;
         }
 
@@ -429,7 +429,7 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         barrel.depositItemStack(clone);
         int after = clone.getAmount();
         setStoredAmount(mover, clone.getAmount());
-        player.sendMessage(ChatColor.GREEN + "已输出 " + name + "x" + (storedAmount - after) + " 至存储.");
+        player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.item_mover.withdraw_success", name, after));
         updateLore(mover);
     }
 

@@ -1,19 +1,19 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
+import com.balugaq.netex.api.helpers.Icon;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.slimefun.network.NetworkObject;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
@@ -30,12 +30,6 @@ import java.util.Set;
 
 public abstract class AbstractEncoder extends NetworkObject {
 
-    public static final CustomItemStack BLUEPRINT_BACK_STACK = new CustomItemStack(
-            Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "空白蓝图"
-    );
-    public static final CustomItemStack ENCODE_STACK = new CustomItemStack(
-            Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "点击此处进行编码"
-    );
     private static final int[] BACKGROUND = new int[]{
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 17, 18, 20, 24, 25, 26, 27, 28, 29, 33, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
     };
@@ -67,9 +61,9 @@ public abstract class AbstractEncoder extends NetworkObject {
             @Override
             public void init() {
                 drawBackground(BACKGROUND);
-                drawBackground(BLUEPRINT_BACK_STACK, BLUEPRINT_BACK);
+                drawBackground(Icon.BLUEPRINT_BACK_STACK, BLUEPRINT_BACK);
 
-                addItem(ENCODE_SLOT, ENCODE_STACK, (player, i, itemStack, clickAction) -> false);
+                addItem(ENCODE_SLOT, Icon.ENCODE_STACK, (player, i, itemStack, clickAction) -> false);
             }
 
             @Override
@@ -97,7 +91,6 @@ public abstract class AbstractEncoder extends NetworkObject {
         final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
 
         if (definition == null || definition.getNode() == null) {
-            sendDebugMessage(blockMenu.getLocation(), "No network found");
             return;
         }
 
@@ -105,23 +98,20 @@ public abstract class AbstractEncoder extends NetworkObject {
         final long networkCharge = root.getRootPower();
 
         if (networkCharge < CHARGE_COST) {
-            player.sendMessage(Theme.WARNING + "网络中的电力不足，无法完成该任务");
-            sendDebugMessage(blockMenu.getLocation(), "Network charge is not enough");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.not_enough_power"));
             return;
         }
 
         ItemStack blueprint = blockMenu.getItemInSlot(BLANK_BLUEPRINT_SLOT);
 
         if (!isValidBlueprint(blueprint)) {
-            player.sendMessage(Theme.WARNING + "你需要提供一个正确的空白的蓝图");
-            sendDebugMessage(blockMenu.getLocation(), "Invalid blueprint");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.invalid_blueprint"));
             return;
         }
 
         SlimefunItem sfi = SlimefunItem.getByItem(blueprint);
         if (sfi != null && sfi.isDisabled()) {
-            player.sendMessage(Theme.WARNING + "该蓝图已被禁用");
-            sendDebugMessage(blockMenu.getLocation(), "Blueprint is disabled");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.disabled_blueprint"));
             return;
         }
 
@@ -160,8 +150,7 @@ public abstract class AbstractEncoder extends NetworkObject {
         if (crafted != null) {
             final SlimefunItem sfi2 = SlimefunItem.getByItem(crafted);
             if (sfi2 != null && sfi2.isDisabled()) {
-                player.sendMessage(Theme.WARNING + "该配方的输出已被禁用");
-                sendDebugMessage(blockMenu.getLocation(), "Output is disabled");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.disabled_output"));
                 return;
             }
         }
@@ -176,16 +165,10 @@ public abstract class AbstractEncoder extends NetworkObject {
         }
 
         if (crafted == null || crafted.getType() == Material.AIR) {
-            player.sendMessage(Theme.WARNING + "这似乎不是一个有效的配方");
-            sendDebugMessage(blockMenu.getLocation(), "Invalid recipe");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.invalid_recipe"));
             return;
         }
 
-        if (crafted.getType() == Material.AIR) {
-            player.sendMessage(Theme.WARNING + "编码的结果是空气，这不是一个有效的配方。");
-            sendDebugMessage(blockMenu.getLocation(), "Encoded result is air");
-            return;
-        }
         final ItemStack blueprintClone = StackUtils.getAsQuantity(blueprint, 1);
 
         blueprintSetter(blueprintClone, inp, crafted);
@@ -201,8 +184,7 @@ public abstract class AbstractEncoder extends NetworkObject {
             }
             blockMenu.pushItem(blueprintClone, OUTPUT_SLOT);
         } else {
-            player.sendMessage(Theme.WARNING + "需要清空输出烂");
-            sendDebugMessage(blockMenu.getLocation(), "Output slot is full");
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.encoder.output_full"));
             return;
         }
 

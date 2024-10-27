@@ -1,5 +1,7 @@
 package com.ytdd9527.networksexpansion.core.items.unusable;
 
+import com.balugaq.netex.api.helpers.ItemStackHelper;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.BlueprintInstance;
 import io.github.sefiraat.networks.utils.Keys;
 import io.github.sefiraat.networks.utils.Theme;
@@ -9,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -30,18 +31,18 @@ public abstract class AbstractBlueprint extends UnusableSlimefunItem implements 
         DataTypeMethods.setCustom(itemMeta, Keys.BLUEPRINT_INSTANCE, PersistentCraftingBlueprintType.TYPE, new BlueprintInstance(recipe, output));
         List<String> lore = new ArrayList<>();
 
-        lore.add(Theme.CLICK_INFO + "已指定配方");
+        lore.add(Networks.getLocalizationService().getString("messages.blueprint.title"));
 
         for (ItemStack item : recipe) {
             if (item == null) {
-                lore.add(Theme.PASSIVE + "空");
+                lore.add(Networks.getLocalizationService().getString("messages.blueprint.empty"));
                 continue;
             }
             lore.add(Theme.PASSIVE + ChatColor.stripColor(ItemStackHelper.getDisplayName(item)));
         }
 
         lore.add("");
-        lore.add(Theme.CLICK_INFO + "输出物品");
+        lore.add(Networks.getLocalizationService().getString("messages.blueprint.output"));
 
         lore.add(Theme.PASSIVE + ChatColor.stripColor(ItemStackHelper.getDisplayName(output)));
 

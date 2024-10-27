@@ -1,8 +1,8 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
 import com.balugaq.netex.api.data.SuperRecipe;
-import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.balugaq.netex.utils.BlockMenuUtil;
+import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.slimefun.network.AdminDebuggable;
 import io.github.sefiraat.networks.utils.StackUtils;
@@ -150,8 +150,6 @@ public abstract class AbstractManualCrafter extends SpecialSlimefunItem implemen
         if (!BlockMenuUtil.fits(blockMenu, recipe.getOutput(), getOutputSlots())) {
             return false;
         }
-
-        // player.sendMessage(ChatColor.GREEN + "正在尝试消耗" + Arrays.toString(Arrays.stream(recipe.getInput()).map(ItemStackHelper::getDisplayName).toArray()) + " 合成 " + Arrays.toString(Arrays.stream(recipe.getOutput()).map(ItemStackHelper::getDisplayName).toArray()));
 
         for (int i = 0; i < Math.min(recipe.getInput().length, getInputSlots().length); i++) {
             ItemStack wanted = recipe.getInput()[i];

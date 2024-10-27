@@ -4,6 +4,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.schntgaispock.slimehud.SlimeHUD;
 import io.github.schntgaispock.slimehud.util.HudBuilder;
 import io.github.schntgaispock.slimehud.waila.HudController;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.QuantumCache;
 import io.github.sefiraat.networks.slimefun.network.NetworkGreedyBlock;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
@@ -16,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class HudCallbacks {
 
-    private static final String EMPTY = "&7| 空";
+    private static final String EMPTY = Networks.getLocalizationService().getString("messages.integrations.slimehud.empty_quantum_storage");
 
     public static void setup() {
         HudController controller = SlimeHUD.getHudController();

@@ -1,10 +1,11 @@
 package com.ytdd9527.networksexpansion.implementation.machines.networks.advanced;
 
+import com.balugaq.netex.api.helpers.Icon;
+import com.balugaq.netex.utils.NetworksVersionedParticle;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
 import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
-import com.balugaq.netex.utils.NetworksVersionedParticle;
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
@@ -12,7 +13,6 @@ import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
 import io.github.sefiraat.networks.slimefun.network.NetworkObject;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -23,7 +23,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -56,10 +55,6 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
             45, 46, 47, 48, 49, 50, 51, 52
     };
     private static final int[] TEST_ITEM_BACKDROP = {8, 17, 26, 35, 44, 53};
-    private static final CustomItemStack TEST_BACKDROP_STACK = new CustomItemStack(
-            Material.GREEN_STAINED_GLASS_PANE,
-            Theme.SUCCESS + "指定需要清除的物品"
-    );
     private final ItemSetting<Integer> tickRate;
     private boolean useSpecialModel = false;
 
@@ -69,8 +64,8 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
         addItemSetting(this.tickRate);
 
 
-        for (int testitemslot : TEST_ITEM_SLOT) {
-            this.getSlotsToDrop().add(testitemslot);
+        for (int testItemSlot : TEST_ITEM_SLOT) {
+            this.getSlotsToDrop().add(testItemSlot);
         }
         addItemHandler(
                 new BlockTicker() {
@@ -152,7 +147,7 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
 
             @Override
             public void init() {
-                drawBackground(TEST_BACKDROP_STACK, TEST_ITEM_BACKDROP);
+                drawBackground(Icon.PURGER_TEMPLATE_BACKGROUND_STACK, TEST_ITEM_BACKDROP);
             }
 
             @Override
@@ -170,19 +165,16 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
 
     @Override
     public void preRegister() {
-        // 只有当 useSpecialModel 为 true 时，才添加放置处理器
         if (useSpecialModel) {
             addItemHandler(new BlockPlaceHandler(false) {
                 @Override
                 public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
-                    // 放置方块时的逻辑
                     e.getBlock().setType(Material.BARRIER);
                     setupDisplay(e.getBlock().getLocation());
                 }
             });
         }
 
-        // 添加破坏处理器，不管 useSpecialModel 的值如何，破坏时的逻辑都应该执行
         addItemHandler(new BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
@@ -231,14 +223,7 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>();
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a ⇩清理机制⇩",
-                "",
-                "&e&f功能描述:",
-                "&f-&7 网络高级清除器会从网络中",
-                "&f-&7 不断地移除指定物品(需要按顺序放置)",
-                "&f-&7 清除的物品会立即消失，谨慎使用!"
-        ));
+        displayRecipes.add(Networks.getLocalizationService().getMechanism("advanced_purger"));
         return displayRecipes;
     }
 }

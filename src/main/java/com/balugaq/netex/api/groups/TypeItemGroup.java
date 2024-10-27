@@ -172,9 +172,9 @@ public class TypeItemGroup extends FlexItemGroup {
                             "§7" + research.getName(player),
                             "§4§l" + Slimefun.getLocalization().getMessage(player, "guide.locked"),
                             "",
-                            "§a> 点击解锁",
+                            Networks.getLocalizationService().getString("messages.guide.click-to-research"),
                             "",
-                            "§7花费: §b" + research.getCost() + " 等级经验");
+                            Networks.getLocalizationService().getString("messages.guide.cost") + research.getCost() + Networks.getLocalizationService().getString("messages.guide.cost-level"));
                     chestMenu.addItem(MAIN_CONTENT[i], ItemStackUtil.getCleanItem(icon));
                     chestMenu.addMenuClickHandler(MAIN_CONTENT[i], (p, slot, item, action) -> {
                         PlayerPreResearchEvent event = new PlayerPreResearchEvent(player, research, slimefunItem);

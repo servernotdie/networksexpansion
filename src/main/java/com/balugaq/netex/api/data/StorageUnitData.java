@@ -1,7 +1,7 @@
 package com.balugaq.netex.api.data;
 
 import com.balugaq.netex.api.enums.StorageUnitType;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import com.ytdd9527.networksexpansion.utils.databases.DataStorage;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
 import io.github.sefiraat.networks.utils.StackUtils;
@@ -96,7 +96,7 @@ public class StorageUnitData {
      */
     public int addStoredItem(ItemStack item, int amount, boolean contentLocked, boolean force) {
         int add = 0;
-        boolean isVoidExcess = CargoStorageUnit.isVoidExcess(getLastLocation());
+        boolean isVoidExcess = NetworksDrawer.isVoidExcess(getLastLocation());
         for (ItemContainer each : storedItems.values()) {
             if (each.isSimilar(item)) {
                 // Found existing one, add amount
@@ -120,7 +120,7 @@ public class StorageUnitData {
         // isforce?
         if (!force) {
             // If in content locked mode, no new input allowed
-            if (contentLocked || CargoStorageUnit.isLocked(getLastLocation())) return 0;
+            if (contentLocked || NetworksDrawer.isLocked(getLastLocation())) return 0;
         }
         // Not found, new one
         if (storedItems.size() < sizeType.getMaxItemCount()) {
@@ -193,7 +193,7 @@ public class StorageUnitData {
         ItemContainer container = storedItems.get(itemId);
         if (container != null) {
             container.removeAmount(amount);
-            if (container.getAmount() <= 0 && !CargoStorageUnit.isLocked(getLastLocation())) {
+            if (container.getAmount() <= 0 && !NetworksDrawer.isLocked(getLastLocation())) {
                 removeItem(itemId);
                 return;
             }

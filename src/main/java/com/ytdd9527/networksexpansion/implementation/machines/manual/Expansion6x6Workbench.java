@@ -1,22 +1,19 @@
 package com.ytdd9527.networksexpansion.implementation.machines.manual;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.SuperRecipe;
+import com.balugaq.netex.api.helpers.Icon;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractManualCrafter;
 import com.ytdd9527.networksexpansion.implementation.ExpansionRecipes;
-import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.utils.Keys;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -32,18 +29,9 @@ import java.util.Map;
 @SuppressWarnings("deprecation")
 public class Expansion6x6Workbench extends AbstractManualCrafter {
     public static final List<SuperRecipe> RECIPES = new ArrayList<>();
-    public static final CustomItemStack BACKGROUND_STACK = new CustomItemStack(
-            Material.PURPLE_STAINED_GLASS_PANE, Theme.PASSIVE + " "
-    );
-    public static final ItemStack RECIPE_TYPE_ITEMSTACK = Theme.themedItemStack(
-            Material.LAPIS_BLOCK,
-            Theme.MACHINE,
-            "网络拓展工作台6x6",
-            "在6x6拓展工作台中制作"
-    );
     public static final RecipeType TYPE = new RecipeType(
             Keys.EXPANSION_WORKBENCH_6x6,
-            RECIPE_TYPE_ITEMSTACK,
+            Icon.RECIPE_TYPE_ITEMSTACK_EXPANSION_WORKBENCH_6x6,
             Expansion6x6Workbench::addRecipe
     );
     public static final Map<Integer, ItemStack> BACKGROUNDS = new HashMap<>();
@@ -65,17 +53,13 @@ public class Expansion6x6Workbench extends AbstractManualCrafter {
     };
     private static final int CRAFT_SLOT = 16;
     private static final int OUTPUT_SLOT = 43;
-    private static final ItemStack CRAFT_BUTTON_STACK = ItemStackUtil.getCleanItem(new CustomItemStack(
-            Material.KNOWLEDGE_BOOK,
-            Theme.CLICK_INFO + "合成"
-    ));
 
     static {
         for (int slot : BACKGROUND_SLOTS) {
-            BACKGROUNDS.put(slot, BACKGROUND_STACK);
+            BACKGROUNDS.put(slot, Icon.BACKGROUND_STACK_6x6);
         }
 
-        BACKGROUNDS.put(CRAFT_SLOT, CRAFT_BUTTON_STACK);
+        BACKGROUNDS.put(CRAFT_SLOT, Icon.CRAFT_BUTTON_STACK_6x6);
     }
 
     @ParametersAreNonnullByDefault

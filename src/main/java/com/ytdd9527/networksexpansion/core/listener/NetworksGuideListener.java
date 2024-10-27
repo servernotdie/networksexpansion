@@ -1,13 +1,13 @@
 package com.ytdd9527.networksexpansion.core.listener;
 
 import com.balugaq.netex.api.event.NetworksExpansionGuideOpenEvent;
-import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
+import com.balugaq.netex.api.helpers.ItemStackHelper;
 import com.balugaq.netex.utils.GuideUtil;
+import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideImplementation;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -32,7 +32,7 @@ public class NetworksGuideListener implements Listener {
                 Bukkit.getPluginManager().callEvent(event);
             }
 
-            if (e.getPlayer().isOp() && Objects.equals(ItemStackHelper.getDisplayName(item), ExpansionItemStacks.NETWORKS_EXPANSION_CHEAT_GUIDE.getDisplayName())) {
+            if (e.getPlayer().isOp() && Objects.equals(ItemStackHelper.getDisplayName(item), ExpansionItemStacks.NTW_EXPANSION_CREATIVE_GUIDE.getDisplayName())) {
                 NetworksExpansionGuideOpenEvent event = new NetworksExpansionGuideOpenEvent(e.getPlayer(), SlimefunGuideMode.CHEAT_MODE);
                 Bukkit.getPluginManager().callEvent(event);
             }

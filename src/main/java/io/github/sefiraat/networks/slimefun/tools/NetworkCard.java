@@ -1,8 +1,8 @@
 package io.github.sefiraat.networks.slimefun.tools;
 
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.CardInstance;
 import io.github.sefiraat.networks.utils.Keys;
-import io.github.sefiraat.networks.utils.Theme;
 import io.github.sefiraat.networks.utils.datatypes.DataTypeMethods;
 import io.github.sefiraat.networks.utils.datatypes.PersistentCardInstanceType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -19,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
 
+@Deprecated
 public class NetworkCard extends SlimefunItem implements DistinctiveItem {
 
     private static final int[] SIZES = new int[]{
@@ -46,12 +47,12 @@ public class NetworkCard extends SlimefunItem implements DistinctiveItem {
 
             e.cancel();
             if (card.getAmount() > 1) {
-                player.sendMessage(Theme.WARNING + "请单独拿出一张内存卡，不要堆叠");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.memory_card.invalid_amount"));
                 return;
             }
 
             if (isBlacklisted(stackToSet)) {
-                player.sendMessage(Theme.WARNING + "该物品无法存储至内存卡中");
+                player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.memory_card.blacklisted_item"));
                 return;
             }
 
@@ -66,7 +67,7 @@ public class NetworkCard extends SlimefunItem implements DistinctiveItem {
                 );
 
                 if (cardInstance.getAmount() > 0) {
-                    e.getPlayer().sendMessage(Theme.WARNING + "只有空内存卡才能分配物品");
+                    e.getPlayer().sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.memory_card.not_empty"));
                     return;
                 }
 
@@ -85,7 +86,8 @@ public class NetworkCard extends SlimefunItem implements DistinctiveItem {
     private boolean isBlacklisted(@Nonnull ItemStack itemStack) {
         return itemStack.getType() == Material.AIR
                 || itemStack.getType().getMaxDurability() < 0
-                || Tag.SHULKER_BOXES.isTagged(itemStack.getType());
+                || Tag.SHULKER_BOXES.isTagged(itemStack.getType())
+                || itemStack.getType() == Material.BUNDLE;
     }
 
     public int getSize() {

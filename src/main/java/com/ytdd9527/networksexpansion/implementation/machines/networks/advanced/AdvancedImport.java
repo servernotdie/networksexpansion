@@ -3,6 +3,7 @@ package com.ytdd9527.networksexpansion.implementation.machines.networks.advanced
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.NodeType;
@@ -15,7 +16,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.settings.IntRangeSetting;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -127,17 +127,7 @@ public class AdvancedImport extends NetworkObject implements RecipeDisplayItem {
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>();
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a ⇩导入机制⇩",
-                "&7智能自动化物品收集与网络集成系统",
-                "",
-                "&e核心特性&f:",
-                "&f-&7 实时监控：持续检测所有54个输入槽位的物品状态",
-                "&f-&7 动态传输：基于设定频率，智能地将物品批量传输至网络",
-                "",
-                "&e使用指南&f:",
-                "&f-&7 将待导入物品放置于输入槽位",
-                "&f-&7 自动执行物品导入流程，释放双手，提升效率"));
+        displayRecipes.add(Networks.getLocalizationService().getMechanism("import"));
         return displayRecipes;
     }
 }

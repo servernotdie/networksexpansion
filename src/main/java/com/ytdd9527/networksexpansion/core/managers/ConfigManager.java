@@ -20,6 +20,7 @@ public class ConfigManager {
     }
 
     private void setupDefaultConfig() {
+        // config.yml
         final Networks plugin = Networks.getInstance();
         final InputStream inputStream = plugin.getResource("config.yml");
         final File existingFile = new File(plugin.getDataFolder(), "config.yml");
@@ -60,7 +61,15 @@ public class ConfigManager {
         return Networks.getInstance().getConfig().getBoolean("auto-update");
     }
 
+    public boolean isDebug() {
+        return Networks.getInstance().getConfig().getBoolean("debug");
+    }
+
+    public String getLanguage() {
+        return Networks.getInstance().getConfig().getString("language");
+    }
+
     public void saveAll() {
-        Networks.getInstance().getLogger().info("正在保存网络拓展数据.");
+        Networks.getInstance().getLogger().info(Networks.getLocalizationService().getString("messages.save-all"));
     }
 }

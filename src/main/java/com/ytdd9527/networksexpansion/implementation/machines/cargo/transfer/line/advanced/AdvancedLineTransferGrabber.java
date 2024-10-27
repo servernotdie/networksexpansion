@@ -1,11 +1,11 @@
 package com.ytdd9527.networksexpansion.implementation.machines.cargo.transfer.line.advanced;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.enums.TransportMode;
 import com.balugaq.netex.api.interfaces.Configurable;
+import com.balugaq.netex.utils.LineOperationUtil;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.machines.AdvancedDirectional;
 import com.ytdd9527.networksexpansion.utils.DisplayGroupGenerators;
-import com.balugaq.netex.utils.LineOperationUtil;
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
@@ -39,7 +39,6 @@ import java.util.UUID;
 import java.util.function.Function;
 
 public class AdvancedLineTransferGrabber extends AdvancedDirectional implements RecipeDisplayItem, Configurable {
-    private static final int PARTICLE_INTERVAL = 2;
     private static final int DEFAULT_MAX_DISTANCE = 64;
     private static final int DEFAULT_GRAB_ITEM_TICK = 1;
     private static final boolean DEFAULT_USE_SPECIAL_MODEL = false;
@@ -92,7 +91,7 @@ public class AdvancedLineTransferGrabber extends AdvancedDirectional implements 
             String generatorKey = config.getString("items." + configKey + ".use-special-model.type");
             this.displayGroupGenerator = generatorMap.get(generatorKey);
             if (this.displayGroupGenerator == null) {
-                Networks.getInstance().getLogger().warning("未知的展示组类型 '" + generatorKey + "', 特殊模型已禁用。");
+                Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.display.unknown_type"), generatorKey));
                 this.useSpecialModel = false;
             }
         }
@@ -239,23 +238,10 @@ public class AdvancedLineTransferGrabber extends AdvancedDirectional implements 
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayRecipes = new ArrayList<>(6);
         displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩传输数据⇩",
+                Networks.getLocalizationService().getString("icons.mechanism.transfers.data_title"),
                 "",
-                "&7[&a最大距离&7]&f:&6" + maxDistance + "方块",
-                "&7[&a抓取频率&7]&f:&7 每 &6" + grabItemTick + " SfTick &7抓取一次"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩参数⇩",
-                "&7默认运输模式: &6无限制",
-                "&a可调整运输模式",
-                "&7默认运输数量: &63456",
-                "&a可调整运输数量"
-        ));
-        displayRecipes.add(new CustomItemStack(Material.BOOK,
-                "&a⇩功能⇩",
-                "",
-                "&e与链式不同的是，此机器&c只有连续抓取的功能",
-                "&c而不是连续转移物品！"
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.max_distance"), maxDistance),
+                String.format(Networks.getLocalizationService().getString("icons.mechanism.transfers.grab_item_tick"), grabItemTick)
         ));
         return displayRecipes;
     }

@@ -11,7 +11,7 @@ public class SetupUtil {
     public static void setupItem() {
         NetworkSlimefunItems.setup();
 
-        /* 物品 */
+        /* items */
         ExpansionItemsMenus.SUB_MENU_TOOL.addTo(
                 ExpansionItems.CARGO_NODE_QUICK_TOOL.registerThis(),
                 ExpansionItems.WORLDEDIT_AXE.registerThis(),
@@ -33,7 +33,7 @@ public class SetupUtil {
                 ExpansionItems.ORE_CRUSHER_BLUEPRINT.registerThis(),
                 ExpansionItems.PRESSURE_CHAMBER_BLUEPRINT.registerThis()
         );
-        /* 货运与存储 */
+        /* cargo */
         ExpansionItems.ADVANCED_QUANTUM_STORAGE.setSupportsCustomMaxAmount(true);
         ExpansionItemsMenus.SUB_MENU_ADVANCED_STORAGE.addTo(
                 ExpansionItems.ADVANCED_QUANTUM_STORAGE.registerThis()
@@ -103,7 +103,7 @@ public class SetupUtil {
                 ExpansionItems.SMART_GRABBER.registerThis(),
                 ExpansionItems.SMART_PUSHER.registerThis()
         );
-        /* 功能机器 */
+        /* functional machines */
         ExpansionItemsMenus.SUB_MENU_CORE_MACHINE.addTo(
                 ExpansionItems.NETWORKS_EXPANSION_WORKBENCH.registerThis(),
                 ExpansionItems.NETWORKS_EXPANSION_6X6_WORKBENCH.registerThis(),
@@ -117,6 +117,7 @@ public class SetupUtil {
                 ExpansionItems.NETWORK_CAPACITOR_5.registerThis(),
                 ExpansionItems.NETWORK_CAPACITOR_6.registerThis(),
                 ExpansionItems.NETWORK_GRID_NEW_STYLE.registerThis(),
+                ExpansionItems.NETWORK_CRAFTING_GRID_NEW_STYLE.registerThis(),
                 ExpansionItems.NETWORK_BLUEPRINT_DECODER.registerThis(),
                 ExpansionItems.LINE_POWER_OUTLET_1.registerThis(),
                 ExpansionItems.LINE_POWER_OUTLET_2.registerThis(),
@@ -226,6 +227,18 @@ public class SetupUtil {
                 ExpansionItems.AUTHOR_YITOUDAIDAI.registerThis(),
                 ExpansionItems.AUTHOR_TINALNESS.registerThis()
         );
+
+        /* announce */
+        ExpansionItemsMenus.SUB_MENU_ANNOUNCE.addTo(
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_1.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_2.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_3.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_4.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_5.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_6.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_7.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_8.registerThis()
+        );
     }
 
     private static void setupMenu() {
@@ -274,10 +287,12 @@ public class SetupUtil {
         );
 
         ExpansionItemsMenus.MAIN_ITEM_GROUP.addTo(ExpansionItemsMenus.MAIN_MENU_TROPHY,
-                ExpansionItemsMenus.SUB_MENU_AUTHOR
+                ExpansionItemsMenus.SUB_MENU_AUTHOR,
+                ExpansionItemsMenus.SUB_MENU_ANNOUNCE
         );
         ExpansionItemsMenus.MAIN_MENU_TROPHY.addFrom(
-                ExpansionItemsMenus.SUB_MENU_AUTHOR
+                ExpansionItemsMenus.SUB_MENU_AUTHOR,
+                ExpansionItemsMenus.SUB_MENU_ANNOUNCE
         );
 
         ExpansionItemsMenus.MAIN_ITEM_GROUP.setTier(0);

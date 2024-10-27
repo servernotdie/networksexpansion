@@ -1,11 +1,12 @@
 package com.ytdd9527.networksexpansion.implementation.machines.manual;
 
-import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.balugaq.netex.api.data.StorageUnitData;
 import com.balugaq.netex.api.enums.StorageUnitType;
+import com.balugaq.netex.api.helpers.Icon;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItemStacks;
-import com.ytdd9527.networksexpansion.implementation.machines.unit.CargoStorageUnit;
+import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import com.ytdd9527.networksexpansion.utils.databases.DataStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.network.AdminDebuggable;
@@ -25,7 +26,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -51,7 +51,6 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
     private final int[] inputSlots = {2, 3, 4, 11, 12, 13, 20, 21, 22};
     private final int outputSlot = 15;
     private final int actionBtnSlot = 17;
-    private final ItemStack actionBtn = new CustomItemStack(Material.REDSTONE_TORCH, "&6点击升级", "");
 
     public StorageUnitUpgradeTable(
             ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -88,7 +87,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
                     craft(p, menu);
                     return false;
                 });
-                menu.replaceExistingItem(actionBtnSlot, actionBtn);
+                menu.replaceExistingItem(actionBtnSlot, Icon.ACTION_BUTTON);
             }
 
             @Override
@@ -111,7 +110,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
         for (Map.Entry<ItemStack[], ItemStack> each : recipes.entrySet()) {
             if (match(menu, each.getKey())) {
                 ItemStack itemInSlot = menu.getItemInSlot(outputSlot);
-                int id = CargoStorageUnit.getBoundId(menu.getItemInSlot(inputSlots[4]));
+                int id = NetworksDrawer.getBoundId(menu.getItemInSlot(inputSlots[4]));
                 ItemStack out = each.getValue().clone();
                 if (id != -1) {
                     if (DataStorage.isContainerLoaded(id)) {
@@ -130,7 +129,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
                             return true;
                         });
                     }
-                    out = CargoStorageUnit.bindId(out, id);
+                    out = NetworksDrawer.bindId(out, id);
                 }
                 SlimefunItemStack sfis = (SlimefunItemStack) out;
                 SlimefunItem sfi = SlimefunItem.getById(sfis.getItemId());
@@ -156,7 +155,7 @@ public class StorageUnitUpgradeTable extends SpecialSlimefunItem implements Admi
             }
         }
 
-        p.sendMessage(ChatColor.RED + "没有合适的配方");
+        p.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.storage_unit_upgrade_table.no_recipe_match"));
     }
 
     private boolean match(BlockMenu menu, ItemStack[] recipe) {
