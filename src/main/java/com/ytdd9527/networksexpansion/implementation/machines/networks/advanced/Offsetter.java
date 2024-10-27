@@ -181,7 +181,7 @@ public class Offsetter extends SpecialSlimefunItem implements AdminDebuggable {
             return;
         }
         List<String> newLore = new ArrayList<>();
-        newLore.add(String.format(Networks.getLocalizationService().getString("icons.offset_show_icon.lore"), offset));
+        newLore.add(String.format(Networks.getLocalizationService().getString("icons.offset-show-icon.lore"), offset));
         meta.setLore(newLore);
         newIcon.setItemMeta(meta);
 
