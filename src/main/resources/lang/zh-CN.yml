@@ -39,7 +39,7 @@ messages:
     info: "%s - %s"
     viewer-info: "<warning>%s - %s"
     toggle-debug: "<success>该方块的调试模式已设置为：%s。"
-    enable-debug: "<success>该模式将持续至服务器关闭，或者手动关闭。"
+    enabled-debug: "<success>该模式将持续至服务器关闭，或者手动关闭。"
     wildchests: "WildChests 已安装：%s"
     ischest: "该方块是否被 WildChest 判断为方块：%s"
     wildchests_test_success: "WildChests 测试成功！"

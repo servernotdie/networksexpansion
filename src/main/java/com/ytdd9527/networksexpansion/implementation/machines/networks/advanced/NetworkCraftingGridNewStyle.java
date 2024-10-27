@@ -33,6 +33,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -216,7 +217,11 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         int i = 0;
         for (int recipeSlot : INTEGRATION_SLOTS) {
             ItemStack stack = blockMenu.getItemInSlot(recipeSlot);
-            inputs[i] = stack;
+            if (stack != null && stack.getType() != Material.AIR) {
+                inputs[i] = stack.clone();
+            } else {
+                inputs[i] = null;
+            }
             i++;
         }
 
@@ -234,8 +239,12 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle {
         }
 
         // If no slimefun recipe found, try a vanilla one
+        ItemStack[] cloneInputs = inputs.clone();
+        for (int i1 = 0; i1 < inputs.length; i1++) {
+            cloneInputs[i1] = StackUtils.getAsQuantity(inputs[i1], 1);
+        }
         if (crafted == null) {
-            crafted = Bukkit.craftItem(inputs, player.getWorld(), player);
+            crafted = Bukkit.craftItem(cloneInputs, player.getWorld(), player);
             isVanilla = true;
         }
 
