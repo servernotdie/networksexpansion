@@ -10,12 +10,8 @@ public class ListenerManager {
 
     public ListenerManager() {
         addListener(new ExplosiveToolListener());
-//<<<<<<< HEAD
-        addListener(new BlockListener());
         addListener(new NetworksGuideListener());
-//=======
         addListener(new SyncListener());
-//>>>>>>> 31b943e4a683c3e7836b78647c1834e086fa9a39
     }
 
     private void addListener(Listener listener) {
