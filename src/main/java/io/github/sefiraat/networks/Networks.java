@@ -44,8 +44,10 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 
 public class Networks extends JavaPlugin implements SlimefunAddon {
@@ -189,11 +191,17 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
                 .runTaskTimer(
                         this,
                         () -> {
-                            for (Location controller : NetworkController.getNetworks().keySet()) {
+                            Set<Location> wrongs = new HashSet<>();
+                            Set<Location> controllers = NetworkController.getNetworks().keySet();
+                            for (Location controller : controllers) {
                                 SlimefunBlockData data = StorageCacheUtils.getBlock(controller);
                                 if (data == null || !NetworksSlimefunItemStacks.NETWORK_CONTROLLER.getItemId().equals(data.getSfId())) {
-                                    NetworkUtils.clearNetwork(controller);
+                                    wrongs.add(controller);
                                 }
+                            }
+
+                            for (Location wrong : wrongs) {
+                                NetworkUtils.clearNetwork(wrong);
                             }
                         },
                         1,
