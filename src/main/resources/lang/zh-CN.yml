@@ -483,7 +483,7 @@ icons:
         - "&7并且输出时将会留下至少一个物品"
     void_excess:
       enabled: "&a已开启"
-      disabled: "&c未关闭"
+      disabled: "&c未开启"
       name: "&6满载清空模式"
       lore_before_status:
         - ""
