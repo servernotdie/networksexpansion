@@ -993,12 +993,4 @@ public final class ItemStackUtil {
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
-
-    public static void removeDisabledSlimefunItems(List<List<SlimefunItem>> items) {
-        items.forEach(ItemStackUtil::removeDisabledSlimefunItem);
-    }
-
-    public static void removeDisabledSlimefunItem(List<SlimefunItem> items) {
-        items.removeIf(SlimefunItem::isDisabled);
-    }
 }

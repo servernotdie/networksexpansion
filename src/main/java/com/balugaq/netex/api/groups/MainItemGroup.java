@@ -84,12 +84,12 @@ public class MainItemGroup extends FlexItemGroup {
         }
     }
 
-    public void addTo(@Nonnull ItemGroup fatherItemGroup, @Nonnull ItemGroup... itemGroup) {
+    public void addTo(@Nonnull ItemGroup fatherItemGroup, @Nonnull ItemGroup... itemGroups) {
         if (this.fatherItemGroupList.contains(fatherItemGroup) && this.sonItemGroupList.size() > this.fatherItemGroupList.indexOf(fatherItemGroup)) {
-            this.sonItemGroupList.get(this.fatherItemGroupList.indexOf(fatherItemGroup)).addAll(Arrays.stream(itemGroup).toList());
+            this.sonItemGroupList.get(this.fatherItemGroupList.indexOf(fatherItemGroup)).addAll(Arrays.stream(itemGroups).toList());
         } else if (!this.fatherItemGroupList.contains(fatherItemGroup)) {
             this.fatherItemGroupList.add(fatherItemGroup);
-            this.sonItemGroupList.add(new ArrayList<>(Arrays.stream(itemGroup).toList()));
+            this.sonItemGroupList.add(new ArrayList<>(Arrays.stream(itemGroups).toList()));
         }
     }
 

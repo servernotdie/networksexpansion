@@ -99,55 +99,58 @@ public class SubFlexItemGroup extends FlexItemGroup {
     }
 
     public void addTo(@Nonnull SlimefunItem... slimefunItems) {
-        for (int j = 0; j * 9 < slimefunItems.length; j++) {
-            List<SlimefunItem> slimefunItemList = new ArrayList<>();
-            for (int i = 0; i < 9; i++) {
-                if (j * 9 + i < slimefunItems.length) {
-                    slimefunItemList.add(slimefunItems[j * 9 + i]);
-                }
+        List<SlimefunItem> slimefunItemList = new ArrayList<>();
+        for (SlimefunItem slimefunItem : slimefunItems) {
+            if (slimefunItem != null && !slimefunItem.isDisabled()) {
+                slimefunItemList.add(slimefunItem);
             }
+            if (slimefunItemList.size() >= 9) {
+                this.slimefunItemList.add(slimefunItemList);
+                slimefunItemList = new ArrayList<>();
+            }
+        }
+        if (!slimefunItemList.isEmpty()) {
             this.slimefunItemList.add(slimefunItemList);
         }
-
-        ItemStackUtil.removeDisabledSlimefunItems(this.slimefunItemList);
     }
 
     public void addTo(@Nonnull SlimefunItemStack... slimefunItemStacks) {
-        for (int j = 0; j * 9 < slimefunItemStacks.length; j++) {
-            List<SlimefunItem> slimefunItemList = new ArrayList<>();
-            for (int i = 0; i < 9; i++) {
-                if (j * 9 + i < slimefunItemStacks.length) {
-                    SlimefunItemStack slimefunItemStack = slimefunItemStacks[j * 9 + i];
-                    SlimefunItem slimefunItem = SlimefunItem.getByItem(slimefunItemStack);
-                    if (slimefunItem != null) {
-                        slimefunItemList.add(slimefunItem);
-                    }
-                }
+        List<SlimefunItem> slimefunItemList = new ArrayList<>();
+        for (SlimefunItemStack slimefunItemStack : slimefunItemStacks) {
+            SlimefunItem slimefunItem = SlimefunItem.getByItem(slimefunItemStack);
+            if (slimefunItem != null && !slimefunItem.isDisabled()) {
+                slimefunItemList.add(slimefunItem);
             }
+            if (slimefunItemList.size() >= 9) {
+                this.slimefunItemList.add(slimefunItemList);
+                slimefunItemList = new ArrayList<>();
+            }
+        }
+        if (!slimefunItemList.isEmpty()) {
             this.slimefunItemList.add(slimefunItemList);
         }
-        ItemStackUtil.removeDisabledSlimefunItems(this.slimefunItemList);
     }
 
     public void addTo(@Nonnull List<SlimefunItem> slimefunItemList) {
-        for (int j = 0; j * 9 < slimefunItemList.size(); j++) {
-            List<SlimefunItem> aSlimefunItemList = new ArrayList<>();
-            for (int i = 0; i < 9; i++) {
-                if (j * 9 + i < slimefunItemList.size()) {
-                    slimefunItemList.add(slimefunItemList.get(j * 9 + i));
-                }
+        List<SlimefunItem> slimefunItemList1 = new ArrayList<>();
+        for (SlimefunItem slimefunItem : slimefunItemList) {
+            if (slimefunItem != null && !slimefunItem.isDisabled()) {
+                slimefunItemList1.add(slimefunItem);
             }
-            this.slimefunItemList.add(aSlimefunItemList);
+            if (slimefunItemList1.size() >= 9) {
+                this.slimefunItemList.add(slimefunItemList1);
+                slimefunItemList1 = new ArrayList<>();
+            }
         }
-        ItemStackUtil.removeDisabledSlimefunItems(this.slimefunItemList);
+        if (!slimefunItemList1.isEmpty()) {
+            this.slimefunItemList.add(slimefunItemList1);
+        }
     }
 
     public void addFrom(@Nonnull SubFlexItemGroup... subFlexItemGroups) {
         for (SubFlexItemGroup subFlexItemGroup : subFlexItemGroups) {
             this.slimefunItemList.addAll(subFlexItemGroup.slimefunItemList);
         }
-
-        ItemStackUtil.removeDisabledSlimefunItems(this.slimefunItemList);
     }
 
     public List<SlimefunItem> getSlimefunItems() {
