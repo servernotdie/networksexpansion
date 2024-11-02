@@ -7,15 +7,16 @@ import lombok.experimental.UtilityClass;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 @UtilityClass
 public class NetworkStorage {
-    private static final Map<ChunkPosition, Set<Location>> ALL_NETWORK_OBJECTS_BY_CHUNK = new HashMap<>();
-    private static final Map<Location, NodeDefinition> ALL_NETWORK_OBJECTS = new HashMap<>();
+    private static final Map<ChunkPosition, Set<Location>> ALL_NETWORK_OBJECTS_BY_CHUNK = new ConcurrentHashMap<>();
+    private static final Map<Location, NodeDefinition> ALL_NETWORK_OBJECTS = new ConcurrentHashMap<>();
 
     public static void removeNode(Location location) {
         final NodeDefinition nodeDefinition = ALL_NETWORK_OBJECTS.remove(location);
@@ -57,8 +58,13 @@ public class NetworkStorage {
         if (locations == null) {
             return;
         }
-        for (Location location : locations) {
+        Iterator<Location> iterator = locations.iterator();
+        while (iterator.hasNext()) {
+            Location location = iterator.next();
             removeNode(location);
+            iterator.remove();
         }
+        ALL_NETWORK_OBJECTS_BY_CHUNK.remove(chunkPosition);
     }
+
 }
