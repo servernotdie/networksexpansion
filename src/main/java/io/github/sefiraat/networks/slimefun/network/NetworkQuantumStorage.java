@@ -318,7 +318,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
         final QuantumCache cache = CACHES.get(blockMenu.getLocation());
         if (cache == null || cache.getAmount() > 0) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported_operation.quantum_storage.quantum_storage_not_empty"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.quantum_storage.quantum_storage_not_empty"));
             return;
         }
         itemStack.setAmount(1);
