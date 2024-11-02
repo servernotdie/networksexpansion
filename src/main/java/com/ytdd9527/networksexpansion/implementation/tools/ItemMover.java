@@ -399,7 +399,7 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         String name = ItemStackHelper.getDisplayName(fetched);
         depositItem(mover, fetched);
         int after = fetched.getAmount();
-        player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.item_mover.deposit_success", name, before - after));
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.completed-operation.item_mover.deposit_success"), name, before - after));
         updateLore(mover);
     }
 
@@ -426,10 +426,11 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
 
         ItemStack clone = StackUtils.getAsQuantity(storedItemStack, storedAmount);
         String name = ItemStackHelper.getDisplayName(clone);
+        int before = clone.getAmount();
         barrel.depositItemStack(clone);
         int after = clone.getAmount();
         setStoredAmount(mover, clone.getAmount());
-        player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.item_mover.withdraw_success", name, after));
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.completed-operation.item_mover.withdraw_success"), name, before - after));
         updateLore(mover);
     }
 

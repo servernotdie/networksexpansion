@@ -18,7 +18,7 @@ public final class MaterialHelper {
     public static String getKey(@Nonnull Material mat) {
         Preconditions.checkArgument(mat != null, "材料不能为空");
         String type = mat.isBlock() ? "block" : "item";
-        return type + "." + mat.getKey().getNamespace() + "." + mat.getKey().getKey();
+        return type + "_" + mat.getKey().getNamespace() + "_" + mat.getKey().getKey();
     }
 
     @Nonnull
