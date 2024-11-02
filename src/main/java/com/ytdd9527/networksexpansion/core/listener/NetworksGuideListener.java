@@ -23,10 +23,6 @@ public class NetworksGuideListener implements Listener {
     public void onInteract(PlayerRightClickEvent e) {
         ItemStack item = e.getItem();
         if (item != null && item.getType() != Material.AIR) {
-            if (!e.getPlayer().isOp()) {
-                return;
-            }
-
             if (Objects.equals(ItemStackHelper.getDisplayName(item), ExpansionItemStacks.NETWORKS_EXPANSION_SURVIVAL_GUIDE.getDisplayName())) {
                 NetworksExpansionGuideOpenEvent event = new NetworksExpansionGuideOpenEvent(e.getPlayer(), SlimefunGuideMode.SURVIVAL_MODE);
                 Bukkit.getPluginManager().callEvent(event);

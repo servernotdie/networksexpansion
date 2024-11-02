@@ -37,6 +37,6 @@ public final class ItemStackHelper {
     private static String getPlayerSkullName(@Nonnull ItemStack skull) {
         Preconditions.checkArgument(skull != null, "物品不能为空");
         SkullMeta meta = (SkullMeta) skull.getItemMeta();
-        return meta != null && meta.hasOwner() ? String.format(LanguageHelper.getLangOrKey("block.minecraft.player_head.named"), meta.getOwningPlayer().getName()) : LanguageHelper.getLangOrKey("block.minecraft.player_head");
+        return meta != null && meta.hasOwner() ? String.format(LanguageHelper.getLangOrKey("block_minecraft_player_head_named"), meta.getOwningPlayer().getName()) : LanguageHelper.getLangOrKey("block.minecraft.player_head");
     }
 }

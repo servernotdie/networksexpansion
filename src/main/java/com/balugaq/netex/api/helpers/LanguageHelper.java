@@ -21,14 +21,6 @@ public final class LanguageHelper {
     private static final Gson GSON = new Gson();
     private static Map<String, String> lang = new HashMap<>();
 
-    static {
-        String lang = Networks.getConfigManager().getLanguage();
-        InputStream stream = Networks.getInstance().getResource("mc_lang_" + lang + ".json");
-        if (stream != null) {
-            loadFromStream(stream);
-        }
-    }
-
     public static void loadFromStream(@Nonnull InputStream stream) {
         Preconditions.checkArgument(stream != null, "输入流不能为空");
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));

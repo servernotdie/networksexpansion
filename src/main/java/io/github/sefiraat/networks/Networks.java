@@ -36,6 +36,7 @@ import org.bukkit.Location;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.yaml.snakeyaml.error.YAMLException;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -118,14 +119,14 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         instance = this;
 
-        getLogger().info("loading language");
+        getLogger().info("Loading language");
         this.configManager = new ConfigManager();
         localizationService = new LocalizationService(this);
         String language = configManager.getLanguage();
         try {
             localizationService.addLanguage(language);
             getLogger().info("Language " + language + " loaded successfully.");
-        } catch (Exception e) {
+        } catch (ClassCastException | IllegalArgumentException | YAMLException e) {
             getLogger().log(Level.WARNING, "Failed to load language " + language, e);
         }
 
