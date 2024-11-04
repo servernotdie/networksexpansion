@@ -25,7 +25,10 @@ public final class ExpansionItemsMenus {
     /* Slimefun item group */
     public static final NestedItemGroup MAIN_MENU = new NestedItemGroup(
             getKey("NTW_EXPANSION_CATEGORY_MAIN"),
-            new CustomItemStack(Material.LECTERN)
+            new CustomItemStack(
+                    Material.CHEST_MINECART,
+                    Networks.getLocalizationService().getString("groups.expansion.custom.main_item_group")
+            )
     ) {
         @Override
         public boolean isVisible(@Nonnull Player p, @Nonnull PlayerProfile profile, @Nonnull SlimefunGuideMode mode) {
