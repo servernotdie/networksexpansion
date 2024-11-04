@@ -4,7 +4,6 @@ import com.balugaq.netex.api.data.ItemAmountWrapper;
 import com.balugaq.netex.api.data.ItemWrapper;
 import com.balugaq.netex.utils.NetworksVersionedEnchantment;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.nms.ItemNameAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;

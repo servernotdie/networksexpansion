@@ -2,6 +2,7 @@ package com.ytdd9527.networksexpansion.implementation.machines.networks.advanced
 
 import com.balugaq.netex.api.helpers.Icon;
 import com.balugaq.netex.utils.BlockMenuUtil;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
 import io.github.sefiraat.networks.Networks;
@@ -15,6 +16,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -24,10 +26,12 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Map;
 
 public class NetworkBlueprintDecoder extends NetworkObject {
@@ -54,6 +58,31 @@ public class NetworkBlueprintDecoder extends NetworkObject {
 
     public static int getDecodeSlot() {
         return DECODE_SLOT;
+    }
+
+    @Override
+    public void preRegister() {
+        addItemHandler(new BlockBreakHandler(false, false) {
+            @Override
+            public void onPlayerBreak(@Nonnull BlockBreakEvent blockBreakEvent, @Nonnull ItemStack itemStack, @Nonnull List<ItemStack> list) {
+                BlockMenu blockMenu = StorageCacheUtils.getMenu(blockBreakEvent.getBlock().getLocation());
+                if (blockMenu == null) {
+                    return;
+                }
+
+                for (int slot : getOutputSlots()) {
+                    ItemStack item = blockMenu.getItemInSlot(slot);
+                    if (item != null && item.getType() != Material.AIR) {
+                        blockMenu.getLocation().getWorld().dropItemNaturally(blockMenu.getLocation(), item);
+                    }
+                }
+
+                ItemStack input = blockMenu.getItemInSlot(getInputSlot());
+                if (input != null && input.getType() != Material.AIR) {
+                    blockMenu.getLocation().getWorld().dropItemNaturally(blockMenu.getLocation(), input);
+                }
+            }
+        });
     }
 
     @Override
