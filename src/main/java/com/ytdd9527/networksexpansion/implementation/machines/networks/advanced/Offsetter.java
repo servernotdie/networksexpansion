@@ -293,7 +293,7 @@ public class Offsetter extends SpecialSlimefunItem implements AdminDebuggable {
                     }
                 }
 
-                setOffset(location, 0);
+                getOffset(location);
                 updateOffsetShowIcon(location, getOffset(location));
 
                 // Click handler
