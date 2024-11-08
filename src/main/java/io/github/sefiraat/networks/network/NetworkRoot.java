@@ -2,6 +2,7 @@ package io.github.sefiraat.networks.network;
 
 import com.balugaq.netex.api.data.ItemContainer;
 import com.balugaq.netex.api.data.StorageUnitData;
+import com.balugaq.netex.utils.BlockMenuUtil;
 import com.balugaq.netex.utils.NetworksVersionedParticle;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.AdvancedGreedyBlock;
@@ -1104,10 +1105,10 @@ public class NetworkRoot extends NetworkNode {
 
     public int getAmount(@Nonnull ItemStack itemStack) {
         long totalAmount = 0;
-        for (BlockMenu menu : getAdvancedGreedyBlockMenus()) {
-            int[] slots = menu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
+        for (BlockMenu blockMenu : getAdvancedGreedyBlockMenus()) {
+            int[] slots = blockMenu.getPreset().getSlotsAccessedByItemTransport(ItemTransportFlow.WITHDRAW);
             for (int slot : slots) {
-                final ItemStack inputSlotItem = menu.getItemInSlot(slot);
+                final ItemStack inputSlotItem = blockMenu.getItemInSlot(slot);
                 if (inputSlotItem != null && StackUtils.itemsMatch(inputSlotItem, itemStack)) {
                     totalAmount += inputSlotItem.getAmount();
                 }
@@ -1226,47 +1227,17 @@ public class NetworkRoot extends NetworkNode {
     }
 
     public void addItemStack(@Nonnull ItemStack incoming) {
-        BlockMenu fallbackBlockMenu = null;
-        int fallBackSlot = 0;
-        for (BlockMenu menu : getAdvancedGreedyBlockMenus()) {
-            if (StackUtils.itemsMatch(menu.getItemInSlot(AdvancedGreedyBlock.TEMPLATE_SLOT), incoming)) {
-                for (int slot : ADVANCED_GREEDY_BLOCK_AVAILABLE_SLOTS) {
-                    final ItemStack itemStack = menu.getItemInSlot(slot);
-                    // If this is an empty slot - move on, if it's our first, store it for later.
-                    if (itemStack == null || itemStack.getType() == Material.AIR) {
-                        if (fallbackBlockMenu == null) {
-                            fallbackBlockMenu = menu;
-                            fallBackSlot = slot;
-                        }
-                        continue;
-                    }
+        for (BlockMenu blockMenu : getAdvancedGreedyBlockMenus()) {
+            final ItemStack template = blockMenu.getItemInSlot(AdvancedGreedyBlock.TEMPLATE_SLOT);
 
-                    final int itemStackAmount = itemStack.getAmount();
-                    final int incomingStackAmount = incoming.getAmount();
-                    if (itemStackAmount < itemStack.getMaxStackSize() && StackUtils.itemsMatch(incoming, itemStack)) {
-                        final int maxCanAdd = itemStack.getMaxStackSize() - itemStackAmount;
-                        final int amountToAdd = Math.min(maxCanAdd, incomingStackAmount);
-
-                        itemStack.setAmount(itemStackAmount + amountToAdd);
-                        incoming.setAmount(incomingStackAmount - amountToAdd);
-
-                        // Mark dirty otherwise changes will not save
-                        menu.markDirty();
-
-                        // All distributed, can escape
-                        if (incomingStackAmount == 0) {
-                            return;
-                        }
-                    }
-                }
-
-                if (fallbackBlockMenu != null) {
-                    fallbackBlockMenu.replaceExistingItem(fallBackSlot, incoming.clone());
-                    incoming.setAmount(0);
-                }
-
-                return;
+            if (template == null || template.getType() == Material.AIR || !StackUtils.itemsMatch(incoming, template)) {
+                continue;
             }
+
+            blockMenu.markDirty();
+            BlockMenuUtil.pushItem(blockMenu, incoming, ADVANCED_GREEDY_BLOCK_AVAILABLE_SLOTS);
+            // Given we have found a match, it doesn't matter if the item moved or not, we will not bring it in
+            return;
         }
 
         // Run for matching greedy blocks
@@ -1277,23 +1248,8 @@ public class NetworkRoot extends NetworkNode {
                 continue;
             }
 
-            final ItemStack itemStack = blockMenu.getItemInSlot(GREEDY_BLOCK_AVAILABLE_SLOTS[0]);
-
-            if (itemStack == null || itemStack.getType() == Material.AIR) {
-                blockMenu.replaceExistingItem(GREEDY_BLOCK_AVAILABLE_SLOTS[0], incoming.clone());
-                incoming.setAmount(0);
-                return;
-            }
-
-            final int itemStackAmount = itemStack.getAmount();
-            final int incomingStackAmount = incoming.getAmount();
-            if (itemStackAmount < itemStack.getMaxStackSize() && StackUtils.itemsMatch(itemStack, incoming)) {
-                final int maxCanAdd = itemStack.getMaxStackSize() - itemStackAmount;
-                final int amountToAdd = Math.min(maxCanAdd, incomingStackAmount);
-
-                itemStack.setAmount(itemStackAmount + amountToAdd);
-                incoming.setAmount(incomingStackAmount - amountToAdd);
-            }
+            blockMenu.markDirty();
+            BlockMenuUtil.pushItem(blockMenu, incoming, GREEDY_BLOCK_AVAILABLE_SLOTS[0]);
             // Given we have found a match, it doesn't matter if the item moved or not, we will not bring it in
             return;
         }
@@ -1319,47 +1275,12 @@ public class NetworkRoot extends NetworkNode {
             }
         }
 
-        // Then run for matching items in cells
-        BlockMenu fallbackBlockMenu2 = null;
-        int fallBackSlot2 = 0;
-
         for (BlockMenu blockMenu : getCellMenus()) {
-            for (int slot : CELL_AVAILABLE_SLOTS) {
-                ItemStack itemStack = blockMenu.getItemInSlot(slot);
-                // If this is an empty slot - move on, if it's our first, store it for later.
-                if (itemStack == null || itemStack.getType() == Material.AIR) {
-                    if (fallbackBlockMenu2 == null) {
-                        fallbackBlockMenu2 = blockMenu;
-                        fallBackSlot2 = slot;
-                    }
-                    continue;
-                }
-
-                final int itemStackAmount = itemStack.getAmount();
-                final int incomingStackAmount = incoming.getAmount();
-
-                if (itemStackAmount < itemStack.getMaxStackSize() && StackUtils.itemsMatch(incoming, itemStack)) {
-                    final int maxCanAdd = itemStack.getMaxStackSize() - itemStackAmount;
-                    final int amountToAdd = Math.min(maxCanAdd, incomingStackAmount);
-
-                    itemStack.setAmount(itemStackAmount + amountToAdd);
-                    incoming.setAmount(incomingStackAmount - amountToAdd);
-
-                    // Mark dirty otherwise changes will not save
-                    blockMenu.markDirty();
-
-                    // All distributed, can escape
-                    if (incomingStackAmount == 0) {
-                        return;
-                    }
-                }
+            blockMenu.markDirty();
+            BlockMenuUtil.pushItem(blockMenu, incoming, CELL_AVAILABLE_SLOTS);
+            if (incoming.getAmount() == 0) {
+                return;
             }
-        }
-
-        // Add to fallback slot
-        if (fallbackBlockMenu2 != null) {
-            fallbackBlockMenu2.replaceExistingItem(fallBackSlot2, incoming.clone());
-            incoming.setAmount(0);
         }
     }
 
