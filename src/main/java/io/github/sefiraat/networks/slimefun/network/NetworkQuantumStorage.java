@@ -279,6 +279,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         final ItemStack input = blockMenu.getItemInSlot(INPUT_SLOT);
         if (input != null && input.getType() != Material.AIR) {
             tryInputItem(blockMenu.getLocation(), new ItemStack[]{input}, cache);
+            blockMenu.markDirty();
         }
 
         // Output items
@@ -295,6 +296,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
         if (fetched != null && fetched.getType() != Material.AIR) {
             blockMenu.pushItem(fetched, OUTPUT_SLOT);
+            blockMenu.markDirty();
             syncBlock(blockMenu.getLocation(), cache);
         }
 
