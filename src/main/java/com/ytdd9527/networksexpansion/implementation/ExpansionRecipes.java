@@ -225,27 +225,27 @@ public class ExpansionRecipes {
     };
 
     public static final ItemStack[] GRIND_STONE_BLUEPRINT = new ItemStack[]{
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.ANDROID_MEMORY_CORE, SlimefunItems.BASIC_CIRCUIT_BOARD,
-            SlimefunItems.BOOSTED_URANIUM, SlimefunItems.URANIUM, SlimefunItems.BOOSTED_URANIUM,
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.CARGO_MOTOR, SlimefunItems.BASIC_CIRCUIT_BOARD
+            SlimefunItems.BASIC_CIRCUIT_BOARD, new ItemStack(Material.OAK_FENCE), SlimefunItems.BASIC_CIRCUIT_BOARD,
+            CRAFTING_BLUEPRINT.getItem(), new ItemStack(Material.DISPENSER), CRAFTING_BLUEPRINT.getItem(),
+            SlimefunItems.BASIC_CIRCUIT_BOARD, CRAFTING_BLUEPRINT.getItem(), SlimefunItems.BASIC_CIRCUIT_BOARD
     };
 
     public static final ItemStack[] JUICER_BLUEPRINT = new ItemStack[]{
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.ANDROID_MEMORY_CORE, SlimefunItems.BASIC_CIRCUIT_BOARD,
-            SlimefunItems.APPLE_JUICE, SlimefunItems.GOLDEN_APPLE_JUICE, SlimefunItems.CARROT_JUICE,
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.CARGO_MOTOR, SlimefunItems.BASIC_CIRCUIT_BOARD
+            SlimefunItems.BASIC_CIRCUIT_BOARD, new ItemStack(Material.GLASS), SlimefunItems.BASIC_CIRCUIT_BOARD,
+            CRAFTING_BLUEPRINT.getItem(), new ItemStack(Material.NETHER_BRICK_FENCE), CRAFTING_BLUEPRINT.getItem(),
+            SlimefunItems.BASIC_CIRCUIT_BOARD, new ItemStack(Material.DISPENSER), SlimefunItems.BASIC_CIRCUIT_BOARD
     };
 
     public static final ItemStack[] ORE_CRUSHER_BLUEPRINT = new ItemStack[]{
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.ANDROID_MEMORY_CORE, SlimefunItems.BASIC_CIRCUIT_BOARD,
-            SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.GPS_TRANSMITTER_2, SlimefunItems.GPS_TRANSMITTER_2,
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.CARGO_MOTOR, SlimefunItems.BASIC_CIRCUIT_BOARD
+            SlimefunItems.BASIC_CIRCUIT_BOARD, new ItemStack(Material.NETHER_BRICK_FENCE), SlimefunItems.BASIC_CIRCUIT_BOARD,
+            new ItemStack(Material.IRON_BARS), new ItemStack(Material.DISPENSER), new ItemStack(Material.IRON_BARS),
+            SlimefunItems.BASIC_CIRCUIT_BOARD, CRAFTING_BLUEPRINT.getItem(), SlimefunItems.BASIC_CIRCUIT_BOARD
     };
 
     public static final ItemStack[] PRESSURE_CHAMBER_BLUEPRINT = new ItemStack[]{
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.ANDROID_MEMORY_CORE, SlimefunItems.BASIC_CIRCUIT_BOARD,
-            SlimefunItems.GPS_TRANSMITTER_3, SlimefunItems.GPS_TRANSMITTER_3, SlimefunItems.GPS_TRANSMITTER_3,
-            SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.CARGO_MOTOR, SlimefunItems.BASIC_CIRCUIT_BOARD
+            CRAFTING_BLUEPRINT.getItem(), new ItemStack(Material.DISPENSER), CRAFTING_BLUEPRINT.getItem(),
+            new ItemStack(Material.PISTON), new ItemStack(Material.GLASS), new ItemStack(Material.PISTON),
+            new ItemStack(Material.PISTON), new ItemStack(Material.CAULDRON), new ItemStack(Material.PISTON)
     };
 
     public static final ItemStack[] MAGIC_WORKBENCH_RECIPE_ENCODER = new ItemStack[]{
