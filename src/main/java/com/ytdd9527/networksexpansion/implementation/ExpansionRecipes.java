@@ -863,10 +863,16 @@ public class ExpansionRecipes {
             OPTIC_CABLE.getItem(), OPTIC_CABLE.getItem(), OPTIC_CABLE.getItem()
     };
 
+    public static final ItemStack[] DUE_MACHINE_CONFIGURATOR = new ItemStack[]{
+            NETWORK_QUANTUM_STORAGE_0.getItem(), NETWORK_BRIDGE.getItem(), NETWORK_QUANTUM_STORAGE_0.getItem(),
+            NETWORK_BRIDGE.getItem(), NETWORK_CONFIGURATOR.getItem(), NETWORK_BRIDGE.getItem(),
+            NETWORK_QUANTUM_STORAGE_0.getItem(), NETWORK_BRIDGE.getItem(), NETWORK_QUANTUM_STORAGE_0.getItem()
+    };
+
     public static final ItemStack[] ITEM_MOVER = new ItemStack[]{
-            NETWORK_QUANTUM_STORAGE_8.getItem(), ExpansionItemStacks.CARGO_STORAGE_UNIT_13, NETWORK_QUANTUM_STORAGE_8.getItem(),
-            ExpansionItemStacks.CARGO_STORAGE_UNIT_13, new ItemStack(Material.STICK), ExpansionItemStacks.CARGO_STORAGE_UNIT_13,
-            NETWORK_QUANTUM_STORAGE_8.getItem(), ExpansionItemStacks.CARGO_STORAGE_UNIT_13, NETWORK_QUANTUM_STORAGE_8.getItem()
+            NETWORK_QUANTUM_STORAGE_8.getItem(), ExpansionItemStacks.ADVANCED_IMPORT, NETWORK_QUANTUM_STORAGE_8.getItem(),
+            ExpansionItemStacks.ADVANCED_EXPORT, NETWORK_WIRELESS_CONFIGURATOR.getItem(), ExpansionItemStacks.ADVANCED_EXPORT,
+            NETWORK_QUANTUM_STORAGE_8.getItem(), ExpansionItemStacks.ADVANCED_IMPORT, NETWORK_QUANTUM_STORAGE_8.getItem()
     };
     public static final ItemStack[] NETWORK_BLUEPRINT_DECODER = new ItemStack[]{
             NETWORK_RECIPE_ENCODER.getItem(), NETWORK_RECIPE_ENCODER.getItem(), NETWORK_RECIPE_ENCODER.getItem(),

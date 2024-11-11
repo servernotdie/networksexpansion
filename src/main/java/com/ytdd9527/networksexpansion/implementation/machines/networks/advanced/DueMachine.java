@@ -207,4 +207,8 @@ public class DueMachine extends SpecialSlimefunItem implements AdminDebuggable {
             }
         };
     }
+
+    public int[] getItemSlots() {
+        return DUE_ITEM_SLOTS;
+    }
 }
