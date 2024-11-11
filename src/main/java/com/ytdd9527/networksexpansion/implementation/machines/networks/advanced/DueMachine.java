@@ -35,11 +35,11 @@ import java.util.List;
 
 public class DueMachine extends SpecialSlimefunItem implements AdminDebuggable {
     private static final int[] DUE_ITEM_SLOTS = new int[]{
-            0, 1, 2, 3, 4, 5, 6, 7
+            0, 1, 2, 3, 4, 5, 6, 7, 8
     };
 
     private static final int[] DUE_BORDERS = new int[]{
-            8
+
     };
 
     private static final int[] DUE_INPUT_SPLIT = new int[]{
@@ -55,19 +55,19 @@ public class DueMachine extends SpecialSlimefunItem implements AdminDebuggable {
     };
 
     private static final int[] INPUT_SLOTS = new int[]{
-            18, 19, 20, 21, 22, 23, 24, 25,
+            18, 19, 20, 21, 22, 23, 24, 25, 26
     };
 
     private static final int[] OUTPUT_SLOTS = new int[]{
-            36, 37, 38, 39, 40, 41, 42, 43,
+            36, 37, 38, 39, 40, 41, 42, 43, 44
     };
 
     private static final int[] INPUT_BORDERS = new int[]{
-            26
+
     };
 
     private static final int[] OUTPUT_BORDERS = new int[]{
-            44
+
     };
 
     public DueMachine(@Nonnull ItemGroup itemGroup, @Nonnull SlimefunItemStack item, @Nonnull RecipeType recipeType, @Nonnull ItemStack[] recipe) {
