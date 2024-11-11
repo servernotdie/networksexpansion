@@ -1,16 +1,11 @@
 package com.ytdd9527.networksexpansion.implementation.tools;
 
-import com.balugaq.netex.api.enums.TransportMode;
 import com.jeff_media.morepersistentdatatypes.DataType;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
-import com.ytdd9527.networksexpansion.core.items.machines.AdvancedDirectional;
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.DueMachine;
 import io.github.sefiraat.networks.Networks;
-import io.github.sefiraat.networks.slimefun.network.NetworkDirectional;
-import io.github.sefiraat.networks.slimefun.network.pusher.NetworkPusher;
 import io.github.sefiraat.networks.utils.Keys;
-import io.github.sefiraat.networks.utils.NetworkUtils;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.sefiraat.networks.utils.datatypes.DataTypeMethods;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -24,7 +19,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -65,29 +59,6 @@ public class DueMachineConfigurator extends SpecialSlimefunItem {
         );
     }
 
-    private void setConfigurator(@Nonnull DueMachine dueMachine, @Nonnull ItemStack itemStack, @Nonnull BlockMenu blockMenu, @Nonnull Player player) {
-        final ItemMeta itemMeta = itemStack.getItemMeta();
-
-        if (dueMachine.getItemSlots().length > 0) {
-            final ItemStack[] itemStacks = new ItemStack[dueMachine.getItemSlots().length];
-
-            int i = 0;
-            for (int slot : dueMachine.getItemSlots()) {
-                final ItemStack possibleStack = blockMenu.getItemInSlot(slot);
-                if (possibleStack != null) {
-                    itemStacks[i] = StackUtils.getAsQuantity(blockMenu.getItemInSlot(slot), 1);
-                }
-                i++;
-            }
-            DataTypeMethods.setCustom(itemMeta, Keys.ITEM, DataType.ITEM_STACK_ARRAY, itemStacks);
-        } else {
-            PersistentDataAPI.remove(itemMeta, Keys.ITEM);
-        }
-
-        itemStack.setItemMeta(itemMeta);
-        player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.configurator.copied"));
-    }
-
     public static void applyConfig(@Nonnull DueMachine dueMachine, @Nonnull ItemStack itemStack, @Nonnull BlockMenu blockMenu, @Nonnull Player player) {
         final ItemMeta itemMeta = itemStack.getItemMeta();
         final ItemStack[] templateStacks = DataTypeMethods.getCustom(itemMeta, Keys.ITEM, DataType.ITEM_STACK_ARRAY);
@@ -126,5 +97,28 @@ public class DueMachineConfigurator extends SpecialSlimefunItem {
         } else {
             player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.configurator.no_item_configured"));
         }
+    }
+
+    private void setConfigurator(@Nonnull DueMachine dueMachine, @Nonnull ItemStack itemStack, @Nonnull BlockMenu blockMenu, @Nonnull Player player) {
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+
+        if (dueMachine.getItemSlots().length > 0) {
+            final ItemStack[] itemStacks = new ItemStack[dueMachine.getItemSlots().length];
+
+            int i = 0;
+            for (int slot : dueMachine.getItemSlots()) {
+                final ItemStack possibleStack = blockMenu.getItemInSlot(slot);
+                if (possibleStack != null) {
+                    itemStacks[i] = StackUtils.getAsQuantity(blockMenu.getItemInSlot(slot), 1);
+                }
+                i++;
+            }
+            DataTypeMethods.setCustom(itemMeta, Keys.ITEM, DataType.ITEM_STACK_ARRAY, itemStacks);
+        } else {
+            PersistentDataAPI.remove(itemMeta, Keys.ITEM);
+        }
+
+        itemStack.setItemMeta(itemMeta);
+        player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.configurator.copied"));
     }
 }

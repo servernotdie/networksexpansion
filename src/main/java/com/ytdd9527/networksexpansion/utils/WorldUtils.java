@@ -14,32 +14,34 @@ public class WorldUtils {
     protected static Field WorldField;
     protected static Field WeakWorldField;
     protected static boolean invokeBlockStateSuccess = false;
+
     static {
         try {
-            World sampleWorld= Bukkit.getWorlds().get(0);
-            BlockState blockstate=sampleWorld.getBlockAt(0, 0, 0).getState();
-            var result= ReflectionUtil.getDeclaredFieldsRecursively(blockstate.getClass(),"data");
+            World sampleWorld = Bukkit.getWorlds().get(0);
+            BlockState blockstate = sampleWorld.getBlockAt(0, 0, 0).getState();
+            var result = ReflectionUtil.getDeclaredFieldsRecursively(blockstate.getClass(), "data");
             IBlockDataField = result.getFirstValue();
             IBlockDataField.setAccessible(true);
             CraftBlockStateClass = result.getSecondValue();
-            BlockPositionField = ReflectionUtil.getDeclaredFieldsRecursively(CraftBlockStateClass,"position").getFirstValue();
+            BlockPositionField = ReflectionUtil.getDeclaredFieldsRecursively(CraftBlockStateClass, "position").getFirstValue();
             BlockPositionField.setAccessible(true);
-            WorldField = ReflectionUtil.getDeclaredFieldsRecursively(CraftBlockStateClass,"world").getFirstValue();
+            WorldField = ReflectionUtil.getDeclaredFieldsRecursively(CraftBlockStateClass, "world").getFirstValue();
             WorldField.setAccessible(true);
-            WeakWorldField = ReflectionUtil.getDeclaredFieldsRecursively(CraftBlockStateClass,"weakWorld").getFirstValue();
+            WeakWorldField = ReflectionUtil.getDeclaredFieldsRecursively(CraftBlockStateClass, "weakWorld").getFirstValue();
             WeakWorldField.setAccessible(true);
             invokeBlockStateSuccess = true;
         } catch (Throwable ignored) {
 
         }
     }
-    public static boolean copyBlockState(BlockState stateToSet, Block toBlock){
+
+    public static boolean copyBlockState(BlockState stateToSet, Block toBlock) {
         if (!invokeBlockStateSuccess) {
             return false;
         }
 
         BlockState originalState = toBlock.getState();
-        if (!CraftBlockStateClass.isInstance(originalState) ||!CraftBlockStateClass.isInstance(stateToSet)) {
+        if (!CraftBlockStateClass.isInstance(originalState) || !CraftBlockStateClass.isInstance(stateToSet)) {
             return false;
         }
 

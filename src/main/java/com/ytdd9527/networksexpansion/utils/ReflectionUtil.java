@@ -70,14 +70,14 @@ public class ReflectionUtil {
         return null;
     }
 
-    public static Pair<Field, Class<?>> getDeclaredFieldsRecursively(Class<?> clazz, String fieldName){
-        try{
+    public static Pair<Field, Class<?>> getDeclaredFieldsRecursively(Class<?> clazz, String fieldName) {
+        try {
             Field field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
             return new Pair<>(field, clazz);
-        }catch (Throwable e){
+        } catch (Throwable e) {
             clazz = clazz.getSuperclass();
-            if(clazz == null){
+            if (clazz == null) {
                 return null;
             } else {
                 return getDeclaredFieldsRecursively(clazz, fieldName);

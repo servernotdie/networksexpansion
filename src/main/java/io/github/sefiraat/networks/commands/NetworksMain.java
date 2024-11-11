@@ -38,7 +38,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -65,6 +64,7 @@ import java.util.function.Consumer;
 @SuppressWarnings({"deprecation", "unused"})
 public class NetworksMain implements TabExecutor {
     private static final Map<UUID, Pair<Location, Location>> SELECTED_POS = new HashMap<>();
+
     public static Location getPos1(Player p) {
         if (SELECTED_POS.get(p.getUniqueId()) == null) {
             return null;
@@ -359,6 +359,7 @@ public class NetworksMain implements TabExecutor {
     public static void worldeditClone(Player player) {
         worldeditClone(player, false);
     }
+
     public static void worldeditClone(Player player, boolean overrideData) {
         if (getPos1(player) == null || getPos2(player) == null) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
