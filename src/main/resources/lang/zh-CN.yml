@@ -86,6 +86,7 @@ messages:
       - "&6/networks worldedit <subCommand> - 粘液创世神功能."
       - "&6/networks updateItem - 更新手持物品."
       - "&6/networks getstorageitem <slot> - 获取看向的网络抽屉指定槽位的物品."
+      - "&6/networks viewLog - 将指向的 AdminDebuggable 的日志输出."
     example:
       help:
         - "&6/networks help - 显示此帮助信息."

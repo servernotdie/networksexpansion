@@ -30,6 +30,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.ChunkPosition;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.FluidCollisionMode;
@@ -57,6 +58,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -383,6 +385,8 @@ public class NetworksMain implements TabExecutor {
         final int dy = playerLocation.getBlockY() - pos1.getBlockY();
         final int dz = playerLocation.getBlockZ() - pos1.getBlockZ();
 
+        final Map<ChunkPosition, Set<Location>> tickingBlocks = Slimefun.getTickerTask().getLocations();
+
         Bukkit.getScheduler().runTask(Networks.getInstance(), () -> {
             doWorldEdit(getPos1(player), getPos2(player), (fromLocation -> {
                 final Block fromBlock = fromLocation.getBlock();
@@ -418,6 +422,14 @@ public class NetworksMain implements TabExecutor {
                     Slimefun.getDatabaseManager().getBlockDataController().removeBlock(toLocation);
                 }
 
+                boolean ticking = false;
+                ChunkPosition chunkPosition = new ChunkPosition(fromLocation);
+                if (tickingBlocks.containsKey(chunkPosition)) {
+                    if (tickingBlocks.get(chunkPosition).contains(fromLocation)) {
+                        ticking = true;
+                    }
+                }
+
                 if (StorageCacheUtils.hasBlock(toLocation)) {
                     return;
                 }
@@ -449,6 +461,11 @@ public class NetworksMain implements TabExecutor {
                     if (contents[i] != null) {
                         toMenu.getInventory().setItem(i, contents[i].clone());
                     }
+                }
+
+                // Ticking
+                if (!ticking) {
+                    Slimefun.getTickerTask().disableTicker(toLocation);
                 }
             }));
             player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.paste-done"), count, System.currentTimeMillis() - currentMillSeconds));
