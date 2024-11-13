@@ -688,6 +688,10 @@ public class ExpansionItemStacks {
             Networks.getLocalizationService().getItem("NTW_EXPANSION_CARGO_STORAGE_UNIT_13_MODEL", Skins.CARGO_STORAGE_UNIT_13_MODEL.getHash()),
             Theme.MACHINE
     );
+    public static final SlimefunItemStack DUE_MACHINE_CONFIGURATOR = Theme.themedSlimefunItemStack(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_DUE_MACHINE_CONFIGURATOR", Material.BLAZE_ROD),
+            Theme.TOOL
+    );
     public static final SlimefunItemStack ITEM_MOVER = Theme.themedSlimefunItemStack(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_ITEM_MOVER", Material.DEBUG_STICK),
             Theme.TOOL

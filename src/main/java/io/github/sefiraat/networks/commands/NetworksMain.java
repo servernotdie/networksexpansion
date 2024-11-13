@@ -8,6 +8,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
 import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
+import com.ytdd9527.networksexpansion.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.Pair;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.bakedlibs.dough.skins.PlayerSkin;
@@ -29,7 +30,9 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.ChunkPosition;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import org.bukkit.Bukkit;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -55,33 +58,35 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "unused"})
 public class NetworksMain implements TabExecutor {
-    private static final Map<String, Pair<Location, Location>> SELECTED_POS = new HashMap<>();
+    private static final Map<UUID, Pair<Location, Location>> SELECTED_POS = new HashMap<>();
 
     public static Location getPos1(Player p) {
-        if (SELECTED_POS.get(p.getName()) == null) {
+        if (SELECTED_POS.get(p.getUniqueId()) == null) {
             return null;
         }
-        return SELECTED_POS.get(p.getName()).getFirstValue();
+        return SELECTED_POS.get(p.getUniqueId()).getFirstValue();
     }
 
     public static Location getPos2(Player p) {
-        if (SELECTED_POS.get(p.getName()) == null) {
+        if (SELECTED_POS.get(p.getUniqueId()) == null) {
             return null;
         }
-        return SELECTED_POS.get(p.getName()).getSecondValue();
+        return SELECTED_POS.get(p.getUniqueId()).getSecondValue();
     }
 
     public static void setPos1(Player p, Location pos) {
-        SELECTED_POS.put(p.getName(), new Pair<>(pos, getPos2(p)));
+        SELECTED_POS.put(p.getUniqueId(), new Pair<>(pos, getPos2(p)));
     }
 
     public static void setPos2(Player p, Location pos) {
-        SELECTED_POS.put(p.getName(), new Pair<>(getPos1(p), pos));
+        SELECTED_POS.put(p.getUniqueId(), new Pair<>(getPos1(p), pos));
     }
 
     public static String locationToString(Location l) {
@@ -353,6 +358,120 @@ public class NetworksMain implements TabExecutor {
         }
     }
 
+    public static void worldeditClone(Player player) {
+        worldeditClone(player, false);
+    }
+
+    public static void worldeditClone(Player player, boolean overrideData) {
+        if (getPos1(player) == null || getPos2(player) == null) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
+            return;
+        }
+
+        if (!Objects.equals(getPos1(player).getWorld().getUID(), getPos2(player).getWorld().getUID())) {
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-same-world"));
+            return;
+        }
+
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.pasting-block"), locationToString(getPos1(player)), locationToString(getPos2(player))));
+        final long currentMillSeconds = System.currentTimeMillis();
+
+        final AtomicInteger count = new AtomicInteger();
+        final Location playerLocation = player.getLocation();
+        final ItemStack itemInHand = player.getItemInHand();
+
+        final Location pos1 = getPos1(player);
+        final int dx = playerLocation.getBlockX() - pos1.getBlockX();
+        final int dy = playerLocation.getBlockY() - pos1.getBlockY();
+        final int dz = playerLocation.getBlockZ() - pos1.getBlockZ();
+
+        final Map<ChunkPosition, Set<Location>> tickingBlocks = Slimefun.getTickerTask().getLocations();
+
+        Bukkit.getScheduler().runTask(Networks.getInstance(), () -> {
+            doWorldEdit(getPos1(player), getPos2(player), (fromLocation -> {
+                final Block fromBlock = fromLocation.getBlock();
+                final Block toBlock = playerLocation.getWorld().getBlockAt(fromLocation.getBlockX() + dx, fromLocation.getBlockY() + dy, fromLocation.getBlockZ() + dz);
+                final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(fromLocation);
+                final Location toLocation = toBlock.getLocation();
+
+                // Block Data
+                WorldUtils.copyBlockState(fromBlock.getState(), toBlock);
+
+                // Count means successful pasting block data. Not including Slimefun data.
+                count.addAndGet(1);
+
+                // Slimefun Data
+                if (slimefunItem == null) {
+                    return;
+                }
+
+                // Call Handler
+                slimefunItem.callItemHandler(BlockPlaceHandler.class, handler -> handler.onPlayerPlace(
+                        new BlockPlaceEvent(
+                                toBlock,
+                                toBlock.getState(),
+                                toBlock.getRelative(BlockFace.SOUTH),
+                                itemInHand,
+                                player,
+                                true
+                        )
+                ));
+
+                SlimefunBlockData fromSlimefunBlockData = Slimefun.getDatabaseManager().getBlockDataController().getBlockData(fromLocation);
+                if (overrideData) {
+                    Slimefun.getDatabaseManager().getBlockDataController().removeBlock(toLocation);
+                }
+
+                boolean ticking = false;
+                ChunkPosition chunkPosition = new ChunkPosition(fromLocation);
+                if (tickingBlocks.containsKey(chunkPosition)) {
+                    if (tickingBlocks.get(chunkPosition).contains(fromLocation)) {
+                        ticking = true;
+                    }
+                }
+
+                if (StorageCacheUtils.hasBlock(toLocation)) {
+                    return;
+                }
+
+                // Slimefun Block
+                Slimefun.getDatabaseManager().getBlockDataController().createBlock(toLocation, slimefunItem.getId());
+                SlimefunBlockData toSlimefunBlockData = Slimefun.getDatabaseManager().getBlockDataController().getBlockData(toLocation);
+
+                // SlimefunBlockData
+                if (fromSlimefunBlockData == null || toSlimefunBlockData == null) {
+                    return;
+                }
+
+                Map<String, String> data = fromSlimefunBlockData.getAllData();
+                for (String key : data.keySet()) {
+                    toSlimefunBlockData.setData(key, data.get(key));
+                }
+
+                // BlockMenu
+                final BlockMenu fromMenu = fromSlimefunBlockData.getBlockMenu();
+                final BlockMenu toMenu = toSlimefunBlockData.getBlockMenu();
+
+                if (fromMenu == null || toMenu == null) {
+                    return;
+                }
+
+                ItemStack[] contents = fromMenu.getContents();
+                for (int i = 0; i < contents.length; i++) {
+                    if (contents[i] != null) {
+                        toMenu.getInventory().setItem(i, contents[i].clone());
+                    }
+                }
+
+                // Ticking
+                if (!ticking) {
+                    Slimefun.getTickerTask().disableTicker(toLocation);
+                }
+            }));
+            player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.paste-done"), count, System.currentTimeMillis() - currentMillSeconds));
+        });
+    }
+
     public static void worldeditPaste(Player player, String sfid) {
         worldeditPaste(player, sfid, false, false);
     }
@@ -415,9 +534,9 @@ public class NetworksMain implements TabExecutor {
         }
         skin = skin0;
         isHead = isHead0;
-        // java's operation ↑
+
         doWorldEdit(getPos1(player), getPos2(player), (location -> {
-            final Block targetBlock = getPos1(player).getWorld().getBlockAt(location);
+            final Block targetBlock = location.getBlock();
             sfItem.callItemHandler(BlockPlaceHandler.class, h -> h.onPlayerPlace(
                     new BlockPlaceEvent(
                             targetBlock,
@@ -923,6 +1042,14 @@ public class NetworksMain implements TabExecutor {
                             }
                         }
 
+                        case "clone" -> {
+                            if (args.length <= 2) {
+                                worldeditClone(player);
+                            } else if (args.length <= 3) {
+                                worldeditClone(player, "override".equalsIgnoreCase(args[2]));
+                            }
+                        }
+
                         case "paste" -> {
                             if (args.length <= 2) {
                                 player.sendMessage(getErrorMessage(ErrorType.MISSING_REQUIRED_ARGUMENT, "sfId"));
@@ -932,13 +1059,13 @@ public class NetworksMain implements TabExecutor {
                             boolean force = false;
                             switch (args.length) {
                                 case 5 -> {
-                                    if (args[3].toLowerCase(Locale.ROOT).equals("override")) {
+                                    if ("override".equalsIgnoreCase(args[3])) {
                                         overrideData = true;
                                     }
                                     force = Boolean.parseBoolean(args[4]);
                                 }
                                 case 4 -> {
-                                    if (args[3].toLowerCase(Locale.ROOT).equals("override")) {
+                                    if ("override".equalsIgnoreCase(args[3])) {
                                         overrideData = true;
                                     }
                                 }
@@ -1166,7 +1293,7 @@ public class NetworksMain implements TabExecutor {
                     case "fillquantum", "addstorageitem", "reducestorageitem", "setquantum" -> List.of("<amount>");
                     case "fixblueprint" -> List.of("<keyInMeta>");
                     case "setcontainerid" -> List.of("<containerId>");
-                    case "worldedit" -> List.of("pos1", "pos2", "paste", "clear", "blockmenu", "blockinfo");
+                    case "worldedit" -> List.of("pos1", "pos2", "paste", "clear", "clone", "blockmenu", "blockinfo");
                     default -> List.of();
                 };
             }

@@ -84,6 +84,7 @@ import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.
 import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.SmartPusher;
 import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
 import com.ytdd9527.networksexpansion.implementation.tools.CargoNodeQuickTool;
+import com.ytdd9527.networksexpansion.implementation.tools.DueMachineConfigurator;
 import com.ytdd9527.networksexpansion.implementation.tools.ItemMover;
 import com.ytdd9527.networksexpansion.implementation.tools.NetworksExpansionWorldEditAxe;
 import com.ytdd9527.networksexpansion.implementation.tools.NetworksInfoTool;
@@ -1269,6 +1270,13 @@ public class ExpansionItems {
     public static final SpecialSlimefunItem NETWORKS_EXPANSION_CHEAT_GUIDE = new NetworksExpansionGuide(
             ExpansionItemsMenus.MENU_ITEMS,
             ExpansionItemStacks.NTW_EXPANSION_CREATIVE_GUIDE
+    );
+
+    public static final DueMachineConfigurator DUE_MACHINE_CONFIGURATOR = new DueMachineConfigurator(
+            ExpansionItemsMenus.MENU_ITEMS,
+            ExpansionItemStacks.DUE_MACHINE_CONFIGURATOR,
+            ExpansionWorkbench.TYPE,
+            ExpansionRecipes.DUE_MACHINE_CONFIGURATOR
     );
 
     public static final SpecialSlimefunItem ITEM_MOVER = new ItemMover(

@@ -16,6 +16,7 @@ public class SetupUtil {
                 ExpansionItems.CARGO_NODE_QUICK_TOOL.registerThis(),
                 ExpansionItems.WORLDEDIT_AXE.registerThis(),
                 ExpansionItems.INFO_TOOL.registerThis(),
+                ExpansionItems.DUE_MACHINE_CONFIGURATOR.registerThis(),
                 ExpansionItems.ITEM_MOVER.registerThis(),
                 ExpansionItems.NETWORKS_EXPANSION_SURVIVAL_GUIDE.registerThis(),
                 ExpansionItems.NETWORKS_EXPANSION_CHEAT_GUIDE.registerThis()
