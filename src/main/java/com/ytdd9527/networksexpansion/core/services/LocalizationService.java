@@ -345,7 +345,7 @@ public class LocalizationService {
                 }
             }
             if (!found) {
-                Networks.getInstance().getLogger().warning("Unknown color code: " + colorCode);
+                break;
             }
             matcher = this.pattern.matcher(str);
         }
