@@ -27,6 +27,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.ncbpfluffybear.fluffymachines.items.Barrel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
@@ -46,6 +48,10 @@ import java.util.Optional;
 
 @SuppressWarnings("unused")
 public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
+    @Nonnull
+    public static final Interaction[] CHECK_INTERACTIONS = new Interaction[] {
+            Interaction.PLACE_BLOCK, Interaction.BREAK_BLOCK, Interaction.INTERACT_BLOCK
+    };
     @Nonnull
     public static final List<String> DEFAULT_LORE = ExpansionItemStacks.ITEM_MOVER.getItemMeta() == null ? new ArrayList<>() : (ExpansionItemStacks.ITEM_MOVER.getItemMeta().hasLore() && ExpansionItemStacks.ITEM_MOVER.getItemMeta().getLore() != null ? ExpansionItemStacks.ITEM_MOVER.getItemMeta().getLore() : new ArrayList<>());
 
@@ -70,12 +76,14 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
                             return;
                         }
                         final Location location = optional.get().getLocation();
-                        if (!player.isSneaking()) {
-                            // Right-click
-                            tryDepositIntoMover(player, itemStack, location);
-                        } else {
-                            // Shift+Right-click
-                            tryWithdrawFromMover(player, itemStack, location);
+                        if (hasPermission(player, location)) {
+                            if (!player.isSneaking()) {
+                                // Right-click
+                                tryDepositIntoMover(player, itemStack, location);
+                            } else {
+                                // Shift+Right-click
+                                tryWithdrawFromMover(player, itemStack, location);
+                            }
                         }
                     }
                     e.cancel();
@@ -366,6 +374,9 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
     }
 
     private static void tryDepositIntoMover(Player player, ItemStack mover, Location clickedLocation) {
+        if (!hasPermission(player, clickedLocation)) {
+            return;
+        }
         int storedAmount = getStoredAmount(mover);
         ItemStack storedItemStack = getStoredItemStack(mover);
         BarrelIdentity barrel = getBarrel(player, clickedLocation);
@@ -404,6 +415,9 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
     }
 
     private static void tryWithdrawFromMover(Player player, ItemStack mover, Location clickedLocation) {
+        if (!hasPermission(player, clickedLocation)) {
+            return;
+        }
         int storedAmount = getStoredAmount(mover);
         ItemStack storedItemStack = getStoredItemStack(mover);
         BarrelIdentity barrel = getBarrel(player, clickedLocation);
@@ -441,5 +455,20 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
     @Override
     public boolean canStack(@Nonnull ItemMeta itemMeta, @Nonnull ItemMeta itemMeta1) {
         return itemMeta.getPersistentDataContainer().equals(itemMeta1.getPersistentDataContainer());
+    }
+
+    public static boolean hasPermission(Player player, Location location) {
+        for (Interaction interaction : CHECK_INTERACTIONS) {
+            if (!Slimefun.getProtectionManager().hasPermission(player, location, interaction)) {
+                return false;
+            }
+        }
+
+        SlimefunItem sfitem = StorageCacheUtils.getSfItem(location);
+        if (!Slimefun.getPermissionsService().hasPermission(player, sfitem)) {
+            return false;
+        }
+
+        return true;
     }
 }
