@@ -8,6 +8,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
 import com.ytdd9527.networksexpansion.implementation.machines.unit.NetworksDrawer;
+import com.ytdd9527.networksexpansion.utils.ParticleUtil;
 import com.ytdd9527.networksexpansion.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.Pair;
 import io.github.bakedlibs.dough.skins.PlayerHead;
@@ -37,6 +38,7 @@ import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
@@ -53,6 +55,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -60,17 +63,34 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"deprecation", "unused"})
 public class NetworksMain implements TabExecutor {
+    private static final Set<UUID> requesters = new ConcurrentSkipListSet<>();
+    private static final Networks javaPlugin = Networks.getInstance();
     private static final Map<UUID, Pair<Location, Location>> SELECTED_POS = new HashMap<>();
 
+    public NetworksMain() {
+        javaPlugin.getServer().getScheduler().runTaskTimerAsynchronously(javaPlugin, () -> {
+            Iterator<UUID> iterator = requesters.iterator();
+            while (iterator.hasNext()) {
+                UUID uuid = iterator.next();
+                Player player = Bukkit.getPlayer(uuid);
+                if (player == null) {
+                    continue;
+                }
+                handleSelectedAreaOutlineShowRequest(player);
+            }
+        }, 0, Slimefun.getTickerTask().getTickRate());
+    }
     public static Location getPos1(Player p) {
         if (SELECTED_POS.get(p.getUniqueId()) == null) {
             return null;
         }
+
         return SELECTED_POS.get(p.getUniqueId()).getFirstValue();
     }
 
@@ -87,6 +107,31 @@ public class NetworksMain implements TabExecutor {
 
     public static void setPos2(Player p, Location pos) {
         SELECTED_POS.put(p.getUniqueId(), new Pair<>(getPos1(p), pos));
+    }
+
+    public static void clearPos(Player p) {
+        SELECTED_POS.remove(p.getUniqueId());
+        p.sendMessage(Networks.getLocalizationService().getString("messages.commands.clear-selected-pos"));
+    }
+
+    public static void toggleShowSelectedAreaOutline(Player p) {
+        if (requesters.contains(p.getUniqueId())) {
+            requesters.remove(p.getUniqueId());
+            p.sendMessage(Networks.getLocalizationService().getString("messages.commands.selected-area-outline-hide-request"));
+        } else {
+            requesters.add(p.getUniqueId());
+            p.sendMessage(Networks.getLocalizationService().getString("messages.commands.selected-area-outline-show-request"));
+        }
+    }
+
+    private static void handleSelectedAreaOutlineShowRequest(Player p) {
+        Location pos1 = getPos1(p);
+        Location pos2 = getPos2(p);
+        if (pos1 == null || pos2 == null) {
+            return;
+        }
+
+        javaPlugin.getServer().getScheduler().runTaskLaterAsynchronously(javaPlugin, () -> ParticleUtil.drawRegionOutline(javaPlugin, Particle.WAX_OFF, 0, pos1, pos2), Slimefun.getTickerTask().getTickRate());
     }
 
     public static String locationToString(Location l) {
@@ -1138,6 +1183,23 @@ public class NetworksMain implements TabExecutor {
                                 }
                             }
                         }
+                        case "clearpos" -> {
+                            if (!player.hasPermission("networks.admin") && !player.hasPermission("networks.commands.worldedit.clearpos")) {
+                                player.sendMessage(getErrorMessage(ErrorType.NO_PERMISSION));
+                                return true;
+                            }
+
+                            clearPos(player);
+                        }
+
+                        case "showareaoutline" -> {
+                            if (!player.hasPermission("networks.admin") && !player.hasPermission("networks.commands.worldedit.showAreaOutline")) {
+                                player.sendMessage(getErrorMessage(ErrorType.NO_PERMISSION));
+                                return true;
+                            }
+
+                            toggleShowSelectedAreaOutline(player);
+                        }
                     }
                 }
 
@@ -1294,7 +1356,7 @@ public class NetworksMain implements TabExecutor {
                     case "fillquantum", "addstorageitem", "reducestorageitem", "setquantum" -> List.of("<amount>");
                     case "fixblueprint" -> List.of("<keyInMeta>");
                     case "setcontainerid" -> List.of("<containerId>");
-                    case "worldedit" -> List.of("pos1", "pos2", "paste", "clear", "clone", "blockmenu", "blockinfo");
+                    case "worldedit" -> List.of("pos1", "pos2", "paste", "clear", "clone", "blockmenu", "blockinfo", "clearpos", "showareaoutline");
                     default -> List.of();
                 };
             }

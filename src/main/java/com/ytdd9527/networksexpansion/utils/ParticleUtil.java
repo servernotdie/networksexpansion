@@ -1,5 +1,6 @@
 package com.ytdd9527.networksexpansion.utils;
 
+import io.github.sefiraat.networks.Networks;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
@@ -136,5 +137,49 @@ public class ParticleUtil {
             locations[i] = locationList.get(i);
         }
         ParticleUtil.drawCubeByLocations(plugin, particle, interval, locations);
+    }
+
+    public static void drawRegionOutline(@Nonnull Plugin plugin, @Nonnull Particle particle, long interval, @Nonnull Location corner1, @Nonnull Location corner2) {
+        World world = corner1.getWorld();
+        if (world == null || corner1.getWorld() != corner2.getWorld()) {
+            return;
+        }
+
+        double minX = Math.min(corner1.getX(), corner2.getX());
+        double minY = Math.min(corner1.getY(), corner2.getY());
+        double minZ = Math.min(corner1.getZ(), corner2.getZ());
+        double maxX = Math.max(corner1.getX(), corner2.getX());
+        double maxY = Math.max(corner1.getY(), corner2.getY());
+        double maxZ = Math.max(corner1.getZ(), corner2.getZ());
+
+        Location[] corners = new Location[] {
+                new Location(world, minX, minY, minZ),
+                new Location(world, minX, minY, maxZ+1),
+                new Location(world, maxX+1, minY, maxZ+1),
+                new Location(world, maxX+1, minY, minZ),
+                new Location(world, minX, maxY+1, minZ),
+                new Location(world, minX, maxY+1, maxZ+1),
+                new Location(world, maxX+1, maxY+1, maxZ+1),
+                new Location(world, maxX+1, maxY+1, minZ)
+        };
+
+        // 正方体的12条边
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[0], corners[1]);
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[0], corners[3]);
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[0], corners[4]);
+
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[1], corners[2]);
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[1], corners[5]);
+
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[2], corners[3]);
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[2], corners[6]);
+
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[3], corners[7]);
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[4], corners[5]);
+
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[4], corners[7]);
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[5], corners[6]);
+
+        drawLineByDistance(plugin, particle, interval, 0.25, corners[6], corners[7]);
     }
 }
