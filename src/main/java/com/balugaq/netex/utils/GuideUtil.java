@@ -21,7 +21,13 @@ import java.lang.reflect.Method;
  */
 @UtilityClass
 public class GuideUtil {
+    @Deprecated(
+            since = "2.1-Alpha-10"
+    )
     private static final SurvivalGuideImpl survivalGuide = new SurvivalGuideImpl();
+    @Deprecated(
+            since = "2.1-Alpha-10"
+    )
     private static final CheatGuideImpl cheatGuide = new CheatGuideImpl();
 
     @ParametersAreNonnullByDefault
@@ -36,6 +42,7 @@ public class GuideUtil {
         getGuide(player, mode).openMainMenu(profile, selectedPage);
     }
 
+    @Deprecated
     public static SlimefunGuideImplementation getGuide(Player player, SlimefunGuideMode mode) {
         if (mode == SlimefunGuideMode.SURVIVAL_MODE) {
             return survivalGuide;
