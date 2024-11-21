@@ -702,7 +702,7 @@ public class NetworksMain implements TabExecutor {
             }
         }));
 
-        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.setting-info"), key, System.currentTimeMillis() - currentMillSeconds));
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-info-done"), key, value, System.currentTimeMillis() - currentMillSeconds));
     }
 
     public static void worldeditBlockInfoRemove(Player player, String key) {
