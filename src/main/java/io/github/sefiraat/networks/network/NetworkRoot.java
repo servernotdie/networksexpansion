@@ -828,7 +828,7 @@ public class NetworkRoot extends NetworkNode {
                 } else {
                     stackToReturn.setAmount(stackToReturn.getAmount() + take.getAmount());
                 }
-                request.receiveAmount(stackToReturn.getAmount());
+                request.receiveAmount(take.getAmount());
 
                 if (request.getAmount() <= 0) {
                     return stackToReturn;

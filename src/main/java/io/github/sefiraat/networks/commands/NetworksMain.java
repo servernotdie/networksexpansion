@@ -631,7 +631,8 @@ public class NetworksMain implements TabExecutor {
             count.addAndGet(1);
         }));
 
-        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-slot-done"), slot, System.currentTimeMillis() - currentMillSeconds));
+        final String itemName = ItemStackHelper.getDisplayName(hand);
+        player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-slot-done"), slot, itemName, System.currentTimeMillis() - currentMillSeconds));
     }
 
     public static void worldeditBlockInfoAdd(Player player, String key, String value) {
