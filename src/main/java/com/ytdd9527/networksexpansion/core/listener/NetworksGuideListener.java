@@ -18,6 +18,9 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Objects;
 import java.util.Optional;
 
+@Deprecated(
+        since = "2.1-Alpha-10"
+)
 public class NetworksGuideListener implements Listener {
     @EventHandler
     public void onInteract(PlayerRightClickEvent e) {

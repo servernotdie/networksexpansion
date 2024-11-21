@@ -54,6 +54,9 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.logging.Level;
 
+@Deprecated(
+        since = "2.1-Alpha-10"
+)
 @SuppressWarnings("deprecation")
 public class SurvivalGuideImpl extends SurvivalSlimefunGuide implements SlimefunGuideImplementation {
 
