@@ -409,7 +409,7 @@ public class NetworksMain implements TabExecutor {
 
     public static void worldeditClone(Player player, boolean overrideData) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
             return;
         }
 
@@ -529,7 +529,7 @@ public class NetworksMain implements TabExecutor {
         final SlimefunItem sfItem = SlimefunItem.getById(sfid);
 
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
             return;
         }
 
@@ -610,7 +610,7 @@ public class NetworksMain implements TabExecutor {
 
     public static void worldeditClear(Player player, boolean callHandler, boolean skipVanilla) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
             return;
         }
 
@@ -648,7 +648,7 @@ public class NetworksMain implements TabExecutor {
 
     public static void worldeditBlockMenuSetSlot(Player player, int slot) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
             return;
         }
 
@@ -682,7 +682,7 @@ public class NetworksMain implements TabExecutor {
 
     public static void worldeditBlockInfoAdd(Player player, String key, String value) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
             return;
         }
 
@@ -707,7 +707,7 @@ public class NetworksMain implements TabExecutor {
 
     public static void worldeditBlockInfoRemove(Player player, String key) {
         if (getPos1(player) == null || getPos2(player) == null) {
-            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-area"));
+            player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
             return;
         }
 
