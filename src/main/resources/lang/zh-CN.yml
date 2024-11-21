@@ -855,12 +855,12 @@ items:
       - "<warning> 14) 此附属所有声明解释权归网络拓展开发者们所有。"
       - "<passive> 声明到此结束。"
   NTW_EXPANSION_SURVIVAL_GUIDE:
-    name: "网络拓展指南 (生存模式)"
+    name: "网络拓展指南 (生存模式) &c[已移植至JEG]"
     lore:
       - ""
 
   NTW_EXPANSION_CREATIVE_GUIDE:
-    name: "网络拓展指南 (作弊模式)"
+    name: "网络拓展指南 (作弊模式) &c[已移植至JEG]"
     lore:
       - ""
 
