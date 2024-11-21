@@ -1,3 +1,9 @@
+Valid-License-Identifier: GPL-3.0
+Effective in packages:
+- src/main/java/io/github/sefiraat/networks
+- src/main/resources
+License-Text:
+
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
