@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * @author Final_ROOT
+ * @author balugaq
  * @since 2.0
  */
 public class ParticleUtil {
@@ -162,7 +163,6 @@ public class ParticleUtil {
                 new Location(world, maxX + 1, maxY + 1, minZ)
         };
 
-        // 正方体的12条边
         drawLineByDistance(plugin, particle, interval, 0.25, corners[0], corners[1]);
         drawLineByDistance(plugin, particle, interval, 0.25, corners[0], corners[3]);
         drawLineByDistance(plugin, particle, interval, 0.25, corners[0], corners[4]);
