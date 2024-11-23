@@ -61,9 +61,11 @@ public class LineOperationUtil {
     public static void doEnergyOperation(Location startLocation, BlockFace direction, int limit, Consumer<BlockMenu> consumer) {
         doEnergyOperation(startLocation, direction, limit, true, true, consumer);
     }
+
     public static void doEnergyOperation(Location startLocation, BlockFace direction, int limit, boolean allowNoMenu, Consumer<BlockMenu> consumer) {
         doEnergyOperation(startLocation, direction, limit, allowNoMenu, true, consumer);
     }
+
     public static void doEnergyOperation(Location startLocation, BlockFace direction, int limit, boolean allowNoMenu, boolean optimizeExperience, Consumer<BlockMenu> consumer) {
         Location location = startLocation.clone();
         int finalLimit = limit;

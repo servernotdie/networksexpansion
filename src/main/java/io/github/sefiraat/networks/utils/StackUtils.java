@@ -73,7 +73,7 @@ public class StackUtils {
     }
 
     public static boolean itemsMatch(@Nullable ItemStack itemStack1, @Nullable ItemStack itemStack2) {
-        return itemsMatch(new ItemStackCache(itemStack1), itemStack2, false, false,true);
+        return itemsMatch(new ItemStackCache(itemStack1), itemStack2, false, false, true);
     }
 
     public static boolean itemsMatch(@Nonnull ItemStackCache cache, @Nullable ItemStack itemStack, boolean checkLore, boolean checkAmount) {
@@ -91,6 +91,7 @@ public class StackUtils {
     public static boolean itemsMatch(@Nullable ItemStack itemStack, @Nonnull ItemStackCache cache, boolean checkLore, boolean checkAmount, boolean checkCustomModelId) {
         return itemsMatch(cache, itemStack, checkLore, checkAmount, checkCustomModelId);
     }
+
     public static boolean itemsMatch(@Nullable ItemStack itemStack, @Nonnull ItemStackCache cache, boolean checkLore, boolean checkAmount) {
         return itemsMatch(cache, itemStack, checkLore, checkAmount, true);
     }

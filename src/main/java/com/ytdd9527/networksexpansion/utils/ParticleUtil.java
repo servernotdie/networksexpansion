@@ -1,6 +1,5 @@
 package com.ytdd9527.networksexpansion.utils;
 
-import io.github.sefiraat.networks.Networks;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
@@ -152,15 +151,15 @@ public class ParticleUtil {
         double maxY = Math.max(corner1.getY(), corner2.getY());
         double maxZ = Math.max(corner1.getZ(), corner2.getZ());
 
-        Location[] corners = new Location[] {
+        Location[] corners = new Location[]{
                 new Location(world, minX, minY, minZ),
-                new Location(world, minX, minY, maxZ+1),
-                new Location(world, maxX+1, minY, maxZ+1),
-                new Location(world, maxX+1, minY, minZ),
-                new Location(world, minX, maxY+1, minZ),
-                new Location(world, minX, maxY+1, maxZ+1),
-                new Location(world, maxX+1, maxY+1, maxZ+1),
-                new Location(world, maxX+1, maxY+1, minZ)
+                new Location(world, minX, minY, maxZ + 1),
+                new Location(world, maxX + 1, minY, maxZ + 1),
+                new Location(world, maxX + 1, minY, minZ),
+                new Location(world, minX, maxY + 1, minZ),
+                new Location(world, minX, maxY + 1, maxZ + 1),
+                new Location(world, maxX + 1, maxY + 1, maxZ + 1),
+                new Location(world, maxX + 1, maxY + 1, minZ)
         };
 
         // 正方体的12条边

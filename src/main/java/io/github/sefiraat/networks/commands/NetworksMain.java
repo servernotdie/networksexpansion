@@ -86,6 +86,7 @@ public class NetworksMain implements TabExecutor {
             }
         }, 0, Slimefun.getTickerTask().getTickRate());
     }
+
     public static Location getPos1(Player p) {
         if (SELECTED_POS.get(p.getUniqueId()) == null) {
             return null;
@@ -1356,7 +1357,8 @@ public class NetworksMain implements TabExecutor {
                     case "fillquantum", "addstorageitem", "reducestorageitem", "setquantum" -> List.of("<amount>");
                     case "fixblueprint" -> List.of("<keyInMeta>");
                     case "setcontainerid" -> List.of("<containerId>");
-                    case "worldedit" -> List.of("pos1", "pos2", "paste", "clear", "clone", "blockmenu", "blockinfo", "clearpos", "showareaoutline");
+                    case "worldedit" ->
+                            List.of("pos1", "pos2", "paste", "clear", "clone", "blockmenu", "blockinfo", "clearpos", "showareaoutline");
                     default -> List.of();
                 };
             }
