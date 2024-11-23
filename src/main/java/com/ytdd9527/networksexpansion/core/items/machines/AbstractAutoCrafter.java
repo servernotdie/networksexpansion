@@ -269,6 +269,14 @@ public abstract class AbstractAutoCrafter extends NetworkObject {
             }
 
             @Override
+            public void newInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
+                addMenuClickHandler(BLUEPRINT_SLOT, (player, slot, clickedItem, clickAction) -> {
+                    releaseCache(menu);
+                    return true;
+                });
+            }
+
+            @Override
             public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
                 return player.hasPermission("slimefun.inventory.bypass") || (this.getSlimefunItem().canUse(player, false)
                         && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK));

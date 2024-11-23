@@ -74,6 +74,9 @@ messages:
     set-container-id: "&a已设置位于为 %s 的网络抽屉的容器ID为 %s."
     invalid-slot-index: "<error>槽位号必须在 0-%s 之间!"
     empty-slot: "<error>该槽位没有物品!"
+    selected-area-outline-hide-request: "&a已请求隐藏选中区域的轮廓."
+    selected-area-outline-show-request: "&a已请求显示选中区域的轮廓."
+    clear-selected-pos: "&a已清除选择的位置."
     help:
       - "&6网络命令帮助:"
       - "&6/networks help - 显示此帮助信息."
@@ -122,6 +125,9 @@ messages:
         - "&6/networks worldedit blockInfo add <key> <value> - 增加粘液方块信息"
         - "&6/networks worldedit blockInfo remove <value> - 移除粘液方块信息"
         - "&6/networks worldedit blockInfo set <key> <value> - 设置粘液方块信息"
+        - "&6/networks worldedit clone - 复制选中区域至你的位置"
+        - "&6/networks worldedit clearPos - 清除选择的位置"
+        - "&6/networks worldedit showAreaOutline - 显示选中区域的轮廓"
       updateitem:
         - "&6/networks updateItem - 更新手持物品."
         - "&6ex: /networks updateItem"

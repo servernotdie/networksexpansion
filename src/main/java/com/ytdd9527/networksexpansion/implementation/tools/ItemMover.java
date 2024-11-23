@@ -49,7 +49,7 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
     @Nonnull
-    public static final Interaction[] CHECK_INTERACTIONS = new Interaction[] {
+    public static final Interaction[] CHECK_INTERACTIONS = new Interaction[]{
             Interaction.PLACE_BLOCK, Interaction.BREAK_BLOCK, Interaction.INTERACT_BLOCK
     };
     @Nonnull
@@ -452,11 +452,6 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         return new ArrayList<>(DEFAULT_LORE);
     }
 
-    @Override
-    public boolean canStack(@Nonnull ItemMeta itemMeta, @Nonnull ItemMeta itemMeta1) {
-        return itemMeta.getPersistentDataContainer().equals(itemMeta1.getPersistentDataContainer());
-    }
-
     public static boolean hasPermission(Player player, Location location) {
         for (Interaction interaction : CHECK_INTERACTIONS) {
             if (!Slimefun.getProtectionManager().hasPermission(player, location, interaction)) {
@@ -470,5 +465,10 @@ public class ItemMover extends SpecialSlimefunItem implements DistinctiveItem {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean canStack(@Nonnull ItemMeta itemMeta, @Nonnull ItemMeta itemMeta1) {
+        return itemMeta.getPersistentDataContainer().equals(itemMeta1.getPersistentDataContainer());
     }
 }

@@ -1,6 +1,7 @@
 package com.balugaq.netex.utils;
 
 import com.balugaq.netex.api.enums.TransportMode;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
@@ -50,6 +51,39 @@ public class LineOperationUtil {
                 if (skipNoMenu) {
                     continue;
                 } else {
+                    return;
+                }
+            }
+            consumer.accept(blockMenu);
+        }
+    }
+
+    public static void doEnergyOperation(Location startLocation, BlockFace direction, int limit, Consumer<BlockMenu> consumer) {
+        doEnergyOperation(startLocation, direction, limit, true, true, consumer);
+    }
+
+    public static void doEnergyOperation(Location startLocation, BlockFace direction, int limit, boolean allowNoMenu, Consumer<BlockMenu> consumer) {
+        doEnergyOperation(startLocation, direction, limit, allowNoMenu, true, consumer);
+    }
+
+    public static void doEnergyOperation(Location startLocation, BlockFace direction, int limit, boolean allowNoMenu, boolean optimizeExperience, Consumer<BlockMenu> consumer) {
+        Location location = startLocation.clone();
+        int finalLimit = limit;
+        if (optimizeExperience) {
+            finalLimit += 1;
+        }
+        for (int i = 0; i < finalLimit; i++) {
+            switch (direction) {
+                case NORTH -> location.setZ(location.getZ() - 1);
+                case SOUTH -> location.setZ(location.getZ() + 1);
+                case EAST -> location.setX(location.getX() + 1);
+                case WEST -> location.setX(location.getX() - 1);
+                case UP -> location.setY(location.getY() + 1);
+                case DOWN -> location.setY(location.getY() - 1);
+            }
+            final BlockMenu blockMenu = StorageCacheUtils.getMenu(location);
+            if (blockMenu == null) {
+                if (!allowNoMenu) {
                     return;
                 }
             }
@@ -412,7 +446,7 @@ public class LineOperationUtil {
     }
 
     public static void outPower(@Nonnull Location location, @Nonnull NetworkRoot root, int rate) {
-        var blockData = StorageCacheUtils.getBlock(location);
+        final SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
         if (blockData == null) {
             return;
         }
@@ -427,14 +461,10 @@ public class LineOperationUtil {
             return;
         }
 
-        final String charge = blockData.getData("energy-charge");
-        int chargeInt = 0;
-        if (charge != null) {
-            chargeInt = Integer.parseInt(charge);
-        }
+        int existingCharge = component.getCharge(location);
 
         final int capacity = component.getCapacity();
-        final int space = capacity - chargeInt;
+        final int space = capacity - existingCharge;
 
         if (space <= 0) {
             return;
