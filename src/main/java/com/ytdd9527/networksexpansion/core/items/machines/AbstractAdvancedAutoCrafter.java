@@ -293,7 +293,7 @@ public abstract class AbstractAdvancedAutoCrafter extends NetworkObject {
 
             @Override
             public void newInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
-                addMenuClickHandler(BLUEPRINT_SLOT, (player, slot, clickedItem, clickAction) -> {
+                menu.addMenuClickHandler(BLUEPRINT_SLOT, (player, slot, clickedItem, clickAction) -> {
                     releaseCache(menu);
                     return true;
                 });
