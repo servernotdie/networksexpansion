@@ -69,8 +69,11 @@ import java.util.function.Consumer;
 
 @SuppressWarnings({"deprecation", "unused"})
 public class NetworksMain implements TabExecutor {
+    @Deprecated
     private static final Set<UUID> requesters = new ConcurrentSkipListSet<>();
+    @Deprecated
     private static final Networks javaPlugin = Networks.getInstance();
+    @Deprecated
     private static final Map<UUID, Pair<Location, Location>> SELECTED_POS = new HashMap<>();
 
     public NetworksMain() {
@@ -87,6 +90,7 @@ public class NetworksMain implements TabExecutor {
         }, 0, Slimefun.getTickerTask().getTickRate());
     }
 
+    @Deprecated
     public static Location getPos1(Player p) {
         if (SELECTED_POS.get(p.getUniqueId()) == null) {
             return null;
@@ -95,6 +99,7 @@ public class NetworksMain implements TabExecutor {
         return SELECTED_POS.get(p.getUniqueId()).getFirstValue();
     }
 
+    @Deprecated
     public static Location getPos2(Player p) {
         if (SELECTED_POS.get(p.getUniqueId()) == null) {
             return null;
@@ -102,19 +107,23 @@ public class NetworksMain implements TabExecutor {
         return SELECTED_POS.get(p.getUniqueId()).getSecondValue();
     }
 
+    @Deprecated
     public static void setPos1(Player p, Location pos) {
         SELECTED_POS.put(p.getUniqueId(), new Pair<>(pos, getPos2(p)));
     }
 
+    @Deprecated
     public static void setPos2(Player p, Location pos) {
         SELECTED_POS.put(p.getUniqueId(), new Pair<>(getPos1(p), pos));
     }
 
+    @Deprecated
     public static void clearPos(Player p) {
         SELECTED_POS.remove(p.getUniqueId());
         p.sendMessage(Networks.getLocalizationService().getString("messages.commands.clear-selected-pos"));
     }
 
+    @Deprecated
     public static void toggleShowSelectedAreaOutline(Player p) {
         if (requesters.contains(p.getUniqueId())) {
             requesters.remove(p.getUniqueId());
@@ -125,6 +134,7 @@ public class NetworksMain implements TabExecutor {
         }
     }
 
+    @Deprecated
     private static void handleSelectedAreaOutlineShowRequest(Player p) {
         Location pos1 = getPos1(p);
         Location pos2 = getPos2(p);
@@ -135,6 +145,7 @@ public class NetworksMain implements TabExecutor {
         javaPlugin.getServer().getScheduler().runTaskLaterAsynchronously(javaPlugin, () -> ParticleUtil.drawRegionOutline(javaPlugin, Particle.WAX_OFF, 0, pos1, pos2), Slimefun.getTickerTask().getTickRate());
     }
 
+    @Deprecated
     public static String locationToString(Location l) {
         if (l == null) {
             return Networks.getLocalizationService().getString("icons.drawer.location_error.unknown");
@@ -145,6 +156,7 @@ public class NetworksMain implements TabExecutor {
         return l.getWorld().getName() + "," + l.getBlockX() + "," + l.getBlockY() + "," + l.getBlockZ();
     }
 
+    @Deprecated
     public static long locationRange(Location pos1, Location pos2) {
         if (pos1 == null || pos2 == null) {
             return 0;
@@ -159,6 +171,7 @@ public class NetworksMain implements TabExecutor {
         return (long) (Math.abs(upX - downX) + 1) * (Math.abs(upY - downY) + 1) * (Math.abs(upZ - downZ) + 1);
     }
 
+    @Deprecated
     private static void doWorldEdit(Location pos1, Location pos2, Consumer<Location> consumer) {
         if (pos1 == null || pos2 == null) {
             return;
@@ -368,6 +381,7 @@ public class NetworksMain implements TabExecutor {
     }
 
 
+    @Deprecated
     public static void worldeditPos1(Player player) {
         Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         if (targetBlock == null) {
@@ -377,6 +391,7 @@ public class NetworksMain implements TabExecutor {
         worldeditPos1(player, targetBlock.getLocation());
     }
 
+    @Deprecated
     public static void worldeditPos1(Player player, Location location) {
         setPos1(player, location);
         if (getPos2(player) == null) {
@@ -386,6 +401,7 @@ public class NetworksMain implements TabExecutor {
         }
     }
 
+    @Deprecated
     public static void worldeditPos2(Player player) {
         Block targetBlock = player.getTargetBlockExact(8, FluidCollisionMode.NEVER);
         if (targetBlock == null) {
@@ -395,6 +411,7 @@ public class NetworksMain implements TabExecutor {
         worldeditPos2(player, targetBlock.getLocation());
     }
 
+    @Deprecated
     public static void worldeditPos2(Player player, Location location) {
         setPos2(player, location);
         if (getPos1(player) == null) {
@@ -404,10 +421,12 @@ public class NetworksMain implements TabExecutor {
         }
     }
 
+    @Deprecated
     public static void worldeditClone(Player player) {
         worldeditClone(player, false);
     }
 
+    @Deprecated
     public static void worldeditClone(Player player, boolean overrideData) {
         if (getPos1(player) == null || getPos2(player) == null) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
@@ -518,14 +537,17 @@ public class NetworksMain implements TabExecutor {
         });
     }
 
+    @Deprecated
     public static void worldeditPaste(Player player, String sfid) {
         worldeditPaste(player, sfid, false, false);
     }
 
+    @Deprecated
     public static void worldeditPaste(Player player, String sfid, boolean overrideData) {
         worldeditPaste(player, sfid, overrideData, false);
     }
 
+    @Deprecated
     public static void worldeditPaste(Player player, String sfid, boolean overrideData, boolean force) {
         final SlimefunItem sfItem = SlimefunItem.getById(sfid);
 
@@ -609,6 +631,7 @@ public class NetworksMain implements TabExecutor {
         player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.paste-done"), count, System.currentTimeMillis() - currentMillSeconds));
     }
 
+    @Deprecated
     public static void worldeditClear(Player player, boolean callHandler, boolean skipVanilla) {
         if (getPos1(player) == null || getPos2(player) == null) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
@@ -647,6 +670,7 @@ public class NetworksMain implements TabExecutor {
         player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.clear-done"), count, System.currentTimeMillis() - currentMillSeconds));
     }
 
+    @Deprecated
     public static void worldeditBlockMenuSetSlot(Player player, int slot) {
         if (getPos1(player) == null || getPos2(player) == null) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
@@ -681,6 +705,7 @@ public class NetworksMain implements TabExecutor {
         player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-slot-done"), slot, itemName, System.currentTimeMillis() - currentMillSeconds));
     }
 
+    @Deprecated
     public static void worldeditBlockInfoAdd(Player player, String key, String value) {
         if (getPos1(player) == null || getPos2(player) == null) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
@@ -706,6 +731,7 @@ public class NetworksMain implements TabExecutor {
         player.sendMessage(String.format(Networks.getLocalizationService().getString("messages.commands.worldedit.set-info-done"), key, value, System.currentTimeMillis() - currentMillSeconds));
     }
 
+    @Deprecated
     public static void worldeditBlockInfoRemove(Player player, String key) {
         if (getPos1(player) == null || getPos2(player) == null) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.worldedit.must-select-range"));
