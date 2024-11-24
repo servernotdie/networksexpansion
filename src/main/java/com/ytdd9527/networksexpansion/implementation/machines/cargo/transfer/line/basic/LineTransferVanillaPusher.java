@@ -1,6 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.machines.cargo.transfer.line.basic;
 
-import com.balugaq.netex.api.enums.MCVersion;
+import com.balugaq.netex.api.enums.MinecraftVersion;
 import com.balugaq.netex.api.interfaces.Configurable;
 import com.bgsoftware.wildchests.api.WildChestsAPI;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
@@ -153,7 +153,7 @@ public class LineTransferVanillaPusher extends NetworkDirectional implements Rec
                 return;
             }
 
-            if (Networks.getInstance().getMCVersion().isAtLeast(MCVersion.MC1_21)) {
+            if (Networks.getInstance().getMCVersion().isAtLeast(MinecraftVersion.MC1_21)) {
                 if (blockState instanceof CrafterInventory) {
                     return;
                 }

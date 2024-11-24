@@ -1,6 +1,6 @@
 package io.github.sefiraat.networks.utils;
 
-import com.balugaq.netex.api.enums.MCVersion;
+import com.balugaq.netex.api.enums.MinecraftVersion;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.stackcaches.ItemStackCache;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -46,9 +46,9 @@ import java.util.Optional;
 @UtilityClass
 @SuppressWarnings("deprecation")
 public class StackUtils {
-    private static final MCVersion MC_VERSION = Networks.getInstance().getMCVersion();
-    private static final boolean IS_1_20_5 = MC_VERSION.isAtLeast(MCVersion.MC1_20_5);
-    private static final boolean IS_1_21 = MC_VERSION.isAtLeast(MCVersion.MC1_21);
+    private static final MinecraftVersion MC_VERSION = Networks.getInstance().getMCVersion();
+    private static final boolean IS_1_20_5 = MC_VERSION.isAtLeast(MinecraftVersion.MC1_20_5);
+    private static final boolean IS_1_21 = MC_VERSION.isAtLeast(MinecraftVersion.MC1_21);
 
     @Nonnull
     public static ItemStack getAsQuantity(@Nullable ItemStack itemStack, int amount) {

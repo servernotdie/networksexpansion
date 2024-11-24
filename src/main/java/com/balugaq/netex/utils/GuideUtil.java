@@ -1,7 +1,5 @@
 package com.balugaq.netex.utils;
 
-import com.balugaq.netex.api.guide.CheatGuideImpl;
-import com.balugaq.netex.api.guide.SurvivalGuideImpl;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.GuideHistory;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideImplementation;
@@ -21,15 +19,6 @@ import java.lang.reflect.Method;
  */
 @UtilityClass
 public class GuideUtil {
-    @Deprecated(
-            since = "2.1-Alpha-10"
-    )
-    private static final SurvivalGuideImpl survivalGuide = new SurvivalGuideImpl();
-    @Deprecated(
-            since = "2.1-Alpha-10"
-    )
-    private static final CheatGuideImpl cheatGuide = new CheatGuideImpl();
-
     @ParametersAreNonnullByDefault
     public static void openMainMenuAsync(Player player, SlimefunGuideMode mode, int selectedPage) {
         if (!PlayerProfile.get(player, profile -> Slimefun.runSync(() -> openMainMenu(player, profile, mode, selectedPage)))) {
@@ -39,19 +28,7 @@ public class GuideUtil {
 
     @ParametersAreNonnullByDefault
     public static void openMainMenu(Player player, PlayerProfile profile, SlimefunGuideMode mode, int selectedPage) {
-        getGuide(player, mode).openMainMenu(profile, selectedPage);
-    }
-
-    @Deprecated
-    public static SlimefunGuideImplementation getGuide(Player player, SlimefunGuideMode mode) {
-        if (mode == SlimefunGuideMode.SURVIVAL_MODE) {
-            return survivalGuide;
-        }
-        if (player.isOp() && mode == SlimefunGuideMode.CHEAT_MODE) {
-            return cheatGuide;
-        }
-
-        return survivalGuide;
+        Slimefun.getRegistry().getSlimefunGuide(mode).openMainMenu(profile, selectedPage);
     }
 
     public static void removeLastEntry(@Nonnull GuideHistory guideHistory) {

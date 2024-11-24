@@ -28,8 +28,6 @@ import java.util.Optional;
 
 public class NetworkWirelessConfigurator extends SlimefunItem {
 
-    private static final NamespacedKey TARGET_LOCATION = Keys.newKey("target-location");
-
     public NetworkWirelessConfigurator(ItemGroup itemGroup,
                                        SlimefunItemStack item,
                                        RecipeType recipeType,
@@ -71,7 +69,14 @@ public class NetworkWirelessConfigurator extends SlimefunItem {
                                 @Nonnull Player player
     ) {
         final ItemMeta itemMeta = itemStack.getItemMeta();
-        final Location location = PersistentDataAPI.get(itemMeta, TARGET_LOCATION, DataType.LOCATION);
+        Location location = PersistentDataAPI.get(itemMeta, Keys.TARGET_LOCATION, DataType.LOCATION);
+        if (location == null) {
+            location = PersistentDataAPI.get(itemMeta, Keys.TARGET_LOCATION2, DataType.LOCATION);
+        }
+
+        if (location == null) {
+            location = PersistentDataAPI.get(itemMeta, Keys.TARGET_LOCATION3, DataType.LOCATION);
+        }
 
         if (location == null) {
             player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.wireless_configurator.no_target_location"));
@@ -90,7 +95,7 @@ public class NetworkWirelessConfigurator extends SlimefunItem {
     private void setReceiver(@Nonnull ItemStack itemStack, @Nonnull BlockMenu blockMenu, @Nonnull Player player) {
         final Location location = blockMenu.getLocation();
         final ItemMeta itemMeta = itemStack.getItemMeta();
-        PersistentDataAPI.set(itemMeta, TARGET_LOCATION, DataType.LOCATION, location);
+        PersistentDataAPI.set(itemMeta, Keys.TARGET_LOCATION, DataType.LOCATION, location);
         itemStack.setItemMeta(itemMeta);
         player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.wireless_configurator.receiver_set"));
     }

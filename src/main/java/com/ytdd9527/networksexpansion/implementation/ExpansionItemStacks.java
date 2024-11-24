@@ -16,14 +16,6 @@ import org.bukkit.inventory.ItemStack;
  * @since 2.0
  */
 public class ExpansionItemStacks {
-    public static final SlimefunItemStack NETWORKS_EXPANSION_SURVIVAL_GUIDE = Theme.themedSlimefunItemStack(
-            Networks.getLocalizationService().getItem("NTW_EXPANSION_SURVIVAL_GUIDE", Material.ENCHANTED_BOOK),
-            Theme.GUIDE
-    );
-    public static final SlimefunItemStack NTW_EXPANSION_CREATIVE_GUIDE = Theme.themedSlimefunItemStack(
-            Networks.getLocalizationService().getItem("NTW_EXPANSION_CREATIVE_GUIDE", Material.ENCHANTED_BOOK),
-            Theme.GUIDE
-    );
     // Workbench
     public static final SlimefunItemStack NETWORKS_EXPANSION_WORKBENCH = Theme.Random(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_WORKBENCH", Material.BAMBOO_BLOCK),

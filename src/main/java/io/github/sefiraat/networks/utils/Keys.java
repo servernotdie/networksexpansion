@@ -32,6 +32,9 @@ public class Keys {
     public static final NamespacedKey ITEM = newKey("item");
     public static final NamespacedKey ITEM2 = customNewKey(NETWORKS_ID, "item");
     public static final NamespacedKey ITEM3 = customNewKey(NETWORKS_CHANGED_ID, "item");
+    public static final NamespacedKey TARGET_LOCATION = Keys.newKey("target-location");
+    public static final NamespacedKey TARGET_LOCATION2 = customNewKey(NETWORKS_ID, "target-location");
+    public static final NamespacedKey TARGET_LOCATION3 = customNewKey(NETWORKS_CHANGED_ID, "target-location");
 
     public static final NamespacedKey AMOUNT = newKey("amount");
     public static final NamespacedKey TRANSFER_MODE = newKey("transfer_mode");

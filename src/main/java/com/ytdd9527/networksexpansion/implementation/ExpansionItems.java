@@ -1262,16 +1262,6 @@ public class ExpansionItems {
             ExpansionItemStacks.AUTHOR_TINALNESS
     );
 
-    public static final SpecialSlimefunItem NETWORKS_EXPANSION_SURVIVAL_GUIDE = new NetworksExpansionGuide(
-            ExpansionItemsMenus.MENU_ITEMS,
-            ExpansionItemStacks.NETWORKS_EXPANSION_SURVIVAL_GUIDE
-    );
-
-    public static final SpecialSlimefunItem NETWORKS_EXPANSION_CHEAT_GUIDE = new NetworksExpansionGuide(
-            ExpansionItemsMenus.MENU_ITEMS,
-            ExpansionItemStacks.NTW_EXPANSION_CREATIVE_GUIDE
-    );
-
     public static final DueMachineConfigurator DUE_MACHINE_CONFIGURATOR = new DueMachineConfigurator(
             ExpansionItemsMenus.MENU_ITEMS,
             ExpansionItemStacks.DUE_MACHINE_CONFIGURATOR,
