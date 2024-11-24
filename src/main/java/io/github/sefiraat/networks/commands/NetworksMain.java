@@ -743,11 +743,27 @@ public class NetworksMain implements TabExecutor {
             player.sendMessage(Networks.getLocalizationService().getString("messages.commands.cannot-update-cargo-storage-unit"));
         } else if (slimefunItem instanceof NetworkQuantumStorage) {
             final ItemMeta meta = itemInHand.getItemMeta();
-            final QuantumCache quantumCache = DataTypeMethods.getCustom(
+            QuantumCache quantumCache = DataTypeMethods.getCustom(
                     meta,
                     Keys.QUANTUM_STORAGE_INSTANCE,
                     PersistentQuantumStorageType.TYPE
             );
+
+            if (quantumCache == null) {
+                quantumCache = DataTypeMethods.getCustom(
+                        meta,
+                        Keys.QUANTUM_STORAGE_INSTANCE2,
+                        PersistentQuantumStorageType.TYPE
+                );
+            }
+
+            if (quantumCache == null) {
+                quantumCache = DataTypeMethods.getCustom(
+                        meta,
+                        Keys.QUANTUM_STORAGE_INSTANCE3,
+                        PersistentQuantumStorageType.TYPE
+                );
+            }
 
             if (quantumCache == null || quantumCache.getItemStack() == null) {
                 itemInHand.setItemMeta(SlimefunItem.getById(currentId).getItem().getItemMeta());
