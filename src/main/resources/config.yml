@@ -10,12 +10,6 @@ config-version: 209-Beta-19
 # Do not change this value unless you know what you are doing.
 debug: false
 
-integrations:
-  # Unstable features are disabled by default.
-  guide:
-    survival-override: false
-    cheat-override: false
-
 drawer-auto-save-period: 300
 
 # max-distance means the maximum distance that the item can be pushed or grabbed.
