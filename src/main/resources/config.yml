@@ -23,6 +23,16 @@ items:
     pushitem-tick: 1
     use-special-model:
       enable: false
+  NTW_EXPANSION_LINE_TRANSFER_MORE_PUSHER:
+    max-distance: 32
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
+  NTW_EXPANSION_LINE_TRANSFER_BEST_PUSHER:
+    max-distance: 32
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
   NTW_EXPANSION_LINE_TRANSFER_GRABBER:
     max-distance: 32
     grabitem-tick: 1
@@ -35,6 +45,16 @@ items:
     use-special-model:
       enable: false
   NTW_EXPANSION_LINE_TRANSFER_PLUS_PUSHER:
+    max-distance: 64
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
+  NTW_EXPANSION_LINE_TRANSFER_PLUS_MORE_PUSHER:
+    max-distance: 64
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
+  NTW_EXPANSION_LINE_TRANSFER_PLUS_BEST_PUSHER:
     max-distance: 64
     pushitem-tick: 1
     use-special-model:
@@ -56,6 +76,16 @@ items:
     pushitem-tick: 1
     use-special-model:
       enable: false
+  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_MORE_PUSHER:
+    max-distance: 32
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
+  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_BEST_PUSHER:
+    max-distance: 32
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_GRABBER:
     max-distance: 32
     grabitem-tick: 1
@@ -68,6 +98,16 @@ items:
     use-special-model:
       enable: false
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_PUSHER:
+    max-distance: 64
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
+  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_MORE_PUSHER:
+    max-distance: 64
+    pushitem-tick: 1
+    use-special-model:
+      enable: false
+  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_BEST_PUSHER:
     max-distance: 64
     pushitem-tick: 1
     use-special-model:

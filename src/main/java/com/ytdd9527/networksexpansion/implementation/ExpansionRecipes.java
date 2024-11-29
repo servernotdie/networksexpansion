@@ -29,20 +29,70 @@ public class ExpansionRecipes {
             AI_CORE.getItem(), NETWORK_EXPORT.getItem(), NETWORK_PUSHER.getItem()
     };
 
+    public static final ItemStack[] LINE_TRANSFER_MORE_PUSHER = new ItemStack[]{
+            NETWORK_MORE_PUSHER.getItem(), NETWORK_EXPORT.getItem(), AI_CORE.getItem(),
+            NETWORK_EXPORT.getItem(), NETWORK_MONITOR.getItem(), NETWORK_EXPORT.getItem(),
+            AI_CORE.getItem(), NETWORK_EXPORT.getItem(), NETWORK_MORE_PUSHER.getItem()
+    };
+
+    public static final ItemStack[] LINE_TRANSFER_BEST_PUSHER = new ItemStack[]{
+            NETWORK_BEST_PUSHER.getItem(), NETWORK_EXPORT.getItem(), AI_CORE.getItem(),
+            NETWORK_EXPORT.getItem(), NETWORK_MONITOR.getItem(), NETWORK_EXPORT.getItem(),
+            AI_CORE.getItem(), NETWORK_EXPORT.getItem(), NETWORK_BEST_PUSHER.getItem()
+    };
+
     public static final ItemStack[] LINE_TRANSFER_PLUS_PUSHER = new ItemStack[]{
             SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem(),
             OPTIC_CABLE.getItem(), ExpansionItemStacks.LINE_TRANSFER_PUSHER, OPTIC_CABLE.getItem(),
             SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem()
     };
+
+    public static final ItemStack[] LINE_TRANSFER_PLUS_MORE_PUSHER = new ItemStack[]{
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem(),
+            OPTIC_CABLE.getItem(), ExpansionItemStacks.LINE_TRANSFER_MORE_PUSHER, OPTIC_CABLE.getItem(),
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem()
+    };
+
+    public static final ItemStack[] LINE_TRANSFER_PLUS_BEST_PUSHER = new ItemStack[]{
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem(),
+            OPTIC_CABLE.getItem(), ExpansionItemStacks.LINE_TRANSFER_BEST_PUSHER, OPTIC_CABLE.getItem(),
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem()
+    };
+
+
     public static final ItemStack[] ADVANCED_LINE_TRANSFER_PUSHER = new ItemStack[]{
             NETWORK_BRIDGE.getItem(), ExpansionItemStacks.LINE_TRANSFER_PUSHER, NETWORK_BRIDGE.getItem(),
             EMPOWERED_AI_CORE.getItem(), EMPOWERED_AI_CORE.getItem(), EMPOWERED_AI_CORE.getItem(),
             NETWORK_BRIDGE.getItem(), ExpansionItemStacks.LINE_TRANSFER_PUSHER, NETWORK_BRIDGE.getItem()
     };
 
+    public static final ItemStack[] ADVANCED_LINE_TRANSFER_MORE_PUSHER = new ItemStack[]{
+            NETWORK_BRIDGE.getItem(), ExpansionItemStacks.LINE_TRANSFER_MORE_PUSHER, NETWORK_BRIDGE.getItem(),
+            EMPOWERED_AI_CORE.getItem(), EMPOWERED_AI_CORE.getItem(), EMPOWERED_AI_CORE.getItem(),
+            NETWORK_BRIDGE.getItem(), ExpansionItemStacks.LINE_TRANSFER_MORE_PUSHER, NETWORK_BRIDGE.getItem()
+    };
+
+    public static final ItemStack[] ADVANCED_LINE_TRANSFER_BEST_PUSHER = new ItemStack[]{
+            NETWORK_BRIDGE.getItem(), ExpansionItemStacks.LINE_TRANSFER_BEST_PUSHER, NETWORK_BRIDGE.getItem(),
+            EMPOWERED_AI_CORE.getItem(), EMPOWERED_AI_CORE.getItem(), EMPOWERED_AI_CORE.getItem(),
+            NETWORK_BRIDGE.getItem(), ExpansionItemStacks.LINE_TRANSFER_BEST_PUSHER, NETWORK_BRIDGE.getItem()
+    };
+
     public static final ItemStack[] ADVANCED_LINE_TRANSFER_PLUS_PUSHER = new ItemStack[]{
             SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem(),
             OPTIC_CABLE.getItem(), ExpansionItemStacks.ADVANCED_LINE_TRANSFER_PUSHER, OPTIC_CABLE.getItem(),
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem()
+    };
+
+    public static final ItemStack[] ADVANCED_LINE_TRANSFER_PLUS_MORE_PUSHER = new ItemStack[]{
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem(),
+            OPTIC_CABLE.getItem(), ExpansionItemStacks.ADVANCED_LINE_TRANSFER_MORE_PUSHER, OPTIC_CABLE.getItem(),
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem()
+    };
+
+    public static final ItemStack[] ADVANCED_LINE_TRANSFER_PLUS_BEST_PUSHER = new ItemStack[]{
+            SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem(),
+            OPTIC_CABLE.getItem(), ExpansionItemStacks.ADVANCED_LINE_TRANSFER_BEST_PUSHER, OPTIC_CABLE.getItem(),
             SHRINKING_BASE.getItem(), OPTIC_CABLE.getItem(), SHRINKING_BASE.getItem()
     };
 
@@ -95,6 +145,19 @@ public class ExpansionRecipes {
             null, ExpansionItemStacks.LINE_TRANSFER_PUSHER, null,
             null, null, null
     };
+
+    public static final ItemStack[] TRANSFER_MORE_PUSHER = new ItemStack[]{
+            null, null, null,
+            null, ExpansionItemStacks.LINE_TRANSFER_MORE_PUSHER, null,
+            null, null, null
+    };
+
+    public static final ItemStack[] TRANSFER_BEST_PUSHER = new ItemStack[]{
+            null, null, null,
+            null, ExpansionItemStacks.LINE_TRANSFER_BEST_PUSHER, null,
+            null, null, null
+    };
+
     public static final ItemStack[] TRANSFER_GRABBER = new ItemStack[]{
             null, null, null,
             null, ExpansionItemStacks.LINE_TRANSFER_GRABBER, null,
@@ -110,6 +173,19 @@ public class ExpansionRecipes {
             null, ExpansionItemStacks.ADVANCED_LINE_TRANSFER_PUSHER, null,
             null, null, null
     };
+
+    public static final ItemStack[] ADVANCED_TRANSFER_MORE_PUSHER = new ItemStack[]{
+            null, null, null,
+            null, ExpansionItemStacks.ADVANCED_LINE_TRANSFER_MORE_PUSHER, null,
+            null, null, null
+    };
+
+    public static final ItemStack[] ADVANCED_TRANSFER_BEST_PUSHER = new ItemStack[]{
+            null, null, null,
+            null, ExpansionItemStacks.ADVANCED_LINE_TRANSFER_BEST_PUSHER, null,
+            null, null, null
+    };
+
     public static final ItemStack[] ADVANCED_TRANSFER_GRABBER = new ItemStack[]{
             null, null, null,
             null, ExpansionItemStacks.ADVANCED_LINE_TRANSFER_GRABBER, null,

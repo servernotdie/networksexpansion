@@ -72,6 +72,16 @@ public class ExpansionItemStacks {
             Networks.getLocalizationService().getItem("NTW_EXPANSION_LINE_TRANSFER_PUSHER", Material.OBSERVER),
             Theme.MACHINE
     );
+
+    public static final SlimefunItemStack LINE_TRANSFER_MORE_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_LINE_TRANSFER_MORE_PUSHER", Material.LIME_GLAZED_TERRACOTTA),
+            Theme.MACHINE
+    );
+
+    public static final SlimefunItemStack LINE_TRANSFER_BEST_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_LINE_TRANSFER_BEST_PUSHER", Material.LIME_STAINED_GLASS),
+            Theme.MACHINE
+    );
     public static final SlimefunItemStack LINE_TRANSFER_GRABBER = Theme.Random(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_LINE_TRANSFER_GRABBER", Material.HAY_BLOCK),
             Theme.MACHINE
@@ -82,6 +92,14 @@ public class ExpansionItemStacks {
     );
     public static final SlimefunItemStack LINE_TRANSFER_PLUS_PUSHER = Theme.Random(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_LINE_TRANSFER_PLUS_PUSHER", Material.LIME_GLAZED_TERRACOTTA),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack LINE_TRANSFER_PLUS_MORE_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_LINE_TRANSFER_PLUS_MORE_PUSHER", Material.LIME_STAINED_GLASS),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack LINE_TRANSFER_PLUS_BEST_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_LINE_TRANSFER_PLUS_BEST_PUSHER", Material.LIME_STAINED_GLASS),
             Theme.MACHINE
     );
     public static final SlimefunItemStack LINE_TRANSFER_PLUS_GRABBER = Theme.Random(
@@ -104,6 +122,14 @@ public class ExpansionItemStacks {
             Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PUSHER", Enchanted(Material.OBSERVER)),
             Theme.MACHINE
     );
+    public static final SlimefunItemStack ADVANCED_LINE_TRANSFER_MORE_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_LINE_TRANSFER_MORE_PUSHER", Enchanted(Material.LIME_GLAZED_TERRACOTTA)),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack ADVANCED_LINE_TRANSFER_BEST_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_LINE_TRANSFER_BEST_PUSHER", Enchanted(Material.LIME_STAINED_GLASS)),
+            Theme.MACHINE
+    );
     public static final SlimefunItemStack ADVANCED_LINE_TRANSFER_GRABBER = Theme.Random(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_LINE_TRANSFER_GRABBER", Enchanted(Material.HAY_BLOCK)),
             Theme.MACHINE
@@ -114,6 +140,14 @@ public class ExpansionItemStacks {
     );
     public static final SlimefunItemStack ADVANCED_LINE_TRANSFER_PLUS_PUSHER = Theme.Random(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_PUSHER", Enchanted(Material.LIME_GLAZED_TERRACOTTA)),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack ADVANCED_LINE_TRANSFER_PLUS_MORE_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_MORE_PUSHER", Enchanted(Material.LIME_STAINED_GLASS)),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack ADVANCED_LINE_TRANSFER_PLUS_BEST_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_BEST_PUSHER", Enchanted(Material.LIME_STAINED_GLASS)),
             Theme.MACHINE
     );
     public static final SlimefunItemStack ADVANCED_LINE_TRANSFER_PLUS_GRABBER = Theme.Random(
@@ -128,6 +162,14 @@ public class ExpansionItemStacks {
             Networks.getLocalizationService().getItem("NTW_EXPANSION_TRANSFER_PUSHER", Material.OBSERVER),
             Theme.MACHINE
     );
+    public static final SlimefunItemStack TRANSFER_MORE_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_TRANSFER_MORE_PUSHER", Material.LIME_GLAZED_TERRACOTTA),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack TRANSFER_BEST_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_TRANSFER_BEST_PUSHER", Material.LIME_STAINED_GLASS),
+            Theme.MACHINE
+    );
     public static final SlimefunItemStack TRANSFER_GRABBER = Theme.Random(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_TRANSFER_GRABBER", Material.HAY_BLOCK),
             Theme.MACHINE
@@ -138,6 +180,14 @@ public class ExpansionItemStacks {
     );
     public static final SlimefunItemStack ADVANCED_TRANSFER_PUSHER = Theme.Random(
             Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_TRANSFER_PUSHER", Material.OBSERVER),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack ADVANCED_TRANSFER_MORE_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_TRANSFER_MORE_PUSHER", Material.LIME_GLAZED_TERRACOTTA),
+            Theme.MACHINE
+    );
+    public static final SlimefunItemStack ADVANCED_TRANSFER_BEST_PUSHER = Theme.Random(
+            Networks.getLocalizationService().getItem("NTW_EXPANSION_ADVANCED_TRANSFER_BEST_PUSHER", Material.LIME_STAINED_GLASS),
             Theme.MACHINE
     );
     public static final SlimefunItemStack ADVANCED_TRANSFER_GRABBER = Theme.Random(
