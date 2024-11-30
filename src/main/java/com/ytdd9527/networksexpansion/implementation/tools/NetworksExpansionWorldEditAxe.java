@@ -23,7 +23,7 @@ public class NetworksExpansionWorldEditAxe extends SpecialSlimefunItem {
                 (ItemUseHandler) e -> {
                     final Player player = e.getPlayer();
                     if (!player.isOp()) {
-                        player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.no_permission"));
+                        player.sendMessage(Networks.getLocalizationService().getString("messages.unsupported-operation.comprehensive.no-permission"));
                         return;
                     }
                     final Optional<Block> optional = e.getClickedBlock();

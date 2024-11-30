@@ -126,7 +126,15 @@ public class NetworkQuantumWorkbench extends SlimefunItem {
                 final ItemMeta oldMeta = coreItem.getItemMeta();
                 final ItemMeta newMeta = crafted.getItemMeta();
                 final NetworkQuantumStorage newQuantum = (NetworkQuantumStorage) SlimefunItem.getByItem(crafted);
-                final QuantumCache oldCache = DataTypeMethods.getCustom(oldMeta, Keys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE);
+                QuantumCache oldCache = DataTypeMethods.getCustom(oldMeta, Keys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE);
+
+                if (oldCache == null) {
+                    oldCache = DataTypeMethods.getCustom(oldMeta, Keys.QUANTUM_STORAGE_INSTANCE2, PersistentQuantumStorageType.TYPE);
+                }
+
+                if (oldCache == null) {
+                    oldCache = DataTypeMethods.getCustom(oldMeta, Keys.QUANTUM_STORAGE_INSTANCE3, PersistentQuantumStorageType.TYPE);
+                }
 
                 if (oldCache != null) {
                     final QuantumCache newCache = new QuantumCache(

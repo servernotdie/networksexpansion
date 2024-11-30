@@ -433,6 +433,22 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
                             PersistentQuantumStorageType.TYPE
                     );
 
+                    if (quantumCache == null) {
+                        quantumCache = DataTypeMethods.getCustom(
+                                meta,
+                                Keys.QUANTUM_STORAGE_INSTANCE2,
+                                PersistentQuantumStorageType.TYPE
+                        );
+                    }
+
+                    if (quantumCache == null) {
+                        quantumCache = DataTypeMethods.getCustom(
+                                meta,
+                                Keys.QUANTUM_STORAGE_INSTANCE3,
+                                PersistentQuantumStorageType.TYPE
+                        );
+                    }
+
                     switch (mode) {
                         case FROM_QUANTUM -> {
                             if (quantumCache == null || quantumCache.getItemStack() == null || quantumCache.getAmount() <= 0) {
