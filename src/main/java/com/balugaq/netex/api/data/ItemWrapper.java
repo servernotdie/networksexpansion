@@ -124,7 +124,7 @@ public class ItemWrapper {
 
     @Nonnull
     public ItemWrapper deepClone() {
-        return new ItemWrapper(new ItemStack(this.itemStack));
+        return new ItemWrapper(ItemStackUtil.getCleanItem(this.itemStack));
     }
 
     @Override
@@ -139,7 +139,7 @@ public class ItemWrapper {
     @Override
     public boolean equals(@Nonnull Object obj) {
         if (this.itemStack instanceof ItemStackWrapper) {
-            return new ItemStack(this.itemStack).equals(obj);
+            return ItemStackUtil.getCleanItem(this.itemStack).equals(obj);
         } else {
             return this.itemStack.equals(obj);
         }

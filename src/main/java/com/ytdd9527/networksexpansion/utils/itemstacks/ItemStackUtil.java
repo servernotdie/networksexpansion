@@ -46,7 +46,7 @@ public final class ItemStackUtil {
      * @return a cloned #{@link ItemStack}
      */
     public static ItemStack cloneItem(@Nonnull ItemStack item) {
-        return item instanceof ItemStackWrapper ? new ItemStack(item) : item.clone();
+        return item instanceof ItemStackWrapper ? ItemStackUtil.getCleanItem(item) : item.clone();
     }
 
     public static ItemStack getCleanItem(@Nullable ItemStack item) {
@@ -71,7 +71,7 @@ public final class ItemStackUtil {
      * @return a cloned #{@link ItemStack}
      */
     public static ItemStack cloneItem(@Nonnull ItemStack item, int amount) {
-        ItemStack itemStack = item instanceof ItemStackWrapper ? new ItemStack(item) : item.clone();
+        ItemStack itemStack = item instanceof ItemStackWrapper ? ItemStackUtil.getCleanItem(item) : item.clone();
         itemStack.setAmount(amount);
         return itemStack;
     }
@@ -615,7 +615,7 @@ public final class ItemStackUtil {
         if (ItemStackUtil.isItemNull(item)) {
             return "null";
         }
-        item = new ItemStack(item);
+        item = ItemStackUtil.getCleanItem(item);
         if (item.hasItemMeta()) {
             ItemMeta itemMeta = item.getItemMeta();
             if (itemMeta.hasDisplayName()) {
@@ -902,9 +902,9 @@ public final class ItemStackUtil {
             return null;
         }
         if (!itemStack.hasItemMeta()) {
-            return new ItemStack(itemStack);
+            return ItemStackUtil.getCleanItem(itemStack);
         }
-        ItemStack result = new ItemStack(itemStack);
+        ItemStack result = ItemStackUtil.getCleanItem(itemStack);
         ItemStackUtil.clearNBT(result);
         return result;
     }
