@@ -628,6 +628,10 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         return this.supportsCustomMaxAmount;
     }
 
+    public int getMaxAmount() {
+        return maxAmount;
+    }
+
     @Override
     public boolean canStack(@Nonnull ItemMeta sfItemMeta, @Nonnull ItemMeta itemMeta) {
         return sfItemMeta.getPersistentDataContainer().equals(itemMeta.getPersistentDataContainer());
