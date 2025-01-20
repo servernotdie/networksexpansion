@@ -18,37 +18,45 @@ public class NetworkStorage {
     private static final Map<Location, NodeDefinition> ALL_NETWORK_OBJECTS = new ConcurrentHashMap<>();
 
     public static void removeNode(Location location) {
-        final NodeDefinition nodeDefinition = ALL_NETWORK_OBJECTS.remove(location);
+        synchronized (ALL_NETWORK_OBJECTS) {
+            final NodeDefinition nodeDefinition = ALL_NETWORK_OBJECTS.remove(location);
 
-        if (nodeDefinition == null) {
-            return;
-        }
+            if (nodeDefinition == null) {
+                return;
+            }
 
-        final NetworkNode node = nodeDefinition.getNode();
+            final NetworkNode node = nodeDefinition.getNode();
 
-        if (node == null) {
-            return;
-        }
+            if (node == null) {
+                return;
+            }
 
-        for (NetworkNode childNode : nodeDefinition.getNode().getChildrenNodes()) {
-            removeNode(childNode.getNodePosition());
+            for (NetworkNode childNode : nodeDefinition.getNode().getChildrenNodes()) {
+                removeNode(childNode.getNodePosition());
+            }
         }
     }
 
     public static boolean containsKey(Location location) {
-        return ALL_NETWORK_OBJECTS.containsKey(location);
+        synchronized (ALL_NETWORK_OBJECTS) {
+            return ALL_NETWORK_OBJECTS.containsKey(location);
+        }
     }
 
     public static NodeDefinition getNode(Location location) {
-        return ALL_NETWORK_OBJECTS.get(location);
+        synchronized (ALL_NETWORK_OBJECTS) {
+            return ALL_NETWORK_OBJECTS.get(location);
+        }
     }
 
     public static void registerNode(Location location, NodeDefinition nodeDefinition) {
-        ALL_NETWORK_OBJECTS.put(location, nodeDefinition);
-        ChunkPosition unionKey = new ChunkPosition(location);
-        Set<Location> locations = ALL_NETWORK_OBJECTS_BY_CHUNK.getOrDefault(unionKey, new HashSet<>());
-        locations.add(location);
-        ALL_NETWORK_OBJECTS_BY_CHUNK.put(unionKey, locations);
+        synchronized (ALL_NETWORK_OBJECTS) {
+            ALL_NETWORK_OBJECTS.put(location, nodeDefinition);
+            ChunkPosition unionKey = new ChunkPosition(location);
+            Set<Location> locations = ALL_NETWORK_OBJECTS_BY_CHUNK.getOrDefault(unionKey, new HashSet<>());
+            locations.add(location);
+            ALL_NETWORK_OBJECTS_BY_CHUNK.put(unionKey, locations);
+        }
     }
 
     public static void unregisterChunk(Chunk chunk) {
@@ -60,7 +68,9 @@ public class NetworkStorage {
         for (Location location : locations) {
             removeNode(location);
         }
-        ALL_NETWORK_OBJECTS_BY_CHUNK.remove(chunkPosition);
+        synchronized (ALL_NETWORK_OBJECTS_BY_CHUNK) {
+            ALL_NETWORK_OBJECTS_BY_CHUNK.remove(chunkPosition);
+        }
     }
 
 }

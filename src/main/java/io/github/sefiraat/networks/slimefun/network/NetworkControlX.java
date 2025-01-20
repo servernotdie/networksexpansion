@@ -96,7 +96,7 @@ public class NetworkControlX extends NetworkDirectional {
 
         final Material material = targetBlock.getType();
 
-        if (material.getHardness() < 0 || material == Material.AIR) {
+        if (material.getHardness() < 0 || material.isAir()) {
             return;
         }
 

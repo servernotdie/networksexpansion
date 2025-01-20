@@ -194,17 +194,12 @@ public class Offsetter extends SpecialSlimefunItem implements AdminDebuggable {
 
     @Override
     public void preRegister() {
-        addItemHandler(new BlockPlaceHandler(false) {
-            @Override
-            public void onPlayerPlace(@Nonnull BlockPlaceEvent blockPlaceEvent) {
-
-            }
-        });
-
         addItemHandler(new BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(BlockBreakEvent blockBreakEvent, ItemStack itemStack, List<ItemStack> list) {
-
+                Location location = blockBreakEvent.getBlock().getLocation();
+                facingMap.remove(location);
+                offsetMap.remove(location);
             }
         });
 

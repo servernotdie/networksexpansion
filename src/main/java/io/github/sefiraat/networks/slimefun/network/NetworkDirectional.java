@@ -28,6 +28,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -36,6 +37,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nonnull;
@@ -110,7 +112,12 @@ public abstract class NetworkDirectional extends NetworkObject {
     @Nonnull
     public static ItemStack getDirectionalSlotPane(@Nonnull BlockFace blockFace, @Nonnull SlimefunItem slimefunItem, boolean active) {
         final ItemStack displayStack = ItemStackUtil.getCleanItem(new CustomItemStack(
-                slimefunItem.getItem(),
+                new CustomItemStack(slimefunItem.getItem(), meta -> {
+                    PersistentDataContainer container = meta.getPersistentDataContainer();
+                    for (NamespacedKey key : container.getKeys()) {
+                        container.remove(key);
+                    }
+                }),
                 String.format(Networks.getLocalizationService().getString("messages.normal-operation.directional.display_name"), blockFace.name(), ChatColor.stripColor(slimefunItem.getItemName()))
         ));
         final ItemMeta itemMeta = displayStack.getItemMeta();
