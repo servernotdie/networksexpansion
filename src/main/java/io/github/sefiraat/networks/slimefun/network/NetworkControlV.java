@@ -136,7 +136,11 @@ public class NetworkControlV extends NetworkDirectional {
         Bukkit.getScheduler().runTask(Networks.getInstance(), bukkitTask -> {
             targetBlock.setType(fetchedStack.getType(), true);
             if (SupportedPluginManager.getInstance().isMcMMO()) {
-                mcMMO.getPlaceStore().setTrue(targetBlock);
+                try {
+                    mcMMO.getChunkManager().setTrue(targetBlock);
+                } catch (NoClassDefFoundError e) {
+                    mcMMO.getPlaceStore().setTrue(targetBlock);
+                }
             }
             ParticleUtils.displayParticleRandomly(
                     LocationUtils.centre(targetBlock.getLocation()),

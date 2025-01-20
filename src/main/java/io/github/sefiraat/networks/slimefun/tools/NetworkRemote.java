@@ -16,6 +16,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -27,6 +28,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
+@Getter
 public class NetworkRemote extends SlimefunItem {
 
     private static final String WIKI_PAGE = "tools/network-remote";
@@ -72,6 +74,9 @@ public class NetworkRemote extends SlimefunItem {
 
     public static void setGrid(@Nonnull ItemStack itemStack, @Nonnull Block block, @Nonnull Player player) {
         final ItemMeta itemMeta = itemStack.getItemMeta();
+        if (itemMeta == null) {
+            return;
+        }
         DataTypeMethods.setCustom(itemMeta, KEY, DataType.LOCATION, block.getLocation());
         itemStack.setItemMeta(itemMeta);
         player.sendMessage(Networks.getLocalizationService().getString("messages.completed-operation.remote.bound_to_grid"));
@@ -79,6 +84,9 @@ public class NetworkRemote extends SlimefunItem {
 
     public static void tryOpenGrid(@Nonnull ItemStack itemStack, @Nonnull Player player, int range) {
         final ItemMeta itemMeta = itemStack.getItemMeta();
+        if (itemMeta == null) {
+            return;
+        }
         final Location location = DataTypeMethods.getCustom(itemMeta, KEY, DataType.LOCATION);
 
         if (location != null) {
@@ -105,6 +113,10 @@ public class NetworkRemote extends SlimefunItem {
 
     public static void openGrid(@Nonnull Location location, @Nonnull Player player) {
         SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
+        if (blockData == null) {
+            return;
+        }
+
         SlimefunItem item = SlimefunItem.getById(blockData.getSfId());
         StorageCacheUtils.executeAfterLoad(blockData, () -> {
             if ((item instanceof NetworkGrid || item instanceof NetworkCraftingGrid || item instanceof NetworkGridNewStyle)
@@ -121,10 +133,6 @@ public class NetworkRemote extends SlimefunItem {
 
     public static int[] getRanges() {
         return RANGES;
-    }
-
-    public int getRange() {
-        return this.range;
     }
 
     @Override

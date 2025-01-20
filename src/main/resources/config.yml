@@ -5,7 +5,7 @@ auto-update: true
 language: zh-CN
 
 # Do not change this value unless you know what you are doing.
-config-version: 209-Beta-19
+config-version: Final-Version-2
 
 # Do not change this value unless you know what you are doing.
 debug: false
