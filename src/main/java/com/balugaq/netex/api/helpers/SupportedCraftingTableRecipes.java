@@ -2,6 +2,7 @@ package com.balugaq.netex.api.helpers;
 
 import com.balugaq.netex.api.interfaces.CanTestRecipe;
 import com.balugaq.netex.api.interfaces.HasRecipes;
+import com.ytdd9527.networksexpansion.utils.itemstacks.ItemStackUtil;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -44,7 +45,13 @@ public final class SupportedCraftingTableRecipes implements HasRecipes, CanTestR
                         }
                         input = newInput;
                     }
-                    RECIPES.put(input, output[0]);
+                    ItemStack[] cleanedInput = new ItemStack[9];
+                    ItemStack cleanedOutput = null;
+                    for (int i = 0; i < 9; i++) {
+                        cleanedInput[i] = ItemStackUtil.getCleanItem(input[i]);
+                    }
+                    cleanedOutput = ItemStackUtil.getCleanItem(output[0]);
+                    RECIPES.put(cleanedInput, cleanedOutput);
                 }
                 isInput = !isInput;
             }
@@ -58,7 +65,7 @@ public final class SupportedCraftingTableRecipes implements HasRecipes, CanTestR
                     if (itemStack == null) {
                         itemStacks[i] = null;
                     } else {
-                        itemStacks[i] = new ItemStack(itemStack.clone());
+                        itemStacks[i] = ItemStackUtil.getCleanItem(itemStack);
                     }
                     if (++i >= 9) {
                         break;
