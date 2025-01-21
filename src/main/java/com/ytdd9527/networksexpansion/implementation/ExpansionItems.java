@@ -1537,6 +1537,14 @@ public class ExpansionItems {
             RecipeType.NULL,
             ExpansionRecipes.NULL
     );
+
+    public static final UnusableSlimefunItem NTW_EXPANSION_ANNOUNCE_10 = new UnusableSlimefunItem(
+            ExpansionItemsMenus.MENU_TROPHY,
+            ExpansionItemStacks.NTW_EXPANSION_ANNOUNCE_10,
+            RecipeType.NULL,
+            ExpansionRecipes.NULL
+    );
+
     public static final NetworkCraftingGridNewStyle NETWORK_CRAFTING_GRID_NEW_STYLE = new NetworkCraftingGridNewStyle(
             ExpansionItemsMenus.MENU_FUNCTIONAL_MACHINE,
             ExpansionItemStacks.NETWORK_CRAFTING_GRID_NEW_STYLE,
