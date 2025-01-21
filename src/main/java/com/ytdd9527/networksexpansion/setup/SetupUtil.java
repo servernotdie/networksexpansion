@@ -249,7 +249,8 @@ public class SetupUtil {
                 ExpansionItems.NTW_EXPANSION_ANNOUNCE_6.registerThis(),
                 ExpansionItems.NTW_EXPANSION_ANNOUNCE_7.registerThis(),
                 ExpansionItems.NTW_EXPANSION_ANNOUNCE_8.registerThis(),
-                ExpansionItems.NTW_EXPANSION_ANNOUNCE_9.registerThis()
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_9.registerThis(),
+                ExpansionItems.NTW_EXPANSION_ANNOUNCE_10.registerThis()
         );
     }
 
