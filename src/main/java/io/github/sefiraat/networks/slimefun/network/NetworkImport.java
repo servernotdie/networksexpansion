@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.slimefun.network;
 
+import com.balugaq.netex.api.enums.FeedbackType;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.NodeDefinition;
@@ -72,6 +73,7 @@ public class NetworkImport extends NetworkObject {
         final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
 
         if (definition.getNode() == null) {
+            sendFeedback(blockMenu.getLocation(), FeedbackType.NO_NETWORK_FOUND);
             return;
         }
 
@@ -83,6 +85,7 @@ public class NetworkImport extends NetworkObject {
             }
             definition.getNode().getRoot().addItemStack(itemStack);
         }
+        sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
     }
 
     @Override

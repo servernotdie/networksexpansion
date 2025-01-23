@@ -1,7 +1,7 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
+import com.balugaq.netex.api.enums.FeedbackType;
 import com.balugaq.netex.api.helpers.Icon;
-import com.balugaq.netex.api.helpers.ItemStackHelper;
 import com.github.houbb.pinyin.constant.enums.PinyinStyleEnum;
 import com.github.houbb.pinyin.util.PinyinHelper;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
@@ -28,6 +28,7 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -146,6 +147,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
     protected void updateDisplay(@Nonnull BlockMenu blockMenu) {
         // No viewer - lets not bother updating
         if (!blockMenu.hasViewer()) {
+            sendFeedback(blockMenu.getLocation(), FeedbackType.AFK);
             return;
         }
 
@@ -154,6 +156,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
         // No node located, weird
         if (definition == null || definition.getNode() == null) {
             clearDisplay(blockMenu);
+            sendFeedback(blockMenu.getLocation(), FeedbackType.NO_NETWORK_FOUND);
             return;
         }
 
@@ -270,6 +273,7 @@ public abstract class AbstractGridNewStyle extends NetworkObject {
                 }
             }
         }
+        sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
     }
 
     protected void clearDisplay(BlockMenu blockMenu) {

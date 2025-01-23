@@ -1,7 +1,8 @@
 package io.github.sefiraat.networks.slimefun.network.grid;
 
+import com.balugaq.netex.api.enums.FeedbackType;
 import com.balugaq.netex.api.helpers.Icon;
-import com.balugaq.netex.api.helpers.ItemStackHelper;
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import com.github.houbb.pinyin.constant.enums.PinyinStyleEnum;
 import com.github.houbb.pinyin.util.PinyinHelper;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
@@ -150,6 +151,7 @@ public abstract class AbstractGrid extends NetworkObject {
     protected void updateDisplay(@Nonnull BlockMenu blockMenu) {
         // No viewer - lets not bother updating
         if (!blockMenu.hasViewer()) {
+            sendFeedback(blockMenu.getLocation(), FeedbackType.AFK);
             return;
         }
 
@@ -158,6 +160,7 @@ public abstract class AbstractGrid extends NetworkObject {
         // No node located, weird
         if (definition == null || definition.getNode() == null) {
             clearDisplay(blockMenu);
+            sendFeedback(blockMenu.getLocation(), FeedbackType.NO_NETWORK_FOUND);
             return;
         }
 
@@ -215,6 +218,7 @@ public abstract class AbstractGrid extends NetworkObject {
                 blockMenu.addMenuClickHandler(getDisplaySlots()[i], (p, slot, item, action) -> false);
             }
         }
+        sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
     }
 
     protected void clearDisplay(BlockMenu blockMenu) {
