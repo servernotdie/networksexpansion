@@ -1,5 +1,6 @@
 package com.ytdd9527.networksexpansion.implementation.machines.networks.advanced;
 
+import com.balugaq.netex.api.enums.FeedbackType;
 import com.balugaq.netex.api.helpers.Icon;
 import com.balugaq.netex.utils.NetworksVersionedParticle;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
@@ -81,7 +82,10 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
                     public void tick(Block block, SlimefunItem item, SlimefunBlockData data) {
                         if (tick <= 1) {
                             addToRegistry(block);
-                            performKillItemOperationAsync(data.getBlockMenu());
+                            BlockMenu blockMenu = StorageCacheUtils.getMenu(block.getLocation());
+                            if (blockMenu != null) {
+                                tryKillItem(blockMenu);
+                            }
                         }
                     }
 
@@ -101,28 +105,19 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
 
     }
 
-    private void performKillItemOperationAsync(@Nullable BlockMenu blockMenu) {
-        if (blockMenu != null) {
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    tryKillItem(blockMenu);
-                }
-            }.runTaskAsynchronously(Networks.getInstance());
-        }
-    }
-
 
     private void tryKillItem(@Nonnull BlockMenu blockMenu) {
         final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
 
         if (definition == null || definition.getNode() == null) {
+            sendFeedback(blockMenu.getLocation(), FeedbackType.NO_NETWORK_FOUND);
             return;
         }
         for (int testitemslot : TEST_ITEM_SLOT) {
             ItemStack testItem = blockMenu.getItemInSlot(testitemslot);
 
             if (testItem == null) {
+                sendFeedback(blockMenu.getLocation(), FeedbackType.NO_TEMPLATE_FOUND);
                 return;
             }
 
@@ -139,6 +134,7 @@ public class AdvancedPurger extends NetworkObject implements RecipeDisplayItem {
                 }
             }
         }
+        sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
     }
 
     @Override
