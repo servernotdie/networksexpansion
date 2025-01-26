@@ -215,7 +215,10 @@ public abstract class AbstractGrid extends NetworkObject {
                 });
             } else {
                 blockMenu.replaceExistingItem(getDisplaySlots()[i], Icon.BLANK_SLOT_STACK);
-                blockMenu.addMenuClickHandler(getDisplaySlots()[i], (p, slot, item, action) -> false);
+                blockMenu.addMenuClickHandler(getDisplaySlots()[i], (p, slot, item, action) ->{
+                    receiveItem(p, action, blockMenu);
+                    return false;
+                });
             }
         }
         sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
@@ -420,5 +423,19 @@ public abstract class AbstractGrid extends NetworkObject {
 
     protected ItemStack getFilterStack() {
         return Icon.FILTER_STACK;
+    }
+    public void receiveItem(Player player, ClickAction action, BlockMenu blockMenu) {
+        NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
+        if (definition == null || definition.getNode() == null) {
+            clearDisplay(blockMenu);
+            blockMenu.close();
+            Networks.getInstance().getLogger().warning(String.format(Networks.getLocalizationService().getString("messages.unsupported-operation.grid.may_duping"), player.getName(), blockMenu.getLocation()));
+            return;
+        }
+
+        ItemStack cursor = player.getItemOnCursor();
+        if (cursor != null && cursor.getType() != Material.AIR) {
+            definition.getNode().getRoot().addItemStack(cursor);
+        }
     }
 }
