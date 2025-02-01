@@ -11,7 +11,7 @@ public class NetworkRootReadyEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
     private final NetworkRoot root;
     public NetworkRootReadyEvent(NetworkRoot root) {
-        super();
+        super(true);
         this.root = root;
     }
     @NotNull
