@@ -15,8 +15,8 @@ public class NetworkRootLocateStorageEvent extends Event {
     private final StorageType storageType;
     private final boolean inputAble;
     private final boolean outputAble;
-    public NetworkRootLocateStorageEvent(NetworkRoot root, StorageType storageType, boolean inputAble, boolean outputAble) {
-        super();
+    public NetworkRootLocateStorageEvent(NetworkRoot root, StorageType storageType, boolean inputAble, boolean outputAble, boolean isSync) {
+        super(!isSync);
         this.root = root;
         this.storageType = storageType;
         this.inputAble = inputAble;

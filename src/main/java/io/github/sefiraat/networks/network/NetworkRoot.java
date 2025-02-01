@@ -592,7 +592,7 @@ public class NetworkRoot extends NetworkNode {
         }
 
         this.barrels = barrelSet;
-        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.BARREL, true, true);
+        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.BARREL, true, true, Bukkit.isPrimaryThread());
         Bukkit.getPluginManager().callEvent(event);
         return barrelSet;
     }
@@ -633,7 +633,7 @@ public class NetworkRoot extends NetworkNode {
         }
 
         this.cargoStorageUnitDatas = dataSet;
-        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.DRAWER, true, true);
+        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.DRAWER, true, true, Bukkit.isPrimaryThread());
         Bukkit.getPluginManager().callEvent(event);
         return dataSet;
     }
@@ -1418,7 +1418,7 @@ public class NetworkRoot extends NetworkNode {
         }
 
         this.inputAbleBarrels = barrelSet;
-        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.BARREL, true, false);
+        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.BARREL, true, false, Bukkit.isPrimaryThread());
         Bukkit.getPluginManager().callEvent(event);
         return barrelSet;
     }
@@ -1488,7 +1488,7 @@ public class NetworkRoot extends NetworkNode {
         }
 
         this.outputAbleBarrels = barrelSet;
-        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.BARREL, false, true);
+        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.BARREL, false, true, Bukkit.isPrimaryThread());
         Bukkit.getPluginManager().callEvent(event);
         return barrelSet;
     }
@@ -1531,7 +1531,7 @@ public class NetworkRoot extends NetworkNode {
         }
 
         this.inputAbleCargoStorageUnitDatas = dataSet;
-        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.DRAWER, true, false);
+        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.DRAWER, true, false, Bukkit.isPrimaryThread());
         Bukkit.getPluginManager().callEvent(event);
         return dataSet;
     }
@@ -1574,7 +1574,7 @@ public class NetworkRoot extends NetworkNode {
         }
 
         this.outputAbleCargoStorageUnitDatas = dataSet;
-        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.DRAWER, false, true);
+        NetworkRootLocateStorageEvent event = new NetworkRootLocateStorageEvent(this, StorageType.DRAWER, false, true, Bukkit.isPrimaryThread());
         Bukkit.getPluginManager().callEvent(event);
         return dataSet;
     }
