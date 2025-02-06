@@ -95,6 +95,8 @@ public abstract class AbstractNetworkPusher extends NetworkDirectional {
                     if (definition.getNode().getRoot().isDisplayParticles()) {
                         showParticle(blockMenu.getLocation(), direction);
                     }
+                } else {
+                    sendFeedback(blockMenu.getLocation(), FeedbackType.NO_ITEM_FOUND);
                 }
                 break;
             }
