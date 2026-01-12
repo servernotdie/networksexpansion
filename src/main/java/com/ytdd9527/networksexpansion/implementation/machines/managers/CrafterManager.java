@@ -1,6 +1,5 @@
 package com.ytdd9527.networksexpansion.implementation.machines.managers;
 
-import com.balugaq.jeg.implementation.JustEnoughGuide;
 import com.balugaq.netex.api.algorithm.Sorters;
 import com.balugaq.netex.api.enums.CraftType;
 import com.balugaq.netex.api.enums.FeedbackType;
