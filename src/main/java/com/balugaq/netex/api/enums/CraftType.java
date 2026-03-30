@@ -19,6 +19,8 @@ import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiPredicate;
@@ -26,6 +28,7 @@ import java.util.function.BiPredicate;
 /**
  * @author balugaq
  */
+@Deprecated
 @NullMarked
 public enum CraftType {
     ANCIENT_ALTAR(SupportedAncientAltarRecipes.getRecipes(), SupportedAncientAltarRecipes::testRecipe),
@@ -66,11 +69,15 @@ public enum CraftType {
     }
 
     public String translate() {
-        return Lang.getString("messages.normal-operation.common.crafter_types." + this.name());
+        return Lang.getString("messages.normal-operation.common.crafter_types." + this.name().toLowerCase());
     }
 
     @FunctionalInterface
     public interface BlueprintSetter {
         void apply(ItemStack itemStack, ItemStack[] inputs, ItemStack crafted);
+    }
+
+    public static Collection<Set<Map.Entry<ItemStack[], ItemStack>>> entries() {
+        return Arrays.stream(values()).map(CraftType::getRecipeEntries).toList();
     }
 }

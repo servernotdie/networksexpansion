@@ -5,6 +5,7 @@ import com.balugaq.netex.api.keybind.Keybinds;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractGridNewStyle;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
 import io.github.sefiraat.networks.network.NodeType;
+import io.github.sefiraat.networks.slimefun.network.grid.AbstractGrid;
 import io.github.sefiraat.networks.slimefun.network.grid.GridCache;
 import io.github.sefiraat.networks.slimefun.network.grid.GridCache.DisplayMode;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -41,7 +42,6 @@ public class NetworkGridNewStyle extends AbstractGridNewStyle implements Keybind
         45, 46, 47, 48, 49, 50, 51, 52,
     };
 
-    @Deprecated
     private static final int KEYBIND_BUTTON_SLOT = 8;
 
     private static final int CHANGE_SORT = 35;
@@ -122,7 +122,7 @@ public class NetworkGridNewStyle extends AbstractGridNewStyle implements Keybind
                 menu.replaceExistingItem(getChangeSort(), getChangeSortStack());
                 menu.addMenuClickHandler(getChangeSort(), (p, slot, item, action) -> {
                     GridCache gridCache = getCacheMap().get(menu.getLocation());
-                    gridCache.setSortOrder(gridCache.getSortOrder().next());
+                    AbstractGrid.updateSortOrder(gridCache, action, 4);
                     getCacheMap().put(menu.getLocation(), gridCache);
                     updateDisplay(menu);
                     return false;

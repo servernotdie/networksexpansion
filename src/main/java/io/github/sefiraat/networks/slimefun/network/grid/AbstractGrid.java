@@ -40,6 +40,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.MessageFormat;
@@ -106,6 +107,8 @@ public abstract class AbstractGrid extends NetworkObject {
                     }
                     addToRegistry(block);
                     tryAddItem(blockMenu);
+                    GridCache cache = getCacheMap().get(block.getLocation());
+                    cache.setEntriesCache(null);
                     updateDisplay(blockMenu);
                 }
             }
@@ -159,24 +162,39 @@ public abstract class AbstractGrid extends NetworkObject {
         return clone;
     }
 
+    public ItemStack getSortOrderStack(GridCache.SortOrder sortOrder) {
+        ItemStack clone = getChangeSortStack().clone();
+        clone.setLore(List.of(sortOrder.getTranslationName()));
+        return clone;
+    }
+
     @SuppressWarnings("deprecation")
-    protected void updateDisplay(@NotNull BlockMenu blockMenu) {
+    protected void updateDisplay(@NotNull BlockMenu menu) {
+        Location location = menu.getLocation();
+
         // No viewer - lets not bother updating
-        if (!blockMenu.hasViewer()) {
-            sendFeedback(blockMenu.getLocation(), FeedbackType.AFK);
+        if (!menu.hasViewer()) {
+            sendFeedback(location, FeedbackType.AFK);
             return;
         }
 
-        final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
+        final NodeDefinition definition = NetworkStorage.getNode(location);
 
         // No node located, weird
         if (definition == null || definition.getNode() == null) {
-            clearDisplay(blockMenu);
-            sendFeedback(blockMenu.getLocation(), FeedbackType.NO_NETWORK_FOUND);
+            clearDisplay(menu);
+            sendFeedback(location, FeedbackType.NO_NETWORK_FOUND);
             return;
         }
 
         // Update Screen
+        Networks.getFoliaLib().getScheduler().runAsync(wrappedTask -> {
+
+        final BlockMenu blockMenu = StorageCacheUtils.getMenu(location);
+        if (blockMenu == null) {
+            return;
+        }
+
         final NetworkRoot root = definition.getNode().getRoot();
 
         final GridCache gridCache = getCacheMap().get(blockMenu.getLocation().clone());
@@ -191,11 +209,12 @@ public abstract class AbstractGrid extends NetworkObject {
             return;
         }
 
+        blockMenu.replaceExistingItem(getChangeSort(), getSortOrderStack(gridCache.getSortOrder()));
         blockMenu.replaceExistingItem(getFilterSlot(), getFilterStack(gridCache.getFilter()));
 
-        // Reset selected page if it no longer exists due to items being removed
+        // Rolldown selected page if it no longer exists due to items being removed
         if (gridCache.getPage() > pages) {
-            gridCache.setPage(0);
+            gridCache.setPage(pages);
         }
 
         int start = gridCache.getPage() * getDisplaySlots().length;
@@ -246,6 +265,8 @@ public abstract class AbstractGrid extends NetworkObject {
             Icon.getPageStack(getPageNextStack(), gridCache.getPage() + 1, gridCache.getMaxPages() + 1));
 
         sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
+
+        });
     }
 
     protected void clearDisplay(@NotNull BlockMenu blockMenu) {
@@ -257,7 +278,10 @@ public abstract class AbstractGrid extends NetworkObject {
 
     @NotNull
     protected List<Map.Entry<ItemStack, Long>> getEntries(@NotNull NetworkRoot networkRoot, @NotNull GridCache cache) {
-        return networkRoot.getAllNetworkItemsLongType().entrySet().stream()
+        if (cache.getEntriesCache() != null) {
+            return cache.getEntriesCache();
+        }
+        var entries = networkRoot.getAllNetworkItemsLongType().entrySet().stream()
             .filter(entry -> {
                 if (cache.getFilter() == null) {
                     return true;
@@ -278,6 +302,8 @@ public abstract class AbstractGrid extends NetworkObject {
             })
             .sorted(SORT_MAP.get(cache.getSortOrder()))
             .toList();
+        cache.setEntriesCache(entries);
+        return entries;
     }
 
     protected void setFilter(
@@ -317,6 +343,9 @@ public abstract class AbstractGrid extends NetworkObject {
                         BlockMenu actualMenu = data.getBlockMenu();
                         if (actualMenu != null) {
                             actualMenu.open(player);
+                            if (gridCache.getMaxPages() >= 1) {
+                                gridCache.setPage(1);
+                            }
                             updateDisplay(actualMenu);
                         }
                     }
@@ -552,6 +581,18 @@ public abstract class AbstractGrid extends NetworkObject {
         boolean doubleClick) {
         if (!doubleClick) {
             receiveItem(root, player, itemStack, action, blockMenu);
+        }
+    }
+
+    protected static void updateSortOrder(GridCache gridCache, ClickAction action, @Range(from = 1, to = 4) int limit) {
+        if (action.isShiftClicked() && !action.isRightClicked()) {
+            gridCache.setSortOrder(GridCache.SortOrder.ALPHABETICAL);
+        } else {
+            if (action.isRightClicked()) {
+                gridCache.setSortOrder(gridCache.getSortOrder().previous(limit));
+            } else {
+                gridCache.setSortOrder(gridCache.getSortOrder().next(limit));
+            }
         }
     }
 }

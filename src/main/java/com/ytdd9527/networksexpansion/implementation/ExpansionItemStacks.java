@@ -292,6 +292,8 @@ public class ExpansionItemStacks {
         Lang.getItem("NTW_EXPANSION_ADVANCED_AUTO_CRAFTING_WITHHOLDING", enchanted(Material.CRAFTING_TABLE)),
         Theme.MACHINE);
     // Bridges
+    public static final SlimefunItemStack NETWORK_BRIDGE_ORDINAL =
+        Theme.random(Lang.getItem("NTW_EXPANSION_BRIDGE_ORDINAL", Material.GLASS), Theme.MACHINE);
     public static final SlimefunItemStack NETWORK_BRIDGE_WHITE =
         Theme.random(Lang.getItem("NTW_EXPANSION_BRIDGE_WHITE", Material.WHITE_STAINED_GLASS), Theme.MACHINE);
     public static final SlimefunItemStack NETWORK_BRIDGE_LIGHT_GRAY = Theme.random(
@@ -509,6 +511,8 @@ public class ExpansionItemStacks {
         Lang.getItem("NTW_EXPANSION_STORAGE_CARD_CONVERTER", Material.LODESTONE), Theme.MACHINE);
     public static final SlimefunItemStack FACING_PRESETTER = Theme.themedSlimefunItemStack(
         Lang.getItem("NTW_EXPANSION_FACING_PRESETTER", Material.GLASS), Theme.MACHINE);
+    public static final SlimefunItemStack SUPER_TRASH = Theme.themedSlimefunItemStack(
+        Lang.getItem("NTW_EXPANSION_SUPER_TRASH", Material.BLACK_WOOL), Theme.MACHINE);
 
 
     public static @NotNull ItemStack enchanted(@NotNull Material material) {
