@@ -23,6 +23,7 @@ import io.github.sefiraat.networks.events.NetworkCraftEvent;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
+import io.github.sefiraat.networks.slimefun.network.grid.AbstractGrid;
 import io.github.sefiraat.networks.slimefun.network.grid.GridCache;
 import io.github.sefiraat.networks.slimefun.network.grid.GridCache.DisplayMode;
 import io.github.sefiraat.networks.utils.Keys;
@@ -44,6 +45,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NullMarked;
 
 import java.util.ArrayList;
@@ -209,15 +211,7 @@ public class SmartNetworkCraftingGridNewStyle extends AbstractGridNewStyle imple
                 menu.replaceExistingItem(getChangeSort(), getChangeSortStack());
                 menu.addMenuClickHandler(getChangeSort(), (p, slot, item, action) -> {
                     GridCache gridCache = getCacheMap().get(menu.getLocation());
-                    if (gridCache.getSortOrder() == GridCache.SortOrder.ALPHABETICAL) {
-                        gridCache.setSortOrder(GridCache.SortOrder.NUMBER);
-                    } else if (gridCache.getSortOrder() == GridCache.SortOrder.NUMBER) {
-                        gridCache.setSortOrder(GridCache.SortOrder.NUMBER_REVERSE);
-                    } else if (gridCache.getSortOrder() == GridCache.SortOrder.NUMBER_REVERSE) {
-                        gridCache.setSortOrder(GridCache.SortOrder.ADDON);
-                    } else {
-                        gridCache.setSortOrder(GridCache.SortOrder.ALPHABETICAL);
-                    }
+                    AbstractGrid.updateSortOrder(gridCache, action, 4);
                     getCacheMap().put(menu.getLocation(), gridCache);
                     updateDisplay(menu);
                     return false;
@@ -462,7 +456,6 @@ public class SmartNetworkCraftingGridNewStyle extends AbstractGridNewStyle imple
         }
     }
 
-    @Override
     public int[] getIngredientSlots() {
         return TEMPLATE_SLOTS;
     }
@@ -474,5 +467,10 @@ public class SmartNetworkCraftingGridNewStyle extends AbstractGridNewStyle imple
 
     public ItemStack[] copyStacks(ItemStack[] array) {
         return Arrays.stream(array).map(i -> i == null ? null : i.clone()).toArray(ItemStack[]::new);
+    }
+
+    @Override
+    public @NotNull SlimefunItem getSlimefunItem() {
+        return this;
     }
 }

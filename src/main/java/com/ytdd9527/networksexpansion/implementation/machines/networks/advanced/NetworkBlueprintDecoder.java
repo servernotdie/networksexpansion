@@ -73,23 +73,15 @@ public class NetworkBlueprintDecoder extends NetworkObject {
                 @NotNull BlockBreakEvent blockBreakEvent,
                 @NotNull ItemStack itemStack,
                 @NotNull List<ItemStack> list) {
+                var location = blockBreakEvent.getBlock().getLocation();
                 BlockMenu blockMenu =
-                    StorageCacheUtils.getMenu(blockBreakEvent.getBlock().getLocation());
+                    StorageCacheUtils.getMenu(location);
                 if (blockMenu == null) {
                     return;
                 }
 
-                for (int slot : getOutputSlots()) {
-                    ItemStack item = blockMenu.getItemInSlot(slot);
-                    if (item != null && item.getType() != Material.AIR) {
-                        blockMenu.getLocation().getWorld().dropItemNaturally(blockMenu.getLocation(), item);
-                    }
-                }
-
-                ItemStack input = blockMenu.getItemInSlot(getInputSlot());
-                if (input != null && input.getType() != Material.AIR) {
-                    blockMenu.getLocation().getWorld().dropItemNaturally(blockMenu.getLocation(), input);
-                }
+                blockMenu.dropItems(location, getOutputSlots());
+                blockMenu.dropItems(location, getInputSlot());
             }
         });
     }

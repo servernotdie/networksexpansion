@@ -1,11 +1,13 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
+import com.balugaq.netex.api.enums.CraftType;
 import com.balugaq.netex.api.enums.FeedbackType;
 import com.balugaq.netex.api.helpers.Icon;
 import com.balugaq.netex.api.interfaces.CraftTyped;
 import com.balugaq.netex.api.interfaces.SoftCellBannable;
 import com.balugaq.netex.utils.BlockMenuUtil;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.ytdd9527.networksexpansion.core.items.unusable.AbstractBlueprint;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
@@ -22,7 +24,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -36,24 +37,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @SuppressWarnings("DuplicatedCode")
 public abstract class AbstractAutoCrafter extends NetworkObject implements SoftCellBannable, CraftTyped {
     public static final int BLUEPRINT_SLOT = 10;
     public static final int OUTPUT_SLOT = 16;
     public static final Map<Location, BlueprintInstance> INSTANCE_MAP = new HashMap<>();
-    public static final Map<Location, Pair<ItemStack[], ItemStack>> RECIPE_CACHE = new HashMap<>();
     private static final int[] BACKGROUND_SLOTS = new int[]{3, 4, 5, 12, 13, 14, 21, 22, 23};
     private static final int[] BLUEPRINT_BACKGROUND = new int[]{0, 1, 2, 9, 11, 18, 19, 20};
     private static final int[] OUTPUT_BACKGROUND = new int[]{6, 7, 8, 15, 17, 24, 25, 26};
-    private final int chargePerCraft;
-    private final boolean withholding;
+    protected final int chargePerCraft;
+    protected final boolean withholding;
 
     public AbstractAutoCrafter(
         @NotNull ItemGroup itemGroup,
@@ -92,6 +91,9 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
     }
 
     protected void craftPreFlight(@NotNull BlockMenu blockMenu) {
+
+        releaseCache(blockMenu);
+
         final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
 
         if (definition == null || definition.getNode() == null) {
@@ -106,7 +108,7 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
             return;
         }
 
-        if (!this.withholding) {
+        if (!withholding) {
             final ItemStack stored = blockMenu.getItemInSlot(OUTPUT_SLOT);
             if (stored != null && stored.getType() != Material.AIR) {
                 root.addItemStack0(blockMenu.getLocation(), stored);
@@ -132,7 +134,7 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
                 return;
             }
 
-            BlueprintInstance instance = INSTANCE_MAP.get(blockMenu.getLocation());
+            BlueprintInstance instance = AbstractAutoCrafter.INSTANCE_MAP.get(blockMenu.getLocation());
 
             if (instance == null) {
                 final ItemMeta blueprintMeta = blueprint.getItemMeta();
@@ -161,19 +163,20 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
             }
 
             final ItemStack output = blockMenu.getItemInSlot(OUTPUT_SLOT);
+            int blueprintAmount = canBlueprintStack() ? blueprint.getAmount() : 1;
 
             ItemStack targetOutput = instance.getItemStack();
             if (output != null
                 && output.getType() != Material.AIR
                 && targetOutput != null
-                && (output.getAmount() + targetOutput.getAmount() > output.getMaxStackSize()
+                && (output.getAmount() + targetOutput.getAmount() * blueprintAmount > output.getMaxStackSize()
                 || !StackUtils.itemsMatch(targetOutput, output))) {
                 sendDebugMessage(blockMenu.getLocation(), "Output slot is full");
                 sendFeedback(blockMenu.getLocation(), FeedbackType.OUTPUT_FULL);
                 return;
             }
 
-            if (tryCraft(blockMenu, instance, root)) {
+            if (tryCraft(blockMenu, instance, root, blueprintAmount, output)) {
                 root.removeRootPower(this.chargePerCraft);
             }
         } else {
@@ -183,10 +186,11 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
 
     @SuppressWarnings("DataFlowIssue")
     private boolean tryCraft(
-        @NotNull BlockMenu blockMenu, @NotNull BlueprintInstance instance, @NotNull NetworkRoot root) {
-        // Get the recipe input
-        final ItemStack[] inputs = new ItemStack[9];
-
+        @NotNull BlockMenu blockMenu,
+        @NotNull BlueprintInstance instance,
+        @NotNull NetworkRoot root,
+        int blueprintAmount,
+        @Nullable ItemStack existing) {
         /* Make sure the network has the required items
          * Needs to be revisited as matching is happening stacks 2x when it should
          * only need the one
@@ -195,72 +199,31 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
         for (int i = 0; i < 9; i++) {
             final ItemStack requested = instance.getRecipeItems()[i];
             if (requested != null) {
-                requiredItems.merge(requested, requested.getAmount(), Integer::sum);
+                requiredItems.merge(requested, requested.getAmount() * blueprintAmount, Integer::sum);
             }
         }
 
         for (Map.Entry<ItemStack, Integer> entry : requiredItems.entrySet()) {
             if (!root.contains(new ItemRequest(entry.getKey(), entry.getValue()))) {
-                sendDebugMessage(blockMenu.getLocation(), "Network does not have required items");
+                sendDebugMessage(blockMenu.getLocation(), "Not enough items in network");
                 sendFeedback(blockMenu.getLocation(), FeedbackType.NOT_ENOUGH_ITEMS_IN_NETWORK);
                 return false;
             }
         }
 
+        ItemStack[] fetcheds = new ItemStack[9];
         // Then fetch the actual items
         for (int i = 0; i < 9; i++) {
             final ItemStack requested = instance.getRecipeItems()[i];
             if (requested != null) {
-                final ItemStack fetched =
-                    root.getItemStack0(blockMenu.getLocation(), new ItemRequest(requested, requested.getAmount()));
-                inputs[i] = fetched;
-            } else {
-                inputs[i] = null;
-            }
-        }
-
-        ItemStack crafted = null;
-
-        var cache = RECIPE_CACHE.get(blockMenu.getLocation());
-        if (cache != null) {
-            if (testRecipe(inputs, cache.getFirstValue())) {
-                crafted = cache.getSecondValue().clone();
-            }
-        }
-
-        // Go through each slimefun recipe, test and set crafted if found
-        if (crafted == null) {
-            for (Map.Entry<ItemStack[], ItemStack> entry : getRecipeEntries()) {
-                if (testRecipe(inputs, entry.getKey())) {
-                    crafted = entry.getValue().clone();
-                    RECIPE_CACHE.put(blockMenu.getLocation(), new Pair<>(entry.getKey(), entry.getValue()));
-                    break;
+                final ItemStack fetched = root.getItemStack0(
+                    blockMenu.getLocation(), new ItemRequest(requested, requested.getAmount() * blueprintAmount));
+                fetcheds[i] = fetched;
+                if (fetched == null || fetched.getAmount() < requested.getAmount() * blueprintAmount) {
+                    returnItems(root, fetcheds, blockMenu);
+                    return false;
                 }
             }
-        }
-
-        if (crafted == null && canTestVanillaRecipe()) {
-            sendDebugMessage(blockMenu.getLocation(), "No slimefun recipe found, trying vanilla");
-            // If no slimefun recipe found, try a vanilla one
-            instance.generateVanillaRecipe(blockMenu.getLocation().getWorld()); // if generated, nothing will happen
-            if (instance.getRecipe() == null) {
-                returnItems(root, inputs, blockMenu);
-                sendDebugMessage(blockMenu.getLocation(), "No vanilla recipe found");
-                sendFeedback(blockMenu.getLocation(), FeedbackType.NO_VANILLA_RECIPE_FOUND);
-                return false;
-            } else if (Arrays.equals(instance.getRecipeItems(), inputs)) {
-                setCache(blockMenu, instance);
-                crafted = instance.getRecipe().getResult(); // cloned
-            }
-        }
-
-        // If no item crafted OR result doesn't fit, escape
-        if (crafted == null || crafted.getType() == Material.AIR) {
-            sendDebugMessage(blockMenu.getLocation(), "No valid recipe found");
-            sendDebugMessage(blockMenu.getLocation(), "inputs: " + Arrays.toString(inputs));
-            sendFeedback(blockMenu.getLocation(), FeedbackType.NO_VALID_RECIPE_FOUND);
-            returnItems(root, inputs, blockMenu);
-            return false;
         }
 
         // Push item
@@ -268,13 +231,30 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
         if (root.isDisplayParticles()) {
             location.getWorld().spawnParticle(Particle.WAX_OFF, location, 0, 0, 4, 0);
         }
-        BlockMenuUtil.pushItem(blockMenu, crafted, OUTPUT_SLOT);
+
+        ItemStack crafted = instance.getItemStack().clone();
+
+        crafted.setAmount(crafted.getAmount() * blueprintAmount);
+
+        if (crafted.getAmount() > crafted.getMaxStackSize()) {
+            returnItems(root, fetcheds, blockMenu);
+            sendDebugMessage(blockMenu.getLocation(), "Result is too large");
+            sendFeedback(blockMenu.getLocation(), FeedbackType.RESULT_IS_TOO_LARGE);
+            return false;
+        }
+
+        if (existing != null && existing.getType() != Material.AIR) {
+            root.addItemStack0(blockMenu.getLocation(), crafted);
+        }
+        if (crafted != null && crafted.getType() != Material.AIR) {
+            BlockMenuUtil.pushItem(blockMenu, crafted, OUTPUT_SLOT);
+        }
         sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
         return true;
     }
 
-    private void returnItems(
-        @NotNull NetworkRoot root, @NotNull ItemStack @NotNull [] inputs, @NotNull BlockMenu blockMenu) {
+    protected void returnItems(
+        @NotNull NetworkRoot root, @Nullable ItemStack @NotNull [] inputs, @NotNull BlockMenu blockMenu) {
         for (ItemStack input : inputs) {
             if (input != null) {
                 root.addItemStack0(blockMenu.getLocation(), input);
@@ -283,7 +263,6 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
     }
 
     public void releaseCache(@NotNull BlockMenu blockMenu) {
-        RECIPE_CACHE.remove(blockMenu.getLocation());
         INSTANCE_MAP.remove(blockMenu.getLocation());
     }
 
@@ -333,18 +312,10 @@ public abstract class AbstractAutoCrafter extends NetworkObject implements SoftC
     }
 
     public boolean isValidBlueprint(SlimefunItem item) {
-        return craftType().isValidBlueprint(item);
+        return item instanceof AbstractBlueprint;
     }
 
-    public Set<Map.Entry<ItemStack[], ItemStack>> getRecipeEntries() {
-        return craftType().getRecipeEntries();
-    }
-
-    public boolean testRecipe(ItemStack[] inputs, ItemStack[] recipe) {
-        return craftType().testRecipe(inputs, recipe);
-    }
-
-    public boolean canTestVanillaRecipe() {
+    public boolean canBlueprintStack() {
         return false;
     }
 }

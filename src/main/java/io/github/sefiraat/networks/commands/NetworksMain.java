@@ -245,12 +245,6 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        final ItemStack itemInHand = player.getInventory().getItemInMainHand();
-        if (itemInHand.getType() == Material.AIR) {
-            player.sendMessage(Lang.getString("messages.commands.must-hand-item"));
-            return;
-        }
-
         final SlimefunBlockData blockData = StorageCacheUtils.getBlock(targetBlock.getLocation());
         if (blockData == null) {
             player.sendMessage(Lang.getString("messages.commands.must-look-at-quantum-storage"));
@@ -264,7 +258,6 @@ public class NetworksMain implements TabExecutor {
         }
 
         final Location targetLocation = targetBlock.getLocation();
-        final ItemStack clone = itemInHand.clone();
         if (!(slimefunItem instanceof NetworkQuantumStorage)) {
             player.sendMessage(Lang.getString("messages.commands.invalid-quantum-storage"));
             return;
@@ -276,8 +269,15 @@ public class NetworksMain implements TabExecutor {
             return;
         }
 
-        NetworkQuantumStorage.setItem(blockMenu, clone, amount);
         final QuantumCache cache = NetworkQuantumStorage.getCaches().get(blockMenu.getLocation());
+        final ItemStack itemInHand = player.getInventory().getItemInMainHand();
+        if ((cache.getItemStack() == null || cache.getItemStack().getType() == Material.AIR)
+            && itemInHand.getType() == Material.AIR) {
+            player.sendMessage(Lang.getString("messages.commands.must-hand-item"));
+            return;
+        }
+        final ItemStack clone = (itemInHand.getType() == Material.AIR ? cache.getItemStack() : itemInHand).clone();
+        NetworkQuantumStorage.setItem(blockMenu, clone, amount);
 
         clone.setAmount(1);
         cache.setItemStack(clone);

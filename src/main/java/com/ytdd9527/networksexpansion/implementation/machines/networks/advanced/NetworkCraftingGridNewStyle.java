@@ -13,6 +13,7 @@ import io.github.sefiraat.networks.events.NetworkCraftEvent;
 import io.github.sefiraat.networks.network.GridItemRequest;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
+import io.github.sefiraat.networks.slimefun.network.grid.AbstractGrid;
 import io.github.sefiraat.networks.slimefun.network.grid.GridCache;
 import io.github.sefiraat.networks.slimefun.network.grid.GridCache.DisplayMode;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -128,15 +129,7 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle implements
                 menu.replaceExistingItem(getChangeSort(), getChangeSortStack());
                 menu.addMenuClickHandler(getChangeSort(), (p, slot, item, action) -> {
                     GridCache gridCache = getCacheMap().get(menu.getLocation());
-                    if (gridCache.getSortOrder() == GridCache.SortOrder.ALPHABETICAL) {
-                        gridCache.setSortOrder(GridCache.SortOrder.NUMBER);
-                    } else if (gridCache.getSortOrder() == GridCache.SortOrder.NUMBER) {
-                        gridCache.setSortOrder(GridCache.SortOrder.NUMBER_REVERSE);
-                    } else if (gridCache.getSortOrder() == GridCache.SortOrder.NUMBER_REVERSE) {
-                        gridCache.setSortOrder(GridCache.SortOrder.ADDON);
-                    } else {
-                        gridCache.setSortOrder(GridCache.SortOrder.ALPHABETICAL);
-                    }
+                    AbstractGrid.updateSortOrder(gridCache, action, 4);
                     getCacheMap().put(menu.getLocation(), gridCache);
                     updateDisplay(menu);
                     return false;
@@ -312,12 +305,12 @@ public class NetworkCraftingGridNewStyle extends AbstractGridNewStyle implements
     }
 
     @Override
-    public int[] getIngredientSlots() {
-        return INGREDIENT_SLOTS;
+    public @NotNull List<Keybinds> keybinds() {
+        return List.of(displayKeybinds(), outsideKeybinds());
     }
 
     @Override
-    public @NotNull List<Keybinds> keybinds() {
-        return List.of(displayKeybinds(), outsideKeybinds());
+    public @NotNull SlimefunItem getSlimefunItem() {
+        return this;
     }
 }

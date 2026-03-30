@@ -55,7 +55,7 @@ messages:
     success: "成功"
     working: "工作中"
     not_allowed_item: "不被允许的物品"
-    soft_cell_banned: "因网络中存在网络单元，此次执行被限制"
+    soft_cell_banned: "因网络连接了网络单元，此次执行被限制"
     ticking: "Ticking"
     transfer_ticking: "Transfer Ticking"
     transfer_try_push_item_with_counter: "尝试推送物品(计数器)"
@@ -70,6 +70,7 @@ messages:
     no_target_network_found: "未找到目标网络"
     same_network: "不能向同一网络发送物品"
     no_menu: "未找到菜单"
+    unsupported_blueprint: "不支持的蓝图"
   blueprint:
     title: "<click_info>已指定配方"
     empty: "<passive>空"
@@ -228,6 +229,7 @@ messages:
         pressure_chamber: "压力机"
         quantum_workbench: "网络量子工作台"
         smeltery: "冶炼炉"
+        ae: "AE"
     quantum_cache:
       empty: "空"
       stored_item: "<click_info>物品: %s"
@@ -330,6 +332,11 @@ messages:
       pasted_config: "&a设置成功!"
     grid:
       filter_set: "<success>已启用过滤器"
+      sort_orders:
+        alphabetical: "按字母顺序排序"
+        number: "按物品数量排序"
+        number_reverse: "按物品数量倒序排序"
+        addon: "按物品所属附属字母顺序排序"
     quantum_storage:
       changed_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <success>已更改容量: %s"
     remote:
@@ -373,6 +380,7 @@ messages:
     storage_card_converter:
       success: "&a转换成功"
   unsupported-operation:
+    incompatible-jeg-version: "<error>JustEnoughGuide 前置插件版本过低，请升级至最新构建版本"
     storage_card_converter:
       final_tech_required: "<error>服务器需安装 FinalTECH 或 FinalTECH-Changed 才能使用此机器"
       research_required: "<error>未解锁存储卡"
@@ -393,6 +401,7 @@ messages:
     decoder:
       no_input: "&c没有输入蓝图"
       not_blueprint: "&c该物品不是蓝图"
+      unsupported_blueprint: "&c不支持的蓝图"
       invalid_blueprint: "&c该物品没有蓝图信息"
       output_full: "&c输出栏不足"
     storage_unit_upgrade_table:
@@ -408,13 +417,14 @@ messages:
       invalid_item: "&c无法获取物品."
       empty_mover: "&c没有可用的物品."
       full_storage: "&c存储已满"
+      suggest_use_drawers: "&c你需要在抽屉界面中使用此物品"
     encoder:
       not_enough_power: "<warning>网络中的电力不足，无法完成该任务"
       invalid_blueprint: "<warning>你需要提供一个正确的空白的蓝图"
       disabled_blueprint: "<warning>该蓝图已被禁用"
       disabled_output: "<warning>该配方的输出已被禁用"
       invalid_recipe: "<warning>这似乎不是一个有效的配方"
-      output_full: "<warning>需要清空输出烂"
+      output_full: "<warning>需要清空输出栏"
     cargo_node_quick_tool:
       invalid_tool: "&c工具无效，请勿堆叠使用"
       invalid_node: "&c请指向一个货运节点"
@@ -465,7 +475,7 @@ messages:
     debugger:
       player_is_not_op: "<error>该物品只能由 OP 玩家使用."
     quantum_workbench:
-      output_slot_full: "<warning>需要清空输出烂"
+      output_slot_full: "<warning>需要清空输出栏"
     grid:
       may_duping: "Player \"%s\" attempted to use network grid from a invalid node at %s，the player may trying to cheat or duplicate items."
     manager:
@@ -591,7 +601,13 @@ icons:
       name: "&6存入物品"
     do-nothing:
       name: "&6无操作"
-    display-keybinds:
+    hanginggridnewstyle-display-keybinds:
+      name: "&6显示栏按键控制"
+    networkgridnewstyle-display-keybinds:
+      name: "&6显示栏按键控制"
+    networkcraftinggridnewstyle-display-keybinds:
+      name: "&6显示栏按键控制"
+    smartnetworkcraftinggridnewstyle-display-keybinds:
       name: "&6显示栏按键控制"
     outside-keybinds:
       name: "&6背包栏按键控制"
@@ -626,6 +642,78 @@ icons:
     ask-cursor:
       name: "&6询问数量并取出指定数量个物品至光标"
     ask-inv:
+      name: "&6询问数量并取出指定数量个物品至背包"
+    hanginggridnewstyle-store-cursor:
+      name: "&6存入光标物品"
+    hanginggridnewstyle-one-cursor:
+      name: "&6取出1个物品至光标"
+    hanginggridnewstyle-stack-cursor:
+      name: "&6取出1组物品至光标"
+    hanginggridnewstyle-stack-inv:
+      name: "&6取出1组物品至背包"
+    hanginggridnewstyle-one-inv:
+      name: "&6取出1个物品至背包"
+    hanginggridnewstyle-custom-cursor:
+      name: "&6取出自定义数量个物品至光标"
+    hanginggridnewstyle-custom-inv:
+      name: "&6取出自定义数量个物品至背包"
+    hanginggridnewstyle-ask-cursor:
+      name: "&6询问数量并取出指定数量个物品至光标"
+    hanginggridnewstyle-ask-inv:
+      name: "&6询问数量并取出指定数量个物品至背包"
+    networkgridnewstyle-store-cursor:
+      name: "&6存入光标物品"
+    networkgridnewstyle-one-cursor:
+      name: "&6取出1个物品至光标"
+    networkgridnewstyle-stack-cursor:
+      name: "&6取出1组物品至光标"
+    networkgridnewstyle-stack-inv:
+      name: "&6取出1组物品至背包"
+    networkgridnewstyle-one-inv:
+      name: "&6取出1个物品至背包"
+    networkgridnewstyle-custom-cursor:
+      name: "&6取出自定义数量个物品至光标"
+    networkgridnewstyle-custom-inv:
+      name: "&6取出自定义数量个物品至背包"
+    networkgridnewstyle-ask-cursor:
+      name: "&6询问数量并取出指定数量个物品至光标"
+    networkgridnewstyle-ask-inv:
+      name: "&6询问数量并取出指定数量个物品至背包"
+    networkcraftinggridnewstyle-store-cursor:
+      name: "&6存入光标物品"
+    networkcraftinggridnewstyle-one-cursor:
+      name: "&6取出1个物品至光标"
+    networkcraftinggridnewstyle-stack-cursor:
+      name: "&6取出1组物品至光标"
+    networkcraftinggridnewstyle-stack-inv:
+      name: "&6取出1组物品至背包"
+    networkcraftinggridnewstyle-one-inv:
+      name: "&6取出1个物品至背包"
+    networkcraftinggridnewstyle-custom-cursor:
+      name: "&6取出自定义数量个物品至光标"
+    networkcraftinggridnewstyle-custom-inv:
+      name: "&6取出自定义数量个物品至背包"
+    networkcraftinggridnewstyle-ask-cursor:
+      name: "&6询问数量并取出指定数量个物品至光标"
+    networkcraftinggridnewstyle-ask-inv:
+      name: "&6询问数量并取出指定数量个物品至背包"
+    smartnetworkcraftinggridnewstyle-store-cursor:
+      name: "&6存入光标物品"
+    smartnetworkcraftinggridnewstyle-one-cursor:
+      name: "&6取出1个物品至光标"
+    smartnetworkcraftinggridnewstyle-stack-cursor:
+      name: "&6取出1组物品至光标"
+    smartnetworkcraftinggridnewstyle-stack-inv:
+      name: "&6取出1组物品至背包"
+    smartnetworkcraftinggridnewstyle-one-inv:
+      name: "&6取出1个物品至背包"
+    smartnetworkcraftinggridnewstyle-custom-cursor:
+      name: "&6取出自定义数量个物品至光标"
+    smartnetworkcraftinggridnewstyle-custom-inv:
+      name: "&6取出自定义数量个物品至背包"
+    smartnetworkcraftinggridnewstyle-ask-cursor:
+      name: "&6询问数量并取出指定数量个物品至光标"
+    smartnetworkcraftinggridnewstyle-ask-inv:
       name: "&6询问数量并取出指定数量个物品至背包"
   filter-mode-black-list:
     name: "&6黑名单模式"
@@ -695,6 +783,8 @@ icons:
     last_only: "仅末位"
     first_stop: "首位阻断"
     lazy: "懒惰模式"
+    void: "清空模式"
+    specified_quantity: "仅指定数量"
   mechanism:
     transfers:
       data_title: "&a⇩传输数据⇩"
@@ -1005,6 +1095,12 @@ icons:
     name: "&6点击转换为存储卡"
     lore:
       - ""
+  item-target-desc-stack:
+    name: "&6物品指定槽"
+    lore:
+      - "&a若此配方存在多种输出"
+      - "&a在下方放入输出物品"
+      - "&a以指定蓝图输出的物品"
   facing-presetter-help-icon:
     name: "&6预设功能使用教程"
     lore:
@@ -1022,7 +1118,7 @@ icons:
         - "在量子工作台中制作"
 
 items:
-  # DO NOT TRANSLATE, CHANGE OR DELETE THESE ANNOUNCEMENTS
+  # DO NOT CHANGE OR DELETE THESE ANNOUNCEMENTS
   NTW_EXPANSION_ANNOUNCE_1:
     name: "<color_random_string>定义"
     lore:
@@ -1151,9 +1247,9 @@ items:
       - "<warning> 网络拓展开发版不接受 GitHub Issues"
       - "<warning> 网络拓展开发版不接受 GitHub PR"
       - "<passive> 版本信息:"
-      - "<passive> 网络拓展版本: v2.1.74"
+      - "<passive> 网络拓展版本: v2.1.93"
       - "<passive> 版本状态: 稳定版"
-      - "<passive> 版本更新时间: 2026-1-10 16:52:22"
+      - "<passive> 版本更新时间: 2026-3-14 21:28:04"
       - "<passive> 开发状态: 更新中"
       - "<passive> 开发者（们）: ytdd9527, balugaq"
       - "<passive> 开发者 GitHub 页面: <click_info>https://github.com/ytdd9527"
@@ -1285,8 +1381,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_MORE_PUSHER:
     name: "链式传输器 [V2推送]"
@@ -1299,8 +1393,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_BEST_PUSHER:
     name: "链式传输器 [V3推送]"
@@ -1313,8 +1405,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_GRABBER:
     name: "链式传输器 [抓取]"
@@ -1327,8 +1417,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅抓取第一个有物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER:
     name: "链式传输器"
@@ -1341,8 +1429,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送和抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_PLUS_PUSHER:
     name: "链式传输器Plus [推送]"
@@ -1355,8 +1441,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_PLUS_MORE_PUSHER:
     name: "链式传输器Plus [V2推送]"
@@ -1369,8 +1453,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_PLUS_BEST_PUSHER:
     name: "链式传输器Plus [V3推送]"
@@ -1383,8 +1465,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_PLUS_GRABBER:
     name: "链式传输器Plus [抓取]"
@@ -1397,8 +1477,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅抓取第一个有物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_PLUS:
     name: "链式传输器Plus"
@@ -1411,8 +1489,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送和抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_VANILLA_PUSHER:
     name: "链式原版传输器 [推送]"
@@ -1425,8 +1501,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_LINE_TRANSFER_VANILLA_GRABBER:
     name: "链式原版传输器 [抓取]"
@@ -1439,8 +1513,6 @@ items:
       - "&c不可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅抓取第一个有物品的槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PUSHER:
     name: "高级链式传输 [推送]"
@@ -1453,14 +1525,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_MORE_PUSHER:
     name: "高级链式传输 [V2推送]"
@@ -1473,14 +1537,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_BEST_PUSHER:
     name: "高级链式传输 [V3推送]"
@@ -1493,14 +1549,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_GRABBER:
     name: "高级链式传输 [抓取]"
@@ -1513,14 +1561,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可抓取任何槽位"
-      - "&6仅空&7: &e仅抓取空槽位"
-      - "&6仅非空&7: &e仅抓取非空槽位"
-      - "&6仅首位&7: &e仅抓取第一格"
-      - "&6仅末位&7: &e仅抓取最后一格"
-      - "&6首位阻断&7: &e仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER:
     name: "高级链式传输"
@@ -1533,15 +1573,7 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送和抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位 / 可抓取任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位 / 仅抓取空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位 / 仅抓取非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格 / 仅抓取第一格"
-      - "&6仅末位&7: &e仅推送至最后一格 / 仅抓取最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位 / 当第一格存在物品时，抓取所有槽位"
-
+  
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_PUSHER:
     name: "高级链式传输Plus [推送]"
     lore:
@@ -1553,14 +1585,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_MORE_PUSHER:
     name: "高级链式传输Plus [V2推送]"
@@ -1573,15 +1597,7 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
-
+  
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_BEST_PUSHER:
     name: "高级链式传输Plus [V3推送]"
     lore:
@@ -1593,14 +1609,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_GRABBER:
     name: "高级链式传输Plus [抓取]"
@@ -1613,14 +1621,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可抓取任何槽位"
-      - "&6仅空&7: &e仅抓取空槽位"
-      - "&6仅非空&7: &e仅抓取非空槽位"
-      - "&6仅首位&7: &e仅抓取第一格"
-      - "&6仅末位&7: &e仅抓取最后一格"
-      - "&6首位阻断&7: &e仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS:
     name: "高级链式传输Plus"
@@ -1633,14 +1633,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送和抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位 / 可抓取任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位 / 仅抓取空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位 / 仅抓取非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格 / 仅抓取第一格"
-      - "&6仅末位&7: &e仅推送至最后一格 / 仅抓取最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位 / 当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_GRABBER:
     name: "原版高级链式传输 [抓取]"
@@ -1653,14 +1645,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位 / 可抓取任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位 / 仅抓取空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位 / 仅抓取非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格 / 仅抓取第一格"
-      - "&6仅末位&7: &e仅推送至最后一格 / 仅抓取最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位 / 当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_PUSHER:
     name: "原版高级链式传输 [推送]"
@@ -1673,14 +1657,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位 / 可抓取任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位 / 仅抓取空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位 / 仅抓取非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格 / 仅抓取第一格"
-      - "&6仅末位&7: &e仅推送至最后一格 / 仅抓取最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位 / 当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_PLUS_GRABBER:
     name: "原版高级链式传输Plus [抓取]"
@@ -1693,14 +1669,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续抓取的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位 / 可抓取任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位 / 仅抓取空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位 / 仅抓取非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格 / 仅抓取第一格"
-      - "&6仅末位&7: &e仅推送至最后一格 / 仅抓取最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位 / 当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_PLUS_PUSHER:
     name: "原版高级链式传输Plus [推送]"
@@ -1713,14 +1681,6 @@ items:
       - "&a可调整运输数量"
       - "&e与乱序技艺的链式传输器不同的是，此机器&c只有连续推送的功能"
       - "&c而不是连续转移物品！"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位 / 可抓取任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位 / 仅抓取空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位 / 仅抓取非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格 / 仅抓取第一格"
-      - "&6仅末位&7: &e仅推送至最后一格 / 仅抓取最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位 / 当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_TRANSFER_PUSHER:
     name: "传输器 [推送]"
@@ -1730,8 +1690,6 @@ items:
       - "&c不可调整运输模式"
       - "&7默认运输数量: &664"
       - "&c不可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_TRANSFER_MORE_PUSHER:
     name: "传输器 [V2推送]"
@@ -1741,8 +1699,6 @@ items:
       - "&c不可调整运输模式"
       - "&7默认运输数量: &664"
       - "&c不可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_TRANSFER_BEST_PUSHER:
     name: "传输器 [V3推送]"
@@ -1752,8 +1708,6 @@ items:
       - "&c不可调整运输模式"
       - "&7默认运输数量: &664"
       - "&c不可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
 
   NTW_EXPANSION_TRANSFER_GRABBER:
     name: "传输器 [抓取]"
@@ -1763,8 +1717,6 @@ items:
       - "&c不可调整运输模式"
       - "&7默认运输数量: &664"
       - "&c不可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅抓取第一个有物品的槽位"
 
   NTW_EXPANSION_TRANSFER:
     name: "传输器"
@@ -1774,8 +1726,6 @@ items:
       - "&c不可调整运输模式"
       - "&7默认运输数量: &664"
       - "&c不可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
 
   NTW_EXPANSION_ADVANCED_TRANSFER_PUSHER:
     name: "高级传输器 [推送]"
@@ -1785,14 +1735,6 @@ items:
       - "&a可调整运输模式"
       - "&7默认运输数量: &63456"
       - "&a可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_TRANSFER_MORE_PUSHER:
     name: "高级传输器 [V2推送]"
@@ -1802,14 +1744,6 @@ items:
       - "&a可调整运输模式"
       - "&7默认运输数量: &63456"
       - "&a可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_TRANSFER_BEST_PUSHER:
     name: "高级传输器 [V3推送]"
@@ -1819,14 +1753,6 @@ items:
       - "&a可调整运输模式"
       - "&7默认运输数量: &63456"
       - "&a可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格"
-      - "&6仅末位&7: &e仅推送至最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位"
 
   NTW_EXPANSION_ADVANCED_TRANSFER_GRABBER:
     name: "高级传输器 [抓取]"
@@ -1836,14 +1762,6 @@ items:
       - "&a可调整运输模式"
       - "&7默认运输数量: &63456"
       - "&a可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可抓取任何槽位"
-      - "&6仅空&7: &e仅抓取空槽位"
-      - "&6仅非空&7: &e仅抓取非空槽位"
-      - "&6仅首位&7: &e仅抓取第一格"
-      - "&6仅末位&7: &e仅抓取最后一格"
-      - "&6首位阻断&7: &e仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_ADVANCED_TRANSFER:
     name: "高级传输器"
@@ -1853,14 +1771,6 @@ items:
       - "&a可调整运输模式"
       - "&7默认运输数量: &63456"
       - "&a可调整运输数量"
-      - "&7运输模式解释: "
-      - "&6无限制&7: &e可推送至任何槽位 / 可抓取任何槽位"
-      - "&6仅空&7: &e仅推送至空槽位 / 仅抓取空槽位"
-      - "&6仅非空&7: &e仅推送至非空槽位 / 仅抓取非空槽位"
-      - "&6仅首位&7: &e仅推送至第一格 / 仅抓取第一格"
-      - "&6仅末位&7: &e仅推送至最后一格 / 仅抓取最后一格"
-      - "&6首位阻断&7: &e仅推送至第一个可以被推送物品的槽位 / 仅抓取第一个有物品的槽位"
-      - "&6懒惰模式&7: &e当第一格为空时，推送至所有槽位 / 当第一格存在物品时，抓取所有槽位"
 
   NTW_EXPANSION_SMART_GRABBER:
     name: "智能抓取器"
@@ -2628,6 +2538,13 @@ items:
       - "也可以通过货运系统取出"
       - ""
       - "<click_info>网络电力消耗: &71,280 每次合成"
+
+  NTW_EXPANSION_BRIDGE_ORDINAL:
+    name: "网桥(透明)"
+    lore:
+      - "网桥用于连接不同的网络物品"
+      - "来形成一个完整的网络"
+      - "更加清晰的布局网络"
 
   NTW_EXPANSION_BRIDGE_WHITE:
     name: "网桥(白色)"
@@ -3906,6 +3823,15 @@ items:
     lore:
       - "可以对抓取，推送，监视器等机器预设方向"
       - "将其放置后，立即设置对应的方向"
+  NTW_EXPANSION_SUPER_TRASH:
+    name: "超级垃圾桶"
+    lore:
+      - "最快速地销毁一切输入的物品"
+      - "在界面中点击玩家背包中的物品会销毁物品"
+  NTW_EXPANSION_PLACEHOLDER_ITEM:
+    name: "占位符"
+    lore:
+      - ""
 
 displays:
   quantum_storage:
@@ -3946,6 +3872,7 @@ groups:
       main_menu_trophy: "<color_random_string>贡献"
       sub_menu_author: "<color_random_string>贡献 - 作者"
       sub_menu_announce: "<color_random_string>贡献 - 声明"
+      sub_menu_deprecated: "<color_random_string>已废弃的物品"
 theme:
   gold: ""
   white: ""

@@ -1,6 +1,7 @@
 package com.ytdd9527.networksexpansion.core.items.machines;
 
 import com.balugaq.jeg.api.groups.SearchGroup;
+import com.balugaq.jeg.api.objects.enums.FilterType;
 import com.balugaq.netex.api.algorithm.Sorters;
 import com.balugaq.netex.api.enums.FeedbackType;
 import com.balugaq.netex.api.helpers.Icon;
@@ -29,7 +30,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
@@ -40,12 +40,12 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NullMarked;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -221,23 +221,32 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
     }
 
     @Override
-    public void updateDisplay(BlockMenu blockMenu) {
+    public void updateDisplay(BlockMenu menu) {
+        Location location = menu.getLocation();
+
         // No viewer - lets not bother updating
-        if (!blockMenu.hasViewer()) {
-            sendFeedback(blockMenu.getLocation(), FeedbackType.AFK);
+        if (!menu.hasViewer()) {
+            sendFeedback(location, FeedbackType.AFK);
             return;
         }
 
-        final NodeDefinition definition = NetworkStorage.getNode(blockMenu.getLocation());
+        final NodeDefinition definition = NetworkStorage.getNode(location);
 
         // No node located, weird
         if (definition == null || definition.getNode() == null) {
-            clearDisplay(blockMenu);
-            sendFeedback(blockMenu.getLocation(), FeedbackType.NO_NETWORK_FOUND);
+            clearDisplay(menu);
+            sendFeedback(location, FeedbackType.NO_NETWORK_FOUND);
             return;
         }
 
         // Update Screen
+        Networks.getFoliaLib().getScheduler().runAsync(wrappedTask -> {
+
+        final BlockMenu blockMenu = StorageCacheUtils.getMenu(location);
+        if (blockMenu == null) {
+            return;
+        }
+
         final NetworkRoot root = definition.getNode().getRoot();
 
         final GridCache gridCache = getCacheMap().get(blockMenu.getLocation().clone());
@@ -252,6 +261,7 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
             gridCache.setFilter(filter);
         }
 
+        blockMenu.replaceExistingItem(getChangeSort(), getSortOrderStack(gridCache.getSortOrder()));
         blockMenu.replaceExistingItem(getFilterSlot(), getFilterStack(gridCache.getFilter()));
 
         // Deprecated feature
@@ -269,9 +279,9 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
                 return;
             }
 
-            // Reset selected page if it no longer exists due to items being removed
+            // Rolldown selected page if it no longer exists due to items being removed
             if (gridCache.getPage() > pages) {
-                gridCache.setPage(0);
+                gridCache.setPage(pages);
             }
 
             int start = gridCache.getPage() * getDisplaySlots().length;
@@ -329,9 +339,9 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
                 return;
             }
 
-            // Reset selected page if it no longer exists due to items being removed
+            // Rolldown selected page if it no longer exists due to items being removed
             if (gridCache.getPage() > pages) {
-                gridCache.setPage(0);
+                gridCache.setPage(pages);
             }
 
             final int start = gridCache.getPage() * getDisplaySlots().length;
@@ -381,17 +391,40 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
         );
 
         sendFeedback(blockMenu.getLocation(), FeedbackType.WORKING);
+
+        });
     }
 
     @Override
     protected List<Entry<ItemStack, Long>> getEntries(NetworkRoot networkRoot, GridCache cache) {
+        if (cache.getEntriesCache() != null) {
+            return cache.getEntriesCache();
+        }
         HashSet<SlimefunItem> pass = new HashSet<>();
         String searchTerm = cache.getFilter();
         if (searchTerm != null && Networks.getSupportedPluginManager().isJustEnoughGuide()) {
-            Bukkit.getOnlinePlayers().stream().findFirst().ifPresent(player ->
-                                                                         pass.addAll(new SearchGroup(null, player, searchTerm, false, false).slimefunItemList));
+            try {
+                Bukkit.getOnlinePlayers().stream().findFirst().ifPresent(player -> {
+                    List<SlimefunItem> sfs = new ArrayList<>();
+                    for (ItemStack item : networkRoot.getAllNetworkItemsLongType().keySet()) {
+                        if (item != null && item.getType() != Material.AIR) {
+                            var sf = SlimefunItem.getByItem(item);
+                            if (sf != null) {
+                                sfs.add(sf);
+                            }
+                        }
+                    }
+                    List<FilterType> types = new ArrayList<>(Arrays.stream(FilterType.values()).toList());
+                    types.remove(FilterType.BY_DISPLAY_ITEM_NAME);
+                    types.remove(FilterType.BY_RECIPE_ITEM_NAME);
+                    for (FilterType type : types) {
+                        pass.addAll(SearchGroup.filterItems(player, type, searchTerm, true, sfs));
+                    }
+                });
+            } catch (Exception ignored) {
+            }
         }
-        return networkRoot.getAllNetworkItemsLongType().entrySet().stream()
+        var result = networkRoot.getAllNetworkItemsLongType().entrySet().stream()
             .filter(entry -> {
                 if (searchTerm == null) {
                     return true;
@@ -420,6 +453,8 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
             })
             .sorted(SORT_MAP.get(cache.getSortOrder()))
             .toList();
+        cache.setEntriesCache(result);
+        return result;
     }
 
     @Override
@@ -429,8 +464,6 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
 
 
     protected abstract BlockMenuPreset getPreset();
-
-    public abstract Map<Location, GridCache> getCacheMap();
 
     protected abstract int[] getBackgroundSlots();
 
