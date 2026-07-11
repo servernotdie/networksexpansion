@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -39,3 +39,20 @@ jobs:
         with:
           name: ${{ env.FILE }}
           path: target/${{ env.FILE }}
+      - name: Create tag
+        if: github.event_name != 'pull_request'
+        id: tag
+        run: |
+          TAG_NAME="build-${{ github.run_number }}"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
+      - name: Create release
+        if: github.event_name != 'pull_request'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          name: ${{ env.TAG_NAME }}
+          files: target/${{ env.FILE }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

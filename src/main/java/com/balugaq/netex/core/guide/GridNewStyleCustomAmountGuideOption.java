@@ -58,10 +58,10 @@ public class GridNewStyleCustomAmountGuideOption implements SlimefunGuideOption<
 
         ItemStack item = new CustomItemStack(
             Material.FURNACE,
-            "&a高级网格自定义单次取出数量",
+            "&aSố lượng lấy ra tùy chỉnh mỗi lần của lưới cao cấp",
             "",
-            "&7当前数量: " + value + " (限制范围: 1~" + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + ")",
-            "&7\u21E8 &e点击设置数量"
+            "&7Số lượng hiện tại: " + value + " (giới hạn: 1~" + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + ")",
+            "&7\u21E8 &eNhấp để đặt số lượng"
         );
         return Optional.of(item);
     }
@@ -69,12 +69,12 @@ public class GridNewStyleCustomAmountGuideOption implements SlimefunGuideOption<
     @Override
     public void onClick(@NotNull Player p, @NotNull ItemStack guide) {
         p.closeInventory();
-        p.sendMessage(ChatColors.color("&e请输入高级网格自定义单次取出数量"));
+        p.sendMessage(ChatColors.color("&eVui lòng nhập số lượng lấy ra tùy chỉnh mỗi lần của lưới cao cấp"));
         ChatInput.waitForPlayer(Networks.getInstance(), p, s -> {
             try {
                 int value = Calculator.calculate(s).intValue();
                 if (value < 1 || value > GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT) {
-                    p.sendMessage("请输入 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + " 之间的正整数");
+                    p.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT);
                     return;
                 }
 
@@ -85,7 +85,7 @@ public class GridNewStyleCustomAmountGuideOption implements SlimefunGuideOption<
                     SlimefunGuideSettings.openSettings(p, guide);
                 }
             } catch (NumberFormatException e) {
-                p.sendMessage("请输入 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + " 之间的正整数" + e.getMessage());
+                p.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + e.getMessage());
             }
         });
     }

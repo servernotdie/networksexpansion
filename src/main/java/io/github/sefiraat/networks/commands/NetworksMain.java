@@ -1488,7 +1488,7 @@ public class NetworksMain implements TabExecutor {
                     }
 
                     if (value instanceof Map<?, ?>) {
-                        player.sendMessage("缓存: " + cchName);
+                        player.sendMessage("Bộ nhớ đệm: " + cchName);
                         @SuppressWarnings("unchecked") Map<Location, Integer> locations = (Map<Location, Integer>) value;
                         Map<String, Integer> formatted = locations.entrySet().stream().map(e -> {
                             SlimefunItem sf = StorageCacheUtils.getSfItem(e.getKey());
@@ -1501,8 +1501,8 @@ public class NetworksMain implements TabExecutor {
                             player.sendMessage(entry.getKey() + ": " + entry.getValue());
                         }
                     } else if (value instanceof Number n) {
-                        player.sendMessage("缓存: " + cchName);
-                        player.sendMessage("值: " + n.intValue());
+                        player.sendMessage("Bộ nhớ đệm: " + cchName);
+                        player.sendMessage("Giá trị: " + n.intValue());
                     }
                 }
 
