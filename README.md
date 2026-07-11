@@ -1,26 +1,31 @@
 ![](https://cdn.jsdelivr.net/gh/SlimefunGuguProject/Networks@master/images/logo/logo_large.png)
 
-[网络拓展](https://github.com/balugaq/NetworksExpansion)是一个[Slimefun](https://github.com/SlimefunGuguProject/Slimefun4)附属插件，基于[网络](https://github.com/SlimefunGuguProject/Networks)进行再开发以及 bug 修复，可以创建一个简单有效的物品存储与运输系统，并可以与货运系统交互。
+[NetworksExpansion](https://github.com/balugaq/NetworksExpansion) là một plugin phụ trợ của [Slimefun](https://github.com/SlimefunGuguProject/Slimefun4), được phát triển lại dựa trên [Networks](https://github.com/SlimefunGuguProject/Networks) cùng với việc sửa lỗi, có thể tạo ra một hệ thống lưu trữ và vận chuyển vật phẩm đơn giản, hiệu quả, đồng thời có thể tương tác với hệ thống vận chuyển hàng hóa.
 
 ![](https://cdn.jsdelivr.net/gh/SlimefunGuguProject/Networks@master/images/wiki/setup.png)
 
 > [!IMPORTANT]
-> [网络拓展](https://github.com/balugaq/NetworksExpansion)不需要[网络](https://github.com/SlimefunGuguProject/Networks)作为前置
+> [NetworksExpansion](https://github.com/balugaq/NetworksExpansion) không cần [Networks](https://github.com/SlimefunGuguProject/Networks) làm plugin tiền đề
 
-## 下载
+## Tải xuống
 
-[![构建状态](https://builds.guizhanss.com/api/badge/ytdd9527/NetworksExpansion/master/latest)](https://builds.guizhanss.com/ytdd9527/NetworksExpansion/master)
+[![Trạng thái build](https://builds.guizhanss.com/api/badge/ytdd9527/NetworksExpansion/master/latest)](https://builds.guizhanss.com/ytdd9527/NetworksExpansion/master)
 
-## Wiki / 文档
+## Wiki / Tài liệu
 
-你可以在这里查看[网络](https://github.com/SlimefunGuguProject/Networks)所有物品的功能：[点击查看](https://slimefun-addons-wiki.guizhanss.cn/networks/)
+Bạn có thể xem tại đây chức năng của tất cả vật phẩm trong [Networks](https://github.com/SlimefunGuguProject/Networks): [Nhấn để xem](https://slimefun-addons-wiki.guizhanss.cn/networks/)
 
-## 感谢
+## Lời cảm ơn
 
-感谢 Boomer, Cai 以及 Lucky 帮忙测试并完善插件。
+Cảm ơn Boomer, Cai và Lucky đã giúp thử nghiệm và hoàn thiện plugin.
 
-感谢 **mct.tantrum.org** 的服主提供的测试环境。
+Cảm ơn chủ server **mct.tantrum.org** đã cung cấp môi trường thử nghiệm.
 
-另外，感谢 **mc.talosmp.net** 的 **GentlemanCheesy** 成为[本人](https://github.com/Sefiraat)的首位赞助者！每个月能多喝一杯咖啡让我能有动力更好地编写插件。
+Ngoài ra, cảm ơn **GentlemanCheesy** của **mc.talosmp.net** đã trở thành nhà tài trợ đầu tiên của [tôi](https://github.com/Sefiraat)! Mỗi tháng có thêm một ly cà phê giúp tôi có động lực viết plugin tốt hơn.
 
-感谢 [m1919810 / matl114](https://github.com/m1919810) — 帮助[我](https://github.com/balugaq)找到了一些[网络拓展](https://github.com/balugaq/NetworksExpansion)的 bug
+Cảm ơn [m1919810 / matl114](https://github.com/m1919810) — đã giúp [tôi](https://github.com/balugaq) tìm ra một số bug của [NetworksExpansion](https://github.com/balugaq/NetworksExpansion)
+
+## Này bản fork từ upstream của nhóm dev người TQ xong dịch :D
+Credit: 
+---
+[Craft233MC](https://github.com/Craft233MC/NetworksExpansion)
