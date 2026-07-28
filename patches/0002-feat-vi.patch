@@ -1,0 +1,3946 @@
+From 3ff923155292008341c5df6ec4f59859d36f6911 Mon Sep 17 00:00:00 2001
+From: mytai20100 <142713298+Mytai20100@users.noreply.github.com>
+Date: Sat, 11 Jul 2026 19:32:36 +0700
+Subject: [PATCH 2/2] feat(vi)
+
+---
+ src/main/resources/config.yml  |    4 +-
+ src/main/resources/lang/vi.yml | 3911 ++++++++++++++++++++++++++++++++
+ 2 files changed, 3913 insertions(+), 2 deletions(-)
+ create mode 100644 src/main/resources/lang/vi.yml
+
+diff --git a/src/main/resources/config.yml b/src/main/resources/config.yml
+index 8e085c58..9f2ea47d 100644
+--- a/src/main/resources/config.yml
++++ b/src/main/resources/config.yml
+@@ -1,8 +1,8 @@
+ # Auto update from Guizhan Build is enabled by default.
+-auto-update: true
++auto-update: false
+ 
+ # Language
+-language: zh-CN
++language: vi
+ 
+ # Do not change this value unless you know what you are doing.
+ config-version: 2.1.68
+diff --git a/src/main/resources/lang/vi.yml b/src/main/resources/lang/vi.yml
+new file mode 100644
+index 00000000..b94d46dc
+--- /dev/null
++++ b/src/main/resources/lang/vi.yml
+@@ -0,0 +1,3911 @@
++messages:
++  keybind:
++    title: '&aChọn tập hợp điều khiển phím bạn muốn chỉnh sửa'
++    sub-title: '&aNhấp vào phím kích hoạt bạn muốn thay đổi'
++    action-select-title: '&aNhấp chọn phím kích hoạt bạn muốn thay đổi'
++    scripts:
++      upload: '&aNhập tên tập lệnh điều khiển phím của bạn'
++      copied: '&aĐã sao chép tập lệnh điều khiển phím'
++    scripts-title: '&aTrung tâm điều khiển phím'
++  feedback:
++    afk: Chờ được quan sát
++    already_has_item: Khe chứa đồ đã có vật phẩm
++    block_already_cut: Khối đã được cắt
++    block_already_pasted: Khối đã được dán
++    block_cannot_be_air: Khối không thể là không khí
++    block_cannot_be_cut: Khối không thể bị cắt
++    block_not_match_template: Khối không khớp với mẫu
++    cannot_output_energy: Bị cấm xuất năng lượng mạng vào loại máy này
++    disabled_blueprint: Bản thiết kế đã bị vô hiệu hóa
++    disabled_output: Sản phẩm đầu ra đã bị vô hiệu hóa
++    error_occurred: Đã xảy ra lỗi
++    full_energy_buffer: Năng lượng đã đầy
++    initialization: Đang khởi tạo hướng
++    invalid_block: Khối không hợp lệ
++    invalid_blueprint: Bản thiết kế không hợp lệ
++    invalid_recipe: Công thức không hợp lệ
++    invalid_template: Mẫu không hợp lệ
++    loading_data: Đang tải dữ liệu
++    no_blueprint_found: Không tìm thấy bản thiết kế
++    no_blueprint_instance_found: Bản thiết kế không hợp lệ
++    no_direction_set: Chưa đặt hướng
++    no_enough_space: Không đủ không gian
++    no_input: Không có vật phẩm đầu vào
++    no_inventory_found: Không tìm thấy kho chứa
++    no_item_found: Không tìm thấy vật phẩm
++    no_item_request: Không có yêu cầu vật phẩm
++    no_linked_block_menu_found: Khối được chỉ định không có giao diện
++    no_linked_location_found: Chưa chỉ định khối
++    no_network_found: Không có kết nối mạng
++    no_owner_found: Không tìm thấy chủ sở hữu
++    no_permission: Không có quyền hạn
++    no_target_block: Chưa chỉ định khối mục tiêu
++    no_template_found: Chưa đặt mẫu
++    no_vanilla_recipe_found: Không tìm thấy công thức vanilla
++    no_valid_recipe_found: Không tìm thấy công thức hợp lệ
++    not_allowed_block: Khối không được cho phép
++    not_blueprint: Không phải là bản thiết kế
++    not_enough_items_in_network: Không đủ vật phẩm trong mạng
++    not_enough_power: Không đủ năng lượng mạng
++    not_enough_resources: Không đủ nguyên liệu thô trong mạng
++    output_full: Khe đầu ra đã đầy
++    protected_block: Khối được bảo vệ
++    result_is_too_large: Có quá nhiều sản phẩm đầu ra
++    success: Thành công
++    working: Đang hoạt động
++    not_allowed_item: Vật phẩm không được phép
++    soft_cell_banned: Thao tác này bị hạn chế do mạng được kết nối với tế bào mạng
++    ticking: Đang tick
++    transfer_ticking: Đang tick quá trình chuyển
++    transfer_try_push_item_with_counter: Thử đẩy vật phẩm (có bộ đếm)
++    transfer_try_push_item: Thử đẩy vật phẩm
++    transfer_try_grab_item_with_counter: Thử lấy vật phẩm (có bộ đếm)
++    transfer_try_grab_item: Thử lấy vật phẩm
++    root_request_0: Không hợp lệ, thử lấy 0 vật phẩm
++    root_limiting_access_output: getItemStack0 bị giới hạn thực thi
++    root_limiting_access_input: addItemStack0 bị giới hạn thực thi
++    too_many_entities: Có quá nhiều thực thể xung quanh
++    no_target_location: Chưa chỉ định vị trí mục tiêu
++    no_target_network_found: Không tìm thấy mạng mục tiêu
++    same_network: Không thể gửi vật phẩm đến cùng một mạng
++    no_menu: Không tìm thấy menu
++    unsupported_blueprint: Bản thiết kế không được hỗ trợ
++  blueprint:
++    title: <click_info>Đã chỉ định công thức
++    empty: <passive>Trống
++    output: <click_info>Sản phẩm đầu ra
++  data-saving:
++    saving-drawer: Đang lưu dữ liệu ngăn kéo mạng...
++    saved-drawer: Lưu thành công!
++    error-occurred-when-creating-data-folder: Không thể tạo thư mục dữ liệu
++    error-occurred-when-saving-new-data: 'Lỗi khi lưu thông tin đơn vị lưu trữ mới:'
++    error-occurred-when-updating-environment-var: 'Lỗi khi cập nhật biến môi trường:'
++    error-occurred-when-loading-data: 'Lỗi khi tải thông tin đơn vị lưu trữ:'
++    error-occurred-when-saving-itemstack: 'Lỗi cập nhật vật phẩm:'
++    error-occurred-when-updating-container-data: 'Lỗi cập nhật kho chứa:'
++    error-occurred-when-updating-storage: 'Lỗi cập nhật kho lưu trữ:'
++    error-occurred-when-fixing-data: 'Lỗi khôi phục kho chứa:'
++    error-occurred-when-loading-itemstack: 'Lỗi tải vật phẩm:'
++    error-occurred-when-loading-environment-var: 'Lỗi tải môi trường:'
++    error-occurred-when-loading-storage: 'Lỗi tải vật phẩm trong kho lưu trữ:'
++    error-occurred-when-executing-query: 'Lỗi yêu cầu dữ liệu:'
++  debug:
++    info: '%s - %s'
++    viewer-info: <warning>%s - %s
++    toggle-debug: '<success>Chế độ gỡ lỗi của khối này đã được đặt thành: %s.'
++    enabled-debug: <success>Chế độ này sẽ tiếp tục cho đến khi máy chủ đóng hoặc bị
++      tắt thủ công.
++    wildchests: 'WildChests đã được cài đặt: %s'
++    ischest: 'Khối này có được WildChest xác định là một khối: %s'
++    wildchests-trigger-success: WildChests kiểm tra thành công!
++    wildchests-trigger-failed: WildChests kiểm tra thất bại!
++    status_view: 'Vị trí %s đã phản hồi thông tin: %s'
++  commands:
++    no-permission: '&cBạn không có quyền thực thi lệnh này!'
++    no-item-in-hand: '&cBạn phải cầm một vật phẩm trên tay!'
++    missing-required-argument: '&cThiếu đối số bắt buộc: <%s>'
++    invalid-required-argument: '&cĐối số bắt buộc không hợp lệ: <%s>'
++    invalid-argument: '&cĐối số không hợp lệ: <%s>'
++    must-be-player: '&cLệnh này chỉ có thể được thực thi bởi người chơi!'
++    unknown-error: '&cLỗi không xác định!'
++    must-admin-debuggable: '&cBạn phải nhìn vào một AdminDebuggable để thực thi lệnh
++      này!'
++    viewer-added: '&aBạn đã được thêm vào danh sách người xem nhật ký của AdminDebuggable
++      này.'
++    viewer-removed: '&aBạn đã bị xóa khỏi danh sách người xem nhật ký của AdminDebuggable
++      này.'
++    invalid-quantum-storage: <error>Đây không phải là một kho lưu trữ lượng tử hợp
++      lệ
++    must-look-at-quantum-storage: '&cBạn phải nhìn vào một kho lưu trữ mạng để thực
++      thi lệnh này!'
++    must-look-at-drawer: '&cBạn phải nhìn vào một ngăn kéo mạng để thực thi lệnh này!'
++    invalid-drawer: <error>Ngăn kéo mạng này không tồn tại hoặc đã bị hỏng!
++    updated-drawer: '&aĐã cập nhật vật phẩm'
++    must-hand-item: '&cBạn phải cầm vật phẩm trên tay để thực thi lệnh này!'
++    must-hand-blueprint: <error>Bạn phải cầm một bản thiết kế trên tay
++    invalid-blueprint: <error>Không thể lấy thông tin NBT của bản thiết kế
++    fixed-blueprint: <success>Đã sửa bản thiết kế
++    updated-quantum-storage: <success>Đã cập nhật vật phẩm
++    must-hand-quantum-storage: <error>Bạn phải cầm một kho lưu trữ lượng tử trên tay
++    no-set-item: <error>Kho lưu trữ lượng tử không có vật phẩm được chỉ định hoặc
++      đã bị hỏng
++    not-a-slimefun-item: <error>Đây không phải là vật phẩm Slimefun
++    cannot-update-cargo-storage-unit: <error>Hiện chưa hỗ trợ cập nhật ngăn kéo mạng
++    updated-item: <success>Đã cập nhật vật phẩm
++    updated-item-in-quantum-storage: <success>Đã cập nhật vật phẩm bên trong kho lưu
++      trữ!
++    wait-for-data: <green>Đã yêu cầu dữ liệu, vui lòng chờ...
++    set-container-id: '&aĐã thiết lập ID kho chứa cho ngăn kéo mạng ở %s thành %s.'
++    invalid-slot-index: <error>Số ô phải từ 0-%s!
++    empty-slot: <error>Ô này không có vật phẩm!
++    selected-area-outline-hide-request: '&aĐã yêu cầu ẩn đường viền khu vực đã chọn.'
++    selected-area-outline-show-request: '&aĐã yêu cầu hiển thị đường viền khu vực
++      đã chọn.'
++    clear-selected-pos: '&aĐã xóa vị trí đã chọn.'
++    help:
++    - '&6Trợ giúp lệnh mạng:'
++    - '&6/networks help - Hiển thị thông báo trợ giúp này.'
++    - '&6/networks fillquantum <amount> - Đặt số lượng vật phẩm trong kho lưu trữ
++      lượng tử đang cầm trên tay.'
++    - '&6/networks fixblueprint <keyInMeta> - Sửa bản thiết kế tổng hợp đang cầm trên
++      tay.'
++    - '&6/networks addstorageitem <amount> - Thêm vật phẩm vào ngăn kéo mạng mà bạn
++      đang nhìn vào.'
++    - '&6/networks reducestorageitem <amount> - Giảm vật phẩm khỏi ngăn kéo mạng mà
++      bạn đang nhìn vào.'
++    - '&6/networks setquantum <amount> - Đặt số lượng lưu trữ cho vật phẩm lưu trữ
++      lượng tử cầm tay.'
++    - '&6/networks setcontainerid <containerId> - Đặt ID kho chứa của ngăn kéo mạng.'
++    - '&6/networks worldedit <subCommand> - Tính năng SlimeWorldEdit.'
++    - '&6/networks updateItem - Cập nhật vật phẩm đang cầm.'
++    - '&6/networks getstorageitem <slot> - Nhận vật phẩm từ ô đã chỉ định của ngăn
++      kéo mạng mà bạn đang nhìn vào.'
++    - '&6/networks viewLog - Hiển thị nhật ký đầu ra của AdminDebuggable mà bạn đang
++      nhìn vào.'
++    example:
++      help:
++      - '&6/networks help - Hiển thị thông báo trợ giúp này.'
++      - '&6ex: /networks help'
++      fillquantum:
++      - '&6/networks fillQuantum <amount> - Đặt sức chứa của Kho Lưu trữ Lượng tử
++        trên tay.'
++      - '&6ex: /networks fillQuantum 1000'
++      fixblueprint:
++      - '&6/networks fixBlueprint <keyInMeta> - Sửa bản thiết kế tổng hợp trên tay.'
++      - '&6ex: /networks fixBlueprint networks-changed'
++      addstorageitem:
++      - '&6/networks addStorageItem <amount> - Thêm một số lượng vật phẩm nhất định
++        đang cầm vào kho hàng đang nhìn vào.'
++      - '&6ex: /networks addstorageItem 1000'
++      reducestorageitem:
++      - '&6/networks reduceStorageItem <amount> - Giảm một số lượng vật phẩm nhất
++        định đang cầm khỏi kho hàng đang nhìn vào.'
++      - '&6ex: /networks reduceStorageItem 1000'
++      setquantum:
++      - '&6/networks setQuantum <amount> - Đặt vật phẩm của kho lưu trữ lượng tử đang
++        nhìn thành vật phẩm đang cầm trên tay, và đặt một số lượng lưu trữ nhất định.'
++      - '&6ex: /networks setQuantum 1000'
++      setcontainerid:
++      - '&6/networks setContainerId <containerId> - Đặt ID vùng chứa của kho hàng
++        đang nhìn.'
++      - '&6ex: /networks setContainerId 6'
++      getstorageitem:
++      - '&6/networks getStorageItem <slot> - Nhận vật phẩm của ô được chỉ định từ
++        kho hàng đang nhìn.'
++      - '&6ex: /networks getStorageItem 0'
++      worldedit:
++      - '&6/networks worldedit <subCommand> - Tính năng SlimeWorldEdit.'
++      - '&6/networks worldedit pos1 - Chọn vị trí đầu tiên'
++      - '&6/networks worldedit pos2 - Chọn vị trí thứ hai'
++      - '&6/networks worldedit paste <sfid> <handler> <force> - Dán khối Slimefun'
++      - '&6/networks worldedit clear <callHandler> <skipVanilla> - Xóa khối Slimefun'
++      - '&6/networks worldedit blockMenu setSlot <slot> - Đặt vật phẩm trên tay vào
++        ô tương ứng trong menu của khối Slimefun trong khu vực đã chọn'
++      - '&6/networks worldedit blockInfo add <key> <value> - Thêm thông tin khối Slimefun'
++      - '&6/networks worldedit blockInfo remove <value> - Xóa thông tin khối Slimefun'
++      - '&6/networks worldedit blockInfo set <key> <value> - Đặt thông tin khối Slimefun'
++      - '&6/networks worldedit clone - Sao chép khu vực đã chọn đến vị trí của bạn'
++      - '&6/networks worldedit clearPos - Xóa vị trí đã chọn'
++      - '&6/networks worldedit showAreaOutline - Hiển thị viền ngoài khu vực đã chọn'
++      updateitem:
++      - '&6/networks updateItem - Cập nhật vật phẩm trên tay.'
++      - '&6ex: /networks updateItem'
++      viewlog:
++      - '&6/networks viewLog - In nhật ký của AdminDebuggable đang được trỏ tới.'
++      - '&6ex: /networks viewLog'
++      unknown-command:
++      - <error>Lệnh không xác định! Hãy dùng /networks help để xem thông tin trợ giúp.
++    worldedit:
++      must-select-range: '&cBạn phải chọn một khu vực trước tiên!'
++      must-select-same-world: '&cHai vị trí đã chọn phải ở cùng một thế giới!'
++      clearing-area: '&aĐang dọn sạch các khối từ %s đến %s'
++      clear-done: '&aĐã dọn dẹp %s khối trong %s ms'
++      set-slot: '&aĐang đặt ô %s thành %s'
++      set-slot-done: '&aĐã đặt ô %s thành %s trong %s ms'
++      pasting-block: '&aĐang dán khối từ %s đến %s'
++      paste-done: '&aĐã dán %s khối trong %s ms'
++      setting-info: '&aĐang thiết lập %s thành %s'
++      set-info-done: '&aĐã thiết lập %s thành %s trong %s ms'
++      removing-info: '&aĐang loại bỏ %s'
++      remove-info-done: '&aĐã loại bỏ %s trong %s ms'
++      invalid-slimefun-block-id: '&cĐây không phải là một ID khối Slimefun hợp lệ!'
++      not-a-placeable-block: '&cKhối Slimefun không thể được đặt!'
++      set-pos1: '&aĐã đặt vị trí 1 thành %s'
++      set-pos2: '&aĐã đặt vị trí 2 thành %s'
++      set-pos1-with-blocks: '&aĐã đặt vị trí 1 thành %s (%s Khối)'
++      set-pos2-with-blocks: '&aĐã đặt vị trí 2 thành %s (%s Khối)'
++      invalid-slot: '&cSố ô phải nằm trong khoảng từ 0-53!'
++  normal-operation:
++    common:
++      page: Trang
++      crafter_types:
++        ancient_altar: Bàn thờ cổ đại
++        armor_forge: Lò rèn giáp
++        compressor: Máy nén
++        crafting: Máy chế tạo
++        expansion_workbench: Bàn chế tạo Networks Expansion
++        grind_stone: Cối xay đá
++        juicer: Máy ép trái cây
++        magic_workbench: Bàn chế tạo ma thuật
++        ore_crusher: Máy nghiền quặng
++        pressure_chamber: Buồng áp suất
++        quantum_workbench: Bàn chế tạo lượng tử
++        smeltery: Lò nung
++        ae: AE
++    quantum_cache:
++      empty: Trống
++      stored_item: '<click_info>Vật phẩm: %s'
++      stored_amount: '<click_info>Số lượng: <white>%s'
++      custom_max_limit: '<click_info>Giới hạn sức chứa hiện tại: <error>%s'
++    memory_card:
++      empty: <warning>Trống
++    item_mover:
++      stored_item: '&bĐã lưu trữ: %s'
++      stored_amount: '&bSố lượng: %s'
++      suggest_use_drawers: '&cVui lòng sử dụng chế độ chuyển đổi nhanh của Ngăn kéo
++        mạng'
++    quantum_storage:
++      waiting_for_input_custom_max_amount: '<passive>[<gold>Networks Expansion<passive>]
++        <warning>Vui lòng nhập dung lượng của kho lưu trữ lượng tử cao cấp mạng. Giới
++        hạn tối đa là: 140737488355328'
++      waiting_for_input_custom_max_amount_new: '<passive>[<gold>Networks Expansion<passive>]
++        <warning>Vui lòng nhập dung lượng của kho lưu trữ lượng tử cao cấp mạng. Giới
++        hạn tối đa là: 140737488355328'
++    grid:
++      waiting_for_filter: <warning>Vui lòng nhập tên (tên hiển thị) hoặc loại vật
++        phẩm bạn muốn lọc
++      item_amount: '{0}Số lượng: {1}{2}'
++      filter: '&aBạn đang tìm kiếm: %s'
++    grid_new_style:
++      click_to_withdraw: <passive>Nhấp để rút vật phẩm
++      crafted: <success>Lần chế tạo trước <click_info>%s x%s
++    directional:
++      limit_quantity: '<random_color>Số lượng hiện tại: %s'
++      transport_mode: '<random_color>Chế độ hiện tại: %s'
++      display_empty: '&7Đặt hướng: %s'
++      display_name: '<passive>Đặt hướng: %s (%s)'
++      preset_display_name: '<passive>Nhấp để thiết lập hướng cài sẵn: %s'
++      display_lore:
++      - '<click_info>Nhấp chuột trái: <passive>Thiết lập hướng'
++      - '<click_info>Shift+Nhấp chuột trái: <passive>Mở khối mục tiêu'
++      set_facing: <success>Đã đặt hướng về phía kho chứa này!
++    manager:
++      set_name: '<passive>Nhập tên: '
++      id: '<passive>ID: %s'
++      location: <click_info>%s:%s:%s
++      advance: '<passive>Máy chế tạo cao cấp: %s'
++      crafter_type: '<passive>Loại máy chế tạo: %s'
++      'yes': '&a√'
++      'no': '&cx'
++      quantum-manager-click-behavior:
++      - '<click_info>Nhấp chuột trái: <passive>Mở bộ lưu trữ'
++      - '<click_info>Cầm vật phẩm + Nhấp chuột trái: <passive>Đặt vật phẩm được lưu
++        trong kho đang được nhấp vào thành vật phẩm cầm trên tay'
++      - '<click_info>Nhấp chuột phải: <passive>Làm nổi bật bộ lưu trữ'
++      - '<click_info>Shift + Nhấp chuột trái: <passive>Ghim/Bỏ ghim bộ lưu trữ'
++      - '<click_info>Shift + Nhấp chuột phải: <passive>Đặt tên cho bộ lưu trữ'
++      - '<click_info>Cầm vật phẩm + Shift + Nhấp chuột phải: <passive>Đặt biểu tượng
++        của bộ lưu trữ hiển thị trong bộ quản lý này'
++      drawer-manager-click-behavior:
++      - '<click_info>Nhấp chuột trái: <passive>Mở bộ lưu trữ'
++      - '<click_info>Nhấp chuột phải: <passive>Làm nổi bật bộ lưu trữ'
++      - '<click_info>Shift + Nhấp chuột trái: <passive>Ghim/Bỏ ghim bộ lưu trữ'
++      - '<click_info>Shift + Nhấp chuột phải: <passive>Đặt tên cho bộ lưu trữ'
++      - '<click_info>Cầm vật phẩm + Shift + Nhấp chuột phải: <passive>Đặt biểu tượng
++        của bộ lưu trữ hiển thị trong bộ quản lý này'
++      crafter-manager-click-behavior:
++      - '<click_info>Nhấn Q trên bản thiết kế: <passive>Mở máy chế tạo'
++      - '<click_info>Nhấp chuột trái: <passive>Lấy bản thiết kế ra'
++      - '<click_info>Cầm bản thiết kế + Nhấp chuột trái: <passive>Đổi bản thiết kế'
++      - '<click_info>Nhấp chuột phải: <passive>Làm nổi bật máy chế tạo'
++      - '<click_info>Shift + Nhấp chuột trái: <passive>Ghim/Bỏ ghim máy chế tạo'
++      - '<click_info>Shift + Nhấp chuột phải: <passive>Đặt tên cho máy chế tạo'
++      - '<click_info>Cầm vật phẩm + Shift + Nhấp chuột phải: <passive>Đặt biểu tượng
++        của bộ lưu trữ hiển thị trong bộ quản lý này'
++    viewer:
++      location: '&7%s:%s:%s'
++      when: '&7Thời gian: %s'
++      change: '%s'
++      item-flow-viewer-click-behavior:
++      - '<click_info>Nhấn chuột trái: <passive>Mở giao diện chi tiết'
++      item-flow-viewer-sub-click-behavior:
++      - '<click_info>Nhấn chuột trái: <passive>Làm nổi bật máy móc'
++    comprehensive:
++      auto_set_face: Tự động thiết lập hướng
++  completed-operation:
++    directional:
++      presetted_facing: '<success>Đã cài đặt sẵn hướng: %s'
++      presetted: '<success>Hướng cài đặt sẵn đã được đặt thành: %s'
++      presetted_failed: <warning>Không tìm thấy máy nào có thể thiết lập hướng cài
++        sẵn
++    comprehensive:
++      toggled_filter_mode: '<success>Chế độ bộ lọc đã được chuyển đổi thành: %s'
++      filter_mode_black_list: Danh sách đen
++      filter_mode_white_list: Danh sách trắng
++      toggled_match_mode: '<success>Chế độ kết hợp đã được chuyển đổi thành: %s'
++      match_mode_all_match: Khớp tất cả
++      match_mode_material_match: Chỉ khớp vật liệu
++      facing_preset_applied: <success>Đã tự động đặt hướng!
++    status_viewer:
++      subscribed: <success>Đã đăng ký quan sát máy ( %s )
++      unsubscribed: <success>Không còn đăng ký quan sát máy ( %s )
++      is_networks_object: <success>Là nút mạng
++      not_networks_object: <warning>Không phải nút mạng
++      connected_to_network: <success>Đã kết nối với mạng
++      not_connected_to_network: <warning>Không được kết nối với mạng
++    decoder:
++      decode_blueprint_success: '&aGiải mã bản thiết kế thành công!'
++    wireless_configurator:
++      transmitter_linked: <success>Bộ phát không dây mạng đã được thiết lập.
++      receiver_set: <success>Vị trí của bộ thu không dây mạng đã được lưu trữ.
++      set_location: Đã đặt vị trí đích %s cho máy %s
++    cargo_node_quick_tool:
++      node_set: '&9Vật phẩm: %s'
++      config_saved: '&aĐã tải thành công'
++      pasted_config: '&aThiết lập thành công!'
++    grid:
++      filter_set: <success>Bộ lọc đã được bật
++      sort_orders:
++        alphabetical: Sắp xếp theo thứ tự bảng chữ cái
++        number: Sắp xếp theo số lượng vật phẩm
++        number_reverse: Sắp xếp theo số lượng vật phẩm đảo ngược
++        addon: Sắp xếp theo thứ tự bảng chữ cái Addon của vật phẩm
++    quantum_storage:
++      changed_custom_max_amount: '<passive>[<gold>NetworksExpansion<passive>] <success>Đã
++        thay đổi sức chứa: %s'
++    remote:
++      bound_to_grid: <success>Lưới đã được liên kết với bộ truy cập từ xa
++    probe:
++      split: '------------------------------'
++      networks_title: '         Networks - Thống kê Thành phần        '
++      expansion_title: '        NetworksExpansion - Thống kê Thành phần      '
++      distinct_items: Số lượng Loại Vật phẩm
++      total_items: Tổng Số lượng Vật phẩm
++      total_nodes: 'Tổng Số Nút: %s/%s'
++      overburdened: '<error>Cảnh báo: <passive>Mạng này đã đạt đến giới hạn số lượng
++        nút tối đa, một số nút có thể không hoạt động bình thường. Vui lòng giảm số
++        lượng nút mạng.'
++    crayon:
++      enabled: <success>Chức năng vẽ mạng đã được kích hoạt
++      disabled: <warning>Chức năng vẽ mạng đã bị vô hiệu hóa
++    configurator:
++      copied: <success>Đã sao chép các cài đặt
++      copied_limit_quantity: '<success>Đã lưu trữ số lượng vận chuyển là: %s'
++      pasted_limit_quantity: '<success>Số lượng vận chuyển đã được thiết lập thành:
++        %s'
++      copied_transport_mode: '<success>Đã lưu trữ chế độ vận chuyển là: %s'
++      pasted_transport_mode: '<success>Chế độ vận chuyển đã được thiết lập thành:
++        %s'
++      pasted_facing: '<success>Hướng: <passive>Đã áp dụng thành công'
++      pasted_item: '<success>Vật phẩm [%s]: <passive>Đã được thêm vào bộ lọc'
++    drawer:
++      bound_id: '&9ID Container đã liên kết: &e%s'
++      server-uuid: '&7ID Máy chủ: %s'
++      deposited_item: '&aĐã ký gửi vật phẩm!'
++      transferred_to_quantum_storage: '&aĐã chuyển sang kho lượng tử!'
++      transferred_to_drawer: '&aĐã gửi: %sx%s vào ngăn kéo!'
++      transferred_to_item_mover: '&aĐã chuyển: %sx%s vào thanh di chuyển vật phẩm!'
++    item_mover:
++      deposit_success: Đã lưu trữ %sx%s vào thanh di chuyển vật phẩm
++      withdraw_success: Đã xuất %sx%s vào kho lưu trữ
++    manager:
++      top_storage_off: <warning>Bỏ ghim bộ nhớ
++      top_storage_on: <success>Đã ghim bộ nhớ
++      set_icon: <success>Đã cài đặt biểu tượng
++      set_name: <success>Đã cài đặt tên
++    manual_crafter:
++      success: '&aChế tạo thành công'
++    storage_card_converter:
++      success: '&aChuyển đổi thành công'
++  unsupported-operation:
++    incompatible-jeg-version: <error>Phiên bản plugin tiền đề JustEnoughGuide quá
++      thấp, vui lòng nâng cấp lên bản build mới nhất
++    storage_card_converter:
++      final_tech_required: <error>Máy chủ cần cài đặt FinalTECH hoặc FinalTECH-Changed
++        để sử dụng máy này
++      research_required: <error>Thẻ lưu trữ chưa được mở khóa
++      card_disabled: <error>Thẻ lưu trữ đã bị vô hiệu hóa trong thế giới hiện tại
++      output_full: <error>Khe đầu ra đã đầy
++      no_quantum_storage: <error>Chưa đặt kho lượng tử
++      quantum_storage_not_single: <error>Quá nhiều kho lượng tử
++      not_quantum_storage: <error>Không phải là kho lượng tử
++      too_few_items: <error>Quá ít vật phẩm trong kho lượng tử
++      not_target_item: <error>Vật phẩm trong kho lượng tử không thể chuyển đổi thành
++        thẻ lưu trữ
++    controller:
++      cancel_place: <error>Mạng này đã được kết nối với một bộ điều khiển mạng!
++    comprehensive:
++      cancel_place: <error>Việc kết nối hai bộ điều khiển bị cấm
++      no_permission: '&cBạn không có quyền sử dụng vật phẩm này!'
++      invalid_queue: Không thể thêm tác vụ vào hàng đợi, vui lòng thử khởi động lại
++        máy chủ!
++      unable_to_auto_set_face: '&cKhông thể tự động thiết lập hướng cho tọa độ (x:{}
++        | y:{} | z:{})'
++    decoder:
++      no_input: '&cKhông có bản thiết kế đầu vào'
++      not_blueprint: '&cVật phẩm này không phải là bản thiết kế'
++      unsupported_blueprint: '&cBản thiết kế không được hỗ trợ'
++      invalid_blueprint: '&cVật phẩm này không có thông tin bản thiết kế'
++      output_full: '&cKhông đủ không gian cho khe đầu ra'
++    storage_unit_upgrade_table:
++      no_recipe_match: '&cKhông có công thức phù hợp'
++    wireless_configurator:
++      not_network_wireless_block: <error>Phải được sử dụng trên một khối không dây
++        mạng.
++      no_target_location: <error>Bạn cần đặt vị trí của bộ thu trước.
++      not_same_world: <error>Bộ thu không dây mạng nằm ở một thế giới khác.
++    item_mover:
++      invalid_item_mover: '&cKhông phải là một thanh chuyển vật phẩm hợp lệ'
++      invalid_storage: '&cVui lòng chọn một kho lưu trữ hợp lệ.'
++      empty_storage: '&cKhông có vật phẩm khả dụng trong kho lưu trữ.'
++      invalid_item: '&cKhông thể lấy vật phẩm.'
++      empty_mover: '&cKhông có vật phẩm khả dụng.'
++      full_storage: '&cKho lưu trữ đã đầy'
++      suggest_use_drawers: '&cBạn cần sử dụng vật phẩm này trong giao diện ngăn kéo'
++    encoder:
++      not_enough_power: <warning>Không đủ năng lượng trong mạng để hoàn thành nhiệm
++        vụ này
++      invalid_blueprint: <warning>Bạn cần cung cấp một bản thiết kế trống hợp lệ
++      disabled_blueprint: <warning>Bản thiết kế này đã bị vô hiệu hóa
++      disabled_output: <warning>Đầu ra của công thức này đã bị vô hiệu hóa
++      invalid_recipe: <warning>Đây có vẻ không phải là một công thức hợp lệ
++      output_full: <warning>Bạn cần phải làm trống khe đầu ra
++    cargo_node_quick_tool:
++      invalid_tool: '&cCông cụ không hợp lệ, vui lòng không xếp chồng khi sử dụng'
++      invalid_node: '&cVui lòng trỏ tới một nút chở hàng'
++      not-enough-items: '&cKhông đủ vật liệu'
++      node-type-not-same: '&cLoại cấu hình đã lưu không khớp với mục tiêu'
++      no-config: '&cVui lòng tải một cấu hình trước tiên'
++    display:
++      unknown_type: Loại nhóm hiển thị không xác định '%s', mô hình đặc biệt đã bị
++        vô hiệu hóa.
++    memory_card:
++      blacklisted_item: <warning>Vật phẩm này không thể được lưu trữ trong thẻ nhớ
++      invalid_amount: <warning>Vui lòng lấy ra một thẻ nhớ duy nhất, không xếp chồng
++      not_empty: <warning>Chỉ những thẻ nhớ trống mới có thể được gán vật phẩm
++    can_cooldown: <warning>Máy dò vẫn đang trong thời gian hồi chiêu
++    drawer:
++      wrong_server: '<warning>Vui lòng đặt vật phẩm này vào đúng máy chủ, máy chủ
++        của ngăn kéo: %s ; Máy chủ hiện tại: %s'
++      already_exists: '&cContainer này đã tồn tại ở một vị trí khác!'
++      invalid_container: '&cVui lòng đặt kho lượng tử hoặc thanh chuyển vật phẩm vào
++        ô chứa kho lượng tử'
++      invalid_container_amount: '&cÔ kho lượng tử chỉ có thể chứa một vật phẩm!'
++      invalid_chosen_item: '&cVui lòng đặt vật phẩm bạn muốn chuyển vào bên dưới'
++      invalid_quantum_storage: '&cKho lượng tử không có vật phẩm hoặc đã bị hỏng'
++      quantum_storage_item_mismatch: '&cVật phẩm trong kho lượng tử khác với vật phẩm
++        cần chuyển'
++      quantum_storage_full: '&cKho lượng tử không có đủ vật phẩm hoặc không thể chứa
++        thêm vật phẩm nào nữa'
++      not_enough_item: '&cKhông có đủ vật phẩm trong container này để chuyển vào kho
++        lượng tử'
++      each_not_enough_item: '&cKhông còn vật phẩm nào khác để chuyển'
++      not_found_chosen_item: '&cKhông tìm thấy vật phẩm: %s'
++      item_mover_empty: '&cKhông có vật phẩm trong thanh chuyển vật phẩm'
++      item_mover_item_mismatch: '&cVật phẩm không khớp'
++    directional:
++      unexcepted_value: 'Giá trị không mong muốn: %s'
++    remote:
++      must_connect_to_grid: <error>Phải kết nối với một mạng
++      not_a_grid_found: <error>Không thể tìm thấy mạng bị ràng buộc
++      grid_not_in_range: <error>Mạng bị ràng buộc nằm ngoài phạm vi
++      no_grid_bound: <error>Bộ điều khiển từ xa này không bị ràng buộc với bất kỳ
++        mạng nào
++      grid_not_loaded: <error>Chunk chứa mạng bị ràng buộc chưa được tải
++    quantum_storage:
++      quantum_storage_not_empty: <warning>Kho lượng tử phải trống rỗng mới có thể
++        thay đổi vật phẩm
++      custom_max_amount_not_supported: <warning>Đây không phải là kho lượng tử cao
++        cấp hợp lệ
++      invalid_custom_max_amount: <passive>[<gold>Networks Expansion<passive>] <error>Kho
++        lượng tử cao cấp của mạng phải nằm trong khoảng từ 1 đến 140737488355328
++      invalid_custom_max_amount_new: <passive>[<gold>Networks Expansion<passive>]
++        <error>Kho lượng tử cao cấp của mạng phải nằm trong khoảng từ 1 đến 140737488355328
++    configurator:
++      not_a_copyable_block: <error>Khối này không có hướng được chỉ định
++      not_a_pasteable_block: <error>Bạn phải trỏ vào một khối mạng có tuỳ chọn hướng
++      facing_not_found: '<error>Hướng: <passive>Chưa được cung cấp'
++      not_enough_items: '<warning>Vật phẩm [%s]: <passive>Không có đủ vật phẩm để
++        lấp đầy bộ lọc'
++      no_item_configured_pusher: '<warning>Vật phẩm [%s]: <passive>Không có vật phẩm
++        nào trong cấu hình đã lưu trữ'
++      no_item_configured: '<warning>Vật phẩm: <passive>Không có vật phẩm nào trong
++        cấu hình đã lưu trữ'
++    debugger:
++      player_is_not_op: <error>Vật phẩm này chỉ người chơi có quyền OP mới có thể
++        sử dụng.
++    quantum_workbench:
++      output_slot_full: <warning>Bạn cần phải làm trống khe đầu ra
++    grid:
++      may_duping: Người chơi "%s" đã cố gắng sử dụng lưới mạng từ một nút không hợp
++        lệ tại %s, người chơi này có thể đang cố gắng gian lận hoặc sao chép vật phẩm.
++    manager:
++      support_quantum_only: '&cChỉ hỗ trợ thao tác trên bộ lưu trữ lượng tử mạng'
++      quantum_storage_not_empty: <warning>Bộ lưu trữ lượng tử mạng phải trống mới
++        có thể thay thế vật phẩm
++    manual_crafter:
++      disabled-output: '&cSản phẩm đầu ra đã bị vô hiệu hóa'
++      full-output: '&cKhe đầu ra đã đầy'
++    crafter_manager:
++      different_type_1: '&cBản thiết kế đã lưu không khớp với loại máy chế tạo'
++      different_type_2: '&cĐã lưu: %s; &aKỳ vọng: %s'
++  super-head:
++  - '███╗   ██╗███████╗████████╗██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗███████╗   '
++  - '████╗  ██║██╔════╝╚══██╔══╝██║    ██║██╔═══██╗██╔══██╗██║ ██╔╝██╔════╝   '
++  - '██╔██╗ ██║█████╗     ██║   ██║ █╗ ██║██║   ██║██████╔╝█████╔╝ ███████╗   '
++  - '██║╚██╗██║██╔══╝     ██║   ██║███╗██║██║   ██║██╔══██╗██╔═██╗ ╚════██║   '
++  - '██║ ╚████║███████╗   ██║   ╚███╔███╔╝╚██████╔╝██║  ██║██║  ██╗███████║   '
++  - '╚═╝  ╚═══╝╚══════╝   ╚═╝    ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝   '
++  - '███████╗██╗  ██╗██████╗  █████╗ ███╗   ██╗███████╗██╗ ██████╗ ███╗   ██╗ '
++  - '██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗████╗  ██║██╔════╝██║██╔═══██╗████╗  ██║ '
++  - '█████╗   ╚███╔╝ ██████╔╝███████║██╔██╗ ██║███████╗██║██║   ██║██╔██╗ ██║ '
++  - '██╔══╝   ██╔██╗ ██╔═══╝ ██╔══██║██║╚██╗██║╚════██║██║██║   ██║██║╚██╗██║ '
++  - '███████╗██╔╝ ██╗██║     ██║  ██║██║ ╚████║███████║██║╚██████╔╝██║ ╚████║ '
++  - '╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝ '
++  - '                                                                         '
++  - '                           Networks - Mạng lưới                                '
++  - '                      Tác giả: Sefiraat Việt hóa: ybw0014                         '
++  - '                      NetworksExpansion - Bản Mở Rộng Mạng lưới                         '
++  - '                      Tác giả: yitoudaidai，tinalness                        '
++  - '                       Nếu gặp lỗi vui lòng ưu tiên phản hồi đến kho lưu trữ
++    bản sửa đổi:                           '
++  - '        https://github.com/ytdd9527/NetworksExpansion/issues             '
++  - '                      Khi sử dụng addon này, vui lòng không trực tiếp tắt tiến
++    trình                         '
++  - '                      Mà hãy dùng lệnh /stop bình thường để tránh mất dữ liệu                         '
++  - '#########################################################################'
++  depend:
++    not-found-guizhanlib: Plugin này yêu cầu thư viện GuizhanLibPlugin để hoạt động!
++    suggest-download-guizhanlib: 'Tải xuống từ đây: https://50l.cc/gzlib'
++    suggest-download-newer-slimefun: Bạn cần cập nhật Slimefun4 để plugin này hoạt
++      động bình thường!
++  startup:
++    loaded-language: Đã tải tệp ngôn ngữ!
++    getting-config: Đang lấy thông tin cấu hình...
++    trying-auto-update: Đang thử tự động cập nhật...
++    connecting-database: Đang kết nối tệp cơ sở dữ liệu...
++    failed-to-connect-database: Kết nối tệp cơ sở dữ liệu thất bại!
++    creating-query-queue: Đang tạo hàng đợi...
++    creating-auto-save-thread: Đang tạo luồng tự động lưu...
++    registering-items: Đang đăng ký vật phẩm...
++    registering-listeners: Đang đăng ký trình lắng nghe...
++    registering-commands: Đang đăng ký lệnh...
++    enabled-successfully: Đã bật tiện ích mở rộng thành công!
++  shutdown:
++    saving-config: Đang lưu thông tin cấu hình...
++    disconnecting-database: Đang lưu thông tin cơ sở dữ liệu, vui lòng không kết thúc
++      tiến trình!
++    saving-data: 'Đang lưu thông tin cơ sở dữ liệu, vui lòng không kết thúc tiến trình!
++      Hàng đợi hiện tại: %s'
++    saved-all-data: Đã lưu thông tin cơ sở dữ liệu!
++    disabled-successfully: Đã vô hiệu hóa tiện ích mở rộng an toàn!
++  integrations:
++    found-slimehud: Đã phát hiện cài đặt SlimeHUD, đăng ký các tính năng liên quan!
++    not-found-slimehud: 'Bạn phải cập nhật SlimeHUD để cho phép mạng thêm các chức
++      năng liên quan. '
++    found-netheopoiesis: Phát hiện đã cài đặt Netheopoiesis, tiến hành đăng ký vật
++      phẩm liên quan!
++    not-found-netheopoiesis: 'Bạn phải cài đặt Netheopoiesis để đăng ký các vật phẩm
++      liên quan. '
++    slimehud:
++      empty_quantum_storage: '&7| Trống'
++    netheopoiesis:
++      dirt_tips: (Hoặc có cấp độ thanh lọc cao hơn)
++      dirt_level:
++        highest: Khối cỏ Nether
++        high: Bùn đất tham lam
++      stone_chunk_seed:
++        name: Hạt giống khối đá
++        lore:
++        - Sau khi cây này trưởng thành,
++        - sẽ thu hoạch được các khối đá.
++      synthetic_seed:
++        name: Hạt giống nhân tạo
++        lore:
++        - Hạt giống này không có bất kỳ hiệu ứng nào.
++      synthetic_emerald_seed:
++        name: Hạt giống ngọc lục bảo nhân tạo
++        lore:
++        - Sau khi cây này trưởng thành,
++        - sẽ thu hoạch được ngọc lục bảo nhân tạo.
++      synthetic_diamond_seed:
++        name: Hạt giống kim cương nhân tạo
++        lore:
++        - Sau khi cây này trưởng thành,
++        - sẽ thu hoạch được kim cương nhân tạo.
++      fragmented_seed:
++        name: Hạt giống mảnh vỡ
++        lore:
++        - Sau khi cây này trưởng thành,
++        - sẽ thu hoạch được các mảnh vỡ ngọc lục bảo nhân tạo.
++  save-all: Đang lưu dữ liệu NetworksExpansion.
++icons:
++  keybind-settings:
++    name: '&6Cài đặt điều khiển phím'
++  light-gray-background:
++    name: '&7'
++  yellow-border:
++    name: '&7'
++  upload-keybind-script:
++    name: '&6Tải lên kịch bản điều khiển phím'
++  gray-background:
++    name: '&7'
++  script-center:
++    name: '&6Trung tâm kịch bản'
++  return-ingredient:
++    name: '&6Nhấn để trả lại nguyên liệu'
++  return-output:
++    name: '&6Nhấn để trả lại vật phẩm ở ô đầu ra'
++  craft:
++    name: '&eChế tạo'
++    lore:
++    - '<click_info>Chuột trái: Chế tạo 1 lần'
++    - '<click_info>Chuột phải: Chế tạo 64 lần'
++  keybinds:
++    scripts:
++      display:
++        name: '&6Kịch bản điều khiển phím %s của %s (#%s)'
++        lore:
++        - '&aNhấn để tải kịch bản điều khiển phím này'
++    store-item:
++      name: '&6Lưu trữ vật phẩm'
++    do-nothing:
++      name: '&6Không làm gì'
++    hanginggridnewstyle-display-keybinds:
++      name: '&6Điều khiển phím thanh hiển thị'
++    networkgridnewstyle-display-keybinds:
++      name: '&6Điều khiển phím thanh hiển thị'
++    networkcraftinggridnewstyle-display-keybinds:
++      name: '&6Điều khiển phím thanh hiển thị'
++    smartnetworkcraftinggridnewstyle-display-keybinds:
++      name: '&6Điều khiển phím thanh hiển thị'
++    outside-keybinds:
++      name: '&6Điều khiển phím túi đồ'
++    smart-outside-keybinds:
++      name: '&6Điều khiển phím túi đồ'
++    clicked-item-not-equals-to-cursor:
++      name: '&6Khi vật phẩm được nhấp không khớp với vật phẩm ở con trỏ'
++    store-cursor:
++      name: '&6Lưu trữ vật phẩm ở con trỏ'
++    left-click:
++      name: '&6Khi nhấp chuột trái'
++    right-click:
++      name: '&6Khi nhấp chuột phải'
++    shift-click:
++      name: '&6Khi nhấn Shift + nhấp chuột'
++    shift-left-click:
++      name: '&6Khi nhấn Shift + nhấp chuột trái'
++    shift-right-click:
++      name: '&6Khi nhấn Shift + nhấp chuột phải'
++    one-cursor:
++      name: '&6Lấy ra 1 vật phẩm vào con trỏ'
++    stack-cursor:
++      name: '&6Lấy ra 1 stack vật phẩm vào con trỏ'
++    stack-inv:
++      name: '&6Lấy ra 1 stack vật phẩm vào túi đồ'
++    one-inv:
++      name: '&6Lấy ra 1 vật phẩm vào túi đồ'
++    custom-cursor:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào con trỏ'
++    custom-inv:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào túi đồ'
++    ask-cursor:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào con trỏ'
++    ask-inv:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào túi đồ'
++    hanginggridnewstyle-store-cursor:
++      name: '&6Lưu trữ vật phẩm ở con trỏ'
++    hanginggridnewstyle-one-cursor:
++      name: '&6Lấy ra 1 vật phẩm vào con trỏ'
++    hanginggridnewstyle-stack-cursor:
++      name: '&6Lấy ra 1 stack vật phẩm vào con trỏ'
++    hanginggridnewstyle-stack-inv:
++      name: '&6Lấy ra 1 stack vật phẩm vào túi đồ'
++    hanginggridnewstyle-one-inv:
++      name: '&6Lấy ra 1 vật phẩm vào túi đồ'
++    hanginggridnewstyle-custom-cursor:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào con trỏ'
++    hanginggridnewstyle-custom-inv:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào túi đồ'
++    hanginggridnewstyle-ask-cursor:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào con trỏ'
++    hanginggridnewstyle-ask-inv:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào túi đồ'
++    networkgridnewstyle-store-cursor:
++      name: '&6Lưu trữ vật phẩm ở con trỏ'
++    networkgridnewstyle-one-cursor:
++      name: '&6Lấy ra 1 vật phẩm vào con trỏ'
++    networkgridnewstyle-stack-cursor:
++      name: '&6Lấy ra 1 stack vật phẩm vào con trỏ'
++    networkgridnewstyle-stack-inv:
++      name: '&6Lấy ra 1 stack vật phẩm vào túi đồ'
++    networkgridnewstyle-one-inv:
++      name: '&6Lấy ra 1 vật phẩm vào túi đồ'
++    networkgridnewstyle-custom-cursor:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào con trỏ'
++    networkgridnewstyle-custom-inv:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào túi đồ'
++    networkgridnewstyle-ask-cursor:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào con trỏ'
++    networkgridnewstyle-ask-inv:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào túi đồ'
++    networkcraftinggridnewstyle-store-cursor:
++      name: '&6Lưu trữ vật phẩm ở con trỏ'
++    networkcraftinggridnewstyle-one-cursor:
++      name: '&6Lấy ra 1 vật phẩm vào con trỏ'
++    networkcraftinggridnewstyle-stack-cursor:
++      name: '&6Lấy ra 1 stack vật phẩm vào con trỏ'
++    networkcraftinggridnewstyle-stack-inv:
++      name: '&6Lấy ra 1 stack vật phẩm vào túi đồ'
++    networkcraftinggridnewstyle-one-inv:
++      name: '&6Lấy ra 1 vật phẩm vào túi đồ'
++    networkcraftinggridnewstyle-custom-cursor:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào con trỏ'
++    networkcraftinggridnewstyle-custom-inv:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào túi đồ'
++    networkcraftinggridnewstyle-ask-cursor:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào con trỏ'
++    networkcraftinggridnewstyle-ask-inv:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào túi đồ'
++    smartnetworkcraftinggridnewstyle-store-cursor:
++      name: '&6Lưu trữ vật phẩm ở con trỏ'
++    smartnetworkcraftinggridnewstyle-one-cursor:
++      name: '&6Lấy ra 1 vật phẩm vào con trỏ'
++    smartnetworkcraftinggridnewstyle-stack-cursor:
++      name: '&6Lấy ra 1 stack vật phẩm vào con trỏ'
++    smartnetworkcraftinggridnewstyle-stack-inv:
++      name: '&6Lấy ra 1 stack vật phẩm vào túi đồ'
++    smartnetworkcraftinggridnewstyle-one-inv:
++      name: '&6Lấy ra 1 vật phẩm vào túi đồ'
++    smartnetworkcraftinggridnewstyle-custom-cursor:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào con trỏ'
++    smartnetworkcraftinggridnewstyle-custom-inv:
++      name: '&6Lấy ra số lượng tùy chỉnh vật phẩm vào túi đồ'
++    smartnetworkcraftinggridnewstyle-ask-cursor:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào con trỏ'
++    smartnetworkcraftinggridnewstyle-ask-inv:
++      name: '&6Hỏi số lượng và lấy ra số lượng vật phẩm được chỉ định vào túi đồ'
++  filter-mode-black-list:
++    name: '&6Chế độ danh sách đen'
++    lore:
++    - '&7Nhấp để chuyển sang chế độ danh sách trắng'
++  filter-mode-white-list:
++    name: '&6Chế độ danh sách trắng'
++    lore:
++    - '&7Nhấp để chuyển sang chế độ danh sách đen'
++  match-mode-all-match:
++    name: '&6Chế độ khớp tất cả'
++    lore:
++    - '&7Nhấp để chuyển sang chế độ chỉ khớp vật liệu'
++  match-mode-material-match:
++    name: '&6Chế độ chỉ khớp vật liệu'
++    lore:
++    - '&7Nhấp để chuyển sang chế độ khớp tất cả'
++  advanced-vacuum-split-block:
++    name: ' '
++    lore:
++    - ' '
++  jeg-button:
++    name: '&6Tự động điền công thức'
++    lore:
++    - '&7Nhấp để mở giao diện tự động điền công thức'
++  item-flow-viewer-force-clean:
++    name: '&6Xóa bộ nhớ cache'
++    lore:
++    - '&7Nhấp để xóa bộ nhớ cache'
++  item-flow-viewer-back-to-main:
++    name: '&7Trở về'
++    lore:
++    - '&7Nhấp để trở về giao diện chính'
++  unknown-item:
++    name: '&7Vật phẩm không xác định'
++    lore:
++    - '&7Vật phẩm không xác định'
++  craft-button-stack-6x6:
++    name: <click_info>Chế tạo
++    lore:
++    - ''
++  craft-button-stack-3x3:
++    name: <click_info>Chế tạo
++    lore:
++    - ''
++  craft-button:
++    name: <click_info>Chế tạo
++    lore:
++    - '<click_info>Nhấp chuột trái: <passive>Chế tạo'
++    - '<click_info>Shift+Nhấp chuột trái: <passive>Gửi lại các vật phẩm trong bàn
++      chế tạo vào mạng'
++  craft-button-new-style:
++    name: <click_info>Chế tạo
++    lore:
++    - '<click_info>Nhấp chuột trái: <passive>Chế tạo 1 lần'
++    - '<click_info>Shift+Nhấp chuột trái: <passive>Gửi lại các vật phẩm trong bàn
++      chế tạo vào mạng'
++    - '<click_info>Nhấp chuột phải: <passive>Chế tạo 64 lần'
++  docs_icon:
++    click_to_visit_wiki: Nhấp vào đây để truy cập Wiki
++    name: Tiện ích Wiki
++    lore:
++    - Nhấp để nhận liên kết Wiki của Mạng
++  transport_mode:
++    none: Không giới hạn
++    null_only: Chỉ khoảng trống
++    nonnull_only: Chỉ không trống
++    first_only: Chỉ cái đầu tiên
++    last_only: Chỉ cái cuối cùng
++    first_stop: Chặn cái đầu tiên
++    lazy: Chế độ lười biếng
++    void: Chế độ dọn sạch
++    specified_quantity: Chỉ số lượng được chỉ định
++  mechanism:
++    transfers:
++      data_title: '&a⇩Dữ liệu truyền⇩'
++      max_distance: '&7[&aKhoảng cách tối đa&7]&f: &6%s khối'
++      push_item_tick: '&7[&aTần suất đẩy&7]&f:&7 Đẩy mỗi &6%s SF tick'
++      grab_item_tick: '&7[&aTần suất lấy&7]&f:&7 Lấy mỗi &6%s SF tick'
++      required_power: '&7[&aTiêu thụ điện năng&7]&f:&7 Tiêu thụ &6%s J điện mạng mỗi
++        lần'
++    advanced_purger:
++      name: '&a ⇩Cơ chế làm sạch⇩'
++      lore:
++      - ''
++      - '&e&fMô tả tính năng:'
++      - '&f-&7 Máy dọn dẹp nâng cao mạng sẽ lấy từ mạng'
++      - '&f-&7 Liên tục loại bỏ các vật phẩm được chỉ định (cần đặt theo thứ tự)'
++      - '&f-&7 Các vật phẩm bị loại bỏ sẽ biến mất ngay lập tức, hãy sử dụng cẩn thận!'
++    import:
++      name: '&a ⇩Cơ chế nhập⇩'
++      lore:
++      - '&7Hệ thống thu thập vật phẩm và tích hợp mạng tự động thông minh'
++      - ''
++      - '&eTính năng cốt lõi&f:'
++      - '&f-&7 Giám sát thời gian thực: Liên tục phát hiện trạng thái của vật phẩm
++        trong tất cả 54 ô đầu vào'
++      - '&f-&7 Truyền động: Dựa trên tần suất đã đặt, truyền hàng loạt vật phẩm một
++        cách thông minh vào mạng'
++      - ''
++      - '&eHướng dẫn sử dụng&f:'
++      - '&f-&7 Đặt các vật phẩm cần nhập vào ô đầu vào'
++      - '&f-&7 Tự động hóa quá trình nhập vật phẩm, rảnh tay, nâng cao hiệu quả'
++    export:
++      name: '&a ⇩Cơ chế vận chuyển⇩'
++      lore:
++      - ''
++      - '&eCố gắng lấy tất cả các vật phẩm trong ô đầu vào với số lượng được chỉ định
++        từ mạng và xuất chúng ra ô đầu ra trong mỗi SF tick'
++  drawer:
++    click_to_disable: '&eNhấp để tắt'
++    click_to_enable: '&eNhấp để bật'
++    stored_item: '&bSố lượng đã lưu: &e%s &7/ &6%s'
++    storage_info:
++      enabled: '&a✔'
++      disabled: '&4✘'
++      name: '&cThông tin lưu trữ'
++      id: '&bID vùng chứa: &a%s'
++      type_count: '&bLoại vật phẩm: &e%s &7/ &6%s'
++      max_each: '&bSức chứa tối đa: &e%s &7* &6%s'
++      locked: '&bChế độ khóa nội dung: %s'
++      void_excess: '&bChế độ xóa khi đầy: %s'
++    content_lock:
++      locked: '&cĐã khóa'
++      unlocked: '&aMở khóa'
++      name: '&6Chế độ khóa nội dung'
++      lore_before_status:
++      - ''
++      status: '&bTrạng thái: %s'
++      lore_after_status:
++      - ''
++      - '&7Khi vùng chứa bị khóa, chỉ có thể nhập các vật phẩm hiện có'
++      - '&7Và ít nhất một vật phẩm sẽ bị giữ lại khi xuất ra'
++    void_excess:
++      enabled: '&aĐã bật'
++      disabled: '&cChưa bật'
++      name: '&6Chế độ xóa khi đầy'
++      lore_before_status:
++      - ''
++      status: '&bTrạng thái: %s'
++      lore_after_status:
++      - ''
++      - '&7Sau khi bật chế độ này, số lượng vật phẩm vượt quá sức chứa tối đa sẽ không
++        tăng lên, nhưng vẫn có thể lưu trữ được'
++    quick_transfer:
++      name: '&6Chế độ chuyển nhanh'
++      lore_before_status:
++      - ''
++      status: '&bTrạng thái: %s'
++      lore_after_status:
++      - ' '
++      - '&eĐặt kho lượng tử/thanh di chuyển vật phẩm ở trên'
++      - '&eĐặt vật phẩm cần chuyển ở dưới'
++      - ' '
++      - '&eNhấp chuột trái để bắt đầu chuyển'
++      - '&eNhấp chuột phải để chuyển chế độ'
++      - ' '
++      - '&cCần có vật phẩm này trong Ngăn kéo mạng để có thể chuyển!'
++      from_quantum: '&aChuyển từ kho lượng tử/thanh di chuyển vật phẩm đến đây'
++      to_quantum: '&aChuyển từ đây sang kho lượng tử/thanh di chuyển vật phẩm'
++    location_error:
++      name: '&cLỗi vị trí'
++      lore_before_info:
++      - ''
++      - '&eVùng chứa này đã tồn tại ở một vị trí khác'
++      - '&eVui lòng không đặt các vùng chứa có cùng ID ở nhiều vị trí khác nhau'
++      - '&eNếu bạn cho rằng đây là sự cố, vui lòng liên hệ quản trị viên để giải quyết'
++      - ' '
++      - '&6Thông tin vùng chứa:'
++      id: '&bID vùng chứa: &a%s'
++      world: '&bThế giới: &e%s'
++      location: '&bVị trí: &e%s &7/ &e%s &7/ &e%s'
++      unknown: Không rõ
++  power_display:
++    status_title: <click_info>Trạng thái
++    charge: '<passive>Điện mạng: %sJ'
++  output-background-stack:
++    name: <passive>Đầu ra
++    lore:
++    - ''
++  blueprint-background-stack:
++    name: <passive>Bản thiết kế tổng hợp
++    lore:
++    - ''
++  blueprint-back-stack:
++    name: <passive>Bản thiết kế trống
++    lore:
++    - ''
++  encode-stack:
++    name: <passive>Nhấp vào đây để mã hóa
++    lore:
++    - ''
++  blank-slot-stack:
++    name: ' '
++    lore:
++    - ''
++  page-previous-stack:
++    name: <click_info>Trang trước
++    lore:
++    - ''
++  page-next-stack:
++    name: <click_info>Trang tiếp theo
++    lore:
++    - ''
++  change-sort-stack:
++    name: <click_info>Thay đổi cách sắp xếp
++    lore:
++    - ''
++  filter-stack:
++    name: <click_info>Nhấp chuột trái để thiết lập bộ lọc (nhấp chuột phải để xóa)
++    lore:
++    - ''
++  display-mode-stack:
++    name: <click_info>Nhấp để chuyển &2chế độ hiển thị
++    lore:
++    - '<click_info>Chế độ hiển thị &2hiện tại&7: &6Hiển thị tất cả vật phẩm trong
++      mạng'
++    - <click_info>&6Chuột trái&7 để chuyển &2chế độ hiển thị
++  history-mode-stack:
++    name: <click_info>Nhấp để chuyển &2chế độ hiển thị
++    lore:
++    - '<click_info>Chế độ hiển thị &2hiện tại&7: &bHiển thị lịch sử lấy vật phẩm'
++    - <click_info>&6Chuột trái&7 để chuyển &2chế độ hiển thị
++    - <click_info>&cKhông thể sử dụng tìm kiếm trong chế độ này!
++  minus-icon:
++    name: <color_random_string>Giảm số lượng
++    lore:
++    - ''
++  show-icon:
++    name: <color_random_string>Số lượng
++    lore:
++    - '<color_random_string>Số lượng hiện tại: 64'
++  add-icon:
++    name: <color_random_string>Tăng số lượng
++    lore:
++    - ''
++  transport-mode-icon:
++    name: <color_random_string>Chế độ vận chuyển
++    lore:
++    - '<color_random_string>Chế độ hiện tại: Không'
++  pusher-template-background-stack:
++    name: <passive>Chỉ định vật phẩm sẽ được đẩy
++    lore:
++    - ''
++  background-stack-6x6:
++    name: '<passive> '
++    lore:
++    - ''
++  background-stack-3x3:
++    name: '<passive> '
++    lore:
++    - ''
++  blue-background:
++    name: '<passive> '
++    lore:
++    - ''
++  greedy-template-background-stack:
++    name: <success>Các vật phẩm bị chặn
++    lore:
++    - ''
++  storage-background-stack:
++    name: <success>Lưu trữ vật phẩm
++    lore:
++    - ''
++  purger-template-background-stack:
++    name: <success>Chỉ định vật phẩm cần xóa
++    lore:
++    - ''
++  grabber-template-background-stack:
++    name: <passive>Chỉ định vật phẩm cần lấy
++    lore:
++    - ''
++  control-v-template-background-stack:
++    name: <passive>Dán mẫu vật phẩm
++    lore:
++    - ''
++  control-x-template-background-stack:
++    name: <passive>Cắt mẫu vật phẩm
++    lore:
++    - <passive>Để trống để cắt bỏ bất kỳ khối nào
++  export-template-background-stack:
++    name: <success>Chỉ định các mặt hàng xuất khẩu
++    lore:
++    - ''
++  export-output-background-stack:
++    name: <success>Thanh xuất
++    lore:
++    - ''
++  power-display-empty:
++    name: <click_info>Trạng thái
++    lore:
++    - <passive>Chưa kết nối
++  quantum-storage-back-output:
++    name: <passive>Đầu ra
++    lore:
++    - ''
++  quantum-storage-set-item-supporting-custom-max:
++    name: <success>Cài đặt
++    lore:
++    - <passive>Nhấc một vật phẩm và nhấp vào đây để đặt vật phẩm
++    - <passive>Nhấp vào đây để đặt và thay đổi dung lượng
++    - <click_info>Shift+Nhấp chuột trái<passive> chuyển đổi chế độ xóa khi đầy
++  quantum-storage-set-item:
++    name: <success>Cài đặt
++    lore:
++    - <passive>Nhấc một vật phẩm và nhấp vào đây để đặt vật phẩm
++    - <click_info>Shift+Nhấp chuột trái<passive> chuyển đổi chế độ xóa khi đầy
++  quantum-storage-back-input:
++    name: <passive>Đầu vào
++    lore:
++    - ''
++  quantum-storage-no-item:
++    name: <error>Không có mục nào được chỉ định
++    lore:
++    - <passive>Nhấc vật phẩm và nhấp vào nút bên dưới
++    - <passive>Được thiết lập vật phẩm lưu trữ lượng tử để lưu
++  quantum-storage-back-item:
++    name: <passive>Vật phẩm hiện được lưu trữ
++    lore:
++    - ''
++  quantum-workbench-craft-button-stack:
++    name: <click_info>Nhấp chuột để xem sự vướng víu lượng tử
++    lore:
++    - ''
++  received-background-stack:
++    name: <success>Hàng đã nhận
++    lore:
++    - ''
++  transmitter-template-background-stack:
++    name: <success>Mục đã gửi
++    lore:
++    - ''
++  due-border-icon:
++    name: '&a← Đặt các mục mong đợi ở đây'
++    lore:
++    - ''
++  due-input-split-icon:
++    name: '&a↑ Mục mong đợi & Mục đầu vào ↓'
++    lore:
++    - ''
++  input-output-split-icon:
++    name: '&a↑ Hàng nhập & Hàng xuất ↓'
++    lore:
++    - ''
++  decode-item:
++    name: '&6Bộ giải mã mạng'
++    lore:
++    - '&7Nhấp để giải mã bản thiết kế mạng'
++  offset-decrease-icon:
++    name: '&aBù trừ -1'
++    lore:
++    - ''
++  offset-show-icon:
++    name: '&aĐền bù'
++    lore:
++    - '&7Khoảng chênh lệch hiện tại: &e%s'
++  offset-increase-icon:
++    name: '&aBù đắp +1'
++    lore:
++    - ''
++  quick-input:
++    name: '&bKý gửi nhanh'
++    lore:
++    - '&7> Nhấp vào đây để thêm tất cả các vật phẩm có sẵn vào Kho đồ của bạn'
++    - '&7Lưu trữ trong Lưu trữ lượng tử'
++  quick-output:
++    name: '&6Rút tiền nhanh'
++    lore:
++    - '&7> [Chuột trái] Nhấp để lấy vật phẩm ra và lấp đầy Kho đồ của bạn'
++    - '&7> [Chuột phải] Nhấp để loại bỏ 1 vật phẩm'
++    - '&7> [Shift+Chuột phải] Bấm để lấy 64 vật phẩm ra'
++  action-button:
++    name: '&6Nhấn để nâng cấp'
++    lore:
++    - ''
++  ae_switcher:
++    name: Bộ chuyển mạch mạng
++  diff-button:
++    name: '&6Nhấp để xem sự khác biệt của mặt hàng'
++    lore:
++    - ''
++  diff-result-icon:
++    name: '&6Kết quả kiểm tra: '
++    lore:
++    - ''
++  storage-convert-button:
++    name: '&6Nhấp để chuyển đổi thành thẻ lưu trữ'
++    lore:
++    - ''
++  item-target-desc-stack:
++    name: '&6Khe vật phẩm được chỉ định'
++    lore:
++    - '&aNếu có nhiều đầu ra cho công thức này'
++    - '&aĐặt đầu ra bên dưới'
++    - '&aChỉ định vật phẩm để in ra thiết kế'
++  facing-presetter-help-icon:
++    name: '&6Hướng dẫn sử dụng chức năng cài đặt sẵn'
++    lore:
++    - '&aĐặt các máy mạng có thể thiết lập hướng của chúng (màn hình, đẩy, lấy, v.v.)
++      vào khoảng trống phía trên'
++    - '&aNhấp vào nút điều hướng để thiết lập trước hướng cho các máy này'
++    - '&aLàm cho máy có thuộc tính hướng ngay sau khi đặt'
++  recipe-types:
++    expansion_workbench_3x3:
++      name: Bàn làm việc mở rộng mạng
++      lore:
++      - Được thực hiện trong bàn làm việc mở rộng
++    quantum_workbench:
++      name: Bàn làm việc lượng tử mạng
++      lore:
++      - Tạo trên Bàn làm việc lượng tử
++items:
++  NTW_EXPANSION_ANNOUNCE_1:
++    name: <color_random_string>Định nghĩa
++    lore:
++    - <warning> 1) Tuyên bố Đề cập đến tất cả các tuyên bố ở đây.
++    - <warning> 2) Mạng(Networks) Đề cập đến một addon slime, không phải là một mạng
++      theo nghĩa của Internet, Internet vạn vật, v.v., hoặc các mạng khác theo nghĩa
++      truyền thống.
++    - <warning> 3) NetworksExpansion (sau đây gọi là "NetworksExpansion", "addon này"
++      hoặc "dự án này") là một addon Slimefun. Nhóm phát triển NetworksExpansion dựa
++      trên Mạng, tuân thủ nghiêm ngặt giao thức GPLv3, thực hiện các bổ sung, xóa
++      và sửa đổi thích hợp. Addon này dựa trên Paper 1.20.1, addon công nghệ slime
++      phiên bản tiếng Trung và không tương thích hoàn toàn với Slimefun4 từ Paper
++      1.20.5 trở lên.
++    - <warning> 4) Những nhà phát triển NetworksExpansion (sau đây gọi là "Nhóm phát
++      triển NetworksExpansion", "Những người sáng tạo NetworksExpansion") là một nhóm
++      phát triển NetworksExpansion, và không thuộc sở hữu của bất kỳ công ty hay tổ
++      chức nào.
++  NTW_EXPANSION_ANNOUNCE_2:
++    name: <color_random_string>Tuyên bố về các tác phẩm của NetworksExpansion
++    lore:
++    - <warning> Vui lòng đảm bảo đọc các định nghĩa trước khi đọc tuyên bố này.
++    - <warning> 1) NetworksExpansion hoàn toàn miễn phí, được chia sẻ và có nguồn
++      mở trên GitHub cho phần lớn những người ủng hộ, bảo trì và người sáng tạo để
++      tìm hiểu và sử dụng.
++    - <warning> 2) Giao thức GPLv3 Là thỏa thuận nguồn mở cho NetworksExpansion. Bất
++      kỳ ai cũng có thể tự do sử dụng, sửa đổi và phân phối nó. Tuy nhiên, mọi sửa
++      đổi và phân phối đều phải tuân thủ giao thức GPLv3.
++    - <warning> 3) Trong số đó, "Mạng mở rộng" chỉ là tiêu đề của tệp này và không
++      bao gồm bất kỳ sự mơ hồ hoặc ý nghĩa trục lợi nào.
++    - <warning> 4) Các nhà phát triển NetworksExpansion chỉ hoạt động với tư cách
++      là người tạo ra tiện ích bổ sung này. Họ không cung cấp bất kỳ hỗ trợ thương
++      mại nào cho tiện ích này cũng như không tích cực duy trì tiện ích bổ sung này
++      nữa. Ngoài ra, các nhà phát triển NetworksExpansion chưa bao giờ tham gia vào
++      bất kỳ hoạt động kinh doanh trực tiếp hay gián tiếp nào liên quan đến bất kỳ
++      máy chủ nào.
++    - <warning> 5) Nghiêm cấm sử dụng các plug-in nói trên và các tệp đính kèm của
++      chúng để quảng bá thông tin tiêu cực hoặc bạo lực dưới mọi hình thức; nghiêm
++      cấm sử dụng các tệp nói trên cho các hoạt động bất hợp pháp hoặc xâm phạm; các
++      tệp để tham gia vào bất kỳ nội dung nào liên quan đến chính trị hoặc thô tục.
++    - <warning> 6) Nghiêm cấm bán lại, bao gồm nhưng không giới hạn ở các hoạt động
++      giao dịch được ngụy trang, làm xáo trộn trái phép và sử dụng các tài liệu nói
++      trên vì bất kỳ mục đích lợi nhuận nào.
++    - <warning> 7) Chúng tôi cực lực lên án các mục bị nghiêm cấm ở trên và khuyến
++      khích công chúng giám sát lẫn nhau, đồng thời tích cực báo cáo các hành vi vi
++      phạm và các hành vi bất hợp pháp.
++    - <warning> 8) Nếu hậu quả xảy ra do bạn hoặc nhóm của bạn sử dụng không đúng
++      cách, bạn phải chịu hậu quả. Nghiêm cấm trốn tránh trách nhiệm cho những người
++      bảo trì và người tạo plugin ở trên; và các tập tin cấu hình dưới mọi hình thức.
++    - <warning> 9) Đối với người xâm phạm tùy trường hợp mà phải chịu trách nhiệm
++      dân sự như đình chỉ việc vi phạm, loại bỏ ảnh hưởng, xin lỗi, bồi thường thiệt
++      hại...; đồng thời nếu lợi ích chung thì phải chịu trách nhiệm dân sự. bị thiệt
++      hại, cơ quan quản lý hành chính về quyền tác giả có thể ra lệnh đình chỉ việc
++      vi phạm và tịch thu số tiền thu được bất hợp pháp, Tịch thu và tiêu hủy các
++      bản sao vi phạm và có thể bị phạt tiền; nếu trường hợp đó nghiêm trọng và cấu
++      thành tội phạm, hình sự; trách nhiệm sẽ được truy cứu theo pháp luật.
++    - <warning> 10) Khi các nhà phát triển Mạng mở rộng không truy cứu hành vi xâm
++      phạm của người vi phạm thì không có nghĩa là nhà phát triển Mạng mở rộng xác
++      nhận hành vi vi phạm. Điều này cũng không có nghĩa là người vi phạm không phải
++      chịu bất kỳ trách nhiệm nào.
++    - <warning> Bạn hãy nhớ tuân thủ tuyên bố trên.
++  NTW_EXPANSION_ANNOUNCE_3:
++    name: <color_random_string>Tuyên bố sử dụng NetworksExpansion
++    lore:
++    - <warning> Vui lòng đảm bảo đọc Tuyên bố về Công việc của NetworksExpansion trước
++      khi đọc tuyên bố này.
++    - <warning> GuizhanLibPlugin Đây là plugin tiên quyết cho tiện ích bổ sung này,
++      vui lòng đảm bảo nó được cài đặt chính xác.
++    - <warning> Phiên bản phát triển Phiên bản bản địa hóa Slimefun Đây là plugin
++      tiền đề cho tiện ích mở rộng này, vui lòng đảm bảo nó được cài đặt chính xác.
++    - '<warning> Khi sử dụng NetworksExpansion hoặc nội dung NetworksExpansion, bạn
++      phải tuân thủ pháp luật và các quy định. Bạn không được sử dụng Mạng mở rộng
++      hoặc Nội dung NetworksExpansion để tham gia vào các hành vi trái pháp luật và
++      quy định, bao gồm nhưng không giới hạn ở các hành vi sau:'
++    - <warning> 1. Vi phạm các nguyên tắc cơ bản được quy định trong Hiến pháp;
++    - <warning> 1) Gây nguy hiểm cho an ninh quốc gia, làm rò rỉ bí mật nhà nước,
++      lật đổ chính sách quốc gia và phá hoại sự thống nhất quốc gia;
++    - <warning> 2) Gây thiệt hại đến danh dự và lợi ích quốc gia;
++    - <warning> 3) Xuyên tạc, làm xấu, bôi nhọ, phủ nhận việc làm, tinh thần của các
++      anh hùng, liệt sĩ và dùng những lời lăng mạ, vu khống, bằng cách khác xâm phạm
++      đến họ tên, hình ảnh, uy tín, danh dự của các anh hùng, liệt sĩ;
++    - <warning> 4) Ủng hộ chủ nghĩa khủng bố, chủ nghĩa cực đoan hoặc xúi giục thực
++      hiện các hoạt động khủng bố hoặc hoạt động cực đoan;
++    - <warning> 5) Kích động hận thù, phân biệt đối xử dân tộc và phá hoại sự đoàn
++      kết dân tộc;
++    - <warning> 6) Phá hoại chính sách tôn giáo của đất nước, thúc đẩy tà giáo và
++      mê tín phong kiến;
++    - <warning> 7) Truyền bá tin đồn, gây rối trật tự xã hội và trật tự xã hội;
++    - <warning> 8) Phát tán nội dung tục tĩu, nội dung khiêu dâm, cờ bạc, bạo lực,
++      giết người, khủng bố hoặc xúi giục tội phạm;
++    - <warning> 9) Xúc phạm, vu khống người khác, xâm phạm uy tín, quyền riêng tư
++      và các quyền, lợi ích hợp pháp khác của người khác;
++    - <warning> 10) Vi phạm đạo đức xã hội;
++    - <warning> 11) Các nội dung khác bị cấm theo luật pháp, quy định hành chính và
++      quy định quốc gia.
++    - '<warning> 2. Bạn không được sử dụng NetworksExpansion hoặc nội dung NetworksExpansion
++      để sản xuất, sao chép hoặc xuất bản những thông tin không tốt sau:'
++    - <warning> 1) Việc sử dụng tiêu đề quá dài, nội dung không phù hợp nghiêm trọng
++      với tiêu đề;
++    - <warning> 2) Thúc đẩy các vụ bê bối, bê bối, hành vi sai trái, v.v.;
++    - <warning> 3) Đưa ra những nhận xét không phù hợp về thiên tai, tai nạn lớn và
++      các thảm họa khác;
++    - <warning> 4) Những gợi ý tình dục, sự trêu chọc tình dục, v.v. có khả năng khiến
++      mọi người liên tưởng đến tình dục;
++    - <warning> 5) Thể hiện sự đẫm máu, kinh dị, độc ác, v.v., có thể gây khó chịu
++      về thể chất và tinh thần;
++    - <warning> 6) Kích động phân biệt đối xử với đám đông, phân biệt đối xử theo
++      khu vực, v.v.;
++    - <warning> 7) Quảng bá nội dung thô tục, tầm thường, mang tính chủ nghĩa;
++    - <warning> 8) Nó có thể khiến trẻ vị thành niên bắt chước các hành vi không an
++      toàn, vi phạm đạo đức xã hội hoặc lôi kéo trẻ vị thành niên thực hiện những
++      thói quen xấu, v.v.;
++    - <warning> 9) Nội dung khác gây ảnh hưởng không tốt đến hệ sinh thái mạng.
++  NTW_EXPANSION_ANNOUNCE_4:
++    name: <color_random_string>Tuyên bố tác giả NetworksExpansion
++    lore:
++    - <warning> Trước khi đọc tuyên bố này, hãy đảm bảo đọc Tuyên bố sử dụng mạng
++      mở rộng.
++    - <warning> 1) Tất cả các thành viên trong nhóm phát triển NetworksExpansion đều
++      là công dân của Cộng hòa Nhân dân Trung Hoa, đều thực lòng ủng hộ các lý thuyết
++      về chủ nghĩa xã hội đặc sắc Trung Quốc và tuân thủ sự lãnh đạo của Đảng Cộng
++      sản Trung Quốc.
++    - <warning> 2) Các thành viên trong nhóm phát triển NetworksExpansion phản đối
++      những tư tưởng suy đồi và lạc hậu như chủ nghĩa tư bản, chủ nghĩa đế quốc, chủ
++      nghĩa bá quyền và chủ nghĩa phong kiến.
++    - <warning> 3) Các thành viên trong nhóm phát triển NetworksExpansion tuân thủ
++      hiến pháp và pháp luật một cách có ý thức, đồng thời phản đối bạo lực mạng.
++    - <warning> 4) Thành viên nhóm phát triển NetworksExpansion có ý thức tuân thủ
++      nội quy cộng đồng, không dùng ngôn ngữ tục tĩu mà hãy giao tiếp một cách văn
++      minh.
++    - <warning> 5) Bất kỳ hành vi lăng mạ, tấn công Nhóm phát triển Mạng mở rộng hoặc
++      các thành viên của Nhóm phát triển Mạng mở rộng sẽ bị xử lý theo quy định của
++      pháp luật. Nếu phát hiện thấy bạo lực mạng như "Mở hộp", cảnh sát sẽ được báo
++      cáo.
++    - <warning> 6) Tuyên bố này chỉ thể hiện quan điểm của nhóm phát triển NetworksExpansion,
++      không đại diện cho người khác, bất kỳ trò chơi, tổ chức, công ty, quốc gia,
++      nhóm xã hội nào và không đại diện cho bất kỳ nhóm người chơi trò chơi nào.
++    - <warning> 7) Về mặt chủ quan, tuyên bố này không thiên vị bất kỳ bên nào mà
++      chỉ nhằm vào bản thân sự việc chứ không hướng vào con người.
++    - <passive> Bản mod này được viết bởi Sefiraat, được bản địa hóa bởi ybw0014,
++      và được bổ sung, xóa và sửa đổi cũng như bảo trì sau đó bởi yitoudaidai và tinalness.
++    - <passive> Nhờ các tác giả từ logic (LogiTech) băm cái đầu do máy cung cấp.
++    - <passive> Cảm ơn tất cả các chủ sở hữu máy chủ đã đặt niềm tin vào bạn và cài
++      đặt Network Expansion.
++    - <passive> Bản mod này được lấy cảm hứng từ phần lớn người chơi.
++    - <passive> Đặc biệt cảm ơn những người chơi như Utoboy, TouRuya, haiman233, matl114
++      vì những nhận xét của họ.
++    - <passive> Cảm ơn những người thử nghiệm Utoboy, TouRuya, haiman233, yitoudaidai,
++      tinalness, matl114, lengshang để thử nghiệm.
++  NTW_EXPANSION_ANNOUNCE_5:
++    name: <color_random_string>Các liên kết liên quan đến NetworksExpansion
++    lore:
++    - <warning> Trước khi đọc tuyên bố này, vui lòng đọc Tuyên bố tác giả mở rộng
++      mạng.
++    - '<passive> Sau đây là các liên kết liên quan đến Mạng mở rộng: (Vui lòng tìm
++      liên kết duy nhất)'
++    - '<passive> Liên kết trạm xây dựng mở rộng mạng lưới: <click_info>https://builds.guizhanss.com/ytdd9527/NetworksExpansion/master/builds'
++    - '<passive> Kho GitHub ổn định mở rộng mạng: <click_info>https://github.com/ytdd9527/NetworksExpansion'
++    - '<passive> Liên kết Sự cố GitHub ổn định mở rộng mạng: <click_info>https://github.com/ytdd9527/NetworksExpansion/issues'
++    - '<passive> Liên kết PR GitHub của Mạng ổn định mở rộng: <click_info>https://github.com/ytdd9527/NetworksExpansion/pulls'
++    - '<passive> Phiên bản phát triển mở rộng mạng Kho GitHub: <click_info>https://github.com/balugaq/NetworksExpansion'
++    - <warning> Phiên bản phát triển Mạng mở rộng không chấp nhận các sự cố trên GitHub
++    - <warning> Phiên bản phát triển Mạng mở rộng không chấp nhận PR của GitHub
++    - '<passive> Mạng lưới tác giả bản mở rộng Trang GitHub: <click_info>https://github.com/ytdd9527'
++    - '<passive> Mạng lưới tác giả bản mở rộng Trang GitHub: <click_info>https://github.com/balugaq'
++  NTW_EXPANSION_ANNOUNCE_6:
++    name: <color_random_string>Mục đích của NetworksExpansion
++    lore:
++    - <warning> Trước khi đọc tuyên bố này, vui lòng đảm bảo đọc các liên kết liên
++      quan đến NetworksExpansion.
++    - <passive> Mục đích của NetworksExpansion là cung cấp nhiều sự thuận tiện, tiện
++      lợi hơn trên cơ sở của Mạng và nâng cao chức năng giao thông vận tải của Mạng.
++    - <passive> Đồng thời, mạng cũng cần giảm độ trễ do mạng gây ra càng nhiều càng
++      tốt, giảm thiểu các lỗ hổng, lỗi do mạng gây ra.
++  NTW_EXPANSION_ANNOUNCE_7:
++    name: <color_random_string>Câu hỏi thường gặp về NetworksExpansion
++    lore:
++    - <warning> Trước khi đọc câu lệnh này, hãy chắc chắn đọc Mục đích của NetworksExpansion.
++    - <warning> 1) Tại sao NetworksExpansion lại được sửa đổi thường xuyên và đôi
++      khi có những sự cố lạ xảy ra?
++    - <passive> - Đây là điều bình thường, nhóm phát triển NetworksExpansion không
++      thể đảm bảo rằng mọi phiên bản đều hoạt động hoàn hảo. Nếu có thể, hãy sử dụng
++      phiên bản ổn định từ trang xây dựng.
++    - <warning> 2) Tại sao một số tính năng tuyệt vời không được thêm vào NetworksExpansion?
++    - <passive> - Do tính chất của Mạng mở rộng, một số tính năng có thể không phù
++      hợp để sử dụng trong Mạng vì Mạng là một hệ thống giao thông.
++    - <warning> 3) Tại sao một số tính năng đã được triển khai tạo điều kiện cho người
++      chơi bị xóa trong các phiên bản sau?
++    - <passive> - Việc loại bỏ các tính năng hiện có là một quyết định được nhóm phát
++      triển Mạng mở rộng đưa ra sau khi xem xét lâu dài và không thể xóa tùy ý.
++    - <passive> - Thông thường, một số tính năng sẽ bị xóa do độ trễ quá cao, dẫn
++      đến có nhiều lỗ hổng hơn.
++    - <passive> - Tất nhiên, cũng sẽ có trường hợp thành viên của nhóm phát triển
++      Mạng Mở Rộng bị xóa do tấn công bằng lời nói, hành vi ác ý và các lý do khác.
++  NTW_EXPANSION_ANNOUNCE_8:
++    name: <color_random_string>Mô tả bổ sung mở rộng mạng
++    lore:
++    - <warning> Trước khi đọc câu lệnh này, hãy nhớ đọc phần Câu hỏi thường gặp về
++      mở rộng mạng.
++    - <warning> 1) Các nhà phát triển NetworksExpansion không có nghĩa vụ duy trì
++      tiện ích bổ sung này. Nếu có bất kỳ lỗi, lỗ hổng hoặc vấn đề đột ngột nào trong
++      bản mở rộng mạng ổn định, vui lòng gửi Vấn đề về phiên bản ổn định của tiện
++      ích bổ sung này; Kho lưu trữ trên kho lưu trữ GitHub kịp thời.
++    - <passive> 2) Chúng tôi không thể đảm bảo rằng mọi vấn đề sẽ được khắc phục kịp
++      thời, nhưng chúng tôi sẽ cố gắng hết sức để khắc phục chúng.
++    - <passive> 3) Khi liên lạc với nhà phát triển, bạn nên lịch sự, đừng công kích
++      hay lăng mạ bö ác ý. Đây là cách giao tiếp hiệu quả để giải quyết vấn đề của
++      bạn.
++    - <warning> 4) Bằng việc sử dụng, chơi hoặc sửa đổi bản mở rộng Mạng, bạn mặc
++      định đồng ý tuân thủ các tuyên bố này.
++    - <passive> 5) Nhà phát triển NetworksExpansion có quyền sửa đổi hoặc chấm dứt
++      tuyên bố này bất cứ lúc nào.
++    - <warning> 6) Sau khi tuyên bố này được cập nhật, bạn nên tự giác kiểm tra xem
++      có phản đối nào không. Nhìn chung, sau khi phiên bản được cập nhật, nhóm phát
++      triển Mạng mở rộng mặc định rằng bạn đồng ý tuân thủ các tuyên bố này.
++    - <passive> 7) Bạn nên tránh sử dụng "Mở rộng mạng lưới" hoặc "Nhóm phát triển
++      NetworksExpansion" hoặc "Thành viên nhóm phát triển NetworksExpansion" vì việc
++      sử dụng chức năng mở rộng mạng lưới để tham gia vào chính trị và các sự kiện
++      công cộng. <warning>Nếu không thì nhóm phát triển NetworksExpansion có quyền
++      đình chỉ hoặc chấm dứt việc bảo trì Mở rộng mạng.
++    - <passive> 8) Nếu có các phiên bản tuyên bố này bằng các ngôn ngữ khác do nhà
++      phát triển Mạng mở rộng xuất bản thì phiên bản tiếng Trung sẽ được ưu tiên áp
++      dụng.
++    - <passive> 9) Hiệu lực, việc thực hiện, giải thích và giải quyết tranh chấp của
++      tuyên bố này sẽ chịu sự điều chỉnh của pháp luật Trung Quốc đại lục (trừ xung
++      đột pháp luật)
++    - <passive> 10) Tất cả các tiêu đề trong câu lệnh này chỉ nhằm mục đích thuận
++      tiện cho việc đọc và bản thân chúng không có bất kỳ ý nghĩa thực tế nào, cũng
++      như không thể được sử dụng làm cơ sở để giải thích ý nghĩa của câu lệnh này.
++    - <warning> 11) Nếu một phần của điều khoản này bị vô hiệu vì bất kỳ lý do gì,
++      các quy định còn lại sẽ vẫn có hiệu lực và ràng buộc các bên.
++    - <warning> 12) Nếu màn hình quá nhỏ hoặc vì lý do nào đó mà bạn không thể xem
++      toàn bộ nội dung của báo cáo, vui lòng tự điều chỉnh. Đội ngũ phát triển Mạng
++      Mở Rộng không chịu bất kỳ trách nhiệm nào cho việc này.
++    - <warning> 13) Nếu bạn không thể xem toàn bộ tên vật phẩm hoặc nội dung giải
++      thích vật phẩm do kích thước màn hình quá nhỏ hoặc các lý do khác, chủ sở hữu
++      máy chủ hoặc người chơi nên tự khắc phục. Nhóm phát triển Mạng Mở Rộng không
++      chịu bất kỳ trách nhiệm nào về việc này.
++    - <warning> 14) NetworksExpansion cho phép bất kỳ ai sử dụng, sao chép, sửa đổi,
++      hợp nhất, xuất bản, phân phối, trưng bày hoặc phân phối tuyên bố này cho mục
++      đích phi lợi nhuận, nhưng không ai được sử dụng tuyên bố này cho mục đích thương
++      mại. Và không được thực hiện tuyên truyền nhân danh mạng mở rộng hoặc nhóm phát
++      triển Mạng mở rộng.
++    - <warning> 15) Quyền giải thích tất cả các nội dung khai báo của Addon này thuộc
++      về Nhà phát triển NetworksExpansion.
++  NTW_EXPANSION_ANNOUNCE_9:
++    name: <color_random_string>Thông tin phiên bản mở rộng mạng
++    lore:
++    - <warning> Vui lòng đảm bảo đọc Mô tả bổ sung về mở rộng mạng trước khi đọc tuyên
++      bố này.
++    - <passive> Bạn có thể cung cấp trang này làm thông tin phiên bản khi cung cấp
++      phản hồi về các sự cố liên quan đến NetworksExpansion.
++    - '<passive> Nhưng xin nhắc lại lần nữa:'
++    - <warning> Phiên bản phát triển mở rộng mạng không chấp nhận GitHub Issues
++    - <warning> Phiên bản phát triển Mạng mở rộng không chấp nhận PR của GitHub
++    - '<passive> Thông tin phiên bản:'
++    - '<passive> Phiên bản mở rộng mạng: v2.1.93'
++    - '<passive> Trạng thái phát hành: Ổn định'
++    - '<passive> Cập nhật phiên bản: 14-3-2026 21:28:04'
++    - '<passive> Tình trạng phát triển: Đang cập nhật'
++    - '<passive> (Các) Nhà phát triển: ytdd9527, balugaq'
++    - '<passive> Trang GitHub của Nhà phát triển: <click_info>https://github.com/ytdd9527'
++    - '<passive> Trang GitHub của Nhà phát triển: <click_info>https://github.com/balugaq'
++    - '<passive> Link tải NetworksExpansion bản ổn định: https://builds.guizhanss.com/ytdd9527/NetworksExpansion/master/builds'
++    - '<passive> Liên kết tải xuống phiên bản mạng mở rộng dành cho nhà phát triển:
++      https://github.com/balugaq/NetworksExpansion'
++    - <passive> Cảm ơn tất cả mọi người đã đóng góp vấn đề, PR và xác nhận cho sự
++      phát triển của NetworksExpansion!
++    - <passive> Cảm ơn tất cả mọi người đã đưa ra gợi ý cho sự phát triển của NetworksExpansion!
++    - <passive> Cảm ơn người chơi Utoboy, TouRuya, haiman233, yitoudaidai, tinalness,
++      matl114 vì những gợi ý của họ về sự phát triển của Mạng mở rộng!
++    - <passive> Cảm ơn lần nữa :>
++  NTW_EXPANSION_ANNOUNCE_10:
++    name: <color_random_string>Mạng lưới mở rộng lối chơi trải nghiệm tuyên bố
++    lore:
++    - <warning> Trước khi đọc tuyên bố này, hãy đảm bảo đọc thông tin về bản phát
++      hành Networks Expansion.
++    - '<passive> Về việc mạng máy bị mất bản thiết kế, theo thông báo từ nhà phát
++      triển slime:'
++    - <passive> ——Khi dữ liệu PDC của dự án quá lớn, dự án không thể được lưu vào
++      cơ sở dữ liệu slime. Chủ sở hữu máy chủ cần tự điều chỉnh kiểu dữ liệu của bảng
++      cơ sở dữ liệu
++    - <passive> - Bật tùy chọn `bypass-item-length-check` trong Cài đặt để bỏ qua
++      việc kiểm tra độ dài mục.
++    - <passive> PDC bản thiết kế của bộ tổng hợp mạng thường rất lớn, điều này là
++      để tương thích với các thiết kế cũ của vài năm trước và đảm bảo trải nghiệm
++      chơi trò chơi của người chơi.
++    - '<passive> Thêm vào đó, theo thử nghiệm của matl114, việc nâng cấp thiết bị
++      tại chỗ cũng có thể dẫn đến việc đồ vật bị thất lạc:'
++    - '<passive> Đây là một ví dụ <warning>có thể<passive> có thể lặp lại: Đặt máy
++      A, đặt C mặt hàng D vào khe B, đào ra và thay thế bằng máy E, và đặt C mặt hàng
++      D vào khe B'
++    - <passive> Sau khi máy chủ được khởi động lại, mặt hàng D trong máy E sẽ biến
++      mất.
++    - <passive> Những lý do trên ít liên quan đến việc mở rộng mạng, khi chơi nên
++      giữ cái đầu tỉnh táo, không nên công kích việc mở rộng mạng một cách vô thức.
++    - <passive> Gần đây, cũng có những tin đồn như <warning>"Sử dụng Bộ mở rộng mạng
++      tổng hợp sẽ không làm mất bản thiết kế"<passive> được lan truyền.
++    - <passive> Mong các bạn hãy luôn sáng suốt và không để bị đánh lừa bởi những
++      tin đồn tương tự.
++    - <passive> Tuyên bố kết thúc ở đây.
++  NTW_EXPANSION_WORKBENCH:
++    name: Bàn làm việc mở rộng mạng
++    lore:
++    - Nhiều vật liệu và máy móc khác nhau có thể được tổng hợp để mở rộng mạng
++  NTW_EXPANSION_WORLD_EDIT_AXE:
++    name: Chế tạo mạng lưới Slime
++    lore:
++    - Chỉ quản trị viên mới có thể sử dụng
++    - Nhấp chuột trái để chọn vị trí đầu tiên
++    - Nhấp chuột phải để chọn vị trí thứ hai
++    - '&cMục này đã không còn được dùng nữa'
++    - '&cVui lòng sử dụng các mặt hàng SFWorldEdit Slime Creation God'
++  NTW_EXPANSION_INFO_TOOL:
++    name: Công cụ thông tin mạng
++    lore:
++    - Chỉ quản trị viên
++    - Nhấp chuột phải để xem thông tin chi tiết của các thành phần trong mạng
++  NTW_EXPANSION_ADVANCED_IMPORT:
++    name: Lối vào mạng nâng cao
++    lore:
++    - Các lối vào mạng nâng cao đưa các mục vào mạng
++    - Có thể truyền tối đa 54 nhóm vật phẩm trên mỗi dấu SF
++    - Có khả năng nhận hàng từ mạng lưới vận chuyển
++  NTW_EXPANSION_ADVANCED_EXPORT:
++    name: Mạng xuất khẩu nâng cao
++    lore:
++    - Đầu ra mạng nâng cao có thể được thiết lập cho
++    - Tiếp tục gửi một số lượng vật phẩm được chỉ định ra khỏi mạng
++    - Các mặt hàng có thể được trích xuất bằng cách sử dụng mạng lưới vận chuyển
++  NTW_EXPANSION_ADVANCED_PURGER:
++    name: Công cụ dọn dẹp mạng nâng cao
++    lore:
++    - Trình dọn dẹp mạng nâng cao sẽ từ mạng
++    - Liên tục xóa các mục được chỉ định
++    - Các mục đã bị xóa sẽ biến mất ngay lập tức, hãy sử dụng cẩn thận!
++  NTW_EXPANSION_ADVANCED_GREEDY_BLOCK:
++    name: Trình chặn mạng nâng cao
++    lore:
++    - Trình chặn mạng nâng cao có thể đặt một mục,
++    - Sau đó, nó sẽ lấy từ đầu vào mạng ở khắp mọi nơi
++    - Thu thập các mục được chỉ định, tối đa 9 nhóm.
++    - Sau khi thu thập đầy, việc truyền tải mặt hàng trên mạng sẽ bị chặn.
++    - Không có khối mạng nào khác sẽ nhận được vật phẩm này.
++  NTW_EXPANSION_CAPACITOR_5:
++    name: Tụ điện mạng (5)
++    lore:
++    - Tụ điện mạng có thể nhận nguồn điện từ
++    - Nguồn điện của mạng năng lượng được lưu trữ
++    - Sử dụng bởi các thiết bị mạng khác
++    - ''
++    - '<click_info>Dung lượng: &7100,000,000'
++  NTW_EXPANSION_CAPACITOR_6:
++    name: Tụ điện mạng (6)
++    lore:
++    - Tụ điện mạng có thể nhận nguồn điện từ
++    - Nguồn điện của mạng năng lượng được lưu trữ
++    - Sử dụng bởi các thiết bị mạng khác
++    - ''
++    - '<click_info>Dung lượng: &72,147,483,647'
++  NTW_INPUT_ONLY_MONITOR:
++    name: Giám sát mạng (Chỉ đầu vào)
++    lore:
++    - Màn hình mạng có thể tương tác với các khối lân cận
++    - Cho phép các khối được chỉ định kết nối vào mạng
++    - Các khối được chỉ định chỉ có thể được đưa vào các mục
++    - ''
++    - 'Hiện được hỗ trợ:'
++    - Công nghệ vô tận - Đơn vị lưu trữ
++    - Công nghệ Fluffy - Fluffy Bucket
++    - Mạng lưới - Lưu trữ lượng tử
++    - <random_color>Tiện ích mở rộng mạng - Ngăn kéo mạng
++  NTW_OUTPUT_ONLY_MONITOR:
++    name: Màn hình mạng (Chỉ có đầu ra)
++    lore:
++    - Màn hình mạng có thể tương tác với các khối lân cận
++    - Cho phép các khối được chỉ định kết nối vào mạng
++    - Các khối được chỉ định chỉ có thể tạo ra các mặt hàng
++    - ''
++    - 'Hiện được hỗ trợ:'
++    - Công nghệ vô tận - Đơn vị lưu trữ
++    - Công nghệ Fluffy - Fluffy Bucket
++    - Mạng lưới - Lưu trữ lượng tử
++    - <random_color>Tiện ích mở rộng mạng - Ngăn kéo mạng
++  NTW_EXPANSION_LINE_TRANSFER_PUSHER:
++    name: Băng tải chuỗi [Bộ đẩy]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_MORE_PUSHER:
++    name: Băng tải xích [Bộ đẩy V2]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_BEST_PUSHER:
++    name: Băng tải xích [V3 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_GRABBER:
++    name: Băng tải dây chuyền [Grabber]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải chuỗi Out-of-Order Arts, máy này &cchỉ có khả năng gắp
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER:
++    name: Truyền tải chuỗi
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Bộ chuyển dây chuyền Out-of-Order Arts, máy này &cchỉ có khả năng
++      đẩy và túm liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_PLUS_PUSHER:
++    name: Máy phát dạng chuỗi cộng với [Bộ đẩy]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_PLUS_MORE_PUSHER:
++    name: Máy phát dạng chuỗi kết hợp [Bộ đẩy V2]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_PLUS_BEST_PUSHER:
++    name: Bộ truyền chuỗi Plus [V3 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_PLUS_GRABBER:
++    name: Máy truyền tải dạng chuỗi cộng [Grabber]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải chuỗi Out-of-Order Arts, máy này &cchỉ có khả năng gắp
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_PLUS:
++    name: Bộ phát sóng dạng chuỗi cộng với
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Bộ chuyển dây chuyền Out-of-Order Arts, máy này &cchỉ có khả năng
++      đẩy và túm liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_VANILLA_PUSHER:
++    name: Băng tải xích nguyên bản [Bộ đẩy]
++    lore:
++    - '&cChỉ hỗ trợ các container vani'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_LINE_TRANSFER_VANILLA_GRABBER:
++    name: Đầu gắp băng tải dạng chuỗi nguyên bản [Đầu gắp]
++    lore:
++    - '&cChỉ hỗ trợ các container vani'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++    - '&eKhác với Băng tải chuỗi Out-of-Order Arts, máy này &cchỉ có khả năng gắp
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PUSHER:
++    name: Truyền chuỗi nâng cao [Đẩy]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_MORE_PUSHER:
++    name: Truyền động xích tiên tiến [V2 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_BEST_PUSHER:
++    name: Truyền động xích tiên tiến [V3 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_GRABBER:
++    name: Truyền tải chuỗi nâng cao [Grabber]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải chuỗi Out-of-Order Arts, máy này &cchỉ có khả năng gắp
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER:
++    name: Truyền tải chuỗi nâng cao
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Bộ chuyển dây chuyền Out-of-Order Arts, máy này &cchỉ có khả năng
++      đẩy và túm liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_GRID_NEW_STYLE:
++    name: Lưới nâng cao
++    lore:
++    - Lưới nâng cao cho phép bạn xem tất cả các mục trong mạng của mình
++    - Bạn cũng có thể trực tiếp bỏ vào hoặc lấy vật phẩm ra
++    - Hỗ trợ điều khiển phím tùy chỉnh
++    - 'Sắp xếp theo: '
++    - '&eAZ&7: &eSắp xếp theo thứ tự bảng chữ cái'
++    - '&eSố lượng&7: &eSắp xếp theo số lượng mặt hàng'
++    - '&eThứ tự đảo ngược số lượng&7: &eSắp xếp theo thứ tự đảo ngược của số lượng
++      vật phẩm'
++    - '&eAddons&7: &eSắp xếp theo thứ tự bảng chữ cái của addon mà vật phẩm thuộc
++      về'
++    - Hỗ trợ tìm kiếm Pinyin
++  NTW_EXPANSION_SMART_GRABBER:
++    name: Công cụ gắp thông minh
++    lore:
++    - Có sẵn ngay lập tức
++    - '&7Nhắm vào máy để đặt, đặt máy trên bất kỳ máy mạng nào ở đầu kia'
++  NTW_EXPANSION_SMART_PUSHER:
++    name: Bộ đẩy thông minh
++    lore:
++    - Sẵn sàng để đưa vào và sử dụng
++    - '&7Nhắm vào máy để đặt và đặt bất kỳ máy mạng nào ở đầu bên kia'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_PUSHER:
++    name: Truyền tải dạng chuỗi nâng cao Plus [Bộ đẩy]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_MORE_PUSHER:
++    name: Bộ truyền động dạng chuỗi nâng cao kết hợp [Bộ đẩy V2]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_BEST_PUSHER:
++    name: Chuỗi dẫn truyền nâng cao Plus [V3 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS_GRABBER:
++    name: Bộ truyền động dây chuyền cải tiến bổ sung [Grabber]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải chuỗi Out-of-Order Arts, máy này &cchỉ có khả năng gắp
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_PLUS:
++    name: Truyền tải chuỗi nâng cao Plus
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Bộ chuyển dây chuyền Out-of-Order Arts, máy này &cchỉ có khả năng
++      đẩy và túm liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_GRABBER:
++    name: Bộ truyền chuỗi Vanilla nâng cao [Grabber]
++    lore:
++    - '&cChỉ hỗ trợ các container vani'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải chuỗi Out-of-Order Arts, máy này &cchỉ có khả năng gắp
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_PUSHER:
++    name: Hộp truyền động xích Vanilla nâng cao [Bộ đẩy]
++    lore:
++    - '&cChỉ hỗ trợ các container vani'
++    - '&6Khoảng cách vận chuyển: 32 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_PLUS_GRABBER:
++    name: Hệ thống truyền tải chuỗi Vanilla nâng cao [Trình gắp]
++    lore:
++    - '&cChỉ hỗ trợ các container vani'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải chuỗi Out-of-Order Arts, máy này &cchỉ có khả năng gắp
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_ADVANCED_LINE_TRANSFER_VANILLA_PLUS_PUSHER:
++    name: Truyền động xích Vanilla tiên tiến Plus [Bộ đẩy]
++    lore:
++    - '&cChỉ hỗ trợ các container vani'
++    - '&6Khoảng cách vận chuyển: 64 ô'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++    - '&eKhác với Băng tải Xích Out-of-Order Arts, loại máy này chỉ có chức năng đẩy
++      liên tục'
++    - '&cThay vì liên tục chuyển vật phẩm!'
++  NTW_EXPANSION_TRANSFER_PUSHER:
++    name: Bộ truyền tín hiệu [Bộ đẩy]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++  NTW_EXPANSION_TRANSFER_MORE_PUSHER:
++    name: Truyền tải [V2 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++  NTW_EXPANSION_TRANSFER_BEST_PUSHER:
++    name: Chuyển tiếp [V3 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++  NTW_EXPANSION_TRANSFER_GRABBER:
++    name: Bộ truyền tín hiệu [Grabber]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++  NTW_EXPANSION_TRANSFER:
++    name: Bộ truyền tải
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&cChế độ vận chuyển không thể điều chỉnh'
++    - '&7Số lượng vận chuyển mặc định: &664'
++    - '&cSố lượng vận chuyển không thể điều chỉnh'
++  NTW_EXPANSION_ADVANCED_TRANSFER_PUSHER:
++    name: Chuyển giao nâng cao [Đẩy]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++  NTW_EXPANSION_ADVANCED_TRANSFER_MORE_PUSHER:
++    name: Bộ truyền động nâng cao [Bộ đẩy V2]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++  NTW_EXPANSION_ADVANCED_TRANSFER_BEST_PUSHER:
++    name: Chuyển giao nâng cao [V3 Pusher]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++  NTW_EXPANSION_ADVANCED_TRANSFER_GRABBER:
++    name: Truyền tải nâng cao [Grabber]
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++  NTW_EXPANSION_ADVANCED_TRANSFER:
++    name: Băng tải tiên tiến
++    lore:
++    - '&cChỉ hỗ trợ thùng chứa chất nhờn'
++    - '&7Chế độ vận chuyển mặc định: &6Khối đầu tiên'
++    - '&aChế độ truyền tải có thể điều chỉnh'
++    - '&7Khối lượng vận chuyển mặc định: &63456'
++    - '&aSố lượng vận chuyển có thể điều chỉnh'
++  NTW_EXPANSION_MAGIC_WORKBENCH_BLUEPRINT:
++    name: Bản vẽ bàn làm việc ma thuật
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu trữ công thức Magic Workbench
++  NTW_EXPANSION_ARMOR_FORGE_BLUEPRINT:
++    name: Bản thiết kế lò rèn áo giáp
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu trữ một công thức lò rèn áo giáp
++  NTW_EXPANSION_SMELTERY_BLUEPRINT:
++    name: Bản vẽ lò luyện kim
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu một công thức nấu chảy
++  NTW_EXPANSION_QUANTUM_WORKBENCH_BLUEPRINT:
++    name: Bản vẽ bàn làm việc lượng tử
++    lore:
++    - Một bản thiết kế trống
++    - Công thức bàn làm việc lượng tử có thể được lưu trữ
++  NTW_EXPANSION_ANCIENT_ALTAR_BLUEPRINT:
++    name: Bản thiết kế bàn thờ cổ
++    lore:
++    - Một bản thiết kế trống
++    - Công thức bàn thờ cổ xưa có thể được lưu trữ
++  NTW_EXPANSION_EXPANSION_WORKBENCH_BLUEPRINT:
++    name: Bản thiết kế mạng mở rộng Workbench
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu trữ công thức cho bàn làm việc mở rộng mạng
++  NTW_EXPANSION_COMPRESSOR_BLUEPRINT:
++    name: Bản vẽ máy nén
++    lore:
++    - Một bản thiết kế trống
++    - Một công thức máy nén có thể được lưu trữ
++  NTW_EXPANSION_GRIND_STONE_BLUEPRINT:
++    name: Bản vẽ cối xay đá
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu trữ một công thức Grindstone
++  NTW_EXPANSION_JUICER_BLUEPRINT:
++    name: Bản vẽ máy ép trái cây
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu trữ một công thức máy ép trái cây
++  NTW_EXPANSION_ORE_CRUSHER_BLUEPRINT:
++    name: Bản vẽ máy nghiền quặng
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu một công thức nấu máy nghiền quặng
++  NTW_EXPANSION_PRESSURE_CHAMBER_BLUEPRINT:
++    name: Bản vẽ buồng áp suất
++    lore:
++    - Một bản thiết kế trống
++    - Một công thức buồng áp suất có thể được lưu trữ
++  NTW_EXPANSION_MAGIC_WORKBENCH_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức bàn ma thuật mạng
++    lore:
++    - Các bản thiết kế bàn làm việc Magic có thể được tạo dựa trên các mục đầu vào
++    - ''
++    - '<click_info>Tiêu thụ điện năng của mạng: &72.000 mỗi lần mã hóa'
++  NTW_EXPANSION_ARMOR_FORGE_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức Lò rèn áo giáp mạng
++    lore:
++    - Bản thiết kế áo giáp Forge có thể được chế tạo dựa trên các mục đầu vào
++    - ''
++    - '<click_info>Tiêu thụ điện năng mạng: &72.000 mỗi lần mã hóa'
++  NTW_EXPANSION_SMELTERY_RECIPE_ENCODER:
++    name: Mã hóa công thức nấu kim loại mạng
++    lore:
++    - Bản thiết kế máy nấu chảy có thể được tạo dựa trên các mục nhập
++    - ''
++    - '<click_info>Tiêu thụ điện năng của mạng: &72.000 cho mỗi mã hóa'
++  NTW_EXPANSION_QUANTUM_WORKBENCH_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức bảng lượng tử mạng
++    lore:
++    - Các bản thiết kế bàn làm việc lượng tử có thể được tạo dựa trên các đầu vào
++    - ''
++    - '<click_info>Tiêu thụ điện năng của mạng: &72.000 mỗi lần mã hóa'
++  NTW_EXPANSION_ANCIENT_ALTAR_RECIPE_ENCODER:
++    name: Người mã hóa công thức bàn thờ cổ đại trực tuyến
++    lore:
++    - Có thể tạo bản thiết kế của Bàn thờ Cổ xưa dựa trên các mục nhập vào
++    - ''
++    - '<click_info>Tiêu thụ điện năng của mạng: &72.000 cho mỗi mã hóa'
++  NTW_EXPANSION_EXPANSION_WORKBENCH_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức bảng mở rộng mạng
++    lore:
++    - Các bản thiết kế của Bàn làm việc mở rộng mạng có thể được thực hiện dựa trên
++      các nội dung đầu vào
++    - ''
++    - '<click_info>Tiêu thụ điện năng mạng: &72.000 cho mỗi lần mã hóa'
++  NTW_EXPANSION_COMPRESSOR_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức máy nén mạng
++    lore:
++    - Có thể tạo bản thiết kế máy nén dựa trên nguyên liệu đầu vào
++    - ''
++    - '<click_info>Mức tiêu thụ năng lượng mạng: &72.000 cho mỗi lần mã hóa'
++  NTW_EXPANSION_GRIND_STONE_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức Cối xay đá mạng
++    lore:
++    - Có thể tạo bản thiết kế cối xay đá dựa trên vật phẩm đầu vào
++    - ''
++    - '<click_info>Tiêu thụ năng lượng mạng: &72.000 cho mỗi lần mã hóa'
++  NTW_EXPANSION_JUICER_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức Máy ép trái cây mạng
++    lore:
++    - Bản thiết kế Máy ép trái cây có thể được tạo ra dựa trên nguyên liệu đầu vào
++    - ''
++    - '<click_info>Tiêu thụ điện năng mạng: &72.000 cho mỗi lần mã hóa'
++  NTW_EXPANSION_ORE_CRUSHER_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức máy nghiền quặng mạng
++    lore:
++    - Bản thiết kế máy nghiền quặng có thể được tạo ra dựa trên các thành phần đầu
++      vào
++    - ''
++    - '<click_info>Tiêu thụ năng lượng mạng: &72.000 mỗi lần mã hóa'
++  NTW_EXPANSION_PRESSURE_CHAMBER_RECIPE_ENCODER:
++    name: Bộ mã hóa công thức Buồng áp suất mạng
++    lore:
++    - Có thể tạo ra các bản thiết kế buồng áp suất dựa trên vật phẩm đầu vào
++    - ''
++    - '<click_info>Mức tiêu thụ năng lượng mạng: &72.000 cho mỗi lần mã hóa'
++  NTW_EXPANSION_AUTO_MAGIC_WORKBENCH:
++    name: Bàn làm việc ma thuật ô tô trực tuyến
++    lore:
++    - Bàn làm việc ma thuật ô tô mạng yêu cầu bản thiết kế bàn làm việc ma thuật để
++      hoạt động.
++    - Khi các vật phẩm theo mục tiêu của bản thiết kế không có trong mạng,
++    - Máy sẽ tự động lấy nguyên liệu từ mạng lưới để tổng hợp
++    - (Yêu cầu đủ nguyên liệu trong mạng lưới)
++    - ''
++    - '<click_info>Điện năng mạng tiêu thụ: &764 mỗi lần chế tạo'
++  NTW_EXPANSION_AUTO_MAGIC_WORKBENCH_WITHHOLDING:
++    name: Bàn làm việc Magic Auto trên nền tảng web (Dành riêng)
++    lore:
++    - Bàn làm việc Magic Auto trực tuyến yêu cầu bản thiết kế Bàn làm việc Magic để
++      hoạt động.
++    - Khi không có mặt hàng mục tiêu nào trong mạng lưới cho bản thiết kế,
++    - Máy tự động lựa chọn vật liệu từ mạng lưới để tổng hợp
++    - (Yêu cầu đủ nguyên liệu trong mạng)
++    - ''
++    - Bộ tổng hợp tự động trong phiên bản giữ lại sẽ tiếp tục tổng hợp
++    - Cho đến khi có 1 nhóm mục trong thanh đầu ra
++    - Nhóm mặt hàng này có thể được truy cập trực tuyến
++    - Nó cũng có thể được đưa ra thông qua hệ thống vận chuyển
++    - ''
++    - '<click_info>Công suất mạng tiêu thụ: &7128 mỗi quá trình tổng hợp'
++  NTW_EXPANSION_AUTO_ARMOR_FORGE:
++    name: Xưởng rèn áo giáp tự động trực tuyến
++    lore:
++    - Lò rèn giáp tự động mạng yêu cầu Bản thiết kế Lò rèn giáp để hoạt động.
++    - Khi không có mặt hàng mục tiêu nào cho bản thiết kế trong mạng,
++    - Máy sẽ tự động chọn tài liệu từ mạng lưới để tổng hợp
++    - (Yêu cầu đủ nguyên liệu thô trong mạng)
++    - ''
++    - '<click_info>Lượng điện mạng tiêu thụ: &764 mỗi quá trình tổng hợp'
++  NTW_EXPANSION_AUTO_ARMOR_FORGE_WITHHOLDING:
++    name: Cửa hàng bán đồ giáp tự động trực tuyến (Được đặt trước)
++    lore:
++    - Cửa hàng cung cấp áo giáp ô tô mạng yêu cầu bản thiết kế cửa hàng cung cấp áo
++      giáp để hoạt động.
++    - Khi mục mục tiêu của bản thiết kế không có trong mạng,
++    - Máy sẽ tự động chọn vật liệu từ mạng để tổng hợp
++    - (Yêu cầu phải có đủ nguyên liệu thô trong mạng lưới)
++    - ''
++    - Bộ tổng hợp tự động phiên bản dành riêng sẽ tiếp tục tổng hợp
++    - Đợi đến khi ô đầu ra có 1 nhóm mục
++    - Nhóm mục này có thể truy cập được trong mạng
++    - Cũng có thể được rút ra thông qua hệ thống vận chuyển
++    - ''
++    - '<click_info>Mức tiêu thụ năng lượng mạng: &7128 mỗi lần tổng hợp'
++  NTW_EXPANSION_AUTO_SMELTERY:
++    name: Lò nung tự động mạng
++    lore:
++    - Mạng lưới lò nung tự động cần có Bản thiết kế lò nung để hoạt động.
++    - Khi mạng không có mục nào là mục tiêu của Bản thiết kế,
++    - Máy sẽ tự động chọn nguyên liệu từ mạng để tổng hợp
++    - (Yêu cầu phải có đủ nguyên liệu trong mạng)
++    - ''
++    - '<click_info>Tiêu thụ năng lượng mạng: &764 mỗi lần tổng hợp'
++  NTW_EXPANSION_AUTO_SMELTERY_WITHHOLDING:
++    name: Mạng lưới Lò nung tự động (Phiên bản dự phòng)
++    lore:
++    - Lò nung tự động mạng yêu cầu Bản thiết kế lò nung để hoạt động.
++    - Khi mạng lưới không có các vật phẩm được nhắm mục tiêu theo Bản thiết kế,
++    - Máy tự động lựa chọn vật liệu từ mạng để tổng hợp
++    - (Yêu cầu mạng lưới phải có đủ nguyên liệu thô)
++    - ''
++    - Bộ tổng hợp tự động trong phiên bản giữ lại sẽ liên tục thực hiện tổng hợp
++    - Cho đến khi trường đầu ra có 1 nhóm mục
++    - Nhóm vật phẩm này có thể được truy cập trực tuyến
++    - Nó cũng có thể được đưa ra thông qua hệ thống vận tải
++    - ''
++    - '<click_info>Tiêu thụ điện năng của mạng: &7128 trên mỗi tổng hợp'
++  NTW_EXPANSION_AUTO_QUANTUM_WORKBENCH:
++    name: Bàn làm việc tự động lượng tử qua mạng
++    lore:
++    - Bàn làm việc tự động lượng tử mạng yêu cầu Bản thiết kế Bàn làm việc lượng tử
++      để hoạt động.
++    - Khi mạng thiếu các mặt hàng mục tiêu của bản thiết kế,
++    - Hệ thống sẽ tự động lấy tài nguyên từ mạng để tổng hợp
++    - (Yêu cầu đủ tài nguyên trong mạng lưới)
++    - ''
++    - '<click_info>Mức sử dụng năng lượng mạng: &764 mỗi quá trình tổng hợp'
++  NTW_EXPANSION_AUTO_QUANTUM_WORKBENCH_WITHHOLDING:
++    name: Bàn làm việc Quantum Auto qua mạng (Bản sao)
++    lore:
++    - Bàn làm việc tự động lượng tử mạng yêu cầu một thiết kế Bàn làm việc lượng tử
++      để có thể chạy.
++    - Khi các vật phẩm theo bản thiết kế bị thiếu khỏi mạng,
++    - Máy tính sẽ tự động chọn vật liệu từ mạng để tổng hợp
++    - (Yêu cầu đủ số lượng vật liệu trong mạng)
++    - ''
++    - Máy tổng hợp tự động trong phiên bản dự phòng sẽ tự động chạy liên tục
++    - Cho đến khi thanh đầu ra chứa 1 nhóm mục
++    - Bạn có thể truy cập nhóm mặt hàng này qua mạng
++    - Cũng có thể rút tiền bằng phương thức vận chuyển
++    - ''
++    - '<click_info>Sử dụng mạng: &7128 mỗi lần tổng hợp'
++  NTW_EXPANSION_AUTO_ANCIENT_ALTAR:
++    name: Bàn thờ tổ tiên tự động qua mạng
++    lore:
++    - Bàn thờ ô tô cổ đại trực tuyến cần có bản thiết kế Bàn thờ cổ đại để hoạt động.
++    - Khi mục không được hiển thị trong mạng,
++    - Máy sẽ tự động chọn nguyên liệu từ mạng lưới để tổng hợp
++    - (Mạng cần có đủ nguyên liệu)
++    - ''
++    - '<click_info>Lượng điện mạng sử dụng: &764 mỗi lần chế tạo'
++  NTW_EXPANSION_AUTO_ANCIENT_ALTAR_WITHHOLDING:
++    name: Bàn thờ ô tô cổ (Phiên bản đặt trước)
++    lore:
++    - Bàn thờ tự động cổ đại trực tuyến yêu cầu bản vẽ Bàn thờ cổ đại để hoạt động.
++    - Khi đối tượng mục tiêu của bản thiết kế không có trong mạng,
++    - Bộ máy sẽ tự động chọn nguyên liệu từ mạng để cấu thành
++    - (Yêu cầu đủ nguyên liệu trong mạng)
++    - ''
++    - Máy tổng hợp phiên bản tự động sẽ liên tục tổng hợp
++    - Cho đến khi cột kết quả có 1 nhóm các mặt hàng
++    - Nhóm mục này có thể truy cập qua mạng
++    - Ngoài ra còn có thể được di chuyển qua hệ thống vận chuyển
++    - ''
++    - '<click_info>Năng lượng mạng lưới sử dụng: &7128 mỗi quá trình tổng hợp'
++  NTW_EXPANSION_AUTO_EXPANSION_WORKBENCH:
++    name: Bàn làm việc mở rộng mạng lưới ô tô trực tuyến
++    lore:
++    - Bàn làm việc Tự động Mở rộng Mạng Yêu cầu Thiết kế Bàn làm việc Mở rộng Mạng
++      để chạy.
++    - Khi không có các mục yêu cầu thiết kế trong mạng lưới,
++    - Máy tính tự động chọn nguyên liệu từ mạng để tổng hợp
++    - (Yêu cầu đủ nguyên liệu thô trong mạng lưới)
++    - ''
++    - '<click_info>Công suất mạng tiêu thụ: &764 cho mỗi lần tạo'
++  NTW_EXPANSION_AUTO_EXPANSION_WORKBENCH_WITHHOLDING:
++    name: Mạng lưới mở rộng mạng lưới tự động Bàn làm việc (Phiên bản dành riêng)
++    lore:
++    - Nền tảng Network Auto-Expansion Workbench yêu cầu Bản thiết kế mở rộng mạng
++      để hoạt động.
++    - Khi mục bản vẽ mục tiêu không có trong mạng,
++    - Hệ thống sẽ tự động chọn nguyên liệu từ mạng lưới để tổng hợp
++    - (Cần đủ nguyên liệu trong hệ thống)
++    - ''
++    - Bản nâng cấp trình tự động tổng hợp sẽ tiếp tục được tổng hợp
++    - Chờ đến khi hộp kết quả nhận được 1 nhóm mục
++    - Bạn có thể truy cập trực tuyến các mặt hàng thuộc danh mục này
++    - Cũng có thể rút tiền bằng hệ thống vận chuyển
++    - ''
++    - '<click_info>Tiêu thụ năng lượng mạng: &7128 mỗi lần tổng hợp'
++  NTW_EXPANSION_AUTO_COMPRESSOR:
++    name: Máy nén khí tự động qua mạng
++    lore:
++    - Máy nén tự động mạng cần có bản thiết kế Máy nén để hoạt động.
++    - Khi đối tượng bản thiết kế không có trên mạng,
++    - Hệ thống tự động chọn nguyên liệu trong mạng để kết hợp
++    - (Cần phải có đủ nguyên liệu thô trong mạng)
++    - ''
++    - '<click_info>Năng lượng mạng tiêu thụ: &764 mỗi lần chế tạo'
++  NTW_EXPANSION_AUTO_COMPRESSOR_WITHHOLDING:
++    name: Máy nén tự động qua mạng (Phiên bản đặt trước)
++    lore:
++    - Máy nén tự động theo mạng yêu cầu bản thiết kế máy nén để chạy.
++    - Khi không có mục mục tiêu cho dự án trên mạng,
++    - Máy sẽ tự động chọn nguyên liệu từ mạng lưới để tạo
++    - (Mạng cần có đủ nguyên liệu)
++    - ''
++    - Bản gốc của máy tổng hợp tự động sẽ tiếp tục tổng hợp
++    - Chờ cho đến khi cột đầu ra có 1 nhóm mục
++    - Tập hợp các mục này có thể được truy cập trực tuyến
++    - Nó cũng có thể được đưa ra bằng hệ thống vận chuyển
++    - ''
++    - '<click_info>Sử dụng mạng: &7128 cho mỗi tổng hợp'
++  NTW_EXPANSION_AUTO_GRIND_STONE:
++    name: Đá mài tự động mài mạng
++    lore:
++    - Cối xay đá mạng tự động cần có Bản thiết kế cối xay đá để chạy.
++    - Khi mục tiêu không được tìm thấy trên bản đồ,
++    - Hệ thống tự động chọn nguyên liệu trong hệ thống để tổng hợp
++    - (Cần có đủ nguyên liệu trên mạng lưới)
++    - ''
++    - '<click_info>Chi phí điện mạng: &764 mỗi chu kỳ'
++  NTW_EXPANSION_AUTO_GRIND_STONE_WITHHOLDING:
++    name: Trực tuyến Auto Grindstone (Phiên bản được cung cấp)
++    lore:
++    - Đá mài tự động sử dụng mạng cần có bản vẽ Đá mài để chế tạo.
++    - Khi bản thiết kế không được bao gồm trong dự án,
++    - Hệ thống sẽ tự động chọn nguyên liệu thô từ lưới để kết hợp
++    - (Cần có đủ nguyên liệu trên mạng lưới)
++    - ''
++    - Phiên bản tùy chỉnh của phần mềm tự động tổng hợp sẽ tiếp tục kết hợp
++    - Đợi đến khi hộp kết quả có 1 nhóm các mục
++    - Nhóm mặt hàng này có thể truy cập qua mạng
++    - Cũng có thể rút ra thông qua các công ty giao nhận
++    - ''
++    - '<click_info>Sử dụng điện năng mạng lưới: &7128 mỗi chu kỳ'
++  NTW_EXPANSION_AUTO_JUICER:
++    name: Máy ép tự động kết nối
++    lore:
++    - Máy ép trái cây thông minh qua mạng cần có bản vẽ máy ép trái cây để hoạt động.
++    - Khi không có mặt hàng mục tiêu nào cho bản thiết kế trên mạng lưới,
++    - Hệ thống tự động lựa chọn nguyên liệu từ mạng lưới để kết hợp
++    - (Cần có đủ nguyên liệu thô trong mạng lưới)
++    - ''
++    - '<click_info>Tiêu thụ năng lượng mạng lưới: &764 mỗi lần chế tạo'
++  NTW_EXPANSION_AUTO_JUICER_WITHHOLDING:
++    name: Máy ép trái cây kết nối tự động (Mô hình đặt trước)
++    lore:
++    - Hệ thống Máy ép tự động cần Bản vẽ Máy ép để hoạt động.
++    - Khi mạng không có mục mong muốn từ bản vẽ,
++    - Hệ thống tự động lựa chọn tài nguyên từ mạng lưới để tổng hợp
++    - (Yêu cầu phải có đủ tài nguyên trong mạng lưới)
++    - ''
++    - Bộ tổng hợp tự động cài đặt trước sẽ liên tục kết hợp
++    - Cho đến khi thanh đầu ra chứa một nhóm các mặt hàng
++    - Loạt mục này có thể truy cập trên internet
++    - Nó cũng có thể được đưa ra qua mạng lưới vận tải
++    - ''
++    - '<click_info>Sử dụng năng lượng mạng lưới: &7128 mỗi chế tạo'
++  NTW_EXPANSION_AUTO_ORE_CRUSHER:
++    name: Máy nghiền quặng tự động vận hành
++    lore:
++    - Cần có bản vẽ Máy nghiền quặng để chạy Hệ thống Máy nghiền quặng Tự động.
++    - Khi không có bất kỳ mục nào có thể lấy từ bản thiết kế trong mạng lưới,
++    - Máy tự động sẽ lấy tài liệu từ mạng lưới để tổng hợp
++    - (Mạng lưới yêu cầu đủ lượng vật liệu thô)
++    - ''
++    - '<click_info>Tiêu thụ điện năng của mạng: &764 mỗi thao tác'
++  NTW_EXPANSION_AUTO_ORE_CRUSHER_WITHHOLDING:
++    name: Máy nghiền quặng tự động kết nối mạng (Phiên bản hạn chế)
++    lore:
++    - Cần có Bản thiết kế hệ thống nghiền quặng tự động để hoạt động.
++    - Khi mạng thiếu đi mục đích của dự án,
++    - Hệ thống tự động sẽ lấy tài nguyên từ mạng lưới để tổng hợp
++    - (Cần phải có đủ tài nguyên trong hệ thống)
++    - ''
++    - Trình biên dịch tự động của phiên bản đã bảo lưu sẽ tiếp tục biên dịch
++    - Cho đến khi hộp hiển thị có 1 nhóm các đối tượng
++    - Bộ mục này có thể truy cập từ xa
++    - Ngoài ra có thể được lấy qua hệ thống vận chuyển
++    - ''
++    - '<click_info>Tiêu thụ điện năng mạng: &7128 cho mỗi chế tạo'
++  NTW_EXPANSION_AUTO_PRESSURE_CHAMBER:
++    name: Buồng nén khí tự động qua mạng
++    lore:
++    - Bản đồ nền tảng Mạng tự động buồng áp suất yêu cầu bản đồ nền tảng buồng áp
++      suất để hoạt động.
++    - Khi dự án bị thiếu tài liệu do bị chặn trong mạng lưới,
++    - Máy sẽ tự động chọn các thành phần từ mạng lưới để chế tạo
++    - (Yêu cầu đủ tài nguyên trong mạng lưới)
++    - ''
++    - '<click_info>Điện năng mạng tiêu thụ: &764 mỗi thao tác chế tạo'
++  NTW_EXPANSION_AUTO_PRESSURE_CHAMBER_WITHHOLDING:
++    name: Máy nén khí tự động trực tuyến (Bản phát hành trước)
++    lore:
++    - Để chạy hệ thống Tự động Nén khí cần có Bản đồ Nén khí.
++    - Khi không có mục tiêu cho dự án trong lưới điện,
++    - Hệ thống sẽ tự động chọn các vật liệu từ mạng lưới để tổng hợp
++    - (Cần có đủ tài liệu trong mạng lưới)
++    - ''
++    - Máy lắp ráp tự động ở phiên bản giữ lại sẽ tiếp tục tạo
++    - Lên đến khi trường kết quả chứa 1 tập hợp các thành phần
++    - Một bộ sản phẩm này có thể được xem qua mạng
++    - Hoặc có thể được vận chuyển bằng phương tiện truyền tải
++    - ''
++    - '<click_info>Phí tổn điện năng qua mạng lưới: &7128 cho mỗi tiến trình'
++  NTW_EXPANSION_ADVANCED_AUTO_MAGIC_WORKBENCH:
++    name: Bàn phép thuật ô tô trên mạng nâng cao
++    lore:
++    - Bàn làm việc ma thuật ô tô mạng tiên tiến cần có bản thiết kế Bàn làm việc ma
++      thuật để hoạt động.
++    - Khi không có mặt hàng mục tiêu nào cho bản thiết kế trong mạng lưới,
++    - Máy tự động lựa chọn vật liệu từ mạng lưới để tổng hợp
++    - Cho phép vẽ chồng lên nhau (không tương thích ngược)
++    - (Yêu cầu đủ nguyên liệu trong mạng lưới)
++    - ''
++    - '<click_info>Công suất mạng tiêu thụ: &7640 mỗi quá trình tổng hợp'
++  NTW_EXPANSION_ADVANCED_AUTO_MAGIC_WORKBENCH_WITHHOLDING:
++    name: Bàn phép thuật ô tô trực tuyến nâng cao (Đã giữ lại)
++    lore:
++    - Advanced Web Auto Magic Workbench cần có Bản thiết kế Bàn làm việc Magic để
++      chạy.
++    - Khi không có mặt hàng mục tiêu nào cho bản thiết kế trong mạng lưới,
++    - Máy tự động lựa chọn vật liệu từ mạng lưới để tổng hợp
++    - Cho phép xếp chồng bản thiết kế (không tương thích ngược)
++    - (Yêu cầu đủ nguyên liệu thô trong mạng lưới)
++    - ''
++    - Bộ tổng hợp tự động ở phiên bản giữ lại sẽ tiếp tục tổng hợp
++    - Đợi đến khi thanh đầu ra chứa một nhóm mặt hàng
++    - Bạn có thể truy cập nhóm này qua internet
++    - Bạn cũng có thể đưa ra sử dụng mạng lưới giao hàng
++    - ''
++    - '<click_info>Tiêu thụ năng lượng mạng: &71.280 mỗi quá trình tổng hợp'
++  NTW_EXPANSION_ADVANCED_AUTO_ARMOR_FORGE:
++    name: Xưởng rèn áo giáp tự động trực tuyến tiên tiến
++    lore:
++    - Trạm rèn giáp tự động mạng lưới nâng cao yêu cầu Bản vẽ Trạm rèn giáp để chạy.
++    - Khi mặt hàng hướng tới của bản thiết kế không có trên internet,
++    - Máy sẽ tự động chọn nguyên liệu từ mạng để cấu thành
++    - Có thể xếp các thiết kế (Không hỗ trợ tương thích ngược)
++    - (Yêu cầu đủ số lượng vật tư trên mạng)
++    - ''
++    - '<click_info>Sử dụng điện mạng: &7640 cho mỗi tổng hợp'
++  NTW_EXPANSION_ADVANCED_AUTO_ARMOR_FORGE_WITHHOLDING:
++    name: Hệ thống Rèn giáp Tự động Nâng cao (Phiên bản Đặt trước)
++    lore:
++    - Lò rèn Armor Tự động trên Web Nâng cao yêu cầu có thiết kế Armor Forge để chạy.
++    - Khi các mục mục tiêu của bản thiết kế không có trên internet,
++    - Hệ thống sẽ tự động chọn các thành phần trên mạng lưới để chế tạo
++    - Có khả năng xếp chồng dự án (Không tương thích ngược)
++    - (Yêu cầu có đủ tài nguyên trong mạng lưới)
++    - ''
++    - Hệ thống tổng hợp tự động trên máy bảo lưu sẽ liên tục chế tạo
++    - Đợi khi ô kết quả chứa 1 tập hợp thành phần
++    - Bạn có thể truy cập tập hợp các phần tử này trên mạng lưới
++    - Hoặc có thể rút tiền bằng hệ thống lưu trữ
++    - ''
++    - '<click_info>Mức điện năng mạng tiêu tốn: &71,280 mỗi chu kỳ'
++  NTW_EXPANSION_ADVANCED_AUTO_SMELTERY:
++    name: Lò nung tự động với hệ thống thông minh
++    lore:
++    - Hệ thống lò luyện tự động cao cấp yêu cầu thiết kế Lò luyện kim để vận hành.
++    - Khi bản thiết kế không được đưa vào mạng lưới,
++    - Phần cứng sẽ tự động phân loại các nguồn từ mạng để xử lý
++    - Có thể trồng tầng dự án (Không tương thích với cũ hơn)
++    - (Cần phải có đủ lượng tài nguyên trong mạng lưới)
++    - ''
++    - '<click_info>Công suất dùng mạng lưới: &7640 cho mỗi thao tác'
++  NTW_EXPANSION_ADVANCED_AUTO_SMELTERY_WITHHOLDING:
++    name: Lò nung Thông minh Trực tuyến (Bản Mở rộng)
++    lore:
++    - Lò nung thông minh tự động yêu cầu Sơ đồ Lò nung để hoạt động.
++    - Khi phần tử được nhắm không có trong đồ họa,
++    - Hệ thống sẽ tự động tổng hợp những thông tin cần thiết
++    - Cho phép sao chép dự án (Khả năng tương thích ngược không hỗ trợ)
++    - (Có đủ tài liệu yêu cầu trong hệ thống mạng)
++    - ''
++    - Trình tổng hợp sẽ liên tục tạo bản ghi từ mẫu đã sao chép
++    - Tính đến khi có 1 tập tin tại kết quả cuối
++    - Tập tin này có thể được duyệt qua mạng lưới
++    - Có thể lấy thông qua các hệ thống vận chuyển
++    - ''
++    - '<click_info>Chi phí năng lượng truyền dẫn: &71,280 cho mỗi lần lặp'
++  NTW_EXPANSION_ADVANCED_AUTO_QUANTUM_WORKBENCH:
++    name: Hệ thống tự động điều khiển trạm lượng tử
++    lore:
++    - Hệ thống trạm lượng tử tự động có tính năng sử dụng Sơ đồ Trạm lượng tử để thực
++      thi.
++    - Nếu đối tượng đích không được cung cấp trong danh sách thiết kế,
++    - Nền tảng sẽ tự động lọc những thông tin có sẵn
++    - Các tập tin cấu hình được cho phép chồng lớp (Không có tính năng tương thích
++      ngược)
++    - (Cần các nguyên vật liệu phù hợp được sử dụng)
++    - ''
++    - '<click_info>Sử dụng công suất của mạng lưới: &7640 cho mỗi lần chạy'
++  NTW_EXPANSION_ADVANCED_AUTO_QUANTUM_WORKBENCH_WITHHOLDING:
++    name: Hệ thống trạm Lượng tử Thông minh (Cấu hình giữ lại)
++    lore:
++    - Yêu cầu về việc vận hành của hệ thống Quantum Workstation bao gồm cung cấp Sơ
++      đồ trạm Quantum.
++    - Khi dự án không chứa đối tượng đích trên mạng lưới,
++    - Phần mềm sẽ tự động thu thập từ nguyên liệu để làm cấu thành
++    - Sơ đồ cấu hình có thể xếp chồng (Tương thích không bao gồm ngược)
++    - (Các vật liệu cần được đảm bảo đủ số lượng trong mạng)
++    - ''
++    - Phiên bản tùy biến tự động máy cấu thành vẫn tiếp tục chế tạo
++    - Đến khi phần output chứa đủ 1 hộp đối tượng
++    - Danh mục hàng hóa này có thể truy cập qua hệ thống trực tuyến
++    - Có khả năng cũng được chiết khấu thông qua phần mềm cung cấp
++    - ''
++    - '<click_info>Công suất kết nối của máy: &71,280/ 1 vòng lặp'
++  NTW_EXPANSION_ADVANCED_AUTO_ANCIENT_ALTAR:
++    name: Tự động Lập phương Lịch sử
++    lore:
++    - Việc sử dụng bàn thờ di tích tiên tiến yêu cầu bạn thiết kế Bản thờ Cổ xưa.
++    - Nếu mục tiêu nằm ngoài phạm vi bản thiết kế mạng
++    - Máy sẽ tự động lọc nguyên liệu từ mạng để xử lý tổng hợp
++    - Đồng ý vẽ đè lên nhau (Không thể hỗ trợ tương thích cho thiết bị thấp)
++    - (Yêu cầu phải có đủ nguyên liệu từ hệ thống)
++    - ''
++    - '<click_info>Điện năng sử dụng từ mạng: &7640 trên 1 sản phẩm'
++  NTW_EXPANSION_ADVANCED_AUTO_ANCIENT_ALTAR_WITHHOLDING:
++    name: Lập trình viên Đền thờ Cổ đại Thông minh (Bản phát hành đặc biệt)
++    lore:
++    - Tính năng tự động Lập trình viên Đền thờ Cổ đại đòi hỏi thiết kế của Lập trình
++      viên Đền thờ Cổ đại để hoạt động.
++    - Nếu thiết bị mục tiêu cho đồ án không thể truy cập qua hệ thống mạng,
++    - Hệ thống sẽ chọn ngẫu nhiên nguyên vật liệu để lắp ráp
++    - Giấy phép đè lên các lớp khác (Không hỗ trợ tương thích máy cũ)
++    - (Số lượng hàng hóa trong hệ thống cần đảm bảo đầy đủ)
++    - ''
++    - Bản nâng cấp phần cứng tự động sẽ tiến hành tổng hợp liên tục
++    - Cho đến khi cột giá trị nhận được 1 bộ dữ liệu
++    - Dữ liệu có thể được truy xuất qua mạng
++    - Tuy nhiên bạn cũng có thể tự thực hiện thông qua hệ thống giao hàng
++    - ''
++    - '<click_info>Tiêu tốn năng lượng: &71.280 trong quá trình lắp ráp'
++  NTW_EXPANSION_ADVANCED_AUTO_EXPANSION_WORKBENCH:
++    name: Trạm công cụ mở rộng tự động công nghệ thông tin tiên tiến
++    lore:
++    - Trạm mở rộng mạng lưới cần thiết kế mạng lưới công cụ mở rộng tự động cho vận
++      hành.
++    - Khi các vật phẩm theo thiết kế không có trên internet,
++    - Cỗ máy sẽ tự động xử lý tài nguyên ở trong mạng lưới để ghép nối
++    - Chấp thuận mô hình đồ thị chồng chất lên (Không hỗ trợ việc quay lại phiên bản
++      thấp hơn)
++    - (Đòi hỏi lượng vật liệu đủ sử dụng trên mạng lưới trực tuyến)
++    - ''
++    - '<click_info>Chi phí mạng cần thiết: &7640 qua mỗi quá trình xử lý'
++  NTW_EXPANSION_ADVANCED_AUTO_EXPANSION_WORKBENCH_WITHHOLDING:
++    name: Trạm công cụ quản lý mạng lưới (Phiên bản tùy biến đặc biệt)
++    lore:
++    - Bàn quản trị hệ thống mạng được tự động hóa nâng cao cần được định cấu hình
++      bằng Bảng công cụ quản trị mạng.
++    - Trong lúc mục tiêu bản vẽ không thuộc phạm vi xử lý trực tuyến,
++    - Hệ thống tự động sử dụng tài nguyên trong mạng lưới máy chủ để tổng hợp
++    - Giấy phép việc đè chồng đồ thị (Bản tương thích ngược không hỗ trợ)
++    - (Yêu cầu bảo đảm lượng nguyên liệu trên hệ thống mạng)
++    - ''
++    - Máy tổng hợp tự động phiên bản tùy chỉnh vẫn sẽ liên tục thiết kế
++    - Chờ tới khi bảng phân bổ có lượng dữ liệu bằng 1
++    - Dữ liệu sẽ được cung cấp qua trang trực tuyến
++    - Hoặc cũng có thể lấy qua các hệ thống gửi tiếp
++    - ''
++    - '<click_info>Tiêu tốn dòng điện trên web: &71,280 để xử lý một tiến trình'
++  NTW_EXPANSION_ADVANCED_AUTO_COMPRESSOR:
++    name: Hệ thống Nén khí Tự động Nâng cao
++    lore:
++    - Hệ thống Nén Tự động yêu cầu bộ cấu hình từ Nén Khí để thực thi.
++    - Khi bản thiết kế không có đối tượng thích hợp trong cơ sở lưới điện,
++    - Hệ thống xử lý tự động phân bổ nguồn từ hệ thống chung để xây dựng cấu hình
++    - Nhận chồng nhiều lớp cấu trúc (Độ trễ với phiên bản thấp không có sẵn)
++    - (Đòi hỏi phải bảo đảm nguồn đầu vào cho chu trình)
++    - ''
++    - '<click_info>Sử dụng điện trong toàn tuyến: &7640 cho 1 pha vận hành'
++  NTW_EXPANSION_ADVANCED_AUTO_COMPRESSOR_WITHHOLDING:
++    name: Mô-đun Nén Tự động Trực tuyến (Bản Nâng Cấp)
++    lore:
++    - Nền tảng Nén khí Tự động Nâng cao sẽ cần bản quy hoạch Nén Khí để khởi động.
++    - Khi không có mô-đun nào khớp với đối tượng cho dự án trong lưới điện,
++    - Khối vận hành tự động thiết lập và ghép nguồn nguyên liệu từ toàn mạng
++    - Có thể đặt chồng lên (Bất kỳ bản thấp hơn nào không dùng)
++    - (Số lượng hàng cung cấp qua mạng cần được giữ đủ)
++    - ''
++    - Bản nâng cấp phần cứng tự động sẽ tiến hành tổng hợp liên tục
++    - Lên đến khi hộp kiểm đầu ra đủ điều kiện nhận 1 cấu hình thành phẩm
++    - Một tập hợp cấu trúc sẽ truy cập được từ bất kỳ đâu
++    - Có thể được cung cấp thông qua cổng nhận
++    - ''
++    - '<click_info>Điện năng yêu cầu trên hệ thống: &71,280 cho quá trình tạo'
++  NTW_EXPANSION_ADVANCED_AUTO_GRIND_STONE:
++    name: Hệ thống Mài Tự Động Trực Tuyến Tối Ưu
++    lore:
++    - Đá Mài tự động cao cấp trực tuyến yêu cầu tài liệu đá Mài tự động trực tuyến.
++    - Trong lúc bản đồ chưa nhận đối tượng từ trang trực tuyến,
++    - Khối điều khiển sẽ thu thập ngẫu nhiên trên máy chủ để xây dựng cấu tạo
++    - Phép chồng đối tượng cho phép (Đảo ngược tính tương thích không tồn tại)
++    - (Đảm bảo đủ chi phí tại máy cục bộ)
++    - ''
++    - '<click_info>Lượng chi phí lưới tiêu tốn: &7640 cho mỗi chu kỳ tạo'
++  NTW_EXPANSION_ADVANCED_AUTO_GRIND_STONE_WITHHOLDING:
++    name: Máy Xay Đá Tự động Mạng Tiên tiến (Mẫu độc quyền)
++    lore:
++    - Yêu cầu về Cối xay đá mạng Cấp cao Tự động bao gồm bản thiết kế Cối xay đá để
++      thi công.
++    - Khi các vật phẩm dự kiến cho thiết kế chưa có mặt trên đường truyền,
++    - Cỗ máy bắt đầu thu thập vật phẩm tự động trên mạng để gộp chung
++    - Sự đè lên đồ án được cho phép (Việc hỗ trợ hạ xuống không được đáp ứng)
++    - (Yêu cầu bắt buộc số lượng thành phần đảm bảo trên hệ thống đường truyền)
++    - ''
++    - Trình biên dịch tự động bản độc quyền này tiếp tục việc vận hành tổng hợp
++    - Đến lúc đầu ra sở hữu 1 nhóm hàng hóa
++    - Bộ này có quyền mở ở mọi mạng lưới kết nối
++    - Cũng có thể rút ra theo hệ thống chia sẻ
++    - ''
++    - '<click_info>Mức điện năng tốn kém: &71,280 cho mỗi tiến trình chạy'
++  NTW_EXPANSION_ADVANCED_AUTO_JUICER:
++    name: Bộ phận Vắt quả Tự động cao cấp Trực tuyến
++    lore:
++    - Hệ thống Ép tự động cấp cao yêu cầu bản vẽ lắp đặt hệ thống máy ép.
++    - Nếu đối tượng từ bản vẽ chưa có sẵn trên máy chủ trực tuyến,
++    - Module tự động lọc vật liệu trong kho trung tâm để tổng hợp
++    - Việc sao chép các dự án xếp lớp là được (Thiết bị thấp sẽ không tương thích)
++    - (Bảo đảm yêu cầu vật liệu cung cấp cho trạm tổng)
++    - ''
++    - '<click_info>Yêu cầu công suất điện lưới: &7640/1 lần xử lý'
++  NTW_EXPANSION_ADVANCED_AUTO_JUICER_WITHHOLDING:
++    name: Trạm Vắt thông minh (Phân quyền)
++    lore:
++    - Thiết bị Ép thông minh nâng cao yêu cầu Bản đồ Mẫu để vận hành.
++    - Trong khi thiết bị không nhận nguồn đối tượng ở mạng điều phối,
++    - Nền tảng tự động lấy nội dung tổng hợp
++    - Mẫu thiết kế đè chồng có thể sử dụng (Mẫu trước sẽ không tích hợp)
++    - (Chi tiết cung ứng trong kho lưu trữ cần đảm bảo đủ mức quy định)
++    - ''
++    - Sử dụng công cụ thông minh cho việc thu thập dữ liệu tổng hợp sẽ luôn trong
++      tiến trình
++    - Cho đến khi thanh ra chứa được 1 kiện hàng
++    - Bất kỳ trang bị nào sẽ cũng nằm ngoài truy cập
++    - Chỉ được trao qua phương thức chuyển
++    - ''
++    - '<click_info>Công suất cung cấp từ lưới điện: &71,280 trong đợt tải'
++  NTW_EXPANSION_ADVANCED_AUTO_ORE_CRUSHER:
++    name: Hệ thống Phân loại Quặng Tự Động Cao cấp
++    lore:
++    - Thiết bị tự động nghiền quặng nâng cao trên hệ thống yêu cầu Sơ đồ máy nghiền
++      quặng để hoạt động.
++    - Lúc mục tiêu từ dự án vắng mặt trên hệ thống,
++    - Máy tổng hợp nguyên liệu qua các khối từ hệ thống vào
++    - Có chấp thuận thiết kế trồng lên (Bản cũ đã lỗi thời)
++    - (Yêu cầu đầy đủ lượng dữ liệu trong máy chủ vận hành)
++    - ''
++    - '<click_info>Sử dụng dòng lưới: &7640 trên 1 khối công việc'
++  NTW_EXPANSION_ADVANCED_AUTO_ORE_CRUSHER_WITHHOLDING:
++    name: Trạm Xử lý Quặng Tự Động Trực tuyến Đỉnh cao (Bản hạn chế)
++    lore:
++    - Máy xử lý quặng tiên tiến cần thông số Cối xay quặng trên hệ thống để vận hành.
++    - Khi không có các chỉ tiêu dự án trực tuyến từ hệ thống,
++    - Thiết bị sẽ tự động cung ứng tài liệu trên mạng cho mục tiêu chung
++    - Nó có hỗ trợ cho việc sao chép nội dung đồ họa (Các bản hỗ trợ máy cũ hơn bị
++      cấm)
++    - (Những nguyên vật liệu cung ứng cần đầy đủ số lượng cho đường dây)
++    - ''
++    - Bản máy tính dùng riêng sẽ tổng hợp tiếp
++    - Cho tới lúc khu vực chứa có 1 thùng đối tượng
++    - Toàn bộ tài nguyên của bộ này sẽ trực tuyến kết nối
++    - Hoặc cũng được cung ứng qua các hệ thống vận chuyển
++    - ''
++    - '<click_info>Sử dụng mạng lưới: &71,280 để hoàn thành cấu trúc'
++  NTW_EXPANSION_ADVANCED_AUTO_PRESSURE_CHAMBER:
++    name: Hệ thống Máy nén tự động Cao cấp
++    lore:
++    - Hệ thống buồng nén lưới điện tự động nâng cao sử dụng thông số dự án Phòng nén
++      để hoạt động.
++    - Khi đối tượng thiết kế không hoạt động trên hệ thống mạng,
++    - Bộ máy lấy thông tin cần thiết trực tuyến vào việc tổng hợp
++    - Công việc xếp chồng có hỗ trợ (Máy trước đó bị bỏ)
++    - (Yêu cầu lượng nguyên liệu không bị khan hiếm trên toàn hệ thống)
++    - ''
++    - '<click_info>Điện sử dụng từ mạng điện: &7640 một vòng cấu thành'
++  NTW_EXPANSION_ADVANCED_AUTO_PRESSURE_CHAMBER_WITHHOLDING:
++    name: Máy Nén Phân bổ Tiên tiến Trực tuyến (Bản lưu trước)
++    lore:
++    - Bộ phận phân áp tiên tiến thông qua dự án Máy Nén để thực thi.
++    - Nếu vật liệu dự án thiếu trên hệ thống trực tuyến,
++    - Nền tảng lấy đồ từ máy chủ vào khối tổng hợp tự động
++    - Thiết kế xếp lớp là khả thi (Không quay lại các phiên bản máy trước đó)
++    - (Có yêu cầu sự cung cấp toàn vẹn vật liệu ở phần lưới)
++    - ''
++    - Mẫu cấu hình bảo quản tiến hành duy trì vận hành lắp ráp
++    - Cho tới khi hệ thống đầu ra sở hữu 1 cụm mô-đun
++    - Người chơi dễ dàng kiểm tra thiết bị qua mạng
++    - Có thể lấy ngay thông qua hệ thống đưa đi
++    - ''
++    - '<click_info>Năng lượng hấp thu từ lưới trung tâm: &71,280 một máy hoạt động'
++  NTW_EXPANSION_ADVANCED_AUTO_CRAFTING:
++    name: Máy Lắp Ráp Tự Động Nâng Cao Trực Tuyến
++    lore:
++    - Trạm lắp ráp tự động trên mạng cao cấp yêu cầu thông số dự án Thiết bị Tự ráp
++      để khởi chạy.
++    - Khi các thực thể không tồn tại trong thiết kế mạng,
++    - Hệ thống sẽ lấy tài nguyên tự động nhằm kết xuất tổng hợp
++    - Thiết kế được phép đặt lên nhau (Việc kết nối ngược không hoạt động)
++    - (Số lượng tại tài nguyên phải luôn duy trì đủ trên mạng trung tâm)
++    - ''
++    - '<click_info>Tiêu tốn nguồn điện tại nguồn tổng: &7640 cho lần tạo ra'
++  NTW_EXPANSION_ADVANCED_AUTO_CRAFTING_WITHHOLDING:
++    name: Bộ Phận Thiết Lập Tự Động Nâng Cao (Phiên Bản Hạn Chế)
++    lore:
++    - Máy tổng hợp tự động cần dự án Máy Tổng hợp để tiến hành.
++    - Vì các thiết kế chưa thể tạo thực thể có sẵn trực tuyến,
++    - Máy móc lập tức phân tích các tài nguyên lấy được nhằm tạo ra thiết kế
++    - Bạn có quyền gộp cấu hình lại với nhau (Sự kết hợp này có thể gây sai phạm do
++      vấn đề phiên bản)
++    - (Lưu lượng hàng hóa phải được cung cấp liên tục qua kho tổng)
++    - ''
++    - Thiết bị chế tạo dùng riêng sẽ tiến hành lắp rắp thông số tổng quát
++    - Tính cho đến lúc thanh trượt ở ngoài xuất hiện 1 đối tượng
++    - Thực thể sẽ được lưu lại ở trang truy cập chung của máy chủ
++    - Nó còn có thể di chuyển ra do hệ thống đẩy tự động
++    - ''
++    - '<click_info>Nguồn năng lượng lấy tại lưới tổng: &71,280 một lượt vận hành lắp
++      ráp'
++  NTW_EXPANSION_BRIDGE_ORDINAL:
++    name: Cầu nối mạng (Trong suốt)
++    lore:
++    - Cầu nối mạng được dùng cho kết nối nhiều hệ thống đối tượng mạng khác nhau
++    - Từ đó kiến thiết 1 cấu trúc kết nối tổng
++    - Bố trí mạng lưới sẽ trở nên tinh tế hơn bao giờ hết
++  NTW_EXPANSION_BRIDGE_WHITE:
++    name: Đầu nối mạng (Màu trắng)
++    lore:
++    - Cầu mạng đóng vai trò thiết lập một mạng đa nhiệm các máy
++    - Xây dựng thành một mạng khép kín, hoạt động độc lập
++    - Giúp quy hoạch kiến trúc máy móc rõ ràng hơn
++  NTW_EXPANSION_BRIDGE_LIGHT_GRAY:
++    name: Cầu mạng (Màu xám nhạt)
++    lore:
++    - Khối cầu đóng vai trò kết hợp nhiều bộ xử lý thông qua hệ thống
++    - Để tạo nên hệ thống máy tự động quy mô hoàn chỉnh
++    - Bản thiết kế đường truyền của mạng sẽ không còn rối rắm
++  NTW_EXPANSION_BRIDGE_GRAY:
++    name: Liên kết cầu (Màu xám)
++    lore:
++    - Kết nối cầu truyền dữ liệu tới thiết bị mạng
++    - Và tổ hợp chúng thành cấu trúc lớn
++    - Cách phân bổ sơ đồ tổng của hệ thống tốt hơn
++  NTW_EXPANSION_BRIDGE_BLACK:
++    name: Cầu liên kết mạng (Màu đen)
++    lore:
++    - Mạng cầu có các đặc trưng dùng nối kết trang bị
++    - Từ các trang bị tạo thành 1 tổng thể khổng lồ
++    - Phân tách cách sắp xếp thông số của hệ thống rành mạch
++  NTW_EXPANSION_BRIDGE_BROWN:
++    name: Mạng lưới kết nối (Màu nâu)
++    lore:
++    - Khối nối mạng gắn kết các cổng của đa máy chủ lại với nhau
++    - Đến hệ thống hợp nhất mạng chung nhất
++    - Cấu tạo chi tiết các đường dẫn lưới mạng minh bạch
++  NTW_EXPANSION_BRIDGE_RED:
++    name: Cầu lưới điện (Màu đỏ)
++    lore:
++    - Cáp lưới điện sử dụng công nghệ gắn kết thiết bị thuộc mạng khác nhau
++    - Cho một hệ mạng hoàn hảo tuyệt đối
++    - Tối ưu lại sự sắp xếp mạng lưới sao cho hiển thị nhất
++  NTW_EXPANSION_BRIDGE_ORANGE:
++    name: Đầu truyền (Màu cam)
++    lore:
++    - Cổng truyền đảm bảo cho việc liên kết ở vô số mạng
++    - Với các đặc trưng ưu việt của 1 mạng máy tính tổng
++    - Lưới sẽ trong sạch hơn nhờ khả năng làm gọn đường dẫn
++  NTW_EXPANSION_BRIDGE_YELLOW:
++    name: Đầu truyền tải (Màu vàng)
++    lore:
++    - Cầu máy được dành trong liên thông thông số phần cứng
++    - Làm thành 1 lưới thông tin đầy đủ, hiệu quả
++    - Rõ ràng chi tiết hệ thống quy hoạch điện mạng lưới
++  NTW_EXPANSION_BRIDGE_LIME:
++    name: Bridge mạng (Xanh lá chanh)
++    lore:
++    - Bộ phát truyền mạng được áp dụng để nối hệ thống mạng qua nhiều phần
++    - Cho hệ mạng rộng khắp tới cấu tạo tối ưu
++    - Đường đi lưới được quy hoạch hoàn chỉnh, tinh tế
++  NTW_EXPANSION_BRIDGE_GREEN:
++    name: Dây mạng cầu nối (Màu xanh lá)
++    lore:
++    - Kết cấu cầu nối có các tùy chọn ghép nối từ những cổng thiết bị
++    - Sắp xếp cấu trúc máy để lập nên bộ máy mạng hoàn chỉnh
++    - Mạng lưới vận hành không tốn công theo dõi
++  NTW_EXPANSION_BRIDGE_CYAN:
++    name: Trạm kết nối lưới (Màu lục lam)
++    lore:
++    - Máy nối tạo các điểm truyền trên những máy móc cần hệ thống
++    - Dựng 1 bộ xử lý trung tâm điều khiển đường lưới
++    - Phân luồng định tuyến chi tiết hơn nữa
++  NTW_EXPANSION_BRIDGE_LIGHT_BLUE:
++    name: Điểm nối lưới (Màu xanh nhạt)
++    lore:
++    - Trạm kết nối mạng nhằm vào liên kết giữa cỗ máy vật phẩm
++    - Làm phát triển bộ định tuyến toàn năng của cỗ máy tổng
++    - Sơ đồ điều chỉnh thiết bị mạch lạc rành rọt
++  NTW_EXPANSION_BRIDGE_BLUE:
++    name: Cầu nối (Màu xanh da trời)
++    lore:
++    - Điểm chia cầu có thể nối chung nhiều công cụ thông tin thuộc mạng
++    - Cho nên tạo hệ điều hành đầy đủ chức năng xử lý
++    - Hệ thống của cả cơ cấu sẽ dễ nhìn nhất có thể
++  NTW_EXPANSION_BRIDGE_PURPLE:
++    name: Trạm cầu nối mạng (Màu tím)
++    lore:
++    - Hệ truyền liên kết dành riêng cho các thành phần nằm trong mạng trực tuyến
++    - Phân luồng 1 tổng bộ điều phối cho hệ mạng chung
++    - Kế hoạch lắp đặt không thể trong sạch và tinh gọn hơn
++  NTW_EXPANSION_BRIDGE_MAGENTA:
++    name: Khối liên kết (Đỏ thắm)
++    lore:
++    - Cầu trực tuyến cung cấp đường dẫn dữ liệu đến vô số công cụ
++    - Do tính năng đa luồng hệ điều hành của mạng
++    - Sự trình bày sơ đồ lưới được đánh giá hiệu quả tối đa
++  NTW_EXPANSION_BRIDGE_PINK:
++    name: Trạm cầu (Màu hồng)
++    lore:
++    - Máy nối tiếp có các cổng nối với vật dụng cùng bộ mạng
++    - Vì lý do phát triển hoàn thiện thông số điều khiển
++    - Việc định hình đường lưới thông suốt vượt trội
++  NTW_EXPANSION_ADVANCED_QUANTUM_STORAGE:
++    name: Kho lưu trữ vật phẩm công nghệ lượng tử siêu cấp
++    lore:
++    - Dung lượng lưu trữ tối đa được cá nhân hóa
++    - Cần thông báo trước rằng chỉ số lượng thiết lập tùy chọn không ít hơn giá trị
++      định sẵn
++    - Dẫu không xóa về ngưỡng tối đa mức hiện tại
++  NTW_EXPANSION_LINE_POWER_OUTLET_1:
++    name: Ổ cắm điện chuỗi liên kết (1)
++    lore:
++    - Cổng điện đường truyền cung cấp năng lượng có trong hệ thống trạm mạng
++    - Giao điện từ kho lên đến mục tiêu yêu cầu.
++    - ''
++    - '<click_info>Khả năng dự trữ: &764J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_2:
++    name: Cổng cắm chuỗi truyền năng lượng (2)
++    lore:
++    - Lưới điện tiếp nối cho khả năng đưa điện vào nguồn hệ thống trạm chủ
++    - Truyền điện nguồn của trạm tới cỗ máy đặc thù.
++    - ''
++    - '<click_info>Độ chịu tải: &7256J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_3:
++    name: Cổng cung cấp điện lưới mạng liên kết (3)
++    lore:
++    - Chuỗi nối tiếp điện chuyển trực tiếp khối năng lượng
++    - Đóng vai trò duy trì điện năng các hệ máy.
++    - ''
++    - '<click_info>Có khả năng chứa: &71,024J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_4:
++    name: Khối lấy điện lưới đa chuỗi (4)
++    lore:
++    - Chấu điện đường dây rút ra năng lượng phân phối từ trạm điện
++    - Cung cấp tới hệ thống tiêu thụ đầu cuối.
++    - ''
++    - '<click_info>Năng lượng tối đa: &74,096J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_5:
++    name: Cổng tiếp nhận điện chuỗi (5)
++    lore:
++    - Lưới ổ điện nối mạng vận chuyển dòng điện trạm cung cấp
++    - Di chuyển chúng qua kho máy móc sử dụng.
++    - ''
++    - '<click_info>Mức điện trữ: &732,768J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_6:
++    name: Lõi truyền điện chuỗi đa nhiệm (6)
++    lore:
++    - Trạm điện tiếp nối có tác dụng lưu điện phân tán của máy chủ chung
++    - Trao trả điện qua việc lưu trữ tại bộ phận cấp nguồn cho công trình.
++    - ''
++    - '<click_info>Năng lượng tích trữ: &7262,144J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_7:
++    name: Khe chứa điện năng lượng mạng chuỗi (7)
++    lore:
++    - Cổng kết nối mạng lưới chia sẻ nguồn năng lượng
++    - Lấy từ máy chủ mạng chuyển lên thiết bị chỉ định.
++    - ''
++    - '<click_info>Tổng trữ lượng: &72,097,152J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_8:
++    name: Bộ tiếp nhận ổ điện kết nối chuỗi mạng (8)
++    lore:
++    - Trạm nối truyền phát điện từ có khả năng mang năng lượng
++    - Qua trung gian đến mục tiêu mong muốn.
++    - ''
++    - '<click_info>Lượng có thể lưu: &716,777,216J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_9:
++    name: Lõi ổ kết nối dòng điện lưới (9)
++    lore:
++    - Dây truyền tải cung cấp điện phát ra qua trung gian tiếp nhận
++    - Chuyển tiếp nguồn phát đến cụm thi công.
++    - ''
++    - '<click_info>Có sẵn trong bộ dự trữ: &7134,217,728J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_10:
++    name: Dây cáp nguồn chuỗi mạng phân tuyến (10)
++    lore:
++    - Ổ cắm liên tiếp đường dây mạng cho phép cung cấp dòng vào điện thế
++    - Giao cho điểm đến đích phân chia hệ thống.
++    - ''
++    - '<click_info>Cho phép giữ lại lượng điện: &71,073,741,824J'
++  NTW_EXPANSION_LINE_POWER_OUTLET_11:
++    name: Hệ thống điện cổng chuỗi (11)
++    lore:
++    - Cụm ổ nối thiết bị điện phát dòng của hệ thống năng lượng vào điểm đến
++    - Theo kế hoạch tới trung tâm chỉ định trước.
++    - ''
++    - '<click_info>Dung lượng chịu đựng: &72,147,483,647J'
++  NTW_EXPANSION_AUTHOR_SEFIRAAT:
++    name: Sefiraat
++    lore:
++    - Lập trình viên phát triển Mạng Hệ thống
++  NTW_EXPANSION_AUTHOR_YBW0014:
++    name: ybw0014
++    lore:
++    - Người phiên dịch hệ Mạng Tự động Trung Quốc
++  NTW_EXPANSION_AUTHOR_YITOUDAIDAI:
++    name: yitoudaidai
++    lore:
++    - Người phát triển Hệ thống Mạng mở rộng
++  NTW_EXPANSION_AUTHOR_TINALNESS:
++    name: tinalness
++    lore:
++    - Nhà phát triển của Phần mềm Mạng bổ sung
++  NTW_EXPANSION_CARGO_NODE_QUICK_TOOL:
++    name: Công cụ cấu hình nhanh Nút Hàng hóa
++    lore:
++    - '&aNhấp chuột phải: Cài đặt cấu hình cho điểm trỏ Nút chuyển hàng'
++    - '&eNhấn xuống+Nhấp chuột phải: Load lại Cấu hình tại khu vực đã chỉ định'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_STORAGE_UPGRADE_TABLE:
++    name: Bàn nâng cấp ngăn kéo mạng lưới
++    lore:
++    - '&eDùng trong việc nâng cấp ngăn kéo mạng lưới'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_1:
++    name: Ngăn kéo mạng lưới I
++    lore:
++    - '&6Cung cấp tính năng nhập/xuất siêu tốc qua mạng lưới'
++    - ''
++    - '&7⇨ &eLưu giữ 32 món đồ khác loại'
++    - '&7⇨ &eTừng vật phẩm có khả năng duy trì 256 chiếc'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_2:
++    name: Ngăn lưu trữ mạng lưới II
++    lore:
++    - '&6Cho phép thêm/rút cực nhanh trong hệ thống'
++    - ''
++    - '&7⇨ &eChứa tối đa 32 kiểu hàng hóa'
++    - '&7⇨ &eCó sức chứa 1024 mẫu của mỗi mặt hàng'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_3:
++    name: Kệ mạng đa dạng III
++    lore:
++    - '&6Được tích hợp bộ tải/truy xuất mạng tối tân'
++    - ''
++    - '&7⇨ &eLàm kho bãi của 32 hàng hóa'
++    - '&7⇨ &eMỗi mặt hàng giữ được 4096 bản'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_4:
++    name: Khu lưu trữ mạng lưới IV
++    lore:
++    - '&6Với đầu kết nối thêm/xóa đồ cực tốc'
++    - ''
++    - '&7⇨ &ePhân bố đến 32 loại dữ liệu vật thể'
++    - '&7⇨ &eSức gánh chịu 32768 cái của một phân mục'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_5:
++    name: Bộ lưu đồ vào mạng V
++    lore:
++    - '&6Hệ thống mở cổng lưu trữ và phân phối siêu cường'
++    - ''
++    - '&7⇨ &eGửi gắm tới 32 mẫu hàng'
++    - '&7⇨ &eMột phân loại tích tụ 262144 cá thể'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_6:
++    name: Tủ đồ điện toán mạng VI
++    lore:
++    - '&6Hoạt động nhập và rút khỏi tủ mạng lưới ở mức tối đa'
++    - ''
++    - '&7⇨ &eChứa chấp 32 dòng vật dụng'
++    - '&7⇨ &eCho mỗi nhóm lưu lên đến 2097152 món'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_7:
++    name: Kho chứa thông tin đồ mạng VII
++    lore:
++    - '&6Công nghệ nhập và rút đồ cực nhanh vào hệ mạng'
++    - ''
++    - '&7⇨ &eDung lượng lên đến 32 loại khối đồ'
++    - '&7⇨ &eKhối nào cũng để được 4194304 lượng vật thể'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_8:
++    name: Hộp dự trữ công nghệ mạng VIII
++    lore:
++    - '&6Sử dụng công nghệ tăng cường thu nạp/xả nhanh của mạng'
++    - ''
++    - '&7⇨ &eLưu giữ thông tin khoảng 32 nhãn hàng'
++    - '&7⇨ &eBên trong chứa đựng số lượng 8388608 đơn vị của loại đó'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_9:
++    name: Khu căn cứ dữ liệu đồ mạng IX
++    lore:
++    - '&6Cho thêm tiện ích trích lọc vật thể vào ra nhanh qua mạng'
++    - ''
++    - '&7⇨ &eKhả dụng với 32 tệp đồ khác'
++    - '&7⇨ &eMỗi bản có thể giữ tới 16777216 chiếc đồ cùng loại'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_10:
++    name: Trạm dữ liệu tủ mạng X
++    lore:
++    - '&6Sự tương tác trích và cho đồ mạng cao cấp siêu cường'
++    - ''
++    - '&7⇨ &eCất chứa đồ cho 32 món đa loại'
++    - '&7⇨ &eMang theo khả năng trữ 33554432 phần tử của mọi loại đồ'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_11:
++    name: Ngăn lưu trữ siêu mạng lưới XI
++    lore:
++    - '&6Giới hạn nạp/xả qua mạng lưới được tăng cực điểm'
++    - ''
++    - '&7⇨ &eLàm chỗ lưu giữ của 32 hàng hóa'
++    - '&7⇨ &eTối đa chứa được 134217728 món cho mỗi phân mục'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_12:
++    name: Ngăn lưu trữ siêu mạng lưới XII
++    lore:
++    - '&6Giới hạn nạp/xả qua mạng lưới được tăng cực điểm'
++    - ''
++    - '&7⇨ &eLàm chỗ lưu giữ của 35 hàng hóa'
++    - '&7⇨ &eTối đa chứa được 1073741824 món cho mỗi phân mục'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_13:
++    name: Ngăn lưu trữ siêu mạng lưới XIII
++    lore:
++    - '&6Giới hạn nạp/xả qua mạng lưới được tăng cực điểm'
++    - ''
++    - '&7⇨ &eLàm chỗ lưu giữ của 35 hàng hóa'
++    - '&7⇨ &eTối đa chứa được 2147483647 món cho mỗi phân mục'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_1_MODEL:
++    name: Mô hình Ngăn mạng I
++    lore:
++    - '&6Cung cấp tính năng nhập/xuất siêu tốc qua mạng lưới'
++    - ''
++    - '&7⇨ &eLưu giữ 32 món đồ khác loại'
++    - '&7⇨ &eTừng vật phẩm có khả năng duy trì 256 chiếc'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_2_MODEL:
++    name: Mô hình Ngăn mạng II
++    lore:
++    - '&6Cho phép thêm/rút cực nhanh trong hệ thống'
++    - ''
++    - '&7⇨ &eChứa tối đa 32 kiểu hàng hóa'
++    - '&7⇨ &eCó sức chứa 1024 mẫu của mỗi mặt hàng'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_3_MODEL:
++    name: Mô hình Ngăn mạng III
++    lore:
++    - '&6Được tích hợp bộ tải/truy xuất mạng tối tân'
++    - ''
++    - '&7⇨ &eLàm kho bãi của 32 hàng hóa'
++    - '&7⇨ &eMỗi mặt hàng giữ được 4096 bản'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_4_MODEL:
++    name: Mô hình Ngăn mạng IV
++    lore:
++    - '&6Với đầu kết nối thêm/xóa đồ cực tốc'
++    - ''
++    - '&7⇨ &ePhân bố đến 32 loại dữ liệu vật thể'
++    - '&7⇨ &eSức gánh chịu 32768 cái của một phân mục'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_5_MODEL:
++    name: Mô hình Ngăn mạng V
++    lore:
++    - '&6Hệ thống mở cổng lưu trữ và phân phối siêu cường'
++    - ''
++    - '&7⇨ &eGửi gắm tới 32 mẫu hàng'
++    - '&7⇨ &eMột phân loại tích tụ 262144 cá thể'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_6_MODEL:
++    name: Mô hình Ngăn mạng VI
++    lore:
++    - '&6Hoạt động nhập và rút khỏi tủ mạng lưới ở mức tối đa'
++    - ''
++    - '&7⇨ &eChứa chấp 32 dòng vật dụng'
++    - '&7⇨ &eCho mỗi nhóm lưu lên đến 2097152 món'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_7_MODEL:
++    name: Mô hình Ngăn mạng VII
++    lore:
++    - '&6Công nghệ nhập và rút đồ cực nhanh vào hệ mạng'
++    - ''
++    - '&7⇨ &eDung lượng lên đến 32 loại khối đồ'
++    - '&7⇨ &eKhối nào cũng để được 4194304 lượng vật thể'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_8_MODEL:
++    name: Mô hình Ngăn mạng VIII
++    lore:
++    - '&6Sử dụng công nghệ tăng cường thu nạp/xả nhanh của mạng'
++    - ''
++    - '&7⇨ &eLưu giữ thông tin khoảng 32 nhãn hàng'
++    - '&7⇨ &eBên trong chứa đựng số lượng 8388608 đơn vị của loại đó'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_9_MODEL:
++    name: Mô hình Ngăn mạng IX
++    lore:
++    - '&6Cho thêm tiện ích trích lọc vật thể vào ra nhanh qua mạng'
++    - ''
++    - '&7⇨ &eKhả dụng với 32 tệp đồ khác'
++    - '&7⇨ &eMỗi bản có thể giữ tới 16777216 chiếc đồ cùng loại'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_10_MODEL:
++    name: Mô hình Ngăn mạng X
++    lore:
++    - '&6Sự tương tác trích và cho đồ mạng cao cấp siêu cường'
++    - ''
++    - '&7⇨ &eCất chứa đồ cho 32 món đa loại'
++    - '&7⇨ &eMang theo khả năng trữ 33554432 phần tử của mọi loại đồ'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_11_MODEL:
++    name: Mô hình Ngăn mạng XI
++    lore:
++    - '&6Giới hạn nạp/xả qua mạng lưới được tăng cực điểm'
++    - ''
++    - '&7⇨ &eLàm chỗ lưu giữ của 32 hàng hóa'
++    - '&7⇨ &eTối đa chứa được 134217728 món cho mỗi phân mục'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_12_MODEL:
++    name: Mô hình Ngăn mạng XII
++    lore:
++    - '&6Giới hạn nạp/xả qua mạng lưới được tăng cực điểm'
++    - ''
++    - '&7⇨ &eLàm chỗ lưu giữ của 35 hàng hóa'
++    - '&7⇨ &eTối đa chứa được 1073741824 món cho mỗi phân mục'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_CARGO_STORAGE_UNIT_13_MODEL:
++    name: Mô hình Ngăn mạng XIII
++    lore:
++    - '&6Giới hạn nạp/xả qua mạng lưới được tăng cực điểm'
++    - ''
++    - '&7⇨ &eLàm chỗ lưu giữ của 35 hàng hóa'
++    - '&7⇨ &eTối đa chứa được 2147483647 món cho mỗi phân mục'
++    - ''
++    - '&7⇨ &eCần có cờ lê mạng để phá bỏ khối mô hình'
++    - ''
++    - '&x&c&c&8&c&f&4&lM&x&c&b&9&7&f&5&lo&x&c&a&a&3&f&6&ly&x&c&9&a&e&f&7&lu&x&c&8&b&9&f&8&lS&x&c&7&c&5&f&9&ll&x&c&5&d&0&f&9&li&x&c&4&d&b&f&a&lm&x&c&3&e&6&f&b&le&x&c&2&f&2&f&c&lF&x&c&1&f&d&f&d&lu&x&c&1&f&d&f&d&ln'
++    - ''
++  NTW_EXPANSION_DUE_MACHINE_CONFIGURATOR:
++    name: '&6Máy định dạng giới hạn'
++    lore:
++    - Dùng thiết lập cài đặt cho hệ thống giới hạn
++    - ''
++    - '<click_info>Nhấp chuột phải: <passive>Thực hiện cài đặt'
++    - '<click_info>Shift+Nhấp chuột phải: <passive>Lưu tùy chọn cài đặt'
++  NTW_EXPANSION_ITEM_MOVER:
++    name: '&6Cần Chuyển Đổi Hàng Hóa'
++    lore:
++    - '&6Nhấp chuột phải đưa hàng hóa vào cây dịch chuyển'
++    - '&6Giữ phím Shift + Nhấp chuột phải đặt hàng vào khu chứa quy định'
++    - '&cKhông làm việc với Lưu trữ Vô tận'
++  NTW_EXPANSION_BLUEPRINT_DECODER:
++    name: '&6Bộ Giải Mã Tín Hiệu Bản Thiết Kế'
++    lore:
++    - ''
++    - Xử lý và đọc dữ liệu thiết kế từ mạng lưới
++  NTW_EXPANSION_DUE_MACHINE:
++    name: '&6Thiết Bị Hạn Chế Luồng'
++    lore:
++    - Hoạt động cung cấp đầu ra giới hạn số lượng đối tượng từ danh sách trắng thông
++      qua ngõ nhận dữ liệu
++  NTW_EXPANSION_OFFSETTER:
++    name: '&aCỗ Máy Thay Đổi Vị Trí Ô'
++    lore:
++    - '&8Cấp phát đến hệ thống ô đã cấu hình'
++    - '&8Hiệu chỉnh trị số định hướng tùy thích'
++    - '&7Trang bị liên kết hướng vào thiết bị 1 đầu và kết nối máy kia ở đầu khác'
++  NTW_EXPANSION_BETTER_GRABBER:
++    name: Bộ Lấy Mạng Tối Ưu
++    lore:
++    - Thiết bị nâng cao có tác dụng rút
++    - Thông tin vật thể đầu tiên có trên thiết bị
++  NTW_SYNTHETIC_EMERALD_SHARD:
++    name: Mảnh Ngọc Lục Bảo Nhân Tạo
++    lore:
++    - Những tàn dư của Ngọc Lục Bảo
++    - Trở thành cột trụ phát triển việc chia sẻ dữ liệu
++  NTW_OPTIC_GLASS:
++    name: Thủy Tinh Truyền Sáng
++    lore:
++    - Tấm Kính mang vai trò chuyển tiếp tín hiệu cơ bản
++  NTW_OPTIC_CABLE:
++    name: Cáp Quang Truyền Dẫn
++    lore:
++    - Đường dây cấp kết nối mạng với dung lượng tín hiệu mở rộng
++  NTW_OPTIC_STAR:
++    name: Tâm Quang Sao
++    lore:
++    - Trung tâm phát quang dùng trong thiết lập kết nối lưu lượng dữ liệu quy mô
++  NTW_RADIOACTIVE_OPTIC_STAR:
++    name: Lõi Sáng Bức Xạ
++    lore:
++    - Sức mạnh truyền phát quang kết nối dữ liệu mạng không giới hạn
++  NTW_SHRINKING_BASE:
++    name: Đài Thu Gọn
++    lore:
++    - Trạm chế tạo khả năng thu bé vạn vật từ hình dạng to lớn
++  NTW_SIMPLE_NANOBOTS:
++    name: Nanobot Cơ Bản
++    lore:
++    - Dòng bot vô hình tham gia nhiệm vụ xử lý tỉ mỉ
++  NTW_ADVANCED_NANOBOTS:
++    name: Nanobot Tiên Tiến
++    lore:
++    - Loại bot công nghệ siêu nhỏ, xử lý tối ưu tác vụ công nghệ
++    - Năng lực vượt trội so với phiên bản cơ bản
++  NTW_AI_CORE:
++    name: Khối AI Trung Tâm
++    lore:
++    - Mẫu não bộ nhân tạo đời đầu bảo bọc trong vỏ yếu ớt
++  NTW_EMPOWERED_AI_CORE:
++    name: Lõi AI Tăng Cường
++    lore:
++    - Não bộ AI thông minh cao tích hợp trong thân máy rắn chắc
++  NTW_PRISTINE_AI_CORE:
++    name: Trí Tuệ Cổ Đại (Lõi AI)
++    lore:
++    - Phát hiện được lưu truyền nguồn gốc từ di sản thượng cổ
++    - Trí tuệ nhân tạo ở mức toàn vẹn
++  NTW_INTERDIMENSIONAL_PRESENCE:
++    name: Chủ Thể Vượt Chiều Không Gian
++    lore:
++    - Phiên bản trí tuệ thông thái không tỳ vết
++    - Khả năng mở rộng thao tác xuyên mọi rào cản chiều sâu không gian
++  NTW_CONTROLLER:
++    name: Trung Tâm Điều Hành Mạng
++    lore:
++    - Là trái tim vận hành cả mạng lưới liên kết
++    - Một khu vực duy nhất cho mọi cấu trúc kết nối mạng
++  NTW_BRIDGE:
++    name: Mạng Cầu Nối
++    lore:
++    - Dùng nối mạng cho vô số đối tượng cấu trúc
++    - Tái hiện sơ đồ hệ thống tổ hợp
++  NTW_MONITOR:
++    name: Trạm Giám Sát Mạng
++    lore:
++    - Kết nối tương tác vật thể kế bên thiết bị thông qua hệ điều hành
++    - Mở kênh vào mạng lưới liên thông
++    - ''
++    - 'Hỗ trợ khả năng tại:'
++    - InfinityTech - Đơn Vị Lưu Trữ
++    - FluffyTech - Thùng Fluffy
++    - Mạng lưới - Khối Lượng Tử
++    - <random_color>Mạng lưới Mở Rộng - Ngăn Kéo
++  NTW_IMPORT:
++    name: Trạm Truyền Thông Tin
++    lore:
++    - Nhập vật thể qua hệ thống vận tải mạng
++    - Giới hạn truyền là 9 bộ trong mỗi tick đồng hồ SF
++    - Tiếp nhận hàng tiếp liệu của quá trình tải
++  NTW_EXPORT:
++    name: Điểm Phát Mạng
++    lore:
++    - Cổng ra từ hệ thống được cấu hình cho việc
++    - Xả hàng xuất kho 1 nhóm từ trong hệ thống
++    - Chấp nhận xử lý thông qua hệ điều hành hàng hóa
++  NTW_GRABBER:
++    name: Tay Lấy Mạng
++    lore:
++    - Thiết bị móc lấy hàng lấy vật thể có
++    - Tại món hàng trên cùng từ cụm đã xác định
++  NTW_PUSHER:
++    name: Băng Đẩy Mạng
++    lore:
++    - Tiến hành vận tải
++    - Vào máy của hệ thống mục tiêu xác định
++  NTW_MOREPUSHER:
++    name: Trạm Đẩy Mạng V2
++    lore:
++    - Tính năng đưa hàng
++    - Vào phần máy đang kết nối trong mạng lưới
++    - Tích hợp với 9 cụm nạp xả dữ liệu
++  NTW_BESTPUSHER:
++    name: Trạm Đẩy Mạng V3
++    lore:
++    - Tính năng đưa hàng
++    - Vào phần máy đang kết nối trong mạng lưới
++    - Sức chứa khổng lồ lên tới 12 khối lấy dữ liệu
++  NTW_CONTROL_X:
++    name: Cỗ Máy Cắt Khối
++    lore:
++    - Máy sẽ bứng đi phần
++    - Giao diện nguyên gốc loại trừ đối tượng kho chứa ngoài
++    - Khối địa hình đưa vào lưới hệ thống.
++    - ''
++    - '<click_info>Năng lượng tiêu hao: <passive>Tốn 100J cho một lần cắt'
++  NTW_CONTROL_V:
++    name: Cỗ Máy Phục Chế (Dán)
++    lore:
++    - Máy móc lắp ráp phần tử
++    - Đưa cấu trúc từ mạng đến vị trí chỉ định
++    - Hỗ trợ chỉ riêng các block gốc của hệ thống.
++    - ''
++    - '<click_info>Năng lượng tiêu hao: <passive>Tốn 100J mỗi lần hoàn tất'
++  NTW_VACUUM:
++    name: Máy Hút Đồ Mạng
++    lore:
++    - Khả năng hấp thụ vật thể tự do
++    - Trên bán kính ô 4x4
++    - Đem đối tượng nạp vào trạm trung chuyển.
++    - ''
++    - '<click_info>Điện tiêu tốn cho hoạt động mạng: <passive>100J/mỗi nhịp Tick Slimefun'
++  NTW_VANILLA_GRABBER:
++    name: Bộ Lấy Nguyên Gốc Mạng
++    lore:
++    - Thiết bị gắp hàng vận hành
++    - Nhấc đối tượng ngoài cùng từ bộ lưu trữ tiêu chuẩn.
++    - ''
++    - Yêu cầu gắn cùng 1 thiết bị Tay Lấy Mạng
++    - Nhằm chuyển hướng vật phẩm
++    - Vào trong luồng mạng tổng.
++  NTW_VANILLA_PUSHER:
++    name: Bộ Đẩy Nguyên Gốc Mạng
++    lore:
++    - Thiết bị đẩy vật phẩm sẽ
++    - Cấp phát hàng hóa cho loại lưu trữ nguyên gốc.
++    - ''
++    - Bởi bản chất không thể đưa ngay đồ vào hệ điều hành mạng,
++    - Vẫn cần dùng Máy Đẩy Mạng
++    - Để bơm luồng hàng đến máy gốc này.
++  NTW_NETWORK_WIRELESS_TRANSMITTER:
++    name: Bộ Phát Sóng Không Dây
++    lore:
++    - Sóng chuyển vật thể có sẵn
++    - Sẽ được truyền từ
++    - Bộ tiếp nhận không dây có chung máy chủ thế giới.
++    - Cài đặt ghép sóng qua Bộ định tuyến.
++    - Tiêu thụ mỗi pha phát 500J cho lưới điện.
++  NTW_EXPANSION_ADVANCED_WIRELESS_TRANSMITTER:
++    name: Bộ Phát Sóng Không Dây Nâng Cao
++    lore:
++    - Bộ phát tín hiệu thế hệ mới
++    - Có khả năng cấp đồ
++    - Đến hệ tiếp nhận kết nối, phạm vi cùng 1 bản đồ.
++    - Tùy chỉnh thông qua Bộ định tuyến kết nối.
++  NTW_NETWORK_WIRELESS_RECEIVER:
++    name: Bộ Thu Sóng Không Dây
++    lore:
++    - Thiết bị tiếp nhận mạng
++    - Giao nhận gói hàng từ Cổng Phát Đã Chỉ Định
++    - Nằm trong 1 thế giới nội bộ.
++    - Thiết lập tự chuyển hàng
++    - Mỗi nhịp Tick slimefun.
++  NTW_TRASH:
++    name: Thùng Rác Mạng
++    lore:
++    - Công cụ xóa dọn
++    - Sẽ đào thải liên tiếp mọi nhóm đồ cấu hình sẵn
++    - Hành vi xóa bỏ ngay lập tức, cân nhắc lúc vận hành!
++  NTW_GRID:
++    name: Bảng Tương Tác
++    lore:
++    - Thiết bị tra cứu vật phẩm của máy chủ mạng
++    - Với chế độ nhập xuất trực diện
++    - Cho phép truy vấn theo dạng Pinyin
++  NTW_CRAFTING_GRID:
++    name: Bảng Tương Tác Kèm Chế Tạo
++    lore:
++    - Phiên bản hệ thống bảng điều khiển thu gọn
++    - Hiển thị lượng đồ thưa hơn
++    - Thay vào đó được dùng mạng dữ liệu
++    - Để tạo các món đồ
++    - Thêm hỗ trợ cho tìm kiếm với Pinyin
++  NTW_CELL:
++    name: Khối Dữ Liệu Mạng
++    lore:
++    - Sức giữ tài sản là 54 vị trí (tỉ lệ 1 chiếc rương lớn)
++    - Người dùng nhận vật phẩm từ xa qua kết nối chung
++    - Có thể kiểm tra trực tiếp
++  NTW_GREEDY_BLOCK:
++    name: Trạm Từ Chối Mạng
++    lore:
++    - Cấu hình khóa sẽ dựa vào thiết lập một phân mục hàng hóa,
++    - Máy tổng phân bổ thu lấy
++    - Mọi món hàng giống tùy chỉnh, cao nhất ở ngưỡng 1 bộ.
++    - Lúc lưu đủ ngưỡng, máy lập tức ngắt việc chia vật phẩm qua mạng,
++    - Chặn luồng đồ qua các trang bị khác có ở lưới.
++  NTW_QUANTUM_WORKBENCH:
++    name: Bàn Làm Việc Lượng Tử
++    lore:
++    - Có khả năng chế tạo kho lượng tử
++  NTW_QUANTUM_STORAGE_0:
++    name: Lưu Trữ Lượng Tử (64)
++    lore:
++    - Khả năng lưu trữ 64 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_9:
++    name: Lưu Trữ Lượng Tử (256)
++    lore:
++    - Khả năng lưu trữ 256 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_10:
++    name: Lưu Trữ Lượng Tử (1024)
++    lore:
++    - Khả năng lưu trữ 1024 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_1:
++    name: Lưu Trữ Lượng Tử (4k)
++    lore:
++    - Khả năng lưu trữ 4096 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_2:
++    name: Lưu Trữ Lượng Tử (32K)
++    lore:
++    - Khả năng lưu trữ 32768 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_3:
++    name: Lưu Trữ Lượng Tử (262K)
++    lore:
++    - Khả năng lưu trữ 262144 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_4:
++    name: Lưu Trữ Lượng Tử (2M)
++    lore:
++    - Khả năng lưu trữ 2097152 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_5:
++    name: Lưu Trữ Lượng Tử (16M)
++    lore:
++    - Khả năng lưu trữ 16777216 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_6:
++    name: Lưu Trữ Lượng Tử (134M)
++    lore:
++    - Khả năng lưu trữ 134217728 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_7:
++    name: Lưu Trữ Lượng Tử (1B)
++    lore:
++    - Khả năng lưu trữ 1073741824 món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_8:
++    name: Lưu Trữ Lượng Tử (∞)
++    lore:
++    - Khả năng lưu trữ vô số món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_11:
++    name: Lưu Trữ Lượng Tử (34B)
++    lore:
++    - Khả năng lưu trữ vô số món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_12:
++    name: Lưu Trữ Lượng Tử (549B)
++    lore:
++    - Khả năng lưu trữ vô số món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_13:
++    name: Lưu Trữ Lượng Tử (8T)
++    lore:
++    - Khả năng lưu trữ vô số món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_QUANTUM_STORAGE_14:
++    name: Lưu Trữ Lượng Tử (140T)
++    lore:
++    - Khả năng lưu trữ vô số món đồ
++    - ''
++    - Giữ khối lượng hàng hóa trong siêu lỗ hổng
++  NTW_CAPACITOR_1:
++    name: Tụ Điện (1)
++    lore:
++    - Tụ điện mạng có thể tiếp nhận nguồn từ
++    - Mạng lưới điện và tích trữ nó
++    - Để phục vụ các thiết bị khác trong mạng
++    - ''
++    - '<click_info>Sức chứa: <passive>1,000'
++  NTW_CAPACITOR_2:
++    name: Tụ Điện (2)
++    lore:
++    - Tụ điện mạng có thể tiếp nhận nguồn từ
++    - Mạng lưới điện và tích trữ nó
++    - Để phục vụ các thiết bị khác trong mạng
++    - ''
++    - '<click_info>Sức chứa: <passive>10,000'
++  NTW_CAPACITOR_3:
++    name: Tụ Điện (3)
++    lore:
++    - Tụ điện mạng có thể tiếp nhận nguồn từ
++    - Mạng lưới điện và tích trữ nó
++    - Để phục vụ các thiết bị khác trong mạng
++    - ''
++    - '<click_info>Sức chứa: <passive>100,000'
++  NTW_CAPACITOR_4:
++    name: Tụ Điện (4)
++    lore:
++    - Tụ điện mạng có thể tiếp nhận nguồn từ
++    - Mạng lưới điện và tích trữ nó
++    - Để phục vụ các thiết bị khác trong mạng
++    - ''
++    - '<click_info>Sức chứa: <passive>1,000,000'
++  NTW_POWER_OUTLET_1:
++    name: Ổ Cắm Mạng (1)
++    lore:
++    - Ổ cắm mạng truyền tải năng lượng từ mạng
++    - Vào máy móc mà bạn muốn.
++    - ''
++    - '<click_info>Lưu trữ tối đa: <passive>500J'
++  NTW_POWER_OUTLET_2:
++    name: Ổ Cắm Mạng (2)
++    lore:
++    - Ổ cắm mạng truyền tải năng lượng từ mạng
++    - Vào máy móc mà bạn muốn.
++    - ''
++    - '<click_info>Lưu trữ tối đa: <passive>2,000J'
++  NTW_POWER_DISPLAY:
++    name: Đồng Hồ Đo Điện Mạng
++    lore:
++    - Đồng hồ đo điện mạng sẽ hiển thị lượng điện còn lại
++    - Rất đơn giản, đúng không?
++  NTW_RECIPE_ENCODER:
++    name: Máy Mã Hóa Công Thức Mạng
++    lore:
++    - Tạo bản thiết kế công thức từ nguyên liệu đặt vào
++    - ''
++    - '<click_info>Điện năng tiêu thụ: <passive>2,000 mỗi lần mã hóa'
++  NTW_AUTO_CRAFTER:
++    name: Máy Chế Tạo Tự Động Mạng
++    lore:
++    - Máy chế tạo tự động mạng yêu cầu một bản thiết kế để hoạt động.
++    - Khi mạng không có vật phẩm mục tiêu trong bản thiết kế,
++    - Máy sẽ tự động thu thập nguyên liệu từ mạng để chế tạo
++    - (Yêu cầu phải có đủ nguyên liệu trong mạng)
++    - ''
++    - '<click_info>Điện năng tiêu thụ: <passive>64 mỗi lần chế tạo'
++  NTW_AUTO_CRAFTER_WITHHOLDING:
++    name: Máy Chế Tạo Tự Động Mạng (Giữ Lại)
++    lore:
++    - Máy chế tạo tự động mạng yêu cầu một bản thiết kế để hoạt động.
++    - Khi mạng không có vật phẩm mục tiêu trong bản thiết kế,
++    - Máy sẽ tự động thu thập nguyên liệu từ mạng để chế tạo
++    - (Yêu cầu phải có đủ nguyên liệu trong mạng)
++    - ''
++    - Phiên bản giữ lại của máy chế tạo sẽ liên tục chế tạo
++    - Cho đến khi khe đầu ra có đủ 1 stack vật phẩm
++    - Vật phẩm này có thể được truy cập qua mạng
++    - Hoặc được xuất qua hệ thống vận chuyển
++    - ''
++    - '<click_info>Điện năng tiêu thụ: <passive>128 mỗi lần chế tạo'
++  NTW_CRAFTING_BLUEPRINT:
++    name: Bản Thiết Kế Chế Tạo
++    lore:
++    - Một bản thiết kế trống
++    - Có thể lưu trữ một công thức chế tạo
++  NTW_PROBE:
++    name: Đầu Dò Mạng
++    lore:
++    - Nhấp chuột phải vào Bộ Điều Khiển Mạng
++    - Để xem số lượng nút kết nối trong mạng
++  NTW_REMOTE:
++    name: Điều Khiển Mạng Từ Xa
++    lore:
++    - Mở giao diện lưới được liên kết từ xa
++    - Yêu cầu chunk chứa lưới phải đang được tải
++    - ''
++    - <click_info>Shift + Nhấp chuột phải <passive>vào lưới thông thường để liên kết
++    - ''
++    - '<click_info>Tầm hoạt động: <passive>150 khối'
++  NTW_REMOTE_EMPOWERED:
++    name: Điều Khiển Mạng Từ Xa Tăng Cường
++    lore:
++    - Mở giao diện lưới được liên kết từ xa
++    - Yêu cầu chunk chứa lưới phải đang được tải
++    - ''
++    - <click_info>Shift + Nhấp chuột phải <passive>vào lưới thông thường để liên kết
++    - ''
++    - '<click_info>Tầm hoạt động: <passive>500 khối'
++  NTW_REMOTE_PRISTINE:
++    name: Điều Khiển Mạng Từ Xa Cổ Đại
++    lore:
++    - Mở giao diện lưới được liên kết từ xa
++    - Yêu cầu chunk chứa lưới phải đang được tải
++    - ''
++    - <click_info>Shift + Nhấp chuột phải <passive>vào lưới thông thường để liên kết
++    - ''
++    - '<click_info>Tầm hoạt động: <passive>Không giới hạn (Cùng một thế giới)'
++  NTW_REMOTE_ULTIMATE:
++    name: Điều Khiển Mạng Từ Xa Tối Thượng
++    lore:
++    - Mở giao diện lưới được liên kết từ xa
++    - Yêu cầu chunk chứa lưới phải đang được tải
++    - ''
++    - <click_info>Shift + Nhấp chuột phải <passive>vào lưới thông thường để liên kết
++    - ''
++    - '<click_info>Tầm hoạt động: <passive>Xuyên không gian'
++  NTW_CRAYON:
++    name: Bút Chì Vẽ Mạng
++    lore:
++    - Khi sử dụng trên Bộ Điều Khiển Mạng
++    - Sẽ hiển thị hiệu ứng hạt cho tất cả các khối trong mạng đó
++  NTW_CONFIGURATOR:
++    name: Bộ Cấu Hình Mạng
++    lore:
++    - Sử dụng để sao chép cài đặt của các thành phần mạng
++    - Có thể sao chép cài đặt của các khối có thể chọn hướng
++    - ''
++    - '<click_info>Nhấp chuột phải: <passive>Áp dụng cài đặt'
++    - '<click_info>Shift + Nhấp chuột phải: <passive>Lưu cài đặt'
++  NTW_WIRELESS_CONFIGURATOR:
++    name: Bộ Cấu Hình Mạng Không Dây
++    lore:
++    - Sử dụng để lưu trữ vị trí của Bộ Thu,
++    - Và thiết lập vị trí đó cho Bộ Phát.
++    - ''
++    - '<click_info>Nhấp chuột phải: <passive>Lưu vị trí của Bộ Thu'
++    - '<click_info>Shift + Nhấp chuột phải: <passive>Thiết lập vị trí vào Bộ Phát'
++  NTW_RAKE_1:
++    name: Cờ Lê Mạng (1)
++    lore:
++    - Nhấp chuột phải vào một nút mạng
++    - Để phá vỡ nó ngay lập tức
++    - ''
++  NTW_RAKE_2:
++    name: Cờ Lê Mạng (2)
++    lore:
++    - Nhấp chuột phải vào một nút mạng
++    - Để phá vỡ nó ngay lập tức
++    - ''
++  NTW_RAKE_3:
++    name: Cờ Lê Mạng (3)
++    lore:
++    - Nhấp chuột phải vào một nút mạng
++    - Để phá vỡ nó ngay lập tức
++    - ''
++  NTW_DEBUG_STICK:
++    name: Gậy Gỡ Lỗi Mạng
++    lore:
++    - Nhấp chuột phải vào khối mạng để bật chế độ gỡ lỗi.
++  NTW_EXPANSION_CRAFTING_GRID_NEW_STYLE:
++    name: Lưới Tiên Tiến (Có Chế Tạo)
++    lore:
++    - Lưới Tiên Tiến (Kèm theo Chế Tạo) giúp xem tất cả đồ vật trong mạng
++    - Lấy và nạp vật phẩm không cần thông qua rương đồ cá nhân
++    - Thiết lập điều khiển nhanh có hỗ trợ
++    - 'Cách xếp: '
++    - '&eAZ&7: &eXếp chuẩn bảng chữ cái'
++    - '&eSố lượng&7: &eXếp chuẩn số lượng vật phẩm'
++    - '&eĐảo ngược số lượng&7: &eXếp chuẩn theo chiều giảm của số lượng'
++    - '&ePhụ kiện&7: &eXếp chuẩn theo tên bảng chữ cái của phụ kiện mà đồ thuộc về'
++    - Tra cứu kiểu Pinyin hỗ trợ
++  NTW_EXPANSION_STATUS_VIEWER:
++    name: Công Cụ Gỡ Lỗi
++    lore:
++    - Click chuột phải vô bộ phận máy mạng lưới để giám sát bảng nhật ký
++  NTW_EXPANSION_DRAWER_TIPS:
++    name: Bảng Gợi Ý Dùng Khay Chứa Đồ
++    lore:
++    - 1. Nhớ kĩ ID khi tương tác Khay Chứa (mở GUI để theo dõi), cần dùng yêu cầu
++      admin lấy lại khay lỗi
++    - 2. Tại lúc hộp lưu đồ lỗi hỏng, nhờ Quản trị viên phục hồi 1 hộp khác, hướng
++      mắt sang chiếc hộp thay mới và gõ lệnh /networks setContainerId <id>, tiến hành
++      dỡ bỏ đi để lắp hộp mới lại.
++    - 'Lệnh mẫu: /networks setContainerId 1037'
++  NTW_EXPANSION_QUANTUM_MANAGER:
++    name: Bộ Kiểm Soát Chứa Lượng Tử
++    lore:
++    - Chuyên dùng quản trị các máy lưu lượng tử cực nhanh
++  NTW_EXPANSION_DRAWER_MANAGER:
++    name: Bộ Kiểm Soát Khay Chứa
++    lore:
++    - Chuyên dùng kiểm soát kho nhanh hơn
++  NTW_EXPANSION_ITEM_FLOW_VIEWER:
++    name: Màn Hình Hiển Thị Đồ
++    lore:
++    - Quét điểm đến vật phẩm siêu tốc
++  NTW_EXPANSION_CRAFTER_MANAGER:
++    name: Bộ Kiểm Soát Trạm Chế
++    lore:
++    - Quản lý bàn ráp dễ dàng
++  NTW_EXPANSION_ADVANCED_VACUUM:
++    name: Trạm Hút Bụi Mạng Tiên Tiến
++    lore:
++    - Máy hút sẽ cuốn sạch các nguyên vật liệu rơi tự do xung quanh
++    - Phạm vi khối 4x4,
++    - Và hút để đưa vào đường lưu thông.
++    - ''
++    - '<click_info>Tiêu tốn điện tích: <passive>100J/ mỗi nhịp Tick Slimefun'
++  NTW_EXPANSION_SWITCHING_MONITOR:
++    name: Trạm Quan Sát Sang Đổi
++    lore:
++    - '&cChỉ dùng để hướng tới các bộ máy'
++    - Đảo ngược và hoán đổi vật phẩm
++  NTW_EXPANSION_HANGING_GRID_NEW_STYLE:
++    name: Khung Lưới Nâng Cao Gắn Tường
++    lore:
++    - '&cChỉ hoạt động đối với mạng kết nối máy'
++    - Dạng lưới có tính trực quan này xem danh sách tất cả các vật phẩm
++    - Có thể đặt hoặc trích đồ dùng nhanh nhất
++    - Bộ tùy chỉnh phím được cho phép thao tác
++    - 'Thứ tự: '
++    - '&eAZ&7: &eSắp đồ kiểu chữ A-Z'
++    - '&eSố lượng&7: &eSắp theo tính tổng số lượng'
++    - '&eĐảo ngược số lượng&7: &eSắp ngược theo lượng hiện tại'
++    - '&ePhụ kiện&7: &eTheo chữ cái A-Z của món đồ liên kết phụ kiện'
++    - Đọc ký tự dạng Pinyin
++  NTW_EXPANSION_WHITELISTED_TRANSFER_GRABBER:
++    name: Tay Nắm Lọc Bạch Danh
++    lore:
++    - Máy dùng tay lấy từ phía lưới cấu hình
++    - Gắp đồ từ khe thứ nhất theo cấu trúc đã cấp
++  NTW_EXPANSION_WHITELISTED_TRANSFER_VANILLA_GRABBER:
++    name: Tay Nắm Trắng Nguyên Gốc
++    lore:
++    - Hệ thống thiết lập danh sách trắng đồ lấy nguyên bản lấy
++    - Cục đồ ưu tiên trên máy nguyên bản được gắp
++  NTW_EXPANSION_WHITELISTED_LINE_TRANSFER_GRABBER:
++    name: Truyền Dẫn Mạng Cấp Độ Chuỗi Trắng [Cần Gắp]
++    lore:
++    - '&cÁp dụng đối với Rương Dính'
++    - '&6Độ dài vận chuyển: 32 Ô'
++    - '&7Trạng thái mặc định vận chuyển: &6Block Đầu'
++    - '&cNgăn cản sửa định dạng hiện có'
++    - '&7Lượng tải gốc: &664'
++    - '&cKhông cho thay tổng số đồ'
++    - '&eKhông giống hệ Out-of-Order Cấp Độ, &ctính năng này gắp không giới hạn'
++    - '&cThay vào đó không trích dần các ô đồ!'
++    - '&7Hiểu rõ vận hành: '
++    - '&6Block Đầu&7: &eLấy duy nhất một khu vực đồ trước'
++  NTW_EXPANSION_WHITELISTED_LINE_TRANSFER_VANILLA_GRABBER:
++    name: Trạm Gắp Dòng Nối Vani Trắng [Gắp Lấy]
++    lore:
++    - '&cChỉ chấp nhận đối với Rương Vani'
++    - '&6Khoảng cách đưa đồ: 32 Ô'
++    - '&7Mô hình quy chuẩn: &6Đầu Tiên Block'
++    - '&cKhông được phép thay cấu trúc gắp'
++    - '&7Lượng tải cấp cơ bản: &664'
++    - '&cNgăn sửa chữa định lượng vận tải'
++    - '&eKhác dòng máy Out-of-Order Arts, &ctrạm lấy vật phẩm liên tục'
++    - '&cNgược lại việc chuyển luồng tự do!'
++    - '&7Mô hình tính: '
++    - '&6Đầu Tiên Block&7: &eGiữ vị trí của ô chứa đồ đầu'
++  NTW_EXPANSION_SMART_NETWORK_CRAFTING_GRID_NEW_STYLE:
++    name: Lưới Chế Tạo Thông Minh
++    lore:
++    - Mạng hệ lưới mới (Đi kèm Lắp ráp) đem tất thảy món đồ trong thiết bị
++    - Giảm phiền phức với việc lưu hoặc lấy vật phẩm
++    - Chế tạo dư rương chứa kết quả hơn
++    - Đặt điều khiển bàn phím
++    - Tính năng tự nhận diện đổ chai lọ như chén, lọ thuỷ tinh hay xô khi xong
++    - 'Theo trình tự: '
++    - '&eAZ&7: &eSắp xếp dựa theo kiểu ký tự abc'
++    - '&eSố lượng&7: &eSắp xếp định mức món hàng tăng dần'
++    - '&eSố lượng đảo ngược&7: &eSắp đồ kiểu theo lượng đồ sụt dần'
++    - '&eBổ sung&7: &eThứ tự kí hiệu Alphabet dành cho Mod phụ kiện liên quan'
++    - Hỗ trợ tìm thông tin qua bộ Pinyin
++  NTW_EXPANSION_ITEM_DIFFERENTER:
++    name: Bộ Nhận Diện Sai Khác Vật Phẩm
++    lore:
++    - ''
++  NTW_EXPANSION_STORAGE_CARD_CONVERTER:
++    name: Công Cụ Chuyển Lưu Trữ Card
++    lore:
++    - Thay đổi định lượng từ trạm Lượng Tử về thẻ dung lượng dòng Mới (Sửa Đổi)
++  NTW_EXPANSION_FACING_PRESETTER:
++    name: Bộ Cài Đặt Chiều Thiết Bị
++    lore:
++    - Trang bị lấy phương hướng cài đặt tới các module như Trạm Đẩy, Quan Sát và Gắp
++      lấy
++    - Chỉ việc nối sau đặt thiết bị là phương hướng áp dụng ngay lập tức
++  NTW_EXPANSION_SUPER_TRASH:
++    name: Thùng Rác Tối Thượng
++    lore:
++    - Mọi nguyên liệu vào rác cực tốc sẽ biến mất
++    - Click tới túi chứa của bạn khi xem trang Rác để tiêu huỷ tức thì
++  NTW_EXPANSION_PLACEHOLDER_ITEM:
++    name: Khối Dữ Liệu Thay Thế
++    lore:
++    - ''
++displays:
++  quantum_storage:
++    void_excess: '<click_info>Đầu vào dọn sạch khi đầy: <passive>%s'
++    enabled_void_excess: Đã bật
++    disabled_void_excess: Đã tắt
++    stored_amount: '<click_info>Số lượng: <passive>%s'
++    custom_max_amount: '<click_info>Sức chứa hiện tại: <success>%s'
++groups:
++  main: <main>Mạng (Networks)
++  materials: <main>Nguyên liệu tổng hợp
++  tools: <main>Công cụ quản lý mạng
++  network_items: <main>Vật phẩm mạng
++  network_quantums: <main>Thiết bị lưu trữ lượng tử
++  disabled_items: <main>Các vật phẩm đã bị vô hiệu hóa/xóa
++  expansion:
++    slimefun:
++      main: <color_random_string>Tiện ích mở rộng mạng - NetworksExpansion
++      items: <color_random_string>Tiện ích mở rộng mạng - Vật phẩm
++      cargo_system: <color_random_string>Mở rộng mạng - Vận chuyển và Lưu trữ
++      functional_machine: <color_random_string>Mở rộng mạng - Máy móc chức năng
++      trophy: <color_random_string>Tiện ích mở rộng mạng lưới - Đóng góp
++    custom:
++      main_item_group: <color_random_string>Tiện ích mở rộng mạng - NetworksExpansion
++      main_menu_item: <color_random_string>Vật phẩm
++      sub_menu_tool: <color_random_string>Vật phẩm - Công cụ
++      sub_menu_blueprint: <color_random_string>Vật phẩm - Bản thiết kế
++      main_menu_cargo_system: <color_random_string>Vận chuyển và Lưu trữ
++      sub_menu_advanced_storage: <color_random_string>Vận chuyển và lưu trữ - Lưu
++        trữ nâng cao
++      sub_menu_networks_drawers: <color_random_string>Vận chuyển & Lưu trữ - Ngăn
++        kéo mạng
++      sub_menu_cargo: <color_random_string>Vận chuyển và lưu trữ - Vận tải
++      main_menu_functional_machine: <color_random_string>Máy móc chức năng
++      sub_menu_core_machine: <color_random_string>Máy chức năng - Máy lõi
++      sub_menu_advanced_networks: <color_random_string>Máy có chức năng - Máy mạng
++        tiên tiến hơn
++      sub_menu_bridge: <color_random_string>Máy chức năng - Nhiều cầu nối hơn
++      sub_menu_encoder: <color_random_string>Máy có chức năng - Bộ mã hóa
++      sub_menu_crafter_machine: <color_random_string>Máy móc chức năng - Máy tổng
++        hợp tự động
++      main_menu_trophy: <color_random_string>Đóng góp
++      sub_menu_author: <color_random_string>Đóng góp - Tác giả
++      sub_menu_announce: <color_random_string>Đóng góp - Tuyên bố
++      sub_menu_deprecated: <color_random_string>Các mặt hàng bị loại bỏ
++theme:
++  gold: ''
++  white: ''
++  aqua: ''
++  warning: Cảnh báo
++  error: Lỗi
++  notice: Thông báo
++  passive: ''
++  success: Thành công
++  main: Mạng
++  click_info: Nhấp vào đây
++  research: Nghiên cứu
++  crafting: Nguyên liệu chế tạo
++  machine: Máy móc
++  tool: Công cụ
++  mechanism: Thiết bị
++  fuel: Nhiên liệu
++  material_class: Vật liệu
++  recipe_type: Loại công thức
++  guide: Hướng dẫn
++  name_not_found: Tên chưa được thiết lập
++  lore_not_found: Mô tả vật phẩm chưa được đặt
++  model: ' &f(&aMô hình&f)'
+-- 
+2.47.3
+

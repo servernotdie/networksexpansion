@@ -1,0 +1,267 @@
+From cf84bfcd5567af34b00b981d438bea9aa95f3cab Mon Sep 17 00:00:00 2001
+From: mytai20100 <142713298+Mytai20100@users.noreply.github.com>
+Date: Sat, 11 Jul 2026 16:46:55 +0700
+Subject: [PATCH 1/2] feat(vi) traslated to VietNamese
+
+---
+ .github/workflows/maven.yml                   | 21 +++++++++++++--
+ README.md                                     | 27 +++++++++++--------
+ .../netex/api/enums/AmountHandleStrategy.java |  6 ++---
+ .../GridNewStyleCustomAmountGuideOption.java  | 12 ++++-----
+ .../guide/QuantumSlimeHUDDisplayOption.java   |  4 +--
+ .../items/machines/AdvancedDirectional.java   |  4 +--
+ .../advanced/AdvancedWirelessTransmitter.java |  4 +--
+ .../networks/commands/NetworksMain.java       |  6 ++---
+ .../slimefun/tools/NetworkRemote.java         |  2 +-
+ 9 files changed, 54 insertions(+), 32 deletions(-)
+
+diff --git a/.github/workflows/maven.yml b/.github/workflows/maven.yml
+index e6293654..d89f30c4 100644
+--- a/.github/workflows/maven.yml
++++ b/.github/workflows/maven.yml
+@@ -4,10 +4,10 @@ on:
+   workflow_dispatch:
+   push:
+     branches:
+-      - master
++      - main
+   pull_request:
+     branches:
+-      - master
++      - main
+ 
+ jobs:
+   build:
+@@ -39,3 +39,20 @@ jobs:
+         with:
+           name: ${{ env.FILE }}
+           path: target/${{ env.FILE }}
++      - name: Create tag
++        if: github.event_name != 'pull_request'
++        id: tag
++        run: |
++          TAG_NAME="build-${{ github.run_number }}"
++          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
++          git tag "$TAG_NAME"
++          git push origin "$TAG_NAME"
++      - name: Create release
++        if: github.event_name != 'pull_request'
++        uses: softprops/action-gh-release@v2
++        with:
++          tag_name: ${{ env.TAG_NAME }}
++          name: ${{ env.TAG_NAME }}
++          files: target/${{ env.FILE }}
++        env:
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+\ No newline at end of file
+diff --git a/README.md b/README.md
+index 46747290..80f2db33 100644
+--- a/README.md
++++ b/README.md
+@@ -1,26 +1,31 @@
+ ![](https://cdn.jsdelivr.net/gh/SlimefunGuguProject/Networks@master/images/logo/logo_large.png)
+ 
+-[网络拓展](https://github.com/balugaq/NetworksExpansion)是一个[Slimefun](https://github.com/SlimefunGuguProject/Slimefun4)附属插件，基于[网络](https://github.com/SlimefunGuguProject/Networks)进行再开发以及 bug 修复，可以创建一个简单有效的物品存储与运输系统，并可以与货运系统交互。
++[NetworksExpansion](https://github.com/balugaq/NetworksExpansion) là một plugin phụ trợ của [Slimefun](https://github.com/SlimefunGuguProject/Slimefun4), được phát triển lại dựa trên [Networks](https://github.com/SlimefunGuguProject/Networks) cùng với việc sửa lỗi, có thể tạo ra một hệ thống lưu trữ và vận chuyển vật phẩm đơn giản, hiệu quả, đồng thời có thể tương tác với hệ thống vận chuyển hàng hóa.
+ 
+ ![](https://cdn.jsdelivr.net/gh/SlimefunGuguProject/Networks@master/images/wiki/setup.png)
+ 
+ > [!IMPORTANT]
+-> [网络拓展](https://github.com/balugaq/NetworksExpansion)不需要[网络](https://github.com/SlimefunGuguProject/Networks)作为前置
++> [NetworksExpansion](https://github.com/balugaq/NetworksExpansion) không cần [Networks](https://github.com/SlimefunGuguProject/Networks) làm plugin tiền đề
+ 
+-## 下载
++## Tải xuống
+ 
+-[![构建状态](https://builds.guizhanss.com/api/badge/ytdd9527/NetworksExpansion/master/latest)](https://builds.guizhanss.com/ytdd9527/NetworksExpansion/master)
++[![Trạng thái build](https://builds.guizhanss.com/api/badge/ytdd9527/NetworksExpansion/master/latest)](https://builds.guizhanss.com/ytdd9527/NetworksExpansion/master)
+ 
+-## Wiki / 文档
++## Wiki / Tài liệu
+ 
+-你可以在这里查看[网络](https://github.com/SlimefunGuguProject/Networks)所有物品的功能：[点击查看](https://slimefun-addons-wiki.guizhanss.cn/networks/)
++Bạn có thể xem tại đây chức năng của tất cả vật phẩm trong [Networks](https://github.com/SlimefunGuguProject/Networks): [Nhấn để xem](https://slimefun-addons-wiki.guizhanss.cn/networks/)
+ 
+-## 感谢
++## Lời cảm ơn
+ 
+-感谢 Boomer, Cai 以及 Lucky 帮忙测试并完善插件。
++Cảm ơn Boomer, Cai và Lucky đã giúp thử nghiệm và hoàn thiện plugin.
+ 
+-感谢 **mct.tantrum.org** 的服主提供的测试环境。
++Cảm ơn chủ server **mct.tantrum.org** đã cung cấp môi trường thử nghiệm.
+ 
+-另外，感谢 **mc.talosmp.net** 的 **GentlemanCheesy** 成为[本人](https://github.com/Sefiraat)的首位赞助者！每个月能多喝一杯咖啡让我能有动力更好地编写插件。
++Ngoài ra, cảm ơn **GentlemanCheesy** của **mc.talosmp.net** đã trở thành nhà tài trợ đầu tiên của [tôi](https://github.com/Sefiraat)! Mỗi tháng có thêm một ly cà phê giúp tôi có động lực viết plugin tốt hơn.
+ 
+-感谢 [m1919810 / matl114](https://github.com/m1919810) — 帮助[我](https://github.com/balugaq)找到了一些[网络拓展](https://github.com/balugaq/NetworksExpansion)的 bug
++Cảm ơn [m1919810 / matl114](https://github.com/m1919810) — đã giúp [tôi](https://github.com/balugaq) tìm ra một số bug của [NetworksExpansion](https://github.com/balugaq/NetworksExpansion)
++
++## Này bản fork từ upstream của nhóm dev người TQ xong dịch :D
++Credit: 
++---
++[Craft233MC](https://github.com/Craft233MC/NetworksExpansion)
+\ No newline at end of file
+diff --git a/src/main/java/com/balugaq/netex/api/enums/AmountHandleStrategy.java b/src/main/java/com/balugaq/netex/api/enums/AmountHandleStrategy.java
+index ce15b9cf..1ad7ca2e 100644
+--- a/src/main/java/com/balugaq/netex/api/enums/AmountHandleStrategy.java
++++ b/src/main/java/com/balugaq/netex/api/enums/AmountHandleStrategy.java
+@@ -23,11 +23,11 @@ public enum AmountHandleStrategy {
+     STACK((player, itemStack) -> itemStack.getMaxStackSize()),
+     CUSTOM((player, itemStack) -> GridNewStyleCustomAmountGuideOption.get(player)),
+     ASK((location, player, itemStack, consumer) -> ChatUtils.awaitInput(player, input -> {
+-        player.sendMessage(ChatColors.color("&e输入取出数量"));
++        player.sendMessage(ChatColors.color("&eNhập số lượng lấy ra"));
+         try {
+             int value = Calculator.calculate(input).intValue();
+             if (value <= 0 || value >= GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT) {
+-                player.sendMessage("请输入 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + " 之间的正整数");
++                player.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT);
+ 
+                 BlockMenu menu = StorageCacheUtils.getMenu(location);
+                 if (menu != null) {
+@@ -39,7 +39,7 @@ public enum AmountHandleStrategy {
+ 
+             consumer.accept(value);
+         } catch (NumberFormatException e) {
+-            player.sendMessage("请输入 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + " 之间的正整数");
++            player.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT);
+             player.sendMessage(e.getMessage());
+         }
+     }));
+diff --git a/src/main/java/com/balugaq/netex/core/guide/GridNewStyleCustomAmountGuideOption.java b/src/main/java/com/balugaq/netex/core/guide/GridNewStyleCustomAmountGuideOption.java
+index 1eaf9a85..bec183a1 100644
+--- a/src/main/java/com/balugaq/netex/core/guide/GridNewStyleCustomAmountGuideOption.java
++++ b/src/main/java/com/balugaq/netex/core/guide/GridNewStyleCustomAmountGuideOption.java
+@@ -58,10 +58,10 @@ public class GridNewStyleCustomAmountGuideOption implements SlimefunGuideOption<
+ 
+         ItemStack item = new CustomItemStack(
+             Material.FURNACE,
+-            "&a高级网格自定义单次取出数量",
++            "&aSố lượng lấy ra tùy chỉnh mỗi lần của lưới cao cấp",
+             "",
+-            "&7当前数量: " + value + " (限制范围: 1~" + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + ")",
+-            "&7\u21E8 &e点击设置数量"
++            "&7Số lượng hiện tại: " + value + " (giới hạn: 1~" + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + ")",
++            "&7\u21E8 &eNhấp để đặt số lượng"
+         );
+         return Optional.of(item);
+     }
+@@ -69,12 +69,12 @@ public class GridNewStyleCustomAmountGuideOption implements SlimefunGuideOption<
+     @Override
+     public void onClick(@NotNull Player p, @NotNull ItemStack guide) {
+         p.closeInventory();
+-        p.sendMessage(ChatColors.color("&e请输入高级网格自定义单次取出数量"));
++        p.sendMessage(ChatColors.color("&eVui lòng nhập số lượng lấy ra tùy chỉnh mỗi lần của lưới cao cấp"));
+         ChatInput.waitForPlayer(Networks.getInstance(), p, s -> {
+             try {
+                 int value = Calculator.calculate(s).intValue();
+                 if (value < 1 || value > GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT) {
+-                    p.sendMessage("请输入 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + " 之间的正整数");
++                    p.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT);
+                     return;
+                 }
+ 
+@@ -85,7 +85,7 @@ public class GridNewStyleCustomAmountGuideOption implements SlimefunGuideOption<
+                     SlimefunGuideSettings.openSettings(p, guide);
+                 }
+             } catch (NumberFormatException e) {
+-                p.sendMessage("请输入 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + " 之间的正整数" + e.getMessage());
++                p.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + GRID_NEW_STYLE_MAX_CUSTOM_AMOUNT + e.getMessage());
+             }
+         });
+     }
+diff --git a/src/main/java/com/balugaq/netex/core/guide/QuantumSlimeHUDDisplayOption.java b/src/main/java/com/balugaq/netex/core/guide/QuantumSlimeHUDDisplayOption.java
+index 2992949e..ef364ec9 100644
+--- a/src/main/java/com/balugaq/netex/core/guide/QuantumSlimeHUDDisplayOption.java
++++ b/src/main/java/com/balugaq/netex/core/guide/QuantumSlimeHUDDisplayOption.java
+@@ -38,9 +38,9 @@ public class QuantumSlimeHUDDisplayOption implements SlimefunGuideOption<Boolean
+         boolean enabled = getSelectedOption(p, guide).orElse(false);
+         ItemStack item = new CustomItemStack(
+                 isEnabled(p) ? Material.KNOWLEDGE_BOOK : Material.BOOK,
+-                "&b量子存储HUD显示方式: &" + (enabled ? "a百分比显示" : "4数值显示"),
++                "&bChế độ hiển thị HUD Kho Lượng Tử: &" + (enabled ? "aHiển thị phần trăm" : "4Hiển thị số lượng"),
+                 "",
+-                "&7\u21E8 &e点击使用量子存储HUD显示方式为 " + (!enabled ? "百分比显示" : "数值显示")
++                "&7\u21E8 &eNhấp để đặt chế độ hiển thị HUD Kho Lượng Tử thành " + (!enabled ? "hiển thị phần trăm" : "hiển thị số lượng")
+         );
+         return Optional.of(item);
+     }
+diff --git a/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java b/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java
+index 3759eee1..7629a94b 100644
+--- a/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java
++++ b/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java
+@@ -367,12 +367,12 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
+ 
+                 if (getCargoNumberSlot() != -1) {
+                     blockMenu.addMenuClickHandler(getCargoNumberSlot(), (player, i, itemStack, clickAction) -> {
+-                        player.sendMessage(ChatColors.color("&e输入数量"));
++                        player.sendMessage(ChatColors.color("&eNhập số lượng"));
+                         ChatUtils.awaitInput(player, input -> {
+                             try {
+                                 int value = Calculator.calculate(input).intValue();
+                                 if (value <= 0 || value > getMaxLimit()) {
+-                                    player.sendMessage("请输入 1 ~ " + getMaxLimit() + " 之间的正整数");
++                                    player.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + getMaxLimit());
+                                     BlockMenu menu = StorageCacheUtils.getMenu(location);
+                                     if (menu != null) menu.open(player);
+                                     return;
+diff --git a/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java b/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java
+index 21584b0c..75b375a3 100644
+--- a/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java
++++ b/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java
+@@ -131,12 +131,12 @@ public class AdvancedWirelessTransmitter extends AdvancedDirectional implements
+ 
+                 if (getCargoNumberSlot() != -1) {
+                     blockMenu.addMenuClickHandler(getCargoNumberSlot(), (player, i, itemStack, clickAction) -> {
+-                        player.sendMessage(ChatColors.color("&e输入数量"));
++                        player.sendMessage(ChatColors.color("&eNhập số lượng"));
+                         ChatUtils.awaitInput(player, input -> {
+                             try {
+                                 int value = Calculator.calculate(input).intValue();
+                                 if (value <= 0 || value > getMaxLimit()) {
+-                                    player.sendMessage("请输入 1 ~ " + getMaxLimit() + " 之间的正整数");
++                                    player.sendMessage("Vui lòng nhập số nguyên dương trong khoảng 1 ~ " + getMaxLimit());
+                                     BlockMenu menu = StorageCacheUtils.getMenu(location);
+                                     if (menu != null) menu.open(player);
+                                     return;
+diff --git a/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java b/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java
+index ed37dad4..6cc73572 100644
+--- a/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java
++++ b/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java
+@@ -1488,7 +1488,7 @@ public class NetworksMain implements TabExecutor {
+                     }
+ 
+                     if (value instanceof Map<?, ?>) {
+-                        player.sendMessage("缓存: " + cchName);
++                        player.sendMessage("Bộ nhớ đệm: " + cchName);
+                         @SuppressWarnings("unchecked") Map<Location, Integer> locations = (Map<Location, Integer>) value;
+                         Map<String, Integer> formatted = locations.entrySet().stream().map(e -> {
+                             SlimefunItem sf = StorageCacheUtils.getSfItem(e.getKey());
+@@ -1501,8 +1501,8 @@ public class NetworksMain implements TabExecutor {
+                             player.sendMessage(entry.getKey() + ": " + entry.getValue());
+                         }
+                     } else if (value instanceof Number n) {
+-                        player.sendMessage("缓存: " + cchName);
+-                        player.sendMessage("值: " + n.intValue());
++                        player.sendMessage("Bộ nhớ đệm: " + cchName);
++                        player.sendMessage("Giá trị: " + n.intValue());
+                     }
+                 }
+ 
+diff --git a/src/main/java/io/github/sefiraat/networks/slimefun/tools/NetworkRemote.java b/src/main/java/io/github/sefiraat/networks/slimefun/tools/NetworkRemote.java
+index b0068c55..216b8dbc 100644
+--- a/src/main/java/io/github/sefiraat/networks/slimefun/tools/NetworkRemote.java
++++ b/src/main/java/io/github/sefiraat/networks/slimefun/tools/NetworkRemote.java
+@@ -115,7 +115,7 @@ public class NetworkRemote extends SpecialSlimefunItem {
+     public static void openGrid(@NotNull Location location, @NotNull Player player) {
+         SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
+         if (blockData == null) {
+-            player.sendMessage(Theme.ERROR + "无法找到绑定的网格");
++            player.sendMessage(Theme.ERROR + "Không tìm thấy lưới đã liên kết");
+             return;
+         }
+ 
+-- 
+2.47.3
+
