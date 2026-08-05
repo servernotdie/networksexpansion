@@ -1,0 +1,88 @@
+From c67fc65b40cd0df19bf263774f27006b9d34b445 Mon Sep 17 00:00:00 2001
+From: mytai20100 <142713298+Mytai20100@users.noreply.github.com>
+Date: Wed, 5 Aug 2026 22:08:20 +0700
+Subject: [PATCH] fix: guard newInstance against unloaded block data
+
+---
+ .../core/items/machines/AdvancedDirectional.java           | 6 ++++++
+ .../networks/advanced/AdvancedWirelessTransmitter.java     | 7 +++++++
+ .../implementation/machines/unit/NetworksDrawer.java       | 3 +++
+ .../networks/slimefun/network/NetworkDirectional.java      | 6 ++++++
+ 4 files changed, 22 insertions(+)
+
+diff --git a/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java b/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java
+index 3759eee1..f473754b 100644
+--- a/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java
++++ b/src/main/java/com/ytdd9527/networksexpansion/core/items/machines/AdvancedDirectional.java
+@@ -308,6 +308,12 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
+ 
+             @Override
+             public void newInstance(@NotNull BlockMenu blockMenu, @NotNull Block b) {
++                SlimefunBlockData blockData = StorageCacheUtils.getBlock(blockMenu.getLocation());
++
++                if (blockData == null || !blockData.isDataLoaded()) {
++                    return;
++                }
++
+                 final BlockFace direction;
+                 final Location location = blockMenu.getLocation();
+                 final String string = StorageCacheUtils.getData(location, DIRECTION);
+diff --git a/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java b/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java
+index 21584b0c..f979d494 100644
+--- a/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java
++++ b/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/networks/advanced/AdvancedWirelessTransmitter.java
+@@ -4,6 +4,7 @@ import com.balugaq.netex.api.algorithm.Calculator;
+ import com.balugaq.netex.api.enums.FeedbackType;
+ import com.balugaq.netex.api.interfaces.SoftCellBannable;
+ import com.balugaq.netex.utils.Lang;
++import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+ import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+ import com.ytdd9527.networksexpansion.core.items.machines.AdvancedDirectional;
+ import io.github.sefiraat.networks.NetworkStorage;
+@@ -123,6 +124,12 @@ public class AdvancedWirelessTransmitter extends AdvancedDirectional implements
+             public void newInstance(@NotNull BlockMenu blockMenu, @NotNull Block b) {
+                 final Location location = blockMenu.getLocation();
+ 
++                SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
++
++                if (blockData == null || !blockData.isDataLoaded()) {
++                    return;
++                }
++
+                 final String rawLimit = StorageCacheUtils.getData(location, LIMIT_KEY);
+ 
+                 int limit = rawLimit == null ? getMaxLimit() : Integer.parseInt(rawLimit);
+diff --git a/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/unit/NetworksDrawer.java b/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/unit/NetworksDrawer.java
+index 611e6e3e..3667c4a1 100644
+--- a/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/unit/NetworksDrawer.java
++++ b/src/main/java/com/ytdd9527/networksexpansion/implementation/machines/unit/NetworksDrawer.java
+@@ -122,6 +122,9 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
+                 requestData(l, getContainerId(l));
+                 // Restore mode
+                 SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
++                if (blockData == null || !blockData.isDataLoaded()) {
++                    return;
++                }
+                 String lock = null;
+                 String voidExcess = null;
+                 String quickModeStr = null;
+diff --git a/src/main/java/io/github/sefiraat/networks/slimefun/network/NetworkDirectional.java b/src/main/java/io/github/sefiraat/networks/slimefun/network/NetworkDirectional.java
+index 20de0533..a074d993 100644
+--- a/src/main/java/io/github/sefiraat/networks/slimefun/network/NetworkDirectional.java
++++ b/src/main/java/io/github/sefiraat/networks/slimefun/network/NetworkDirectional.java
+@@ -326,6 +326,12 @@ public abstract class NetworkDirectional extends NetworkObject {
+ 
+             @Override
+             public void newInstance(@NotNull BlockMenu blockMenu, @NotNull Block b) {
++                SlimefunBlockData blockData = StorageCacheUtils.getBlock(blockMenu.getLocation());
++
++                if (blockData == null || !blockData.isDataLoaded()) {
++                    return;
++                }
++
+                 final BlockFace direction;
+                 final String string = StorageCacheUtils.getData(blockMenu.getLocation(), DIRECTION);
+ 
+-- 
+2.47.3
+
