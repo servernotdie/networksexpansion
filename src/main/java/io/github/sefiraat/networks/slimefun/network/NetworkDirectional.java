@@ -326,6 +326,12 @@ public abstract class NetworkDirectional extends NetworkObject {
 
             @Override
             public void newInstance(@NotNull BlockMenu blockMenu, @NotNull Block b) {
+                SlimefunBlockData blockData = StorageCacheUtils.getBlock(blockMenu.getLocation());
+
+                if (blockData == null || !blockData.isDataLoaded()) {
+                    return;
+                }
+
                 final BlockFace direction;
                 final String string = StorageCacheUtils.getData(blockMenu.getLocation(), DIRECTION);
 

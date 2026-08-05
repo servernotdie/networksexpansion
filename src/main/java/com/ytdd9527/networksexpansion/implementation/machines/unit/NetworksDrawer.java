@@ -122,6 +122,9 @@ public class NetworksDrawer extends SpecialSlimefunItem implements DistinctiveIt
                 requestData(l, getContainerId(l));
                 // Restore mode
                 SlimefunBlockData blockData = StorageCacheUtils.getBlock(l);
+                if (blockData == null || !blockData.isDataLoaded()) {
+                    return;
+                }
                 String lock = null;
                 String voidExcess = null;
                 String quickModeStr = null;

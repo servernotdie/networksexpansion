@@ -308,6 +308,12 @@ public abstract class AdvancedDirectional extends NetworkDirectional {
 
             @Override
             public void newInstance(@NotNull BlockMenu blockMenu, @NotNull Block b) {
+                SlimefunBlockData blockData = StorageCacheUtils.getBlock(blockMenu.getLocation());
+
+                if (blockData == null || !blockData.isDataLoaded()) {
+                    return;
+                }
+
                 final BlockFace direction;
                 final Location location = blockMenu.getLocation();
                 final String string = StorageCacheUtils.getData(location, DIRECTION);
