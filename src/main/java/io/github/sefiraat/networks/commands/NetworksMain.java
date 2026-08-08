@@ -495,91 +495,93 @@ public class NetworksMain implements TabExecutor {
 
         Networks.getFoliaLib().getScheduler().runNextTick(wrappedTask -> {
             doWorldEdit(getPos1(player), getPos2(player), (fromLocation -> {
-                final Block fromBlock = fromLocation.getBlock();
-                final Block toBlock = playerLocation
-                    .getWorld()
-                    .getBlockAt(
-                        fromLocation.getBlockX() + dx,
-                        fromLocation.getBlockY() + dy,
-                        fromLocation.getBlockZ() + dz);
-                final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(fromLocation);
-                final Location toLocation = toBlock.getLocation();
+                Bukkit.getRegionScheduler().run(Networks.getInstance(), fromLocation, t -> {
+                    final Block fromBlock = fromLocation.getBlock();
+                    final Block toBlock = playerLocation
+                        .getWorld()
+                        .getBlockAt(
+                            fromLocation.getBlockX() + dx,
+                            fromLocation.getBlockY() + dy,
+                            fromLocation.getBlockZ() + dz);
+                    final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(fromLocation);
+                    final Location toLocation = toBlock.getLocation();
 
-                // Block Data
-                WorldUtils.copyBlockState(PaperLib.getBlockState(fromBlock, false).getState(), toBlock);
+                    // Block Data
+                    WorldUtils.copyBlockState(PaperLib.getBlockState(fromBlock, false).getState(), toBlock);
 
-                // Count means successful pasting block data. Not including Slimefun data.
-                count.addAndGet(1);
+                    // Count means successful pasting block data. Not including Slimefun data.
+                    count.addAndGet(1);
 
-                // Slimefun Data
-                if (slimefunItem == null) {
-                    return;
-                }
-
-                // Call Handler
-                slimefunItem.callItemHandler(
-                    BlockPlaceHandler.class,
-                    handler -> handler.onPlayerPlace(new BlockPlaceEvent(
-                        toBlock,
-                        PaperLib.getBlockState(toBlock, false).getState(),
-                        toBlock.getRelative(BlockFace.SOUTH),
-                        itemInHand,
-                        player,
-                        true,
-                        EquipmentSlot.HAND)));
-
-                SlimefunBlockData fromSlimefunBlockData =
-                    Slimefun.getDatabaseManager().getBlockDataController().getBlockData(fromLocation);
-                if (overrideData) {
-                    Slimefun.getDatabaseManager().getBlockDataController().removeBlock(toLocation);
-                }
-
-                boolean ticking = false;
-                ChunkPosition chunkPosition = new ChunkPosition(fromLocation);
-                if (tickingBlocks.containsKey(chunkPosition)) {
-                    if (tickingBlocks.get(chunkPosition).contains(fromLocation)) {
-                        ticking = true;
+                    // Slimefun Data
+                    if (slimefunItem == null) {
+                        return;
                     }
-                }
 
-                if (StorageCacheUtils.hasBlock(toLocation)) {
-                    return;
-                }
+                    // Call Handler
+                    slimefunItem.callItemHandler(
+                        BlockPlaceHandler.class,
+                        handler -> handler.onPlayerPlace(new BlockPlaceEvent(
+                            toBlock,
+                            PaperLib.getBlockState(toBlock, false).getState(),
+                            toBlock.getRelative(BlockFace.SOUTH),
+                            itemInHand,
+                            player,
+                            true,
+                            EquipmentSlot.HAND)));
 
-                // Slimefun Block
-                Slimefun.getDatabaseManager().getBlockDataController().createBlock(toLocation, slimefunItem.getId());
-                SlimefunBlockData toSlimefunBlockData =
-                    Slimefun.getDatabaseManager().getBlockDataController().getBlockData(toLocation);
-
-                // SlimefunBlockData
-                if (fromSlimefunBlockData == null || toSlimefunBlockData == null) {
-                    return;
-                }
-
-                Map<String, String> data = fromSlimefunBlockData.getAllData();
-                for (String key : data.keySet()) {
-                    toSlimefunBlockData.setData(key, data.get(key));
-                }
-
-                // BlockMenu
-                final BlockMenu fromMenu = fromSlimefunBlockData.getBlockMenu();
-                final BlockMenu toMenu = toSlimefunBlockData.getBlockMenu();
-
-                if (fromMenu == null || toMenu == null) {
-                    return;
-                }
-
-                ItemStack[] contents = fromMenu.getContents();
-                for (int i = 0; i < contents.length; i++) {
-                    if (contents[i] != null) {
-                        toMenu.getInventory().setItem(i, contents[i].clone());
+                    SlimefunBlockData fromSlimefunBlockData =
+                        Slimefun.getDatabaseManager().getBlockDataController().getBlockData(fromLocation);
+                    if (overrideData) {
+                        Slimefun.getDatabaseManager().getBlockDataController().removeBlock(toLocation);
                     }
-                }
 
-                // Ticking
-                if (!ticking) {
-                    Slimefun.getTickerTask().disableTicker(toLocation);
-                }
+                    boolean ticking = false;
+                    ChunkPosition chunkPosition = new ChunkPosition(fromLocation);
+                    if (tickingBlocks.containsKey(chunkPosition)) {
+                        if (tickingBlocks.get(chunkPosition).contains(fromLocation)) {
+                            ticking = true;
+                        }
+                    }
+
+                    if (StorageCacheUtils.hasBlock(toLocation)) {
+                        return;
+                    }
+
+                    // Slimefun Block
+                    Slimefun.getDatabaseManager().getBlockDataController().createBlock(toLocation, slimefunItem.getId());
+                    SlimefunBlockData toSlimefunBlockData =
+                        Slimefun.getDatabaseManager().getBlockDataController().getBlockData(toLocation);
+
+                    // SlimefunBlockData
+                    if (fromSlimefunBlockData == null || toSlimefunBlockData == null) {
+                        return;
+                    }
+
+                    Map<String, String> data = fromSlimefunBlockData.getAllData();
+                    for (String key : data.keySet()) {
+                        toSlimefunBlockData.setData(key, data.get(key));
+                    }
+
+                    // BlockMenu
+                    final BlockMenu fromMenu = fromSlimefunBlockData.getBlockMenu();
+                    final BlockMenu toMenu = toSlimefunBlockData.getBlockMenu();
+
+                    if (fromMenu == null || toMenu == null) {
+                        return;
+                    }
+
+                    ItemStack[] contents = fromMenu.getContents();
+                    for (int i = 0; i < contents.length; i++) {
+                        if (contents[i] != null) {
+                            toMenu.getInventory().setItem(i, contents[i].clone());
+                        }
+                    }
+
+                    // Ticking
+                    if (!ticking) {
+                        Slimefun.getTickerTask().disableTicker(toLocation);
+                    }
+                });
             }));
             player.sendMessage(String.format(
                 Lang.getString("messages.commands.worldedit.paste-done"),
@@ -662,28 +664,30 @@ public class NetworksMain implements TabExecutor {
         isHead = isHead0;
 
         doWorldEdit(getPos1(player), getPos2(player), (location -> {
-            final Block targetBlock = location.getBlock();
-            sfItem.callItemHandler(
-                BlockPlaceHandler.class,
-                h -> h.onPlayerPlace(new BlockPlaceEvent(
-                    targetBlock,
-                    PaperLib.getBlockState(targetBlock, false).getState(),
-                    targetBlock.getRelative(BlockFace.DOWN),
-                    itemStack,
-                    player,
-                    true,
-                    EquipmentSlot.HAND)));
-            if (overrideData) {
-                Slimefun.getDatabaseManager().getBlockDataController().removeBlock(location);
-            }
-            if (!StorageCacheUtils.hasBlock(location)) {
-                targetBlock.setType(t);
-                if (isHead) {
-                    PlayerHead.setSkin(targetBlock, skin, false);
+            Bukkit.getRegionScheduler().run(Networks.getInstance(), location, task -> {
+                final Block targetBlock = location.getBlock();
+                sfItem.callItemHandler(
+                    BlockPlaceHandler.class,
+                    h -> h.onPlayerPlace(new BlockPlaceEvent(
+                        targetBlock,
+                        PaperLib.getBlockState(targetBlock, false).getState(),
+                        targetBlock.getRelative(BlockFace.DOWN),
+                        itemStack,
+                        player,
+                        true,
+                        EquipmentSlot.HAND)));
+                if (overrideData) {
+                    Slimefun.getDatabaseManager().getBlockDataController().removeBlock(location);
                 }
-                Slimefun.getDatabaseManager().getBlockDataController().createBlock(location, sfid);
-            }
-            count.addAndGet(1);
+                if (!StorageCacheUtils.hasBlock(location)) {
+                    targetBlock.setType(t);
+                    if (isHead) {
+                        PlayerHead.setSkin(targetBlock, skin, false);
+                    }
+                    Slimefun.getDatabaseManager().getBlockDataController().createBlock(location, sfid);
+                }
+                count.addAndGet(1);
+            });
         }));
 
         player.sendMessage(String.format(
@@ -714,24 +718,26 @@ public class NetworksMain implements TabExecutor {
 
         final AtomicInteger count = new AtomicInteger();
         doWorldEdit(getPos1(player), getPos2(player), (location -> {
-            final Block targetBlock = pos1.getWorld().getBlockAt(location);
-            if (StorageCacheUtils.hasBlock(location)) {
-                SlimefunItem item = StorageCacheUtils.getSfItem(location);
-                if (item != null && callHandler) {
-                    item.callItemHandler(
-                        BlockBreakHandler.class,
-                        handler -> handler.onPlayerBreak(
-                            new BlockBreakEvent(targetBlock, player),
-                            new ItemStack(Material.AIR),
-                            new ArrayList<>()));
+            Bukkit.getRegionScheduler().run(Networks.getInstance(), location, t -> {
+                final Block targetBlock = pos1.getWorld().getBlockAt(location);
+                if (StorageCacheUtils.hasBlock(location)) {
+                    SlimefunItem item = StorageCacheUtils.getSfItem(location);
+                    if (item != null && callHandler) {
+                        item.callItemHandler(
+                            BlockBreakHandler.class,
+                            handler -> handler.onPlayerBreak(
+                                new BlockBreakEvent(targetBlock, player),
+                                new ItemStack(Material.AIR),
+                                new ArrayList<>()));
+                    }
+                    targetBlock.setType(Material.AIR);
                 }
-                targetBlock.setType(Material.AIR);
-            }
-            Slimefun.getDatabaseManager().getBlockDataController().removeBlock(location);
-            if (!skipVanilla) {
-                targetBlock.setType(Material.AIR);
-            }
-            count.addAndGet(1);
+                Slimefun.getDatabaseManager().getBlockDataController().removeBlock(location);
+                if (!skipVanilla) {
+                    targetBlock.setType(Material.AIR);
+                }
+                count.addAndGet(1);
+            });
         }));
 
         player.sendMessage(String.format(

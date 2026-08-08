@@ -6,6 +6,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.SpecialSlimefunItem;
 import io.github.sefiraat.networks.NetworkStorage;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NetworkRoot;
 import io.github.sefiraat.networks.network.NodeDefinition;
 import io.github.sefiraat.networks.network.stackcaches.ItemRequest;
@@ -24,6 +25,7 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -103,24 +105,26 @@ public class SmartPusher extends SpecialSlimefunItem implements AdminDebuggable 
                     SlimefunItem slimefunItem,
                     @NotNull SlimefunBlockData slimefunBlockData) {
                     final Location location = block.getLocation();
-                    final BlockFace cachedFace = getDirection(location);
-                    if (cachedFace != null && VALID_FACES.contains(cachedFace)) {
-                        final BlockMenu blockMenu = slimefunBlockData.getBlockMenu();
-                        if (blockMenu != null) {
-                            onTick(blockMenu, cachedFace);
+                    Bukkit.getRegionScheduler().run(Networks.getInstance(), location, t -> {
+                        final BlockFace cachedFace = getDirection(location);
+                        if (cachedFace != null && VALID_FACES.contains(cachedFace)) {
+                            final BlockMenu blockMenu = slimefunBlockData.getBlockMenu();
+                            if (blockMenu != null) {
+                                onTick(blockMenu, cachedFace);
+                            } else {
+                                sendFeedback(location, FeedbackType.INVALID_BLOCK);
+                            }
+                        } else if (block.getBlockData() instanceof Directional directional) {
+                            final BlockFace face = directional.getFacing();
+                            setDirection(location, face);
+                            sendFeedback(block.getLocation(), FeedbackType.INITIALIZATION);
                         } else {
-                            sendFeedback(location, FeedbackType.INVALID_BLOCK);
+                            Slimefun.getDatabaseManager()
+                                .getBlockDataController()
+                                .removeBlock(location);
+                            sendFeedback(block.getLocation(), FeedbackType.INVALID_BLOCK);
                         }
-                    } else if (block.getBlockData() instanceof Directional directional) {
-                        final BlockFace face = directional.getFacing();
-                        setDirection(location, face);
-                        sendFeedback(block.getLocation(), FeedbackType.INITIALIZATION);
-                    } else {
-                        Slimefun.getDatabaseManager()
-                            .getBlockDataController()
-                            .removeBlock(location);
-                        sendFeedback(block.getLocation(), FeedbackType.INVALID_BLOCK);
-                    }
+                    });
                 }
             },
             new BlockBreakHandler(false, false) {

@@ -75,7 +75,7 @@ public class SmartGrabber extends SpecialSlimefunItem implements AdminDebuggable
             new BlockTicker() {
                 @Override
                 public boolean isSynchronized() {
-                    return false;
+                    return true;
                 }
 
                 @Override
