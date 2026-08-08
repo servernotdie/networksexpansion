@@ -11,7 +11,6 @@ Subject: [PATCH 1/2] feat(vi) traslated to VietNamese
  .../guide/QuantumSlimeHUDDisplayOption.java   |  4 +--
  .../items/machines/AdvancedDirectional.java   |  4 +--
  .../advanced/AdvancedWirelessTransmitter.java |  4 +--
- .../networks/commands/NetworksMain.java       |  6 ++---
  .../slimefun/tools/NetworkRemote.java         |  2 +-
  9 files changed, 54 insertions(+), 32 deletions(-)
 
@@ -186,30 +185,6 @@ index 21584b0c..75b375a3 100644
                                      BlockMenu menu = StorageCacheUtils.getMenu(location);
                                      if (menu != null) menu.open(player);
                                      return;
-diff --git a/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java b/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java
-index ed37dad4..6cc73572 100644
---- a/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java
-+++ b/src/main/java/io/github/sefiraat/networks/commands/NetworksMain.java
-@@ -1488,7 +1488,7 @@ public class NetworksMain implements TabExecutor {
-                     }
- 
-                     if (value instanceof Map<?, ?>) {
--                        player.sendMessage("缓存: " + cchName);
-+                        player.sendMessage("Bộ nhớ đệm: " + cchName);
-                         @SuppressWarnings("unchecked") Map<Location, Integer> locations = (Map<Location, Integer>) value;
-                         Map<String, Integer> formatted = locations.entrySet().stream().map(e -> {
-                             SlimefunItem sf = StorageCacheUtils.getSfItem(e.getKey());
-@@ -1501,8 +1501,8 @@ public class NetworksMain implements TabExecutor {
-                             player.sendMessage(entry.getKey() + ": " + entry.getValue());
-                         }
-                     } else if (value instanceof Number n) {
--                        player.sendMessage("缓存: " + cchName);
--                        player.sendMessage("值: " + n.intValue());
-+                        player.sendMessage("Bộ nhớ đệm: " + cchName);
-+                        player.sendMessage("Giá trị: " + n.intValue());
-                     }
-                 }
- 
 diff --git a/src/main/java/io/github/sefiraat/networks/slimefun/tools/NetworkRemote.java b/src/main/java/io/github/sefiraat/networks/slimefun/tools/NetworkRemote.java
 index b0068c55..216b8dbc 100644
 --- a/src/main/java/io/github/sefiraat/networks/slimefun/tools/NetworkRemote.java
